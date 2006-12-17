@@ -123,7 +123,7 @@ while(@data = $sth->fetchrow_array)
 				#}
 			}
 			if ( $type eq "del_virus_notifi") {
-				$temp_data=qq(if (/^X-Virus: mail03\$/ && /^From: .*postmaster\@mail03.ip-exchange.de/ )\n{\nexception {\nto );
+				$temp_data=qq(if (/^X-Virus: CpVES\$/ && /^From: .*postmaster\@/ )\n{\nexception {\nto );
 				$mailfilter = sprintf("%s\n%s \"|cat - > /dev/null\"\n}\n}\n",
 					$mailfilter,
 					$temp_data);
