@@ -9,11 +9,26 @@
 <div style="text-align:center;color:red;">Postmaster Weiterleitung kann nicht deaktiviert werden!</div>
 <br/>
 {/if}
-
-<table border="0">
-<tr >
- <td colspan="4" class="domain_view" ><h3>eMailadressen</h3></td>
+{literal}
+<script type="text/javascript">
+ function fade(name) {
+  if( document.getElementById(name + 't').style.display == "none" ) {
+   document.getElementById(name + 't').style.display = "block";
+   document.getElementById(name + 'l').innerHTML = "Ausblenden";
+  } else {
+   document.getElementById(name + 't').style.display = "none";
+   document.getElementById(name + 'l').innerHTML = "Einblenden";
+  }
+ }
+</script>
+{/literal}
+<table border="0" class="domain_view">
+<tr>
+ <td style="width:600px;" colspan="3" ><h3>eMailadressen</h3></td>
+ <td style="width:070px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">Ausblenden</a>]</td>
 </tr>
+</table>
+<table id="mailst" border="0">
 {foreach from=$table_email item=row }
 <tr style="background-color:{cycle values=#rcolor#}">
  <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png"   title="Autoresponder aktiv." />{/if}
@@ -36,14 +51,19 @@
  <td colspan="4">Keine eMailadresse unter dieser Domain vorhanden!</td>
 </tr>
 {/if}
+</table>
 
+<table border="0" class="domain_view">
 <tr>
- <td colspan="4" class="domain_view"><h3>Weiterleitungen</h3></td>
+ <td style="width:600px;" colspan="3"><h3>Weiterleitungen</h3></td>
+ <td style="width:070px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">Ausblenden</a>]</td>
 </tr>
+</table>
+<table id="forwardt" border="0">
 {foreach from=$table_forward item=row}
 <tr style="background-color:{cycle values=#rcolor#}">
- <td><a href="forward_view.php?id={$row.id}&amp;did={$row.domain}">{$row.from}</a></td>
- <td>{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
+ <td style="width:300px;"><a href="forward_view.php?id={$row.id}&amp;did={$row.domain}">{$row.from}</a></td>
+ <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y'}
   <a href="domain_view.php?id={$row.domain}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
@@ -56,14 +76,18 @@
   </td>
 </tr>
 {/foreach}
+</table>
+<table border="0" class="domain_view">
 <tr>
-  <td colspan="4" class="domain_view" ><h3>Catchall</h3></td>
+ <td style="width:670px;" colspan="4"><h3>Catchall</h3></td>
 </tr>
+</table>
+<table id="catcht" border="0">
 <tr>
   {if $if_catchall eq 'n' }
-  <td colspan="4">Kein CatchAll f&uuml;r {$dnsname} konfiguiert.<br/><a href="forward_catchall.php?id={$id}&#038;new=yes">Hier klicken um einen Einzurichten.</a></td>
+  <td colspan="4"  style="width:670px;">Kein CatchAll f&uuml;r {$dnsname} konfiguiert.<br/><a href="forward_catchall.php?id={$id}&#038;new=yes">Hier klicken um einen Einzurichten.</a></td>
   {else}
-  <td><a href="forward_catchall.php?id={$id}">@{$dnsname}</a></td>
+  <td style="width:670px;"><a href="forward_catchall.php?id={$id}">@{$dnsname}</a></td>
   <td>{$catchall_to}</td>
   <td style="text-align:right;vertical-align:middle;">
   
