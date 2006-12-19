@@ -108,10 +108,17 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$webmail="1";
 			} 
+			if ($config['cleartext_passwd']==1) {
+				$cleartext=$_POST['password'];
+			}
+			else
+			{
+				$cleartext="";
+			}
 			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',disableimap='%s', disablepop3='%s',disablewebmail='%s',cpasswd='%s' ",
 				$db->escapeSimple(strtolower($full_email)),
 				$db->escapeSimple($_GET['id']),
-				$db->escapeSimple($_POST['password']),
+				$db->escapeSimple($cleartext),
 				$db->escapeSimple($_POST['full_name']),
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),

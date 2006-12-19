@@ -57,9 +57,19 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 		else {
 			$manager='n'; }
 		
+			
+		if ($config['cleartext_passwd']==1) {
+				$cleartext=$_POST['passwd'];
+		}
+		else
+		{
+			$cleartext="";
+		}
+		
+		
 		$sql=sprintf("INSERT INTO adm_users SET username='%s', passwd='%s', full_name='%s', access='%s', manager='%s',cpasswd='%s'",
 			$db->escapeSimple($_POST['username']),
-			$db->escapeSimple($_POST['passwd']),
+			$db->escapeSimple($cleartext),
 			$db->escapeSimple($_POST['full_name']),
 			$db->escapeSimple($access),
 			$db->escapeSimple($manager),

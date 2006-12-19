@@ -159,8 +159,15 @@ if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user
 		}
 		else
 		{
+			if ($config['cleartext_passwd']==1) {
+				$cleartext=$_POST['new_passwd1'];
+			}
+			else
+			{
+				$cleartext="";
+			}
 			$sql=sprintf("UPDATE users SET passwd='%s',cpasswd='%s' WHERE id='%d'",
-				$db->escapeSimple($_POST['new_passwd1']),
+				$db->escapeSimple($cleartext),
 				$db->escapeSimple(crypt($_POST['new_passwd1'])),
 				$db->escapeSimple($_SESSION['uid']));
 			$res=&$db->query($sql);

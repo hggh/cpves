@@ -45,8 +45,16 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y')
 		}
 		else
 		{
+		
+			if ($config['cleartext_passwd']==1) {
+				$cleartext=$_POST['new_passwd1'];
+			}
+			else
+			{
+				$cleartext="";
+			}		
 			$sql=sprintf("UPDATE adm_users SET passwd='%s',cpasswd='%s' WHERE username='%s'",
-				$db->escapeSimple($_POST['new_passwd1']),
+				$db->escapeSimple($cleartext),
 				$db->escapeSimple(crypt($_POST['new_passwd1'])),
 				$db->escapeSimple($_SESSION['email']));
 			$res=&$db->query($sql);

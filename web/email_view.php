@@ -175,11 +175,18 @@ if (isset($_SESSION['superadmin']) &&
 				$password=$edata['passwd'];
 				$cpasswd=$edata['cpasswd'];
 			}
+			if ($config['cleartext_passwd']==1) {
+				$cleartext=$password;
+			}
+			else
+			{
+				$cleartext="";
+			}
 			if (!$error)
 			{
 				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s', disableimap='%d', disablepop3='%d',disablewebmail='%d',
 				cpasswd='%s' WHERE id='%d' ",
-					$db->escapeSimple($password),
+					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
 						$db->escapeSimple($pop3),

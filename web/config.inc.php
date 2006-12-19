@@ -28,6 +28,11 @@ $des_key="hs§#+ska81k!%&Y>FJMJflDT";
 //set to false if no logging!
 $write_login_log="false";
 
+
+//Save cleartext password in the database
+//NOT RECOMMENDED!!!! secuity hole
+$config['cleartext_passwd']="0";
+
 //set max password lenth:
 $max_passwd_len=10;
 $smarty->assign('max_passwd_len', $max_passwd_len);
@@ -40,6 +45,7 @@ $config['company_title']="Some Company";
 //Mailinglistenfeature: 
 $config['mailinglisten']='n'; //Development, please don't use!
 $ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
+
 $config_autores_subject="";
 $config_autores_msg="";
 

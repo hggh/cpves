@@ -74,9 +74,19 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 				$db->escapeSimple($_GET['id']));
 			$res=&$db->query($sql);
 			
+			if ($config['cleartext_passwd']==1) {
+				$cleartext=$passwd;
+			}
+			else
+			{
+				$cleartext="";
+			}
+			
+			
+			
 			$sql=sprintf("INSERT INTO adm_users SET username='%s', passwd='%s', full_name='%s', access='%s', manager='%s', id='%d', cpasswd='%s'",
 			$db->escapeSimple($data['username']),
-			$db->escapeSimple($passwd),
+			$db->escapeSimple($cleartext),
 			$db->escapeSimple($_POST['full_name']),
 			$db->escapeSimple($access),
 			$db->escapeSimple($manager),
