@@ -11,15 +11,15 @@ $smarty = new Smarty;
 $smarty->compile_check = true;
 $smarty->caching = false;
 $smarty->template_dir = $root . '/templates';
-$smarty->compile_dir = $root . '/cmp/';
+$smarty->compile_dir = '/tmp/';
 $smarty->config_overwrite = false;
 
 
-$server_ip = "";
+$server_ip = "127.0.0.1";
 
 
 //Postmaster and Serveradmin:
-$config['postmaster'] = "";
+$config['postmaster'] = "postmaster@localhost";
 
 //DES Key for de/encrypt users passwd in session:
 //It have to be 24 chars long!!
@@ -38,10 +38,10 @@ $max_passwd_len=10;
 $smarty->assign('max_passwd_len', $max_passwd_len);
 
 //IMAP Server:
-$config['imap_server'] = "";
+$config['imap_server'] = "localhost";
 
 //Company Name:
-$config['company_title'] = "";
+$config['company_title'] = "Some Company";
 //Mailinglistenfeature: 
 $config['mailinglisten'] = 'n'; //Development, please don't use!
 $ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
@@ -58,7 +58,7 @@ $options = array(
 );
 $dsn = array(
     'phptype'  => 'mysql',
-    'username' => 'mail',
+    'username' => 'root',
     'password' => '',
     'hostspec' => 'localhost',
     'database' => 'mail_system',
