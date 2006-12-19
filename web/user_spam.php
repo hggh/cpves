@@ -161,7 +161,12 @@ if (isset($_POST['save_option']))
 		$result=&$db->query($sql);
 		
 	}
-	
+	// activate System-Script
+	if( $config['service_enabled'] == 'y' ) {
+		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
+		$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
+		@socket_close ($socket);
+	}
 	
 }
 // SAVE new whitelist

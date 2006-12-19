@@ -126,6 +126,12 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple(crypt($_POST['password']))) ;
 			$result=&$db->query($sql);
 			$smarty->assign('if_email_saved', 'y');
+			// activate System-Script
+			if( $config['service_enabled'] == 'y' ) {
+				$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
+				$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
+				@socket_close ($socket);
+			}
 		}
 	}
 	else
