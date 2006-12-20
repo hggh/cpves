@@ -241,6 +241,22 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	}
 } //ENDE WHILE forward
 
+$sql = sprintf("SELECT * FROM lists WHERE domainid = %d ORDER BY address",
+	$db->escapeSimple($_GET['id']));
+$res = &$db->query($sql);
+$table_list = array();
+while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
+ array_push($table_list, array(
+			'id' => $row['listid'],
+			'domain'=> $row['domainid'],
+			'address' => $row['address'],
+			'active' => $row['active'],
+			'public' => $row['public']
+			)
+	);
+}
+
+
 
 //look at catchall  `efrom` REGEXP '^@'
 $sql=sprintf("SELECT eto,id,access FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",
@@ -277,6 +293,7 @@ $smarty->assign('domain_id',$_GET['id']);
 $smarty->assign('access_domain', $access_domain);
 $smarty->assign('id',$_GET['id']);
 $smarty->assign('table_email', $table_email);
+$smarty->assign('table_list', $table_list);
 $smarty->assign('table_forward', $table_forward);
 $smarty->assign('template','domain_view.tpl');
 $smarty->display('structure.tpl');

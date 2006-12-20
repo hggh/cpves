@@ -24,8 +24,8 @@
 {/literal}
 <table border="0" class="domain_view">
 <tr>
- <td style="width:600px;" colspan="3" ><h3>eMailadressen</h3></td>
- <td style="width:070px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">Ausblenden</a>]</td>
+ <td style="width:580px;" colspan="3" ><h3>eMailadressen</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">Ausblenden</a>]</td>
 </tr>
 </table>
 <table id="mailst" border="0">
@@ -55,8 +55,8 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:600px;" colspan="3"><h3>Weiterleitungen</h3></td>
- <td style="width:070px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">Ausblenden</a>]</td>
+ <td style="width:580px;" colspan="3"><h3>Weiterleitungen</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">Ausblenden</a>]</td>
 </tr>
 </table>
 <table id="forwardt" border="0">
@@ -81,16 +81,30 @@
 {if $if_listings == 'y' }
 <table border="0" class="domain_view">
 <tr>
- <td style="width:600px;" colspan="3"><h3>Mailinglisten</h3></td>
- <td style="width:070px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">Ausblenden</a>]</td>
+ <td style="width:580px;" colspan="3"><h3>Mailinglisten</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">Ausblenden</a>]</td>
 </tr>
 </table>
 <table id="listst" border="0">
-{if $if_no_list eq 'y'}
+{foreach from=$table_list item=row}
+<tr style="background-color:{cycle values=#rcolor#}">
+ <td style="width:300px;"><a href="list_view.php?id={$row.id}&amp;did={$row.domain}">{$row.address}</a></td>
+ <td style="width:300px;">&#160;</td>
+ <td style="text-align:right;vertical-align:middle;">
+ {if $row.active eq 'y' }
+ <a href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
+ {else}
+ <a  href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
+ {/if}</td>
+ <td style="text-align:right;vertical-align:middle;">
+  <a href="list_del.php?domainid={$row.domain}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Mailingliste l&ouml;schen"/></a>
+ </td>
+</tr> 
+{foreachelse}
 <tr>
  <td colspan="4">Keine Mailingliste unter dieser Domain vorhanden!</td>
 </tr>
-{/if}
+{/foreach}
 </table>
 {/if}
 
