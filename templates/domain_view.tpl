@@ -33,7 +33,7 @@
 <tr style="background-color:{cycle values=#rcolor#}">
  <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png"   title="Autoresponder aktiv." />{/if}
  <a href="email_view.php?id={$row.id}&amp;did={$row.domain}">{$row.email}</a></td>
- <td style="width:300px;">&#160;</td>
+ <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
  <a href="domain_view.php?id={$row.domain}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
@@ -89,7 +89,7 @@
 {foreach from=$table_list item=row}
 <tr style="background-color:{cycle values=#rcolor#}">
  <td style="width:300px;"><a href="list_view.php?id={$row.id}&amp;did={$row.domain}">{$row.address}</a></td>
- <td style="width:300px;">&#160;</td>
+ <td style="width:300px;">Empf&auml;nger: {$row.recps}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.active eq 'y' }
  <a href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>

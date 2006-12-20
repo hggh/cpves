@@ -241,17 +241,27 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	}
 } //ENDE WHILE forward
 
+$sql = sprintf("SELECT listID,COUNT(*) as num FROM list_recp GROUP BY listID",
+	$db->escapeSimple($_GET['id']));
+$res = &$db->query($sql);
+$list_recps = array();
+while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
+ $list_recps[$row['listid']] = $row['num'];
+}
+
 $sql = sprintf("SELECT * FROM lists WHERE domainid = %d ORDER BY address",
 	$db->escapeSimple($_GET['id']));
 $res = &$db->query($sql);
 $table_list = array();
 while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
+ if( isset($list_recps[$row['listid']]) ) $recps = $list_recps[$row['listid']]; else $recps = 0;
  array_push($table_list, array(
 			'id' => $row['listid'],
 			'domain'=> $row['domainid'],
 			'address' => $row['address'],
 			'active' => $row['active'],
-			'public' => $row['public']
+			'public' => $row['public'],
+			'recps' => $recps
 			)
 	);
 }
