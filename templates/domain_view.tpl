@@ -77,6 +77,23 @@
 </tr>
 {/foreach}
 </table>
+
+{if $if_listings == 'y' }
+<table border="0" class="domain_view">
+<tr>
+ <td style="width:600px;" colspan="3"><h3>Mailinglisten</h3></td>
+ <td style="width:070px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">Ausblenden</a>]</td>
+</tr>
+</table>
+<table id="listst" border="0">
+{if $if_no_list eq 'y'}
+<tr>
+ <td colspan="4">Keine Mailingliste unter dieser Domain vorhanden!</td>
+</tr>
+{/if}
+</table>
+{/if}
+
 <table border="0" class="domain_view">
 <tr>
  <td style="width:670px;" colspan="4"><h3>Catchall</h3></td>
@@ -114,9 +131,8 @@
  {if $if_imap eq '1' }
  <a href="domain_view.php?id={$id}&#038;fstate=enableimap">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="IMAP aktivieren." /></a>
- 
  {else}
- <a href="domain_view.php?id={$id}&#038;fstate=diableimap">
+ <a href="domain_view.php?id={$id}&#038;fstate=disableimap">
  <img src="img/icons/button_ok.png" style="border:0px;" title="IMAP deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -128,7 +144,7 @@
   <a href="domain_view.php?id={$id}&#038;fstate=enablepop3">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="POP3 aktivieren." /></a>
  {else}
-  <a href="domain_view.php?id={$id}&#038;fstate=diablepop3">
+  <a href="domain_view.php?id={$id}&#038;fstate=disablepop3">
  <img src="img/icons/button_ok.png" style="border:0px;" title="POP3 deaktivieren." /></a>
  {/if}</td>
 </tr>
