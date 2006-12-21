@@ -53,10 +53,19 @@ if (is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
 	{
 		$table="forwardings";
 		$sql=sprintf("SELECT * FROM forwardings WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['eid']));
 		$result=&$db->query($sql);
 		$mail=$result->fetchrow(DB_FETCHMODE_ASSOC);
 		$email=$mail['efrom'];
+	}
+	elseif ($_GET['type'] == 'list')
+	{
+		$table = 'lists';
+		$sql = sprintf("SELECT address FROM lists WHERE id = %d",
+				$db->escapeSimple($_GET['eid']));
+		$res = &$db->query($sql);
+		$row = $res->fetchrow(DB_FETCHMODE_ASSOC);
+		$email = $row['address'];
 	}
 
 	if ($_GET['state']=='disable')
@@ -241,12 +250,12 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	}
 } //ENDE WHILE forward
 
-$sql = sprintf("SELECT listID,COUNT(*) as num FROM list_recp GROUP BY listID",
+$sql = sprintf("SELECT id,COUNT(*) as num FROM list_recp GROUP BY id",
 	$db->escapeSimple($_GET['id']));
 $res = &$db->query($sql);
 $list_recps = array();
 while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
- $list_recps[$row['listid']] = $row['num'];
+ $list_recps[$row['id']] = $row['num'];
 }
 
 $sql = sprintf("SELECT * FROM lists WHERE domainid = %d ORDER BY address",
@@ -254,12 +263,12 @@ $sql = sprintf("SELECT * FROM lists WHERE domainid = %d ORDER BY address",
 $res = &$db->query($sql);
 $table_list = array();
 while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
- if( isset($list_recps[$row['listid']]) ) $recps = $list_recps[$row['listid']]; else $recps = 0;
+ if( isset($list_recps[$row['id']]) ) $recps = $list_recps[$row['id']]; else $recps = 0;
  array_push($table_list, array(
-			'id' => $row['listid'],
+			'id' => $row['id'],
 			'domain'=> $row['domainid'],
 			'address' => $row['address'],
-			'active' => $row['active'],
+			'access' => $row['access'],
 			'public' => $row['public'],
 			'recps' => $recps
 			)

@@ -76,7 +76,7 @@ if( $sth->rows == 0 ) {
 sub isSenderAllowed {
  my $listID = shift;
  my $sender = shift;
- my $sql = sprintf("SELECT COUNT(*) FROM list_recp WHERE listID = %d AND recp = %s",
+ my $sql = sprintf("SELECT COUNT(*) FROM list_recp WHERE id = %d AND recp = %s",
 		$listID,
 		$dbh->quote($sender));
  my $query = $dbh->prepare($sql);
@@ -112,7 +112,7 @@ sub sendto {
 
 sub getAllAddresses {
  my $id = shift;
- my $sql = sprintf("SELECT recp FROM list_recp WHERE listID = %d", $id);
+ my $sql = sprintf("SELECT recp FROM list_recp WHERE id = %d", $id);
  my $sth = $dbh->prepare($sql);
  $sth->execute;
  my @row;

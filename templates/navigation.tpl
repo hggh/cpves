@@ -7,8 +7,7 @@
 	<a class="nav sub" href="email_add.php?id={$domain_id}">Neue eMailadresse</a>
 	<a class="nav sub" href="forward_add.php?id={$domain_id}">Neue Weiterleitung</a>
 	{if $if_listings == 'y' }
-	<a class="nav sub" href="list_view.php?id={$domain_id}">Listen</a>
-	<a class="nav usub" href="list_add.php?id={$domain_id}">Neue Liste</a>
+	<a class="nav sub" href="list_add.php?id={$domain_id}">Neue Liste</a>
 	{/if}
 {/if}
 {if $if_superadmin eq 'y' }

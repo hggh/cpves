@@ -180,6 +180,28 @@ function email_exist($mail,$db,$eid,$fid)
 		{
 			return false;
 		}
+
+		if ($fid != 0)
+		{
+			$sql=sprintf("SELECT id FROM lists WHERE address = '%s' AND id! = '%s'",
+				$db->escapeSimple($mail),
+				$db->escapeSimple($fid));
+		}
+		else
+		{
+			$sql=sprintf("SELECT id FROM lists WHERE address = '%s'",
+				$db->escapeSimple($mail));
+		}
+		$res=&$db->query($sql);
+		if ($res->numRows() == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 	
 }

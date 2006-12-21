@@ -89,9 +89,10 @@
 {foreach from=$table_list item=row}
 <tr style="background-color:{cycle values=#rcolor#}">
  <td style="width:300px;"><a href="list_view.php?id={$row.id}&amp;did={$row.domain}">{$row.address}</a></td>
- <td style="width:300px;">Empf&auml;nger: {$row.recps}</td>
+ <td style="width:200px;">Empf&auml;nger: {$row.recps}</td>
+ <td style="width:100px;">{if $row.public eq 'y'}&Ouml;ffentlich{else}Privat{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
- {if $row.active eq 'y' }
+ {if $row.access eq 'y' }
  <a href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
  {else}
  <a  href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
