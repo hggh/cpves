@@ -188,16 +188,6 @@ CREATE TABLE `spamassassin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `tmp`
---
-
-DROP TABLE IF EXISTS `tmp`;
-CREATE TABLE `tmp` (
-  `id` int(11) NOT NULL default '0',
-  `passwd` varchar(200) character set utf8 collate utf8_unicode_ci NOT NULL default ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
 -- Table structure for table `users`
 --
 
