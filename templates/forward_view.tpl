@@ -3,7 +3,7 @@
 {if $if_del eq 'y'}
 <div style="text-align:center;color:red;">
 Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser Vorgang l&ouml;scht nun den kompletten Eintrag!<br/>
- <form action="forward_del.php" method="post">
+ <form action="forward_del.php?id={$id}&#038;domainid={$domainid}" method="post">
   <input type="submit" name="del_fwd" class="in_1" value="Loeschen"/>
   <input type="hidden" name="id" value="{$id}" />
   <input type="hidden" name="domainid" value="{$domainid}" />
