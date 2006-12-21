@@ -1,13 +1,15 @@
--- MySQL dump 10.9
+-- MySQL dump 10.10
 --
 -- Host: localhost    Database: mail_system
 -- ------------------------------------------------------
--- Server version	4.1.11-Debian_4sarge2-log
+-- Server version	5.0.30-Debian_1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
@@ -25,21 +27,10 @@ CREATE TABLE `adm_users` (
   `access` enum('y','n') collate utf8_unicode_ci NOT NULL default 'y',
   `manager` enum('n','y') collate utf8_unicode_ci NOT NULL default 'n',
   `full_name` varchar(255) collate utf8_unicode_ci default NULL,
-  `cpasswd` varchar(255) character set utf8 NOT NULL default '',
+  `cpasswd` varchar(255) character set utf8 NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `adm_users`
---
-
-
-/*!40000 ALTER TABLE `adm_users` DISABLE KEYS */;
-LOCK TABLES `adm_users` WRITE;
-INSERT INTO `adm_users` VALUES (1,'admin','','y','y','Superadmin','$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `adm_users` ENABLE KEYS */;
 
 --
 -- Table structure for table `admin_access`
@@ -52,16 +43,6 @@ CREATE TABLE `admin_access` (
   `domain` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `admin_access`
---
-
-
-/*!40000 ALTER TABLE `admin_access` DISABLE KEYS */;
-LOCK TABLES `admin_access` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `admin_access` ENABLE KEYS */;
 
 --
 -- Table structure for table `autoresponder`
@@ -79,16 +60,6 @@ CREATE TABLE `autoresponder` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `autoresponder`
---
-
-
-/*!40000 ALTER TABLE `autoresponder` DISABLE KEYS */;
-LOCK TABLES `autoresponder` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `autoresponder` ENABLE KEYS */;
-
---
 -- Table structure for table `autoresponder_send`
 --
 
@@ -101,16 +72,6 @@ CREATE TABLE `autoresponder_send` (
   KEY `efromto` (`efromto`),
   KEY `in2` (`email`,`efromto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `autoresponder_send`
---
-
-
-/*!40000 ALTER TABLE `autoresponder_send` DISABLE KEYS */;
-LOCK TABLES `autoresponder_send` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `autoresponder_send` ENABLE KEYS */;
 
 --
 -- Table structure for table `domains`
@@ -132,39 +93,19 @@ CREATE TABLE `domains` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `domains`
---
-
-
-/*!40000 ALTER TABLE `domains` DISABLE KEYS */;
-LOCK TABLES `domains` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `domains` ENABLE KEYS */;
-
---
 -- Table structure for table `email_options`
 --
 
 DROP TABLE IF EXISTS `email_options`;
 CREATE TABLE `email_options` (
   `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL default '0',
-  `conf` varchar(100) default NULL,
-  `options` varchar(100) default NULL,
-  `extra` varchar(100) default NULL,
+  `email` int(11) NOT NULL,
+  `conf` varchar(100) collate utf8_unicode_ci default NULL,
+  `options` varchar(100) collate utf8_unicode_ci default NULL,
+  `extra` varchar(100) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `conf` (`conf`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `email_options`
---
-
-
-/*!40000 ALTER TABLE `email_options` DISABLE KEYS */;
-LOCK TABLES `email_options` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `email_options` ENABLE KEYS */;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Table structure for table `forwardings`
@@ -182,14 +123,38 @@ CREATE TABLE `forwardings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `forwardings`
+-- Table structure for table `list_recp`
 --
 
+DROP TABLE IF EXISTS `list_recp`;
+CREATE TABLE `list_recp` (
+  `id` int(11) NOT NULL auto_increment,
+  `recp` varchar(100) default NULL,
+  KEY `listID` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*!40000 ALTER TABLE `forwardings` DISABLE KEYS */;
-LOCK TABLES `forwardings` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `forwardings` ENABLE KEYS */;
+--
+-- Table structure for table `lists`
+--
+
+DROP TABLE IF EXISTS `lists`;
+CREATE TABLE `lists` (
+  `id` int(11) NOT NULL auto_increment,
+  `domainid` int(11) NOT NULL,
+  `address` varchar(80) NOT NULL,
+  `access` enum('y','n') NOT NULL default 'y',
+  `public` enum('y','n') NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `second` (`address`,`access`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*!50003 SET @OLD_SQL_MODE=@@SQL_MODE*/;
+DELIMITER ;;
+/*!50003 SET SESSION SQL_MODE="" */;;
+/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `listDelete` AFTER DELETE ON `lists` FOR EACH ROW begin delete from list_recp where listID = OLD.listID; end */;;
+
+DELIMITER ;
+/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
 
 --
 -- Table structure for table `mailfilter`
@@ -208,16 +173,6 @@ CREATE TABLE `mailfilter` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mailfilter`
---
-
-
-/*!40000 ALTER TABLE `mailfilter` DISABLE KEYS */;
-LOCK TABLES `mailfilter` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `mailfilter` ENABLE KEYS */;
-
---
 -- Table structure for table `spamassassin`
 --
 
@@ -233,14 +188,14 @@ CREATE TABLE `spamassassin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `spamassassin`
+-- Table structure for table `tmp`
 --
 
-
-/*!40000 ALTER TABLE `spamassassin` DISABLE KEYS */;
-LOCK TABLES `spamassassin` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `spamassassin` ENABLE KEYS */;
+DROP TABLE IF EXISTS `tmp`;
+CREATE TABLE `tmp` (
+  `id` int(11) NOT NULL default '0',
+  `passwd` varchar(200) character set utf8 collate utf8_unicode_ci NOT NULL default ''
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `users`
@@ -261,20 +216,11 @@ CREATE TABLE `users` (
   `disablewebmail` tinyint(1) default '1',
   `spamassassin` tinyint(1) NOT NULL default '0',
   `move_spam` varchar(100) collate utf8_unicode_ci default NULL,
-  `cpasswd` varchar(255) character set utf8 NOT NULL default '',
+  `cpasswd` varchar(255) character set utf8 NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-LOCK TABLES `users` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -284,3 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2006-12-21 14:58:08
