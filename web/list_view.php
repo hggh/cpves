@@ -32,6 +32,19 @@ if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
 	$access_domain )
 {
+
+	// Change list state
+	if( isset($_GET['cmd']) ) {
+	 if( $_GET['cmd'] == 'priv' ) {
+		$sql = sprintf("UPDATE lists SET public = 'n' WHERE id = %d",
+			$db->escapeSimple($_GET['id']));
+	 } elseif( $_GET['cmd'] == 'pub' ) {
+		$sql = sprintf("UPDATE lists SET public = 'y' WHERE id = %d",
+			$db->escapeSimple($_GET['id']));
+	 }
+	 $res = &$db->query($sql);
+	}
+
 	//del adresses:
 	if (isset($_POST['del_addr']) && isset($_POST['addresses']))
 	{
@@ -64,11 +77,12 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('email_there', 'y');
 		}
 	} //END hinzufugen
-	$sql = sprintf("SELECT id,address FROM lists WHERE id = %d",
+	$sql = sprintf("SELECT id,address,public FROM lists WHERE id = %d",
 		$db->escapeSimple($_GET['id']));
 	$result = &$db->query($sql);
 	$data = $result->fetchrow(DB_FETCHMODE_ASSOC);
 	$smarty->assign('address', $data['address']);
+	$smarty->assign('public', $data['public']);
 
 	$sql = sprintf("SELECT * FROM list_recp WHERE id = %d ORDER by recp",
 		$db->escapeSimple($_GET['id']));

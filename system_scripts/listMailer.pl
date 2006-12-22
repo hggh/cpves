@@ -61,7 +61,7 @@ my $list = $ARGV[0];
 
 # Read List config from DB
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
-my $sql = sprintf("SELECT * FROM lists WHERE address = %s AND active = 'y'",
+my $sql = sprintf("SELECT * FROM lists WHERE address = %s AND access = 'y'",
 		$dbh->quote($list));
 my $sth = $dbh->prepare($sql);
 undef($sql);
