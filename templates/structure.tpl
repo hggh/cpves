@@ -9,6 +9,14 @@
 </head>
 
 <body>
+{if $error_msg == 'y'}
+<div style="background-color:#EF9398;border:1px solid#DC5757;float:right;width:450px;text-align:left;">
+<div style="float:left;margin:6px;"><img src="img/icons/stop.png" /></div>
+<div style="text-align:left;float:left;margin-top:7px;">
+{include file="error_messages.tpl"}
+</div></div>
+{/if}
+
 <div id="container">
 
 <div id="sitename">

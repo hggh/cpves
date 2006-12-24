@@ -90,7 +90,8 @@ if (is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
 	}
 	else
 	{
-		$smarty->assign('if_postmaster' , 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_postmaster' , 'y');
 	}
 }
 //ENABLE or DISABLE EMAIL

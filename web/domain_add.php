@@ -28,7 +28,9 @@ if (isset($_POST['submit']) &&
 	{
 		if (domain_exist($_POST['dnsname'],$db))
 		{
-			$smarty->assign('if_dnsname_exists', 'y');
+			
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_domain_exits', 'y');
 			$smarty->assign('dnsname', $_POST['dnsname']);
 		}
 		else
@@ -135,7 +137,8 @@ if (isset($_POST['submit']) &&
 	}
 	else
 	{
-		$smarty->assign('if_empty', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_missing_input', 'y');
 	}
 }
 

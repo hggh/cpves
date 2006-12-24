@@ -7,6 +7,7 @@ font:76% Verdana,Tahoma,Arial,sans-serif;
 margin:0;
 padding:0;
 text-align:center;
+z-index:1;
 }
 
 a {
@@ -35,6 +36,7 @@ min-width:770px;
 padding:0;
 text-align:left;
 width:100%;
+z-index:1;
 }
 
 /*** Header section ***/
@@ -69,6 +71,7 @@ margin-left: 10px;
 #mainmenu {
 float:left;
 margin-bottom:25px;
+z-index:1;
 }
 
 #mainmenu ul {

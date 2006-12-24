@@ -30,8 +30,8 @@
 
 <br/>
 {else}
-{if $if_postmaster eq 'y' }
-<div style="color:red;">Postmaster Weiterleitung kann nicht gel&ouml;scht werden!</div>
+{if $if_error_postmaster eq 'y' }
+<a href="domain_view.php?id={$domainid}">Zur&uuml;ck zur &Uuml;bersicht</a>
 {else}
 <div style="color:blue;">Weiterleitung wurde gel&ouml;scht!<br/><br/></div>
 <meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$domainid}">

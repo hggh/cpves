@@ -1,11 +1,11 @@
 {if $template == "sadmin_view.tpl"}
-	Superadmin Benutzer &Uuml;bersicht
+	Superadmin: Benutzer &Uuml;bersicht
 {elseif $template == "sadmin_add.tpl"}
 	Superadmin: Benutzer hinzuf&uuml;gen
 {elseif $template == "index_admin.tpl"}
 	Superadmin: Uebersicht
 {elseif $template == "sadmin_edit.tpl" }
-	Superadmin Benutzer &Uuml;bersicht
+	Superadmin: Benutzer &Uuml;bersicht
 {elseif $template == "domain_add.tpl" }
 	Superadmin: Neue Domain anlegen	
 {elseif $template == "domain_view.tpl"}

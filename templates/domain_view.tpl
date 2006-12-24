@@ -1,14 +1,4 @@
-
-
 {if $if_superadmin eq 'y' or $if_admin eq 'y' and $access_domain eq 'true' }
-
-
-
-<br/>
-{if $if_postmaster eq 'y' }
-<div style="text-align:center;color:red;">Postmaster Weiterleitung kann nicht deaktiviert werden!</div>
-<br/>
-{/if}
 {literal}
 <script type="text/javascript">
  function fade(name) {

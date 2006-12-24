@@ -65,7 +65,8 @@ if (isset($_SESSION['superadmin']) &&
 		$forward=substr($edata['efrom'],0,$pos);
 		if ($forward=="postmaster")
 		{
-			$smarty->assign('if_postmaster', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_postmaster', 'y');
 		}
 		else
 		{

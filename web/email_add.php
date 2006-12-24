@@ -44,7 +44,8 @@ if (isset($_SESSION['superadmin']) &&
 	
 	if (get_forem_domain($data['id'],'users', $db)>=$data['max_email'] && $data['max_email']!=0 )
 	{
-		$smarty->assign('if_max_emails', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_email_max_reached','y');	
 	}
 	
 	
@@ -55,7 +56,8 @@ if (isset($_SESSION['superadmin']) &&
 		$full_email=$_POST['emailaddr']."@".$data['dnsname'];
 		if (get_forem_domain($data['id'],'users', $db)>=$data['max_email'] && $data['max_email']!=0 )
 		{
-			$smarty->assign('if_max_emails', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_email_max_reached','y');
 		}
 		else if (!email_valid($_POST['emailaddr']))
 		{
@@ -65,7 +67,9 @@ if (isset($_SESSION['superadmin']) &&
 		}
 		else if (email_exist($full_email,$db,0,0))
 		{
-			$smarty->assign('if_exists', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_email_exits', 'y');
+			
 			$smarty->assign('full_email', 'y');
 			$smarty->assign('eMail',$_POST['emailaddr'] );
 			$smarty->assign('full_name',$_POST['full_name'] );
@@ -136,7 +140,8 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	else
 	{
-		$smarty->assign('if_missing', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_missing_input', 'y');
 		$smarty->assign('eMail',$_POST['emailaddr'] );
 		$smarty->assign('full_name',$_POST['full_name'] );
 	}

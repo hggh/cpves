@@ -38,7 +38,8 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	}
 	elseif(strlen($_POST['passwd']) > $max_passwd_len || strlen($_POST['passwd']) < 3 )
 	{
-		$smarty->assign('if_passwd_long', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_password_long', 'y');
 		$wrong=1;
 	}
 	elseif(adm_user_exits($_POST['username'],0,$db))
