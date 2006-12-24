@@ -10,4 +10,8 @@ Maximale Anzahl an E-Mailadressen erreicht, es k&ouml;nnen keine weiteren E-Mail
 Fehlerhafte Eingabe!
 {elseif $if_error_password_long == 'y' }
 Passwort muss zwischen 3 und {$max_passwd_len} Zeichen lang sein! 
+{elseif $if_error_password_empty == 'y'}
+Passwort darf nicht leer sein!
+{elseif $if_error_password_old_wrong == 'y'}
+Altes Passwort falsch!
 {/if}
