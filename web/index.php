@@ -142,12 +142,15 @@ if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user
 		if (!isset($_POST['new_passwd1']) || empty($_POST['new_passwd1']) ||
 		    !isset($_POST['new_passwd2']) || empty($_POST['new_passwd2']))
 		{
-			$smarty->assign('passwd_empty', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_password_empty','y');
 		}
 		else if (strlen($_POST['new_passwd2']) > $max_passwd_len ||
 			 strlen($_POST['new_passwd2']) < 3)
 		{
-			$smarty->assign('passwd_len', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_password_long', 'y');
+
 		}
 		else if($_POST['new_passwd1'] !=$_POST['new_passwd2'] )
 		{
@@ -155,7 +158,8 @@ if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user
 		}
 		else if(decrypt_passwd($_SESSION['cpasswd']) != $_POST['old_passwd'])
 		{
-			$smarty->assign('old_passwd_wrong', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_password_old_wrong','y');
 		}
 		else
 		{

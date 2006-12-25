@@ -14,4 +14,12 @@ Passwort muss zwischen 3 und {$max_passwd_len} Zeichen lang sein!
 Passwort darf nicht leer sein!
 {elseif $if_error_password_old_wrong == 'y'}
 Altes Passwort falsch!
+{elseif $if_error_sadmim_exits == 'y'}
+Superadmin mit diesem Benutzernamen schon vorhanden!
+{elseif $if_error_autores_subject_empty == 'y'}
+Betreff des Autoresponders darf nicht leer sein!
+{elseif $if_error_autores_msg_empty == 'y'}
+Nachricht des Autoresponders darf nicht leer sein! 
+{elseif $if_error_autores_subject_to_long == 'y'}
+Betreff des Autoresponders ist zu lang! 
 {/if}

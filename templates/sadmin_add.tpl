@@ -12,12 +12,7 @@
 <br />
 {/if} 
 
-{if $if_user_exits eq 'y' } 
-<div style="text-align:center;color:red;">
-	Benutzername existiert bereits! 
-</div>
-<br />
-{/if}
+
  
  {if $if_added eq 'y' } 
 <div style="text-align:center;color:blue;">

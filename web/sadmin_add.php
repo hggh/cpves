@@ -44,6 +44,8 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	}
 	elseif(adm_user_exits($_POST['username'],0,$db))
 	{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_sadmim_exits','y');
 		$smarty->assign('if_user_exits', 'y');
 		$wrong=1;
 	}

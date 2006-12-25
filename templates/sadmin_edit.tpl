@@ -16,18 +16,6 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 </div>
 <br/>
 {/if}
-{if $if_passwd_long eq 'y' }
-<div style="text-align:center;color:red;">
-Passwort muss zwischen 3 und {$max_passwd_len} Zeichen lang sein!
-</div>
-<br/>
-{/if}
-{if $if_user_exits eq 'y' }
-<div style="text-align:center;color:red;">
-Benutzername existiert bereits!
-</div>
-<br/>
-{/if}
 {if $if_changed eq 'y' }
 <div style="text-align:center;color:blue;">
 &Auml;nderung erfolgreicht gespeichert.<br/>

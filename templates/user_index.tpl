@@ -1,16 +1,7 @@
 <h2>Willkommen, {$full_name}</h2>
 <br/>
-{if $old_passwd_wrong eq 'y' }
-<div style="text-align:center;color:red;">Altes Passwort falsch!</div>
-{/if}
 {if $passwd_not_true eq 'y' }
 <div style="text-align:center;color:red;">Neue Passw&ouml;rter stimmen nicht ueberein!</div>
-{/if}
-{if $passwd_len eq 'y' }
-<div style="text-align:center;color:red;">Passwort muss zwischen 3 und {$max_passwd_len} Zeichen sein!</div>
-{/if}
-{if $passwd_empty eq 'y' }
-<div style="text-align:center;color:red;">Passwort darf nicht leer sein!</div>
 {/if}
 {if $passwd_changed eq 'y' }
 <div style="text-align:center;color:blue;">Passwort erfolgreich ge&auml;ndert!</div>

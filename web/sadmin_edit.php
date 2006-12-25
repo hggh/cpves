@@ -49,14 +49,16 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	if (isset($_POST['submit']))
 	{
 		$wrong=0;
-		if(strlen($passwd) > $max_passwd_len || strlen($passwd) < 3 )
+		if(!empty($_POST['passwd']) && (strlen($passwd) > $max_passwd_len || strlen($passwd) < 3) )
 		{
-			$smarty->assign('if_passwd_long', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_password_long','y');
 			$wrong=1;
 		}
 		elseif(adm_user_exits($_POST['username'],$_GET['id'],$db))
 		{
-			$smarty->assign('if_user_exits', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_sadmim_exits','y');
 			$wrong=1;
 		}
 		else

@@ -34,17 +34,20 @@ if (isset($_POST['u_submit']))
 {
 	if (empty($_POST['esubject']))
 	{
-		$smarty->assign('if_subject_empty', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_empty', 'y');
 		$error=true;
 	}
 	else if (empty($_POST['msg']))
 	{
-		$smarty->assign('if_msg_empty','y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_msg_empty', 'y');
 		$error=true;
 	}
 	else if(strlen($_POST['esubject']) > 50)
 	{
-		$smarty->assign('if_subject_tolong','y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_to_long', 'y');
 		$error=true;
 	}
 	else
