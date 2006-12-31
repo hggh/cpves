@@ -8,9 +8,6 @@
 {if $if_missing eq 'y' }
 <div style="text-align:center;color:red;">Fehlerhafte eingabe! Bitte korigieren!<br/><br/></div>
 {/if}
-{if $if_passwd_len eq 'y' }
-<div style="text-align:center;color:red;">Passwort muss zwischen 3 und {$max_passwd_len} Zeichen sein!<br/><br/></div>
-{/if}
 {if $if_email_saved eq "y" }
 <div style="text-align:center;color:blue;">eMailadresse angelegt!<br/><br/></div>
 <meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$id}">

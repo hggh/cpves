@@ -76,7 +76,8 @@ if (isset($_SESSION['superadmin']) &&
 		}
 		else if (strlen($_POST['password']) > $max_passwd_len || strlen($_POST['password']) < 3)
 		{
-			$smarty->assign('if_passwd_len', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_password_long','y');
 			$smarty->assign('eMail',$_POST['emailaddr'] );
 			$smarty->assign('full_name',$_POST['full_name'] );
 		}

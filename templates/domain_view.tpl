@@ -109,8 +109,8 @@
   {if $if_catchall eq 'n' }
   <td colspan="4"  style="width:670px;">Kein CatchAll f&uuml;r {$dnsname} konfiguiert.<br/><a href="forward_catchall.php?id={$id}&#038;new=yes">Hier klicken um einen Einzurichten.</a></td>
   {else}
-  <td style="width:670px;"><a href="forward_catchall.php?id={$id}">@{$dnsname}</a></td>
-  <td>{$catchall_to}</td>
+  <td style="width:300px;"><a href="forward_catchall.php?id={$id}">@{$dnsname}</a></td>
+  <td style="width:300px;">{$catchall_to}</td>
   <td style="text-align:right;vertical-align:middle;">
   
   {if $catchall_access eq 'y'}
