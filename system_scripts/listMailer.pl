@@ -94,17 +94,16 @@ sub isSenderAllowed {
 
 sub sendto {
  my($data, $sender) = @_;
- my $smtp = Net::SMTP->new('localhost');
  my $recp;
  foreach $recp (@addresses) {
+  my $smtp = Net::SMTP->new('localhost');
   $smtp->mail($sender);
   $smtp->to($recp);
   $smtp->data();
   $smtp->datasend($data);
   $smtp->dataend();
+  $smtp->quit;
  }
- $smtp->quit;
- undef($smtp);
  undef($recp);
  undef($data);
  undef($sender);
