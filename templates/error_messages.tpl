@@ -22,4 +22,10 @@ Betreff des Autoresponders darf nicht leer sein!
 Nachricht des Autoresponders darf nicht leer sein! 
 {elseif $if_error_autores_subject_to_long == 'y'}
 Betreff des Autoresponders ist zu lang! 
+{elseif $if_email_valid == 'y'}
+E-Mailadresse ist nicht konform.
+{elseif $if_error_forwds_max_reached == 'y'}
+Maximale Anzahl an Weiterleitungen erreicht, es k&ouml;nnen keine weiteren Weiterleitungen angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -
+{elseif $if_error_login_failed == 'y' }
+Benutzername oder Passwort falsch
 {/if}

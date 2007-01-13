@@ -67,7 +67,9 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($_GET['id']));
 			}
 			$result=&$db->query($sql);
-			$smarty->assign('if_added', 'y');
+			
+			$smarty->assign('success_msg', 'y');
+			$smarty->assign('if_catchall_saved', 'y');
 		}
 	}
 	//neue Catchall speichern und weiterleiten.... ENDE CODE

@@ -1,17 +1,3 @@
-{if $if_login_ok eq 'yes'}
-<div style="text-align:center;color:blue;">
-Erfolgreicht in das eMailsystem angemeldet, sie werden weitergeleitet.
-<meta http-equiv="refresh" content="1; URL=index.php">
-<br/>
-</div>
-{/if}
-{if $if_no_passwd eq 'y' }
-<div style="color:red;">
-Fehler: Benutzername oder Passwort falsch!<br/>
-<br/>
-</div>
-{/if}
-
 {if $if_login_ok !='yes'}
 <form action="login.php" method="post">
 <table>

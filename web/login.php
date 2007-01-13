@@ -126,13 +126,13 @@ else
 }
 if ($no_login !=0)
 {
-	$smarty->assign('if_no_passwd', 'y');
+	$smarty->assign('error_msg','y');
+	$smarty->assign('if_error_login_failed', 'y');
 }
 if ($no_login==0)
 {
 	header("Location: index.php");
 }
-//$smarty->display('login.tpl');
 $smarty->assign('if_login' , 'y');
 $smarty->assign('template', 'login.tpl');
 $smarty->display('structure.tpl');

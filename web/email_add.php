@@ -61,6 +61,9 @@ if (isset($_SESSION['superadmin']) &&
 		}
 		else if (!email_valid($_POST['emailaddr']))
 		{
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_email_valid','y');
+			
 			$smarty->assign('if_valid', 'n');
 			$smarty->assign('eMail',$_POST['emailaddr'] );
 			$smarty->assign('full_name',$_POST['full_name'] );
@@ -130,6 +133,10 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($webmail),
 				$db->escapeSimple(crypt($_POST['password']))) ;
 			$result=&$db->query($sql);
+			
+			
+			$smarty->assign('if_email_saved', 'y');
+			$smarty->assign('success_msg', 'y');
 			$smarty->assign('if_email_saved', 'y');
 			// activate System-Script
 			if( $config['service_enabled'] == 'y' ) {

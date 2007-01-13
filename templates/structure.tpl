@@ -16,6 +16,14 @@
 {include file="error_messages.tpl"}
 </div></div>
 {/if}
+{if $success_msg == 'y'}
+<div style="background-color:#A6EF7B;border:1px solid#76C83F;float:right;width:450px;text-align:left;">
+<div style="float:left;margin:6px;"><img src="img/icons/success.png" /></div>
+<div style="text-align:left;float:left;margin-top:7px;">
+{include file="success_messages.tpl"}
+</div></div>
+{/if}
+
 
 <div id="container">
 

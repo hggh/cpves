@@ -1,18 +1,4 @@
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
-
-
-
-{if $if_valid eq 'n'}
-<div style="text-align:center;color:red;">eMailadresse ist nicht konform. Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_missing eq 'y' }
-<div style="text-align:center;color:red;">Fehlerhafte eingabe! Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_email_saved eq "y" }
-<div style="text-align:center;color:blue;">eMailadresse angelegt!<br/><br/></div>
-<meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$id}">
-{/if}
-
 <form action="email_add.php?id={$id}" method="post">
 <table>
 <tr>
@@ -60,5 +46,3 @@
 {else}
 <meta http-equiv="refresh" content="1; URL=./index.php">
 {/if}
-
-

@@ -40,7 +40,8 @@ if (isset($_SESSION['superadmin']) &&
 	
 	if (get_forem_domain($data['id'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
 	{
-		$smarty->assign('if_max_fwd', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_forwds_max_reached','y');
 	}
 
 	
@@ -51,17 +52,20 @@ if (isset($_SESSION['superadmin']) &&
 			$full_email=$_POST['from']."@".$data['dnsname'];
 			if (!email_valid($_POST['from']))
 			{
-			$smarty->assign('if_valid', 'n');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_email_valid', 'y');
 			$smarty->assign('from',$_POST['from'] );
 			$smarty->assign('to',$_POST['to'] );
 			}
 			else if (get_forem_domain($data['id'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
 			{
-				$smarty->assign('if_max_fwd', 'y');
+				$smarty->assign('error_msg','y');
+				$smarty->assign('if_error_forwds_max_reached','y');
 			}
 			else if (email_exist($full_email,$db,0,0))
 			{
-			$smarty->assign('if_exists', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_email_exits', 'y');
 			$smarty->assign('full_email', 'y');
 			$smarty->assign('from',$_POST['from'] );
 			$smarty->assign('to',$_POST['to'] );
@@ -73,12 +77,15 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($_POST['to']),
 				$db->escapeSimple($_GET['id']));
 				$result=&$db->query($sql);
-				$smarty->assign('if_email_saved', 'y');
+				$smarty->assign('success_msg', 'y');
+				$smarty->assign('if_forward_saved', 'y');
 			}
 		}
 		else
 		{
 			$smarty->assign('if_missing', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_missing_input', 'y');
 			$smarty->assign('from',$_POST['from'] );
 			$smarty->assign('to',$_POST['to'] );
 		}
