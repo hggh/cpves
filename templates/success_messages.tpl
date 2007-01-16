@@ -7,4 +7,7 @@ Catchall wurde gespeichert.
 {elseif $if_forward_saved == 'y'}
 Weiterleitung angelegt.
 <meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$id}">
+{elseif $if_sadmin_created == 'y'}
+Superadmin wurde angelegt.
+<meta http-equiv="refresh" content="1; URL=./sadmin_view.php">
 {/if}

@@ -104,7 +104,6 @@
  {/if}
 </tr>
 {/if}
-
 </table>
 </form>
 {else}

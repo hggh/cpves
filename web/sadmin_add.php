@@ -28,11 +28,14 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	$wrong=0;
 	if (empty($_POST['username']) || !isset($_POST['username']))
 	{
-		$smarty->assign('if_username_empty', 'y');
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_missing_input', 'y');
 		$wrong=1;
 	}
 	elseif(!ereg("^([a-zA-Z0-9]+)$",$_POST['username']))
 	{
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('if_sadmin_wrong_char' ,'y');
 		$smarty->assign('if_username_wrong','y');
 		$wrong=1;
 	}
@@ -80,7 +83,8 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 			);
 		$res=&$db->query($sql);
 		if (!PEAR::isError($res)) {
-			$smarty->assign('if_added','y');
+			$smarty->assign('success_msg', 'y');
+			$smarty->assign('if_sadmin_created','y');
 		}
 	}
 	if ($wrong==1)

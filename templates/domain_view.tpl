@@ -14,7 +14,7 @@
 {/literal}
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3" ><h3>eMailadressen</h3></td>
+ <td style="width:580px;" colspan="3" ><h3>E-Mailadressen</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">Ausblenden</a>]</td>
 </tr>
 </table>
@@ -35,12 +35,12 @@
   </a>
 </td>
 </tr>
-{/foreach}
-{if $if_no_email eq 'y'}
+{foreachelse}
 <tr>
- <td colspan="4">Keine eMailadresse unter dieser Domain vorhanden!</td>
+ <td colspan="4">Keine E-Mailadressen vorhanden!</td>
 </tr>
-{/if}
+{/foreach}
+
 </table>
 
 <table border="0" class="domain_view">

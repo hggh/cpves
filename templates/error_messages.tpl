@@ -28,4 +28,8 @@ E-Mailadresse ist nicht konform.
 Maximale Anzahl an Weiterleitungen erreicht, es k&ouml;nnen keine weiteren Weiterleitungen angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -
 {elseif $if_error_login_failed == 'y' }
 Benutzername oder Passwort falsch
+{elseif $if_sadmin_wrong_char == 'y' }
+Benutzername enthaelt ung&uuml;ltige Zeichen!<br/>
+Benutzername darf nur Buchstaben und Zahlen enthalten!<br/>
+Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen! 
 {/if}

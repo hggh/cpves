@@ -224,12 +224,6 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 
 
 } //ENDE WHILE eMails
-if ($result->numRows()==0)
-{
-	$smarty->assign('if_no_email', 'y');
-}
-
-
 
 $sql=sprintf("SELECT * FROM forwardings WHERE domainid=%s ORDER BY efrom",
 	$db->escapeSimple($_GET['id']));
