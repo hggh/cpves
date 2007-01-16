@@ -10,4 +10,6 @@ Weiterleitung angelegt.
 {elseif $if_sadmin_created == 'y'}
 Superadmin wurde angelegt.
 <meta http-equiv="refresh" content="1; URL=./sadmin_view.php">
+{elseif $if_password_changed == 'y'}
+Passwort erfolgreich ge&auml;ndert.
 {/if}

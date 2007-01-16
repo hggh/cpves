@@ -27,7 +27,7 @@ $_SESSION['ad_user']='n';
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
 {
 
-if ( (strpos($_POST['email'], '@')) !== false) // check admin oder user benutzername
+if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzername
 {
 	$sql=sprintf("SELECT * FROM users WHERE email='%s' AND access='y'",
 		$db->escapeSimple($_POST['email']) );
@@ -45,7 +45,6 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin oder user benutzer
 			$_SESSION['uid']=$daten['id'];
 			$_SESSION['email']=$daten['email'];
 			$_SESSION['cpasswd']=encrypt_passwd($_POST['password']);
-			//$_SESSION['passwd']=$daten['passwd'];
 			
 			$_SESSION['full_name']=$daten['full_name'];
 			$sql=sprintf("SELECT id FROM admin_access WHERE email='%s'",
@@ -97,7 +96,6 @@ else // wird ein admin username sein, also checke adm_users table
 		if (check_password($daten['cpasswd'],$_POST['password']) == 1)
 		{
 			$_SESSION['email']=$daten['username'];
-			//$_SESSION['passwd']=$daten['passwd'];
 			$_SESSION['cpasswd']=encrypt_passwd($_POST['password']);
 			$_SESSION['superadmin']='y';
 			$_SESSION['manager']=$daten['manager'];

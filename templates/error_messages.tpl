@@ -31,5 +31,7 @@ Benutzername oder Passwort falsch
 {elseif $if_sadmin_wrong_char == 'y' }
 Benutzername enthaelt ung&uuml;ltige Zeichen!<br/>
 Benutzername darf nur Buchstaben und Zahlen enthalten!<br/>
-Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen! 
+Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen!
+{elseif $if_new_passwd_not_same == 'y'}
+Neue Passw&ouml;rter stimmen nicht &uuml;berein!
 {/if}

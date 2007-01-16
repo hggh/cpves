@@ -1,13 +1,5 @@
 <h2>Willkommen, {$full_name}</h2>
 <br/>
-{if $passwd_not_true eq 'y' }
-<div style="text-align:center;color:red;">Neue Passw&ouml;rter stimmen nicht ueberein!</div>
-{/if}
-{if $passwd_changed eq 'y' }
-<div style="text-align:center;color:blue;">Passwort erfolgreich ge&auml;ndert!</div>
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if}
-
 <form action="index.php" method="post">
 <table>
 <tr>

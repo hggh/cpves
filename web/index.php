@@ -154,7 +154,8 @@ if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user
 		}
 		else if($_POST['new_passwd1'] !=$_POST['new_passwd2'] )
 		{
-			$smarty->assign('passwd_not_true', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_new_passwd_not_same', 'y');
 		}
 		else if(decrypt_passwd($_SESSION['cpasswd']) != $_POST['old_passwd'])
 		{
@@ -177,11 +178,12 @@ if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user
 			$res=&$db->query($sql);
 			
 			$smarty->assign('passwd_changed', 'y');
+			$smarty->assign('success_msg','y');
+			$smarty->assign('if_password_changed', 'y');
+			$_SESSION['cpasswd']=encrypt_passwd($_POST['new_passwd1']);
 		}
 	}
 }
-
-
 
 $smarty->assign('table_data', $table_data);
 $smarty->assign('template','index.tpl');
