@@ -38,7 +38,7 @@
  </td>
 </tr>
 </table>
-<div>Die Liste ist {if $public eq 'y'}&ouml;ffentlich{else}privat{/if} - [<a href="./list_view.php?id=16&#038;did=2&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">&Auml;ndern</a>]</div>
+<div>Die Liste ist {if $public eq 'y'}&ouml;ffentlich{else}privat{/if} - [<a href="./list_view.php?id={$id}&#038;did=2&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">&Auml;ndern</a>]</div>
 
 
 {else}
