@@ -165,6 +165,20 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="Webmail deaktivieren." /></a>
  {/if}</td>
 </tr>
+<tr>
+ <td>Spamassassin:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $if_spamassassin eq '0' }
+   <a href="domain_view.php?id={$id}&#038;fstate=enablespamassassin">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamassassin aktivieren." /></a>
+ {else}
+   <a href="domain_view.php?id={$id}&#038;fstate=disablespamassassin">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Spamassassin deaktivieren." /></a>
+ {/if}</td> 
+</tr>
+
+
 {/if}
 {if $if_superadmin eq 'y' or $if_admin eq 'y' }
 

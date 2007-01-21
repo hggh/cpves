@@ -21,6 +21,7 @@ $smarty->assign('if_superadmin', $_SESSION['superadmin']);
 $smarty->assign('if_admin', $_SESSION['admin']);
 $smarty->assign('if_manager',$_SESSION['manager']);
 $smarty->assign('username', $_SESSION['email']);
+$smarty->assign('if_spamassassin', $_SESSION['spamassassin']);
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&
 	 $_SESSION['superadmin']=='y' && 

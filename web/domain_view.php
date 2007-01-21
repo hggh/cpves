@@ -133,6 +133,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate']))
 {
 	$sql="";
+	$sql2="";
 	if ($_GET['fstate'] =='disableimap')
 	{
 		$sql=sprintf("UPDATE domains SET disableimap='1' WHERE id='%s'",
@@ -143,6 +144,16 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	if ($_GET['fstate'] =='enableimap')
 	{
 		$sql=sprintf("UPDATE domains SET disableimap='' WHERE id='%s'",
+			$db->escapeSimple($_GET['id']));
+	}
+	if ($_GET['fstate'] == "disablespamassassin")
+	{
+		$sql=sprintf("UPDATE domains SET spamassassin='0' WHERE id='%s'",
+			$db->escapeSimple($_GET['id']));
+	}
+	if ($_GET['fstate'] == "enablespamassassin")
+	{
+		$sql=sprintf("UPDATE domains SET  spamassassin='1' WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));
 	}
 	if ($_GET['fstate'] =='disablepop3')
@@ -192,6 +203,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);
 	$smarty->assign('dnote', $data['dnote']);
+	$smarty->assign('if_spamassassin', $data['spamassassin']);
 	
 	
 	

@@ -15,18 +15,14 @@
 			<td>Spamfilter aktiv:</td>
 			<td>
 				<select name="active"> 
-					<option value="1">
-						Ja 
-					</option>
+					<option value="1">Ja</option>
 					{if $active eq '0' } 
 					<option value="0" selected="selected">
 						Nein 
 					</option>
 					{else} 
-					<option value="0">
-						Nein 
-					</option>
-					{/if} </select> 
+					<option value="0">Nein</option>
+					{/if}</select> 
 			</td>
 		<tr>
 		<tr>

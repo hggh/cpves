@@ -76,14 +76,15 @@ if (isset($_POST['submit']) &&
 			{
 				$max_forward=0;
 			}
-			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', disableimap='%s', disablepop3='%s', disablewebmail='%s',max_email='%d', max_forward='%d', dnote='%s'",
+			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', disableimap='%s', disablepop3='%s', disablewebmail='%s',max_email='%d', max_forward='%d', dnote='%s',spamassassin='%s'",
 				$db->escapeSimple($_POST['dnsname']),
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),
 				$db->escapeSimple($webmail),
 				$db->escapeSimple($max_email),
 				$db->escapeSimple($max_forward),
-				$db->escapeSimple(substr($_POST['dnote'],0,30)));
+				$db->escapeSimple(substr($_POST['dnote'],0,30)),
+				$db->escapeSimple($_POST['spamassassin']));
 			$res=&$db->query($sql);
 	
 			$sql=sprintf("SELECT id FROM domains WHERE dnsname='%s'",

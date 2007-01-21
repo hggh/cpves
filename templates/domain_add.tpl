@@ -82,17 +82,21 @@
 	</tr>
 	<tr>
 		<td>Webmail m&ouml;glich:</td>
-		<td>
-			<select name="webmail">
-				<option value="enable">Ja</option>
-				<option value="disable">Nein</option>
-			</select> 
-		</td>
+		<td><select name="webmail">
+			<option value="enable">Ja</option>
+			<option value="disable">Nein</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>Spamassassin m&ouml;glich:</td>
+		<td><select name="spamassassin">
+			<option value="1">Ja</option>
+			<option value="0">Nein</option>
+		</select></td>
 	</tr>
 	<tr>
 		<td>Max. E-Mailadressen:</td>
-		<td>
-			<input value="0" name="max_email"/>&#160; 0 = Unbegrenzt</td>
+		<td><input value="0" name="max_email"/>&#160; 0 = Unbegrenzt</td>
 	</tr>
 	<tr>
 		<td>Max. Weiterleitungen:</td>

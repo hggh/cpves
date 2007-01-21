@@ -18,13 +18,17 @@
 {/if}
 {if $if_superadmin != 'y' && $menu_user_open == 'y' }
 	<a class="nav sub" href="user_autores.php">Autoresponder</a>
+	{if $if_spamassassin == '1'}
 	<a class="nav sub" href="user_spam.php">Spamfilter</a>
+	{/if}
 	<a class="nav sub" href="user_forward.php">Weiterleitung</a>
 	<a class="nav sub" href="user_options.php">Optionen</a>
 {/if}
 {if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
 	<a class="nav" href="user_autores.php">Autoresponder</a>
+	{if $if_spamassassin == '1'}
 	<a class="nav" href="user_spam.php">Spamfilter</a>
+	{/if}
 	<a class="nav" href="user_forward.php">Weiterleitung</a>
 	<a class="nav" href="user_options.php">Optionen</a>
 {/if}

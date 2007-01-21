@@ -32,7 +32,7 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 
 
 //Save Options to database:
-if (isset($_POST['save_option']))
+if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 {
 	if (isset($_POST['active']) && is_numeric($_POST['active']))
 	{
@@ -324,9 +324,13 @@ if ($result->numRows()>0)
 
 
 
-
-$smarty->assign('template','user_spam.tpl');
-$smarty->display('structure.tpl');
+if ($_SESSION['spamassassin'] == 1) {
+	$smarty->assign('template','user_spam.tpl');
+	$smarty->display('structure.tpl');
+}
+else
+{
+	header("Location: index.php");
+}	
 $db->disconnect();
-
 ?>

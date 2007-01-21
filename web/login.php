@@ -23,6 +23,7 @@ $_SESSION['superadmin']='n';
 $_SESSION['admin']='n';
 $_SESSION['manager']='n';
 $_SESSION['ad_user']='n';
+$_SESSION['spamassassin']='0';
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
 {
@@ -56,7 +57,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 				$_SESSION['admin']='y';
 			}
 			// checke ob domain aktiv ist:
-			$sql=sprintf("SELECT access FROM domains where id=%s",
+			$sql=sprintf("SELECT access,spamassassin FROM domains where id=%s",
 				$db->escapeSimple($daten['domainid']));
 			$res_domain=&$db->query($sql);
 			
@@ -69,6 +70,8 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			{
 				$smarty->assign('if_login_ok', 'yes');
 				logging($_SESSION['email']);
+				$_SESSION['spamassassin']=$data_domain['spamassassin'];
+				
 			}
 		}
 		else
