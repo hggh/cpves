@@ -56,11 +56,8 @@ if (isset($_POST['save_option']))
 	$result=&$db->query($sql);
 	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $db, $del_virus_notifi);
 	// activate System-Script
-	if( $config['service_enabled'] == 'y' ) {
-		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
-		$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
-		@socket_close ($socket);
-	}
+	// activate System-Script
+	run_systemscripts();
 }
 
 
@@ -80,13 +77,7 @@ $smarty->assign('del_virus_notifi', $data['options']);
 
 
 
-
-
-
-
-
 $smarty->assign('email', $_SESSION['email']);
 $smarty->assign('template','user_options.tpl');
 $smarty->display('structure.tpl');
-
 ?>

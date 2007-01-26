@@ -158,7 +158,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (isset($_POST['password']) && !empty($_POST['password']))
 			{
-				if (strlen($_POST['password']) > $max_passwd_len || strlen($_POST['password']) < 3)
+				if (check_passwd_length($_POST['password'])==false)
 				{
 					$smarty->assign('if_passwd_len', 'y');
 					$smarty->assign('full_name',$_POST['full_name'] );

@@ -1,4 +1,5 @@
 CpVES 0.02 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Code Cleanup
 	o Improved Layout (error/success messages)
 	o Improved sadmin and user password change
 	o Added filed:

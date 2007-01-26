@@ -39,7 +39,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 		$smarty->assign('if_username_wrong','y');
 		$wrong=1;
 	}
-	elseif(strlen($_POST['passwd']) > $max_passwd_len || strlen($_POST['passwd']) < 3 )
+	elseif(check_passwd_length($_POST['passwd']) ==false )
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_password_long', 'y');

@@ -57,11 +57,7 @@ if (isset($_POST['submit']) && !empty($_POST['forwardaddress']))
 		$smarty->assign('reload_page', 'y');
 	}
 	// activate System-Script
-	if( $config['service_enabled'] == 'y' ) {
-		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
-		$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
-		@socket_close ($socket);
-	}
+	run_systemscripts();
 }
 if (isset($_POST['submit']) && isset($_POST['delete_forward']) && $_POST['delete_forward']=="on" )
 {
@@ -70,11 +66,7 @@ if (isset($_POST['submit']) && isset($_POST['delete_forward']) && $_POST['delete
 	$res=&$db->query($sql);
 	$smarty->assign('reload_page', 'y');
 	// activate System-Script
-	if( $config['service_enabled'] == 'y' ) {
-		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
-		$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
-		@socket_close ($socket);
-	}
+	run_systemscripts();
 }
 
 

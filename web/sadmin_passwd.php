@@ -31,8 +31,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y')
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_password_empty','y');
 		}
-		else if (strlen($_POST['new_passwd2']) > $max_passwd_len ||
-			 strlen($_POST['new_passwd2']) < 3)
+		else if (check_passwd_length($_POST['new_passwd2'])==false)
 		{
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_password_long', 'y');

@@ -77,7 +77,7 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('eMail',$_POST['emailaddr'] );
 			$smarty->assign('full_name',$_POST['full_name'] );
 		}
-		else if (strlen($_POST['password']) > $max_passwd_len || strlen($_POST['password']) < 3)
+		else if (check_passwd_length($_POST['password'])==false)
 		{
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_password_long','y');
@@ -139,11 +139,8 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('success_msg', 'y');
 			$smarty->assign('if_email_saved', 'y');
 			// activate System-Script
-			if( $config['service_enabled'] == 'y' ) {
-				$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
-				$result = @socket_connect ($socket, '127.0.0.1', $config['service_port']);
-				@socket_close ($socket);
-			}
+			run_systemscripts();
+
 		}
 	}
 	else

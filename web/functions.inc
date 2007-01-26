@@ -18,7 +18,7 @@
 ******************************************************************************/
 $smarty->assign('if_listings', $config['mailinglisten']);
 $smarty->assign('company_title', $config['company_title']);
-
+$smarty->assign('max_passwd_len', $config['max_passwd_len']);
 /*
 mailfilter prios:
 
@@ -36,13 +36,37 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+function run_systemscripts() {
+	global $config;
+	if( $config['service_enabled'] == 'y' ) {
+		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
+		$result = @socket_connect ($socket, '127.0.0.1', 
+			$config['service_port']);
+		@socket_close ($socket);
+	}
+}
+
+function check_passwd_length($passwd) {
+	global $config;
+	$passwdlen=strlen($passwd);
+	if ($passwdlen < 3 || $passwdlen > $config['max_passwd_len'])
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 function logging($username)
 {
-        global $write_login_log;
-        if ($write_login_log!=false && is_file($write_login_log) &&
-                 is_writeable($write_login_log))
+        global $config;
+        if ($config['write_login_log']!=false && 
+	    is_file($config['write_login_log']) &&
+            is_writeable($config['write_login_log']))
         {
-                $f_handle=fopen($write_login_log, "a+");
+                $f_handle=fopen($config['write_login_log'], "a+");
                 if ($f_handle)
                 {
                         $line=sprintf("%s - %s - %s\n",
@@ -293,15 +317,15 @@ function check_password($cpasswd, $passwd) {
 
 // encrypt password using DES encryption
 function encrypt_passwd($pass) {
-	global $des_key;
-	$cypher = des($des_key, $pass, 1, 0, NULL);
+	global $config;
+	$cypher = des($config['des_key'], $pass, 1, 0, NULL);
 	return base64_encode($cypher);
 }
 
 // decrypt password using DES encryption
 function decrypt_passwd($cypher)  {
-	global $des_key;
-	$pass = des($des_key, base64_decode($cypher), 0, 0, NULL);
+	global $config;
+	$pass = des($config['des_key'], base64_decode($cypher), 0, 0, NULL);
 	return preg_replace('/\x00/', '', $pass);
 }
 

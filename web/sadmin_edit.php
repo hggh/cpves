@@ -49,7 +49,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	if (isset($_POST['submit']))
 	{
 		$wrong=0;
-		if(!empty($_POST['passwd']) && (strlen($passwd) > $max_passwd_len || strlen($passwd) < 3) )
+		if(!empty($_POST['passwd']) && (check_passwd_length($passwd)==false))
 		{
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_password_long','y');
