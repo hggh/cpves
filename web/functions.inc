@@ -361,4 +361,50 @@ if ($type=='del_virus_notifi') {
 } //ENDE: del_virus_notifi
 
 }
+
+
+
+function save_autoresponder($uid,$active,$esubject,$msg) {
+	global $db;
+	$sql=sprintf("SELECT id FROM autoresponder WHERE email='%d'",
+		$db->escapeSimple($uid));
+	$result=&$db->query($sql);
+	if ($result->numRows()==1) 
+	{
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
+				$db->escapeSimple($esubject),
+				$db->escapeSimple($msg),
+				$db->escapeSimple($active),
+				$db->escapeSimple($data['id']),
+				$db->escapeSimple($uid) );
+	}
+	else
+	{
+		$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d'",
+				$db->escapeSimple($esubject),
+				$db->escapeSimple($msg),
+				$db->escapeSimple($active),
+				$db->escapeSimple($uid) );
+	}
+	$result=&$db->query($sql);
+	
+	$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
+				$db->escapeSimple($uid));
+	$result=&$db->query($sql);
+	
+	$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='autoresponder'",
+		$db->escapeSimple($uid));
+	$result=&$db->query($sql);
+	
+	if ($active == 'y' )
+	{
+		$sql=sprintf("INSERT INTO mailfilter SET email='%d', active='1',prio='10', type='autoresponder'",
+			$db->escapeSimple($uid));
+		$result=&$db->query($sql);
+	}
+	
+}
+
+
 ?>

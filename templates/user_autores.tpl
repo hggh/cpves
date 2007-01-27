@@ -7,16 +7,14 @@
 <table>
 	<tr>
 		<td>Autoresponder aktiv:</td>
-		<td>
-			<select name="active"> 
-				<option value="y">Ja</option>
-				{if $active eq 'n' }
-				<option value="n" selected="selected">Nein</option>
-				{else}
-				<option value="n">Nein</option>
-				{/if}
-			</select> 
-		</td>
+		<td><select name="active">
+			<option value="y">Ja</option>
+			{if $active eq 'n' }
+			<option value="n" selected="selected">Nein</option>
+			{else}
+			<option value="n">Nein</option>
+			{/if}
+		</select></td>
 	</tr>
 	<tr>
 		<td>Autoresponder Betreff:</td>

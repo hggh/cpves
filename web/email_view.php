@@ -57,6 +57,54 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_imapdisable', $edata['disableimap']);
 	$smarty->assign('if_pop3disable', $edata['disablepop3']);
 	$smarty->assign('if_webmaildisable', $edata['disablewebmail']);
+	
+	
+	/* Save autoresponder begin */
+	if (isset($_POST['autoresponder'])) {
+	
+	save_autoresponder($_GET['id'],
+		$_POST['autoresponder_active'],
+		$_POST['esubject'],
+		$_POST['msg']);
+	run_systemscripts();
+	
+	}
+	/* Save autoresponder end */
+	
+	
+	/*  Autoresponder begin */
+	$sql=sprintf("SELECT id,email,active,msg,esubject FROM autoresponder WHERE email='%d'",
+	$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	if ($result->numRows()==1)
+	{
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$active=$data['active'];
+		$msg=$data['msg'];
+		$esubject=$data['esubject'];
+		$id=$data['id'];
+	}
+	elseif($error)
+	{
+		$active=$_POST['autoresponder_active'];
+		$msg=$_POST['msg'];
+		$esubject=$_POST['esubject'];
+	}
+	else
+	{
+		$active='n';
+		$msg=$config_autores_msg;
+		$esubject=$config_autores_subject;
+	}
+	$smarty->assign('esubject', $esubject);
+	$smarty->assign('autoresponder_active', $active);
+	$smarty->assign('id', $id);
+	$smarty->assign('msg', $msg);
+	$smarty->assign('email', $_SESSION['email']);
+	/*  Autoresponder end */
+	
+	
+	
 
 	
 	//adde domainadmin:
@@ -160,7 +208,9 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				if (check_passwd_length($_POST['password'])==false)
 				{
-					$smarty->assign('if_passwd_len', 'y');
+					$smarty->assign('error_msg', 'y');
+					$smarty->assign('if_error_password_long','y');
+					
 					$smarty->assign('full_name',$_POST['full_name'] );
 					$error=true;
 				}
@@ -194,7 +244,8 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($cpasswd),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
-				$smarty->assign('if_email_saved', 'y');
+				$smarty->assign('success_msg', 'y');
+				$smarty->assign('if_email_data_saved', 'y');
 			}
 	}//ende update DB
 

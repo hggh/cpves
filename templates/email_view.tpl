@@ -9,13 +9,6 @@
 {if $if_missing eq 'y' }
 <div style="text-align:center;color:red;">Fehlerhafte eingabe! Bitte korigieren!<br/><br/></div>
 {/if}
-{if $if_passwd_len eq 'y' }
-<div style="text-align:center;color:red;">Passwort muss zwischen 3 und {$max_passwd_len} Zeichen sein!<br/><br/></div>
-{/if}
-{if $if_email_saved eq "y" }
-<div style="text-align:center;color:blue;">eMailadresse geaendert!<br/><br/></div>
-<meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$domainid}">
-{/if}
 
 <form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
 <table>
@@ -104,6 +97,38 @@
  {/if}
 </tr>
 {/if}
+
+<!-- Autoresponder feature begin -->
+<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<tr>
+<td colspan="2" class="domain_view"><h3>Autoresponder</h3></td>
+</tr>
+<tr>
+ <td>Autoresponder aktiv:</td>
+ <td><select name="autoresponder_active">
+  <option value="y">Ja</option>
+  {if $autoresponder_active eq 'n' }
+  	<option value="n" selected="selected">Nein</option>
+  {else}
+  	<option value="n">Nein</option>
+  {/if}
+  </select></td>
+</tr>
+<tr>
+ <td>Autoresponder Betreff:</td>
+ <td><input type="text" name="esubject" maxlength="50" value="{$esubject}" /></td>
+</tr>
+<tr>
+ <td valign="top">Nachricht:</td>
+ <td><textarea name="msg" cols="50" rows="15">{$msg}</textarea></td>
+</tr>
+<tr>
+ <td></td>
+ <td><input type="submit" value="Speichern" name="autoresponder" /></td>
+</tr></form>
+<!-- Autoresponder feature end -->
+
+
 </table>
 </form>
 {else}
