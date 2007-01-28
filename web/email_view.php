@@ -61,12 +61,33 @@ if (isset($_SESSION['superadmin']) &&
 	
 	/* Save autoresponder begin */
 	if (isset($_POST['autoresponder'])) {
-	
-	save_autoresponder($_GET['id'],
-		$_POST['autoresponder_active'],
-		$_POST['esubject'],
-		$_POST['msg']);
-	run_systemscripts();
+		$error=false;
+		if (empty($_POST['esubject']))
+		{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_empty', 'y');
+		$error=true;
+		}
+		else if (empty($_POST['msg']))
+		{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_msg_empty', 'y');
+		$error=true;
+		}
+		else if(strlen($_POST['esubject']) > 50)
+		{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_to_long', 'y');
+		$error=true;
+		}
+		else
+		{
+		save_autoresponder($_GET['id'],
+			$_POST['autoresponder_active'],
+			$_POST['esubject'],
+			$_POST['msg']);
+		run_systemscripts();
+		}
 	
 	}
 	/* Save autoresponder end */

@@ -67,6 +67,8 @@
 <td></td>
 <td><input type="submit" name="submit" value="Speichern"/></td>
 </tr>
+</form>
+
 {if $if_superadmin eq 'y' }
 <tr><td colspan="2" style="height:10px;"></td></tr>
 {if $ava_ad_domains ge 1 }
@@ -129,8 +131,28 @@
 <!-- Autoresponder feature end -->
 
 
-</table>
+<!-- Options feature begin -->
+<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<tr>
+ <td colspan="2" class="domain_view"><h3>Optionen</h3></td>
+</tr>
+<tr>
+<td>L&ouml;sche Virenbenachrichtigungen:</td>
+  <td><select name="del_virus_notifi">
+		{if $del_virus_notifi eq 1}
+			<option value="1" selected="selected">Ja</option>
+			<option value="0">Nein</option>
+		{else}
+			<option value="1">Ja</option>
+			<option value="0" selected="selected">Nein</option>
+		{/if}
+  </select></td>  
+</tr>
 </form>
+<!-- Options feature end -->
+
+</table>
+
 {else}
 <meta http-equiv="refresh" content="1; URL=./index.php">
 {/if}

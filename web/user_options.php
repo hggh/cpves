@@ -56,7 +56,6 @@ if (isset($_POST['save_option']))
 	$result=&$db->query($sql);
 	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $db, $del_virus_notifi);
 	// activate System-Script
-	// activate System-Script
 	run_systemscripts();
 }
 

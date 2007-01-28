@@ -52,47 +52,16 @@ if (isset($_POST['u_submit']))
 	}
 	else
 	{
-		if (isset($_POST['id']) && is_numeric($_POST['id']))
-		{
-			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
-				$db->escapeSimple($_POST['esubject']),
-				$db->escapeSimple($_POST['msg']),
-				$db->escapeSimple($_POST['active']),
-				$db->escapeSimple($_POST['id']),
-				$db->escapeSimple($_SESSION['uid']) );
-			
-		}
-		else
-		{
-			$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d'",
-				$db->escapeSimple($_POST['esubject']),
-				$db->escapeSimple($_POST['msg']),
-				$db->escapeSimple($_POST['active']),
-				$db->escapeSimple($_SESSION['uid']));
-		}
-		$result=&$db->query($sql);
-		if ($_POST['active']== 'n')
-		{
-			$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
-				$db->escapeSimple($_SESSION['uid']));
-			$result=&$db->query($sql);
-			
-			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='autoresponder'",
-				$db->escapeSimple($_SESSION['uid']));
-			$result=&$db->query($sql);
-		
-		}
-		elseif ($_POST['active']== 'y')
-		{
-			$sql=sprintf("INSERT INTO mailfilter SET email='%d', active='1',prio='10', type='autoresponder'",
-				$db->escapeSimple($_SESSION['uid']));
-			$result=&$db->query($sql);
-		}
+		save_autoresponder($_SESSION['uid'],
+			$_POST['active'],
+			$_POST['esubject'],
+			$_POST['msg']);
+		// activate System-Script
+		run_systemscripts();
 		$smarty->assign('if_query_ok','y');
 		
 	}
-	// activate System-Script
-	run_systemscripts();
+	
 }
 
 
