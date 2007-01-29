@@ -135,7 +135,7 @@ if( $row[3] eq 'n' ) {
   # Not subscribed to list, so he can't post
   my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
-		Charset => "iso-8859-15",
+		Charset => "utf-8",
 		Disposition => 'inline',
 		Data    => "The sender $sender is not allowed to post on the list $list\n\nYour original email:\n\n" . $mail->body);
   $e_send_to->head->add("User-Agent", 'CPM/ListMailer');
