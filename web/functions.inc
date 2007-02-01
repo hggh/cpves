@@ -127,7 +127,7 @@ function get_forem_domain($id,$type,$db)
 	else
 	{
 	
-	$sql=sprintf("SELECT COUNT(*) AS anzahl FROM users WHERE domainid='%d'",
+	$sql=sprintf("SELECT COUNT(*) AS anzahl FROM users WHERE domainid='%d' AND enew!='0'",
 		$db->escapeSimple($id));
 	}
 	$res=&$db->query($sql);

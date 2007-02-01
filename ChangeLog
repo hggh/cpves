@@ -1,6 +1,8 @@
 CpVES 0.02 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Code Cleanup
+	o Fixed: Wrong emailaddr count on index site
 	o Improved Layout (error/success messages)
+	o Improved Run ML-Code only if ML activated
 	o Improved sadmin and user password change
 	o Improved Char-Encoding in listMailer.pl error-mail (T. Genannt)
 	o Added filed:

@@ -257,6 +257,9 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	}
 } //ENDE WHILE forward
 
+
+if ($config['mailinglisten'] != 'n') { //Run ML-Code only ==y
+
 $sql = sprintf("SELECT id,COUNT(*) as num FROM list_recp GROUP BY id",
 	$db->escapeSimple($_GET['id']));
 $res = &$db->query($sql);
@@ -282,6 +285,7 @@ while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
 	);
 }
 
+} //Run ML-Code only ==y
 
 
 //look at catchall  `efrom` REGEXP '^@'
