@@ -2,11 +2,11 @@
 <table>
 <tr>
 </tr>
-	<td>Alle eMails weiterleiten:</td>
+	<td>Alle E-Mails weiterleiten:</td>
 	<td style="width:10px;"></td>
 	
 	<td>
-	<input name="forwardaddress" class="in_1" value="{$forwardaddress}" type="text"/>
+	<input name="forwardaddress" value="{$forwardaddress}" type="text"/>
 	</td>
 </form>
 <tr>

@@ -151,6 +151,41 @@
 </form>
 <!-- Options feature end -->
 
+<!-- Forward feature begin -->
+<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<tr>
+ <td colspan="2" class="domain_view"><h3>Weiterleitung</h3></td>
+</tr>
+<tr>
+	<td>Alle E-Mails weiterleiten:</td>
+	<td><input name="forwardaddress" value="{$forwardaddress}" type="text"/></td>
+</tr>
+
+<tr>
+	<td>Kopie im Postfach belassen:</td>
+	<td><select name="save_local">
+	{if $if_forward_cc == 1 }
+		<option value="1">Ja</option>
+		<option value="0">Nein</option>
+	{else}
+		<option value="0">Nein</option>
+		<option value="1">Ja</option>
+	{/if}
+	</select></td>
+</tr>
+
+<tr>
+	<td>Weiterleitung l&ouml;schen:</td>
+	<td><input type="checkbox" name="delete_forward"/></td>
+</tr>
+<tr>
+	<td></td>
+	<td><input type="submit" name="fwdmail_submit" value="Speichern" /></td>
+</tr>
+</form>
+<!-- Forward feature end -->
+
+
 </table>
 
 {else}

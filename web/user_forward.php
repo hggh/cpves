@@ -30,45 +30,15 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$_SESSION['ad_user']='n';
 }
 
-
-//update DB:
-if (isset($_POST['submit']) && !empty($_POST['forwardaddress']))
-{
-	// first delete all entries
-	$sql=sprintf("DELETE FROM mailfilter WHERE email='%d' AND type LIKE 'forward%%'",
-		$db->escapeSimple($_SESSION['uid']));
-	$res=&$db->query($sql);
-	
-	if ($_POST['save_local']=="1") 
-	{
-		$type="forward_cc";
-	}
-	else
-	{
-		$type="forward_to";
-	}
-	$sql=sprintf("INSERT INTO mailfilter SET type='%s', filter='%s',prio='15', email='%d'",
-		$db->escapeSimple($type),
-		$db->escapeSimple($_POST['forwardaddress']),
-		$db->escapeSimple($_SESSION['uid']));
-	$res=&$db->query($sql);
-	if ($res)
-	{
-		$smarty->assign('reload_page', 'y');
-	}
-	// activate System-Script
+/* foward option save begin */
+if (isset($_POST['submit'])) {
+	update_mailfilter('mail_forward',
+		$_SESSION['uid'],$_POST['forwardaddress'],
+		$_POST['delete_forward'],
+		$_POST['save_local']);
 	run_systemscripts();
 }
-if (isset($_POST['submit']) && isset($_POST['delete_forward']) && $_POST['delete_forward']=="on" )
-{
-	$sql=sprintf("UPDATE mailfilter SET active='0'  WHERE email='%d' AND type LIKE 'forward%%'",
-		$db->escapeSimple($_SESSION['uid']));
-	$res=&$db->query($sql);
-	$smarty->assign('reload_page', 'y');
-	// activate System-Script
-	run_systemscripts();
-}
-
+/* foward option save begin */
 
 
 

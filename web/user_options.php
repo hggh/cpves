@@ -54,7 +54,7 @@ if (isset($_POST['save_option']))
 			$db->escapeSimple($_SESSION['uid']));
 	}
 	$result=&$db->query($sql);
-	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $db, $del_virus_notifi);
+	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $del_virus_notifi,0,0);
 	// activate System-Script
 	run_systemscripts();
 }

@@ -124,6 +124,30 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('email', $_SESSION['email']);
 	/*  Autoresponder end */
 	
+	/* foward option save begin */
+	if (isset($_POST['fwdmail_submit'])) {
+		update_mailfilter('mail_forward',
+			$_GET['id'],$_POST['forwardaddress'],
+			$_POST['delete_forward'],
+			$_POST['save_local']);
+		run_systemscripts();
+	}
+	/* foward option save begin */
+	
+	
+	/* forward option begin */
+	$sql=sprintf("SELECT type,filter FROM mailfilter WHERE email='%d' AND active!=0 AND type LIKE 'forward%%'",
+		$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	if ($result->numRows()==1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		if ($data['type']=="forward_cc") { // mit kopie ans lokale postfach
+			$smarty->assign('if_forward_cc', '1');
+		}
+		$smarty->assign('forwardaddress', $data['filter']);
+	}
+	/* forward option end */
+	
 	
 	
 

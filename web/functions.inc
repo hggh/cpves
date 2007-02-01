@@ -331,14 +331,15 @@ function decrypt_passwd($cypher)  {
 
 
 
-function update_mailfilter($type,$uid,$db,$wert) {
+function update_mailfilter($type,$uid,$opt_1,$opt_2,$opt_3) {
+global $db;
 if ($type=='del_virus_notifi') {
 
 	$sql=sprintf("SELECT id FROM mailfilter WHERE type='del_virus_notifi' AND email='%d'",$db->escapeSimple($uid));
 	$result=&$db->query($sql);
 	if ($result->numRows() ==1 )
 	{
-		if ($wert==1) {
+		if ($opt_1==1) {
 			$sql=sprintf("UPDATE mailfilter SET active='1' WHERE email='%s' AND type='del_virus_notifi'",
 			$db->escapeSimple($uid));
 		}
@@ -347,7 +348,7 @@ if ($type=='del_virus_notifi') {
 			$db->escapeSimple($uid));
 		}
 	}
-	elseif ($wert == 1) {
+	elseif ($opt_1 == 1) {
 		$sql_del=sprintf("DELETE FROM mailfilter WHERE type='del_virus_notifi' AND email='%s'",
 			$db->escapeSimple($uid));
 		$result=&$db->query($sql_del);
@@ -359,6 +360,40 @@ if ($type=='del_virus_notifi') {
 	
 	$result=&$db->query($sql);
 } //ENDE: del_virus_notifi
+if ($type == 'mail_forward') {
+	$fwdmailaddr=$opt_1;
+	$delete=$opt_2;
+	$fwdoption=$opt_3;
+		
+	if (isset($delete) && $delete == 'on') {
+		$sql=sprintf("UPDATE mailfilter SET active='0'  WHERE email='%d' AND type LIKE 'forward%%'",
+			$db->escapeSimple($uid));
+		$res=&$db->query($sql);
+		
+	}
+	else {
+		// first delete all entries
+		$sql=sprintf("DELETE FROM mailfilter WHERE email='%d' AND type LIKE 'forward%%'",
+			$db->escapeSimple($uid));
+		$res=&$db->query($sql);
+		
+		if ($fwdoption=="1") {
+			$fwdtype="forward_cc";
+		}
+		else {
+			$fwdtype="forward_to";
+		}
+		
+		$sql=sprintf("INSERT INTO mailfilter SET type='%s', filter='%s',prio='15', email='%d'",
+			$db->escapeSimple($fwdtype),
+			$db->escapeSimple($fwdmailaddr),
+			$db->escapeSimple($uid));
+		$res=&$db->query($sql);
+		
+	}
+} //END: mail_forward
+
+
 
 }
 
@@ -405,6 +440,4 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 	}
 	
 }
-
-
 ?>
