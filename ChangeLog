@@ -10,5 +10,6 @@ CpVES 0.02 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: en/disable spamassassin support per domain
 	o Added: sadmin/admin can modify users autoresponder
 	o Added: sadmin/admin can modify users forwarding
+	o Added: inputfocus to emailaddress on loginpage
 CpVES 0.01 2006-12-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o First Release
