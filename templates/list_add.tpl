@@ -1,22 +1,11 @@
-
-
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
 
 {if $if_max_list eq 'y'}
 <div style="text-align:center;color:red;">Maximale Anzahl an Mailinglisten erreicht, es k&ouml;nnen keine weiteren MAilinglisten angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -<br/><br/></div>
 {/if}
-{if $if_valid eq 'n'}
-<div style="text-align:center;color:red;">eMailadresse ist nicht konform. Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_exists eq 'y' }
-<div style="text-align:center;color:red;">eMailadresse ist bereits vorhanden! Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_missing eq 'y' }
-<div style="text-align:center;color:red;">Fehlerhafte eingabe! Bitte korigieren!<br/><br/></div>
-{/if}
 {if $if_email_saved eq "y" }
 <div style="text-align:center;color:blue;">Mailingliste angelegt!<br/><br/></div>
-<meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$id}">
+
 {/if}
 
 <form action="list_add.php?id={$id}" method="post">

@@ -51,12 +51,14 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!email_valid($_POST['address']))
 			{
-			$smarty->assign('if_valid', 'n');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_email_valid','y');
 			$smarty->assign('address',$_POST['address'] );
 			}
 			else if( email_exist($full_list, $db, 0, 0) )
 			{
-			$smarty->assign('if_exists', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_email_exits', 'y');
 			$smarty->assign('full_email', 'y');
 			$smarty->assign('address',$_POST['address'] );
 			}
@@ -67,12 +69,14 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($_GET['id']),
 				$db->escapeSimple($public));
 				$result = &$db->query($sql);
-				$smarty->assign('if_email_saved', 'y');
+				$smarty->assign('success_msg','y');
+				$smarty->assign('if_list_created', 'y');
 			}
 		}
 		else
 		{
-			$smarty->assign('if_missing', 'y');
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_error_missing_input', 'y');
 			$smarty->assign('address',$_POST['address'] );
 		}
 	}

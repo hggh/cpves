@@ -76,8 +76,9 @@ if (isset($_POST['submit']) &&
 			{
 				$max_forward=0;
 			}
+			$dnsname=trim(strtolower($_POST['dnsname']));
 			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', disableimap='%s', disablepop3='%s', disablewebmail='%s',max_email='%d', max_forward='%d', dnote='%s',spamassassin='%s'",
-				$db->escapeSimple($_POST['dnsname']),
+				$db->escapeSimple($dnsname),
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),
 				$db->escapeSimple($webmail),
@@ -88,22 +89,22 @@ if (isset($_POST['submit']) &&
 			$res=&$db->query($sql);
 	
 			$sql=sprintf("SELECT id FROM domains WHERE dnsname='%s'",
-				$db->escapeSimple($_POST['dnsname']));
+				$db->escapeSimple($dnsname));
 			$res=&$db->query($sql);
 			$data=$res->fetchrow(DB_FETCHMODE_ASSOC);
-			$to='postmaster@'.$_POST['dnsname'];
+			$to='postmaster@'.$dnsname;
 			$sql=sprintf("INSERT INTO forwardings SET domainid='%s', efrom='%s', eto='%s', access='y'",
 				$db->escapeSimple($data['id']),
 				$db->escapeSimple($to),
 				$db->escapeSimple($config['postmaster']));
 			$res=&$db->query($sql);
 			
-			$smarty->assign('new_dnsname', $_POST['dnsname']);
+			$smarty->assign('new_dnsname', $dnsname);
 			$smarty->assign('if_dns_added', 'y');
 			
 			$res_array=array();
 			$points='n';
-			if (get_mx($_POST['dnsname']))
+			if (get_mx($dnsname))
 			{
 				$mx_entry=array();
 				foreach($res_array as $value)

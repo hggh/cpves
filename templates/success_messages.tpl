@@ -15,4 +15,7 @@ Passwort erfolgreich ge&auml;ndert.
 {elseif $if_email_data_saved == 'y'}
 Daten der E-Mailadresse erfolgreicht gespeichert.
 <meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$domainid}">
+{elseif $if_list_created == 'y'}
+Mailingliste wurde erfolgreich angelegt.
+<meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$id}">
 {/if}
