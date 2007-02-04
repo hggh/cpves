@@ -20,7 +20,7 @@
 </table>
 <table id="mailst" border="0">
 {foreach from=$table_email item=row }
-<tr style="background-color:{cycle values=#rcolor#}">
+<tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png"   title="Autoresponder aktiv." />{/if}
  <a href="email_view.php?id={$row.id}&amp;did={$row.domain}">{$row.email}</a></td>
  <td style="width:300px;"> </td>
@@ -51,7 +51,7 @@
 </table>
 <table id="forwardt" border="0">
 {foreach from=$table_forward item=row}
-<tr style="background-color:{cycle values=#rcolor#}">
+<tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="forward_view.php?id={$row.id}&amp;did={$row.domain}">{$row.from}</a></td>
  <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
@@ -77,7 +77,7 @@
 </table>
 <table id="listst" border="0">
 {foreach from=$table_list item=row}
-<tr style="background-color:{cycle values=#rcolor#}">
+<tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="list_view.php?id={$row.id}&amp;did={$row.domain}">{$row.address}</a></td>
  <td style="width:200px;">Empf&auml;nger: {$row.recps}</td>
  <td style="width:100px;">{if $row.public eq 'y'}&Ouml;ffentlich{else}Privat{/if}</td>
