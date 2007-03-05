@@ -134,6 +134,48 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	/* foward option save begin */
 	
+	/* options save begin */
+	if (isset($_POST['virus_submit'])) {
+	if (is_numeric($_POST['del_virus_notifi']) && $_POST['del_virus_notifi']==1)
+	{
+		$del_virus_notifi=1;
+	}
+	else
+	{
+		$del_virus_notifi=0;
+	}
+	$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
+		$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1 ) {
+		$sql=sprintf("UPDATE email_options SET options='%s' WHERE email='%s' AND conf='del_virus_notifi'",
+			$db->escapeSimple($del_virus_notifi),
+			$db->escapeSimple($_GET['id']));
+	}
+	else if($del_virus_notifi==1)
+	{
+		$sql=sprintf("INSERT INTO email_options SET options='1', email='%s', conf='del_virus_notifi'",
+			$db->escapeSimple($_GET['id']));
+	}
+	$result=&$db->query($sql);
+	update_mailfilter('del_virus_notifi',$_GET['id'], $del_virus_notifi,0,0);
+	// activate System-Script
+	run_systemscripts();
+	
+	}
+	$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
+	$db->escapeSimple($_GET['id']));
+	
+	$result=&$db->query($sql);
+	if ($result->numRows() ==1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+	}
+	else {
+		$data['options']=0;
+	}
+	$smarty->assign('del_virus_notifi', $data['options']);
+	/* option save ENDE */
+	
 	
 	/* forward option begin */
 	$sql=sprintf("SELECT type,filter FROM mailfilter WHERE email='%d' AND active!=0 AND type LIKE 'forward%%'",

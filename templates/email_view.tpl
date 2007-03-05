@@ -148,6 +148,10 @@
 		{/if}
   </select></td>  
 </tr>
+<tr>
+	<td></td>
+	<td><input type="submit" name="virus_submit" value="Speichern" /></td>
+</tr>
 </form>
 <!-- Options feature end -->
 
