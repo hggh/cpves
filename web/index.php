@@ -17,7 +17,8 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
 session_start();
-include("config.inc.php");
+include("../root.php");
+include( ROOT "/includes/config.inc.php");
 include("check_access.php");
 
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
@@ -117,7 +118,7 @@ while (list($key, $value) = each($ar_spam))
 //foreach($ar_spam as $value)
 {
 	$dnsbl->setBlacklists($value);
-	if ($dnsbl->isListed($server_ip))
+	if ($dnsbl->isListed($config['server_ip']))
 	{
 		$smarty->assign('if_blacklist_listet', 'y');
 		array_push($table_spam, array('spam' => $value));
@@ -125,7 +126,7 @@ while (list($key, $value) = each($ar_spam))
 	
 }
 
-$smarty->assign('ipaddr',$server_ip ); 
+$smarty->assign('ipaddr',$config['server_ip'] ); 
 $smarty->assign('table_spam', $table_spam);
 
 } // SPAM CHECK ENDE

@@ -14,8 +14,8 @@ $smarty->template_dir = $root . '/templates';
 $smarty->compile_dir = '/tmp/';
 $smarty->config_overwrite = false;
 
-
-$server_ip = "127.0.0.1";
+//Server IP
+$config['server_ip'] = "127.0.0.1";
 
 
 //Postmaster and Serveradmin:
@@ -49,9 +49,6 @@ $config['mailinglisten'] = 'y'; //Development, please don't use!
 //Run Systemscript via xinetd Service 
 $config['service_enabled'] = 'n'; // Development, please don't use!
 $config['service_port'] = 7928; // Development, please don't use!
-
-$config_autores_subject="";
-$config_autores_msg="";
 
 $options = array(
     'debug'       => 2,

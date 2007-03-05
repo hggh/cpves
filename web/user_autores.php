@@ -87,8 +87,6 @@ elseif($error)
 else
 {
 	$active='n';
-	$msg=$config_autores_msg;
-	$esubject=$config_autores_subject;
 }
 
 $smarty->assign('esubject', $esubject);

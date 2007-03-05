@@ -109,7 +109,7 @@ if (isset($_POST['submit']) &&
 				$mx_entry=array();
 				foreach($res_array as $value)
 				{
-					if ($value['ipaddr']==$server_ip)
+					if ($value['ipaddr']==$config['server_ip'])
 					{
 						$this_server=true;
 						$points='y';
