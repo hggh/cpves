@@ -3,11 +3,11 @@
 <p>
 <a class="nav active" href="index.php?user=n">&Uuml;bersicht</a>
 {if $if_domain_view == 'y' }
-	<a class="nav sub" href="domain_view.php?id={$domain_id}">Domainansicht</a>
-	<a class="nav sub" href="email_add.php?id={$domain_id}">Neue eMailadresse</a>
-	<a class="nav sub" href="forward_add.php?id={$domain_id}">Neue Weiterleitung</a>
+	<a class="nav sub" href="?module=domain_view&#038;did={$domain_id}">Domainansicht</a>
+	<a class="nav sub" href="?module=email_add&#038;did={$domain_id}">Neue eMailadresse</a>
+	<a class="nav sub" href="?module=forward_add&#038;did={$domain_id}">Neue Weiterleitung</a>
 	{if $if_listings == 'y' }
-	<a class="nav sub" href="list_add.php?id={$domain_id}">Neue Liste</a>
+	<a class="nav sub" href="list_add.php?did={$domain_id}">Neue Liste</a>
 	{/if}
 {/if}
 {if $if_superadmin eq 'y' }
@@ -33,13 +33,13 @@
 	<a class="nav" href="user_options.php">Optionen</a>
 {/if}
 {if $if_superadmin == 'y' }
-	<a class="nav" href="domain_add.php">Neue Domain anlegen</a>
+	<a class="nav" href="?module=domain_add">Neue Domain anlegen</a>
 {/if}
 {if $if_manager == 'y' }
 	<a class="nav" href="sadmin_view.php">Superadmin UserManager</a>
 	<a class="nav" href="sadmin_add.php">Neuen SuperAdmin anlegen</a>
 {/if}
-<a class="nav" href="./logout.php">Logout</a>
+<a class="nav" href="?module=logout">Logout</a>
 
 </p>
 </div>

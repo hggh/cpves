@@ -22,7 +22,7 @@
 {foreach from=$table_email item=row }
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png"   title="Autoresponder aktiv." />{/if}
- <a href="email_view.php?id={$row.id}&amp;did={$row.domain}">{$row.email}</a></td>
+ <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></td>
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
@@ -52,7 +52,7 @@
 <table id="forwardt" border="0">
 {foreach from=$table_forward item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
- <td style="width:300px;"><a href="forward_view.php?id={$row.id}&amp;did={$row.domain}">{$row.from}</a></td>
+ <td style="width:300px;"><a href="?module=forward_view&#038;id={$row.id}&amp;did={$did}">{$row.from}</a></td>
  <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y'}

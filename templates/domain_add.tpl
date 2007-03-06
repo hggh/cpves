@@ -49,7 +49,7 @@
 {/if}
 
 {if $if_dns_added != 'y'} 
-<form action="domain_add.php" method="post">
+<form action="?module=domain_add" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>Domainname:</td>

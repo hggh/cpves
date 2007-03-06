@@ -16,29 +16,26 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
-$access_domain=check_access_to_domain($_GET['id'],$db);
+$access_domain=check_access_to_domain($_GET['did'],$db);
 $smarty->assign('access_domain', $access_domain);
 
 if (isset($_SESSION['superadmin']) &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$access_domain )
 {
 	$sql=sprintf("SELECT id,dnsname,max_forward FROM domains WHERE id='%s'",
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	$smarty->assign('id', $_GET['id']);
 	$smarty->assign('domain',$data['dnsname']);
 	$dnsname=$data['dnsname'];
-	$domain_id=$_GET['id'];
+	$domain_id=$_GET['did'];
 	
-	if (get_forem_domain($data['id'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
+	if (get_forem_domain($data['did'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_forwds_max_reached','y');
@@ -93,11 +90,9 @@ if (isset($_SESSION['superadmin']) &&
 }
 
 // Menuansicht
-$smarty->assign('id',$_GET['id']);
+$smarty->assign('did',$_GET['did']);
 $smarty->assign('if_domain_view', 'y');
 $smarty->assign('domain_id',$domain_id);
 $smarty->assign('dnsname', $dnsname);
 
-$smarty->assign('template','forward_add.tpl');
-$smarty->display('structure.tpl');
 ?>

@@ -1,5 +1,5 @@
 {if $if_login_ok !='yes'}
-<form action="login.php" method="post">
+<form action="index.php?module=login" method="post">
 <table>
 <tr>
  <td>Benutzername:</td>

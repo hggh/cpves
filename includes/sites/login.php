@@ -16,14 +16,13 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-include("config.inc.php");
-session_start();
 $no_login=0;
 $_SESSION['superadmin']='n';
 $_SESSION['admin']='n';
 $_SESSION['manager']='n';
 $_SESSION['ad_user']='n';
 $_SESSION['spamassassin']='0';
+
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
 {
@@ -123,7 +122,7 @@ else // wird ein admin username sein, also checke adm_users table
 }
 else
 {
-	$no_login=1;
+	//$no_login=1;
 }
 if ($no_login !=0)
 {
@@ -135,6 +134,6 @@ if ($no_login==0)
 	header("Location: index.php");
 }
 $smarty->assign('if_login' , 'y');
-$smarty->assign('template', 'login.tpl');
-$smarty->display('structure.tpl');
+//$smarty->assign('template', 'login.tpl');
+//$smarty->display('structure.tpl');
 ?>

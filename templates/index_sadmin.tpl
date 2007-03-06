@@ -10,7 +10,7 @@
 	{foreach from=$table_data item=row} 
 	<tr  bgcolor="{cycle values="$color1,$color2"}">
 		<td style="padding-left:3px;">
-		<a href="domain_view.php?id={$row.id}">{$row.dnsname}</a></td>
+		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></td>
 		<td>
 			<p>
 				{$row.count_email} 

@@ -1,7 +1,6 @@
 <?php
-require_once '../root.php';
 require_once 'DB.php';
-require_once 'des.inc';
+require_once(ROOT . '/includes/des.inc.php');
 require_once 'Net/DNS.php';
 require_once 'Net/CheckIP.php';
 require_once 'Net/IPv6.php';
@@ -62,5 +61,5 @@ $dsn = array(
     'database' => 'mail_system',
 );
 
-require_once 'functions.inc';
+require_once(ROOT . '/includes/func.inc.php');
 ?>

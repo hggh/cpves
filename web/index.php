@@ -17,9 +17,11 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
 session_start();
-include("../root.php");
-include( ROOT "/includes/config.inc.php");
-include("check_access.php");
+require_once("../root.php");
+require_once( ROOT . "/includes/config.inc.php");
+if (!isset($_POST['login'])) {
+	include("check_access.php");
+}
 
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
 {
@@ -33,160 +35,44 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 }
 
 
-//Enable or Disable Domain BEGIN
-if (isset($_SESSION['superadmin']) && 
-	$_SESSION['superadmin']=='y'&& 
-	is_numeric($_POST['id']) &&
-	isset($_POST['state']) )
-{
-	if ($_POST['state']=='disable')
-	{
-		$sql=sprintf("UPDATE domains SET ACCESS='n' WHERE id=%s",
-			$db->escapeSimple($_POST['id']));
-	}
-	else if ($_POST['state']=='enable')
-	{
-		$sql=sprintf("UPDATE domains SET ACCESS='y' WHERE id=%s",
-			$db->escapeSimple($_POST['id']));
-	}
-	$result=&$db->query($sql);
-	if (!$result)
-	{
-		echo "ERROR! Something went wrong!";
-	}
-}
-//ENABLE or DISABLE DOMAIN
 
-
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' || isset($_SESSION['admin']) && $_SESSION['admin']=='y' && $_SESSION['ad_user']!='y')
-{
-
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' )
-{
-	$sql="SELECT * FROM domains ORDER BY dnsname";
-}
-else
-{
-	$sql=sprintf("SELECT * FROM admin_access WHERE email=%s",
-		$db->escapeSimple($_SESSION['uid']));
-	$result=&$db->query($sql);
-	$sql="SELECT * FROM domains WHERE id=";
-	$e=0;
-	while($daten=$result->fetchrow(DB_FETCHMODE_ASSOC))
-	{
-		if ($e==0)
-		{
-			$sql.="'".$daten['domain']. "'";
-		}
-		else
-		{
-			$sql.=" OR id='".$daten['domain']. "'";
-		}
-		$e++;
-		
-	}
-	$sql.=" ORDER BY dnsname";
-}
-
-$table_data = array();
-$result = $db->query($sql);
-while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
-{
-	array_push($table_data, array(
-         'dnsname' => $row['dnsname'],
-         'access' => $row['access'],
-	 'count_forward' => get_forem_domain($row['id'],'forwardings',$db), 
-	 'count_email' => get_forem_domain($row['id'],'users',$db),
-	 'id' => $row['id'],
-	 'access' => $row['access'],
-	 'dnote' => $row['dnote']
-         )
-      );
-      $i++; 
-} 
-}
-//check for spam:
-$test='n';
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'&& $test=='y')
-{
-
-require_once 'Net/DNSBL.php';
-$dnsbl = new Net_DNSBL();
-
-$table_spam=array();
-while (list($key, $value) = each($ar_spam))
-//foreach($ar_spam as $value)
-{
-	$dnsbl->setBlacklists($value);
-	if ($dnsbl->isListed($config['server_ip']))
-	{
-		$smarty->assign('if_blacklist_listet', 'y');
-		array_push($table_spam, array('spam' => $value));
-	}
+$site="";
+switch($_GET['module']) {
+	case 'login':
+		$site="login";
+		break;
+	case 'domain_view':
+		$site="domain_view";
+		break;
+	case 'domain_add':
+		$site="domain_add";
+		break;
+	case 'email_add':
+		$site="email_add";
+		break;
+	case 'email_view':
+		$site="email_view";
+		break;
+	case 'forward_add':
+		$site="forward_add";
+		break;
+	case 'forward_view':
+		$site="forward_view";
+		break;
+	case 'logout':
+		$_SESSION = array();
+		session_destroy();
+		$smarty->assign('if_login' , 'y');
+		$site="login";
+		break;
+	default:
+		$site="main";
 	
 }
 
-$smarty->assign('ipaddr',$config['server_ip'] ); 
-$smarty->assign('table_spam', $table_spam);
 
-} // SPAM CHECK ENDE
-
-
-//email user part:
-if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='n')
-{
-	$smarty->assign('if_user_index','y');
-	$smarty->assign('full_name', $_SESSION['full_name']);
-	$smarty->assign('email', $_SESSION['email']);
-	if (isset($_POST['u_submit']))
-	{
-		if (!isset($_POST['new_passwd1']) || empty($_POST['new_passwd1']) ||
-		    !isset($_POST['new_passwd2']) || empty($_POST['new_passwd2']))
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_empty','y');
-		}
-		else if (check_passwd_length($_POST['new_passwd2']) ==false)
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_long', 'y');
-
-		}
-		else if($_POST['new_passwd1'] !=$_POST['new_passwd2'] )
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_new_passwd_not_same', 'y');
-		}
-		else if(decrypt_passwd($_SESSION['cpasswd']) != $_POST['old_passwd'])
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_old_wrong','y');
-		}
-		else
-		{
-			if ($config['cleartext_passwd']==1) {
-				$cleartext=$_POST['new_passwd1'];
-			}
-			else
-			{
-				$cleartext="";
-			}
-			$sql=sprintf("UPDATE users SET passwd='%s',cpasswd='%s' WHERE id='%d'",
-				$db->escapeSimple($cleartext),
-				$db->escapeSimple(crypt($_POST['new_passwd1'])),
-				$db->escapeSimple($_SESSION['uid']));
-			$res=&$db->query($sql);
-			
-			$smarty->assign('passwd_changed', 'y');
-			$smarty->assign('success_msg','y');
-			$smarty->assign('if_password_changed', 'y');
-			$_SESSION['cpasswd']=encrypt_passwd($_POST['new_passwd1']);
-		}
-	}
-}
-
-$smarty->assign('table_data', $table_data);
-$smarty->assign('template','index.tpl');
+require_once(ROOT . "/includes/sites/" . $site . ".php");
+$smarty->assign('template', $site . ".tpl");
 $smarty->display('structure.tpl');
 $db->disconnect();
 ?>

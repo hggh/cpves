@@ -16,11 +16,11 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
+//session_start();
 $_SESSION = array();
 session_destroy();
-include("config.inc.php");
+//(include("config.inc.php");
 $smarty->assign('if_login' , 'y');
-$smarty->assign('template','login.tpl');
-$smarty->display('structure.tpl');
+//$smarty->assign('template','login.tpl');
+//$smarty->display('structure.tpl');
 ?>

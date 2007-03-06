@@ -16,19 +16,15 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
-
-$access_domain=check_access_to_domain($_GET['id'],$db);
+$access_domain=check_access_to_domain($_GET['did'],$db);
 
 if (isset($_SESSION['superadmin']) &&
-	isset($_GET['id']) &&
-	is_numeric($_GET['id']) &&
+	isset($_GET['did']) &&
+	is_numeric($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
-	isset($_GET['id']) &&
-	is_numeric($_GET['id']) &&
+	isset($_GET['did']) &&
+	is_numeric($_GET['did']) &&
 	$access_domain )
 {
 //Enable or Disable EMAIL BEGIN
@@ -191,7 +187,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 
 
 	$sql=sprintf("SELECT * FROM domains WHERE id='%s' LIMIT 1",
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
@@ -207,13 +203,13 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	
 	
 	
-$smarty->assign('emails', get_forem_domain($_GET['id'],'users', $db));
-$smarty->assign('forwardings', get_forem_domain($_GET['id'],'forwardings', $db));
+$smarty->assign('emails', get_forem_domain($_GET['did'],'users', $db));
+$smarty->assign('forwardings', get_forem_domain($_GET['did'],'forwardings', $db));
 
 
 //FIXME: deleted email addresses!!!
 $sql=sprintf("SELECT email,id,access FROM users WHERE domainid='%s' AND enew!='0' ORDER BY email",
-	$db->escapeSimple($_GET['id']));
+	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
 $table_email = array();
 while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
@@ -238,7 +234,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 } //ENDE WHILE eMails
 
 $sql=sprintf("SELECT * FROM forwardings WHERE domainid=%s ORDER BY efrom",
-	$db->escapeSimple($_GET['id']));
+	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
 echo mysql_error();
 $table_forward = array();
@@ -315,16 +311,16 @@ else
 
 //Menuansicht:
 $smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$_GET['id']);
+$smarty->assign('domain_id',$_GET['did']);
 
 
 
 
 $smarty->assign('access_domain', $access_domain);
-$smarty->assign('id',$_GET['id']);
+$smarty->assign('did',$_GET['did']);
 $smarty->assign('table_email', $table_email);
 $smarty->assign('table_list', $table_list);
 $smarty->assign('table_forward', $table_forward);
 $smarty->assign('template','domain_view.tpl');
-$smarty->display('structure.tpl');
+//$smarty->display('structure.tpl');
 ?>
