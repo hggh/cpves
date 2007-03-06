@@ -62,6 +62,9 @@ switch($_GET['module']) {
 	case 'forward_catchall':
 		$site="forward_catchall";
 		break;
+	case 'sadmin_edit':
+		$site="sadmin_edit";
+		break;
 	case 'sadmin_add':
 		$site="sadmin_add";
 		break;

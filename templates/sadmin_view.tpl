@@ -9,7 +9,7 @@
 	{section name=row loop=$table_data} 
 	<tr>
 		<td>
-			<a href="sadmin_edit.php?id={$table_data[row].id}">{$table_data[row].username}</a>
+			<a href="?module=sadmin_edit&#038;id={$table_data[row].id}">{$table_data[row].username}</a>
 		</td>
 		<td>
 			<p>

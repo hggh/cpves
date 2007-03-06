@@ -26,11 +26,11 @@
 	{$email}: Weiterleitung
 {elseif $template == "user_autores.tpl"}
 	{$email}: Autoresponder
-{elseif $template == "index.tpl" && $if_superadmin == 'y'}
+{elseif $template == "main.tpl" && $if_superadmin == 'y'}
 	Superadmin: Domain&uuml;bersicht
-{elseif $template == "index.tpl" && $if_admin == 'y' && $if_user_index != 'y' }
+{elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index != 'y' }
 	Domain&uuml;bersicht
-{elseif $template == "index.tpl" && $if_admin == 'y' && $if_user_index == 'y' }
+{elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index == 'y' }
 	Pers&ouml;nliche Einstellungen
 {elseif $template == "forward_view.tpl"}
 	{$forward}: Bearbeiten
