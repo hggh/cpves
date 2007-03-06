@@ -16,9 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
 {
 	$smarty->assign('if_ad_user','y');
@@ -320,13 +317,13 @@ if ($result->numRows()>0)
 
 
 
-if ($_SESSION['spamassassin'] == 1) {
-	$smarty->assign('template','user_spam.tpl');
-	$smarty->display('structure.tpl');
+if ($_SESSION['spamassassin'] != 1) {
+	header("Location: index.php");
+	exit();
 }
 else
 {
-	header("Location: index.php");
+	
 }	
 $db->disconnect();
 ?>

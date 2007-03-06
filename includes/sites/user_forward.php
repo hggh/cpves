@@ -16,9 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
 {
 	$smarty->assign('if_ad_user','y');
@@ -30,53 +27,35 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$_SESSION['ad_user']='n';
 }
 
-if (isset($_POST['save_option']))
-{
-	if (is_numeric($_POST['del_virus_notifi']) && $_POST['del_virus_notifi']==1)
-	{
-		$del_virus_notifi=1;
-	}
-	else
-	{
-		$del_virus_notifi=0;
-	}
-	$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
-		$db->escapeSimple($_SESSION['uid']));
-	$result=&$db->query($sql);
-	if ($result->numRows() == 1 ) {
-		$sql=sprintf("UPDATE email_options SET options='%s' WHERE email='%s' AND conf='del_virus_notifi'",
-			$db->escapeSimple($del_virus_notifi),
-			$db->escapeSimple($_SESSION['uid']));
-	}
-	else if($del_virus_notifi==1)
-	{
-		$sql=sprintf("INSERT INTO email_options SET options='1', email='%s', conf='del_virus_notifi'",
-			$db->escapeSimple($_SESSION['uid']));
-	}
-	$result=&$db->query($sql);
-	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $del_virus_notifi,0,0);
-	// activate System-Script
+/* foward option save begin */
+if (isset($_POST['submit'])) {
+	update_mailfilter('mail_forward',
+		$_SESSION['uid'],$_POST['forwardaddress'],
+		$_POST['delete_forward'],
+		$_POST['save_local']);
 	run_systemscripts();
 }
+/* foward option save begin */
 
 
 
-$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
+//SELECT *  FROM `mailfilter` WHERE `type` LIKE 'forward%'
+$sql=sprintf("SELECT type,filter FROM mailfilter WHERE email='%d' AND active!=0 AND type LIKE 'forward%%'",
 	$db->escapeSimple($_SESSION['uid']));
 $result=&$db->query($sql);
-if ($result->numRows() ==1) {
+if ($result->numRows()==1)
+{
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+	if ($data['type']=="forward_cc") // mit kopie ans lokale postfach
+	{
+		$smarty->assign('if_forward_cc', '1');
+	}
+	else // ohne kopie weiterleiten
+	{
+	}
+	$smarty->assign('forwardaddress', $data['filter']);
 }
-else {
-	$data['options']=0;
-}
-$smarty->assign('del_virus_notifi', $data['options']);
-
-
-
 
 
 $smarty->assign('email', $_SESSION['email']);
-$smarty->assign('template','user_options.tpl');
-$smarty->display('structure.tpl');
 ?>

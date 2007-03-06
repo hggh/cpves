@@ -20,7 +20,7 @@ session_start();
 require_once("../root.php");
 require_once( ROOT . "/includes/config.inc.php");
 if (!isset($_POST['login'])) {
-	include("check_access.php");
+	include(ROOT . "/includes/check_access.php");
 }
 
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
@@ -58,6 +58,30 @@ switch($_GET['module']) {
 		break;
 	case 'forward_view':
 		$site="forward_view";
+		break;
+	case 'forward_catchall':
+		$site="forward_catchall";
+		break;
+	case 'sadmin_add':
+		$site="sadmin_add";
+		break;
+	case 'sadmin_passwd':
+		$site="sadmin_passwd";
+		break;
+	case 'sadmin_view':
+		$site="sadmin_view";
+		break;
+	case 'user_autores':
+		$site="user_autores";
+		break;
+	case 'user_spam':
+		$site="user_spam";
+		break;
+	case 'user_forward':
+		$site="user_forward";
+		break;
+	case 'user_options':
+		$site="user_options";
 		break;
 	case 'logout':
 		$_SESSION = array();

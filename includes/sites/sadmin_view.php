@@ -16,10 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
-
 if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
     && isset($_SESSION['manager'])
     && $_SESSION['manager'] =='y')
@@ -54,6 +50,4 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	}
 $smarty->assign('table_data', $table_data);
 }
-$smarty->assign('template','sadmin_view.tpl');
-$smarty->display('structure.tpl');
 ?>

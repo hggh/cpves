@@ -11,33 +11,33 @@
 	{/if}
 {/if}
 {if $if_superadmin eq 'y' }
-    <a class="nav" href="sadmin_passwd.php">Passwort &#228;ndern</a>
+    <a class="nav" href="?module=sadmin_passwd">Passwort &#228;ndern</a>
 {/if}
 {if $if_admin eq 'y'  }
 	<a class="nav" href="index.php?user=y">Pers&ouml;nliche Einstellungen</a>
 {/if}
 {if $if_superadmin != 'y' && $menu_user_open == 'y' }
-	<a class="nav sub" href="user_autores.php">Autoresponder</a>
+	<a class="nav sub" href="?module=user_autores">Autoresponder</a>
 	{if $if_spamassassin == '1'}
-	<a class="nav sub" href="user_spam.php">Spamfilter</a>
+	<a class="nav sub" href="?module=user_spam">Spamfilter</a>
 	{/if}
-	<a class="nav sub" href="user_forward.php">Weiterleitung</a>
-	<a class="nav sub" href="user_options.php">Optionen</a>
+	<a class="nav sub" href="?module=user_forward">Weiterleitung</a>
+	<a class="nav sub" href="?module=user_options">Optionen</a>
 {/if}
 {if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
-	<a class="nav" href="user_autores.php">Autoresponder</a>
+	<a class="nav" href="?module=user_autores">Autoresponder</a>
 	{if $if_spamassassin == '1'}
-	<a class="nav" href="user_spam.php">Spamfilter</a>
+	<a class="nav" href="?module=user_spam">Spamfilter</a>
 	{/if}
-	<a class="nav" href="user_forward.php">Weiterleitung</a>
-	<a class="nav" href="user_options.php">Optionen</a>
+	<a class="nav" href="?module=user_forward">Weiterleitung</a>
+	<a class="nav" href="?module=user_options">Optionen</a>
 {/if}
 {if $if_superadmin == 'y' }
 	<a class="nav" href="?module=domain_add">Neue Domain anlegen</a>
 {/if}
 {if $if_manager == 'y' }
-	<a class="nav" href="sadmin_view.php">Superadmin UserManager</a>
-	<a class="nav" href="sadmin_add.php">Neuen SuperAdmin anlegen</a>
+	<a class="nav" href="?module=sadmin_view">Superadmin UserManager</a>
+	<a class="nav" href="?module=sadmin_add">Neuen SuperAdmin anlegen</a>
 {/if}
 <a class="nav" href="?module=logout">Logout</a>
 

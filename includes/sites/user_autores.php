@@ -16,9 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
 if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
 {
 	$smarty->assign('if_ad_user','y');
@@ -30,39 +27,68 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$_SESSION['ad_user']='n';
 }
 
-/* foward option save begin */
-if (isset($_POST['submit'])) {
-	update_mailfilter('mail_forward',
-		$_SESSION['uid'],$_POST['forwardaddress'],
-		$_POST['delete_forward'],
-		$_POST['save_local']);
-	run_systemscripts();
+if (isset($_POST['u_submit']))
+{
+	if (empty($_POST['esubject']))
+	{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_empty', 'y');
+		$error=true;
+	}
+	else if (empty($_POST['msg']))
+	{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_msg_empty', 'y');
+		$error=true;
+	}
+	else if(strlen($_POST['esubject']) > 50)
+	{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_subject_to_long', 'y');
+		$error=true;
+	}
+	else
+	{
+		save_autoresponder($_SESSION['uid'],
+			$_POST['active'],
+			$_POST['esubject'],
+			$_POST['msg']);
+		// activate System-Script
+		run_systemscripts();
+		$smarty->assign('if_query_ok','y');
+		
+	}
+	
 }
-/* foward option save begin */
 
 
-
-//SELECT *  FROM `mailfilter` WHERE `type` LIKE 'forward%'
-$sql=sprintf("SELECT type,filter FROM mailfilter WHERE email='%d' AND active!=0 AND type LIKE 'forward%%'",
+$sql=sprintf("SELECT id,email,active,msg,esubject FROM autoresponder WHERE email='%d'",
 	$db->escapeSimple($_SESSION['uid']));
 $result=&$db->query($sql);
 if ($result->numRows()==1)
 {
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	if ($data['type']=="forward_cc") // mit kopie ans lokale postfach
-	{
-		$smarty->assign('if_forward_cc', '1');
-	}
-	else // ohne kopie weiterleiten
-	{
-	}
-	$smarty->assign('forwardaddress', $data['filter']);
+	$active=$data['active'];
+	$msg=$data['msg'];
+	$esubject=$data['esubject'];
+	$id=$data['id'];
+	
+}
+elseif($error)
+{
+	$active=$_POST['active'];
+	$msg=$_POST['msg'];
+	$esubject=$_POST['esubject'];
+	
+}
+else
+{
+	$active='n';
 }
 
-
+$smarty->assign('esubject', $esubject);
+$smarty->assign('active', $active);
+$smarty->assign('id', $id);
+$smarty->assign('msg', $msg);
 $smarty->assign('email', $_SESSION['email']);
-$smarty->assign('template','user_forward.tpl');
-$smarty->display('structure.tpl');
-$db->disconnect();
-
 ?>
