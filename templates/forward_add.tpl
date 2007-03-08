@@ -1,6 +1,6 @@
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
 
-<form action="forward_add.php?id={$id}" method="post">
+<form action="?module=forward_add&#038;did={$did}" method="post">
 <table>
 <tr>
  <td>eMailadresse:</td>

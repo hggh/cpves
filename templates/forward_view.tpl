@@ -3,7 +3,7 @@
 {if $if_del eq 'y'}
 <div style="text-align:center;color:red;">
 Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser Vorgang l&ouml;scht nun den kompletten Eintrag!<br/>
- <form action="forward_del.php?id={$id}&#038;domainid={$domainid}" method="post">
+ <form action="?module=forward_del&#038;id={$id}&#038;did={$domainid}" method="post">
   <input type="submit" name="del_fwd" class="in_1" value="Loeschen"/>
   <input type="hidden" name="id" value="{$id}" />
   <input type="hidden" name="domainid" value="{$domainid}" />
@@ -12,7 +12,7 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
 {/if}
 
 
-<form action="forward_view.php?id={$id}&#038;did={$domainid}" method="post">
+<form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">
 <table>
 <tr>
  <td>Von: </td>
@@ -32,7 +32,7 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
  <td colspan="2" class="domain_view"><h3>Selektierte Adresse l&ouml;schen:</h3></td>
 </tr>
 <tr>
- <td colspan="2"  style="text-align:right"><input name="del_addr" class="in_1" value="L&ouml;schen" type="submit" /></td>
+ <td colspan="2"  style="text-align:right"><input name="del_addr" value="L&ouml;schen" type="submit" /></td>
 </tr>
 </form>
 <tr>
@@ -43,7 +43,7 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
  <td style="text-align:right"><form action="forward_view.php?id={$id}&#038;did={$domainid}" method="post"><input class="in_1" type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
  
  {if $if_noemail_found != "y" }
- <form action="forward_view.php?id={$id}&#038;did={$domainid}" method="post">
+ <form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">
  <select name="add_fwd">
  {section name=row loop=$table_addemail}
  <option value="{$table_addemail[row].email}">{$table_addemail[row].email}</option>

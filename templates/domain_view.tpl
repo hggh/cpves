@@ -26,12 +26,12 @@
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
- <a href="domain_view.php?id={$row.domain}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
+ <a href="domain_view.php?id={$row.did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
  {else}
  <a  href="domain_view.php?id={$row.domain}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="eMailadresse aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="email_del.php?domainid={$row.domain}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="eMailadresse l&ouml;schen" />
+  <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="eMailadresse l&ouml;schen" />
   </a>
 </td>
 </tr>
@@ -59,7 +59,7 @@
   <a href="domain_view.php?id={$row.domain}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
  
  {else}
- <a href="domain_view.php?id={$row.domain}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
+ <a href="domain_view.php?id={$row.did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
   <a href="forward_del.php?domainid={$row.domain}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Weiterleitung l&ouml;schen"/></a>

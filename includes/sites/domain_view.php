@@ -224,7 +224,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	}
 	array_push($table_email, array(
 	'id' => $data['id'],
-	'domain' => $_GET['id'],
+	'did' => $_GET['did'],
 	'email' =>$data['email'],
 	'access' =>$data['access'],
 	'autoresponder' => $autoresponder)
@@ -244,7 +244,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	{
 	array_push($table_forward, array(
 	'id' => $data['id'],
-	'domain' => $_GET['id'],
+	'did' => $_GET['did'],
 	'from' =>$data['efrom'],
 	'to' => get_first_forward($data['eto']),
 	'if_multif' => check_multi_forward($data['eto']),

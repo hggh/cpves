@@ -1,5 +1,5 @@
 {if $if_superadmin eq 'y' and $if_manager eq 'y' } 
-<form action="sadmin_add.php" method="post">
+<form action="?module=sadmin_add" method="post">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td>Benutzername:</td>

@@ -20,14 +20,14 @@ $access_domain=check_access_to_domain($_GET['did'], $db);
 $smarty->assign('access_domain', $access_domain);
 
 if (isset($_SESSION['superadmin']) &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$access_domain )
 {
 	$sql=sprintf("SELECT dnsname FROM domains WHERE id='%d'",
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	

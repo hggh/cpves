@@ -1,5 +1,3 @@
-
-
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
 
 {if $if_del_ok != "y" }
@@ -42,5 +40,3 @@
 {else}
 <meta http-equiv="refresh" content="1; URL=./index.php">
 {/if}
-
-

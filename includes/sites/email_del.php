@@ -16,73 +16,69 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
-$access_domain=check_access_to_domain($_GET['domainid'], $db);
+$access_domain=check_access_to_domain($_GET['did'], $db);
 $smarty->assign('access_domain', $access_domain);
 
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['id']) &&
-	is_numeric($_GET['domainid']) &&
+	is_numeric($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
 	isset($_GET['id']) &&
-	is_numeric($_GET['domainid']) &&
+	is_numeric($_GET['did']) &&
 	$access_domain )
 {
-	$sql=sprintf("SELECT efrom,eto FROM forwardings WHERE id='%s'",
+	$sql=sprintf("SELECT email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
 	$edata=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	$smarty->assign('efrom', $edata['efrom']);
-	//$smarty->assign('eto' , get_first_forward($edata['eto']));
-	$forwards=array();
-	if ( check_multi_forward($edata['eto'])=='y') //multipli
-	{
-		$eto_array=array();
-		$eto_array=split(',',$edata['eto']);
-		foreach($eto_array as $key)
-		{
-			array_push($forwards, array(
-			'etosingle' => $key)
-			);
-		}
-	}
-	else
-	{	
-			array_push($forwards, array(
-			'etosingle' => $edata['eto'])
-			);
-
-	}
-	$smarty->assign('forwards',$forwards);
+	$smarty->assign('email', $edata['email']);
 	
 	if (isset($_POST['del_ok']) && $_POST['del_ok'] == "true")
 	{
+
 		$smarty->assign('if_del_ok', 'y');
-		$pos=strpos($edata['efrom'], '@');
-		$forward=substr($edata['efrom'],0,$pos);
-		if ($forward=="postmaster")
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_postmaster', 'y');
-		}
-		else
-		{
-			$sql=sprintf("DELETE FROM forwardings WHERE id='%s'",
-				$db->escapeSimple($_GET['id']));
-			$db->query($sql);
-		}
+
+		
+		$sql=sprintf("UPDATE users SET enew='0' WHERE id='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		
+		$sql=sprintf("DELETE FROM admin_access WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		$sql=sprintf("DELETE FROM mailfilter WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		
+		$sql=sprintf("DELETE FROM autoresponder WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		
+		$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		
+		$sql=sprintf("DELETE FROM email_options WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
+		
+		$sql=sprintf("DELETE FROM spamassassin WHERE username='%s'",
+			$db->escapeSimple($edata['email']));
+		$db->query($sql);
+		
+		header("Location: ?module=domain_view&did=".$_GET['did'] );
+		
+		
 	}
 
 } // ENDE ACCESS OK
+
 // Menuansicht
 $smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$_GET['domainid']);
+$smarty->assign('domain_id',$_GET['did']);
+
 
 $smarty->assign('id',$_GET['id']);
-$smarty->assign('domainid',$_GET['domainid']);
-$smarty->assign('template','forward_del.tpl');
-$smarty->display('structure.tpl');
+$smarty->assign('domainid',$_GET['did']);
 ?>

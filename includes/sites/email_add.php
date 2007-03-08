@@ -155,5 +155,5 @@ if (isset($_SESSION['superadmin']) &&
 $smarty->assign('if_domain_view', 'y');
 $smarty->assign('domain_id',$domain_id);
 
-$smarty->assign('did',$_GET['id']);
+$smarty->assign('did',$_GET['did']);
 ?>
