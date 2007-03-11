@@ -36,13 +36,13 @@ if (isset($_SESSION['superadmin']) &&
 		if (isset($_POST['eid']) && is_numeric($_POST['eid']))
 		{
 		$sql=sprintf("SELECT id FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@' AND id!='%d'",
-			$db->escapeSimple($_GET['id']),
+			$db->escapeSimple($_GET['did']),
 			$db->escapeSimple($_POST['eid']));
 		}
 		else
 		{
 		$sql=sprintf("SELECT id FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 		}
 		$result=&$db->query($sql);
 		if ($result->numRows()==0)
@@ -58,7 +58,7 @@ if (isset($_SESSION['superadmin']) &&
 			$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', access='y',domainid='%d'",
 				$db->escapeSimple('@'.$data['dnsname']),
 				$db->escapeSimple($_POST['eto']),
-				$db->escapeSimple($_GET['id']));
+				$db->escapeSimple($_GET['did']));
 			}
 			$result=&$db->query($sql);
 			
@@ -69,7 +69,7 @@ if (isset($_SESSION['superadmin']) &&
 	//neue Catchall speichern und weiterleiten.... ENDE CODE
 	
 	$sql=sprintf("SELECT eto,id FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	if ($result->numRows()==1)
 	{
@@ -85,5 +85,5 @@ if (isset($_SESSION['superadmin']) &&
 
 
 } // ENDE ACCESS OK
-$smarty->assign('id',$_GET['id']);
+$smarty->assign('did',$_GET['did']);
 ?>

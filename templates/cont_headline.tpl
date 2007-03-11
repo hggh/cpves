@@ -48,4 +48,8 @@
 	Login
 {elseif $template == "list_add.tpl" }
 	{$dnsname}: Neue Mailingliste anlegen
+{elseif $template == "list_del.tpl" }
+	{$dnsname}: Mailingliste l&ouml;schen
+{elseif $template == "list_view.tpl" }
+	{$address}: Mailingliste bearbeiten
 {/if}

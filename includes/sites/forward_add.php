@@ -69,7 +69,7 @@ if (isset($_SESSION['superadmin']) &&
 				$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', domainid='%s', access='y'",
 				$db->escapeSimple(strtolower($full_email)),
 				$db->escapeSimple($_POST['to']),
-				$db->escapeSimple($_GET['id']));
+				$db->escapeSimple($_GET['did']));
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
 				$smarty->assign('if_forward_saved', 'y');

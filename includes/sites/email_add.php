@@ -119,7 +119,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',disableimap='%s', disablepop3='%s',disablewebmail='%s',cpasswd='%s' ",
 				$db->escapeSimple(trim(strtolower($full_email))),
-				$db->escapeSimple($_GET['id']),
+				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($cleartext),
 				$db->escapeSimple($_POST['full_name']),
 				$db->escapeSimple($imap),

@@ -1,4 +1,4 @@
-<form action="user_options.php" name="options" method="post">
+<form action="?module=user_options" name="options" method="post">
 <table>
 <tr>
 </tr>

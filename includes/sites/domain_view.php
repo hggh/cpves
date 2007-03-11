@@ -285,7 +285,7 @@ while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
 
 //look at catchall  `efrom` REGEXP '^@'
 $sql=sprintf("SELECT eto,id,access FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",
-	$db->escapeSimple($_GET['id']));
+	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
 if ($result->numRows()==1)
 {

@@ -50,6 +50,12 @@ switch($_GET['module']) {
 	case 'list_add':
 		$site="list_add";
 		break;
+	case 'list_del':
+		$site="list_del";
+		break;
+	case 'list_view':
+		$site="list_view";
+		break;
 	case 'email_add':
 		$site="email_add";
 		break;

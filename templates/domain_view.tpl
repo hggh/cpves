@@ -26,9 +26,9 @@
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
- <a href="domain_view.php?id={$row.did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
  {else}
- <a  href="domain_view.php?id={$row.domain}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="eMailadresse aktivieren."/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="eMailadresse aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
   <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="eMailadresse l&ouml;schen" />
@@ -56,10 +56,10 @@
  <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y'}
-  <a href="domain_view.php?id={$row.domain}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
  
  {else}
- <a href="domain_view.php?id={$row.did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
   <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Weiterleitung l&ouml;schen"/></a>
@@ -78,17 +78,17 @@
 <table id="listst" border="0">
 {foreach from=$table_list item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
- <td style="width:300px;"><a href="list_view.php?id={$row.id}&amp;did={$row.domain}">{$row.address}</a></td>
+ <td style="width:300px;"><a href="?module=list_view&#038;id={$row.id}&amp;did={$did}">{$row.address}</a></td>
  <td style="width:200px;">Empf&auml;nger: {$row.recps}</td>
  <td style="width:100px;">{if $row.public eq 'y'}&Ouml;ffentlich{else}Privat{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
- <a href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
  {else}
- <a  href="domain_view.php?id={$row.domain}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
  {/if}</td>
  <td style="text-align:right;vertical-align:middle;">
-  <a href="list_del.php?domainid={$row.domain}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Mailingliste l&ouml;schen"/></a>
+  <a href="?module=list_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Mailingliste l&ouml;schen"/></a>
  </td>
 </tr> 
 {foreachelse}
@@ -109,18 +109,18 @@
   {if $if_catchall eq 'n' }
   <td colspan="4"  style="width:670px;">Kein CatchAll f&uuml;r {$dnsname} konfiguiert.<br/><a href="?module=forward_catchall&#038;did={$did}&#038;new=yes">Hier klicken um einen Einzurichten.</a></td>
   {else}
-  <td style="width:300px;"><a href="forward_catchall.php?id={$id}">@{$dnsname}</a></td>
+  <td style="width:300px;"><a href="?module=forward_catchall&#038;did={$did}">@{$dnsname}</a></td>
   <td style="width:300px;">{$catchall_to}</td>
   <td style="text-align:right;vertical-align:middle;">
   
   {if $catchall_access eq 'y'}
-  <a href="domain_view.php?id={$id}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="CatchAll Eintrag deaktivieren." style="border:0px;" /></a>  
+  <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="CatchAll Eintrag deaktivieren." style="border:0px;" /></a>  
   
   {else}
-  <a href="domain_view.php?id={$id}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="CatchAll Eintrag aktivieren." style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="CatchAll Eintrag aktivieren." style="border:0px;" /></a>
   {/if}</form></td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="domain_view.php?id={$id}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="Catchall Eintrag l&ouml;schen."><img src="img/icons/delete.png" style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="Catchall Eintrag l&ouml;schen."><img src="img/icons/delete.png" style="border:0px;" /></a>
  </td>
   {/if}
 </tr>

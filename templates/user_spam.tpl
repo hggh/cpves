@@ -7,7 +7,7 @@
 	Falsches Format f&uuml;r "Markiere Nachricht als Spam"! 
 </div>
 {/if} 
-<form action="user_spam.php" name="spam" method="post">
+<form action="?module=user_spam" name="spam" method="post">
 	<table>
 		<tr>
 		<tr>

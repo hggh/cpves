@@ -1,4 +1,4 @@
-<form action="user_forward.php" method="post">
+<form action="?module=user_forward" method="post">
 <table>
 <tr>
 </tr>

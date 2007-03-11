@@ -97,6 +97,7 @@ if (isset($_POST['submit']) &&
 			
 			$smarty->assign('new_dnsname', $dnsname);
 			$smarty->assign('if_dns_added', 'y');
+			$smarty->assign('did', $data['id']);
 			
 			$res_array=array();
 			$points='n';

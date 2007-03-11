@@ -45,6 +45,8 @@
 	<br />
 	<br />
 	{/if} 
+	<br/>
+	<a href="?module=domain_view&#038;did={$did}">Zur Domainansicht...</a>
 
 {/if}
 

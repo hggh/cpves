@@ -6,7 +6,7 @@
 <div style="text-align:center;color:blue;">Adresse ist schon eingetragen!</div>
  {/if}
 {/if}
-<form action="list_view.php?id={$id}&#038;did={$did}" method="post">
+<form action="?module=list_view&#038;id={$id}&#038;did={$did}" method="post">
 <table>
 <tr>
  <td>Liste: </td>
@@ -34,11 +34,11 @@
 </tr>
 <tr>
  <td valign="top">eMailadresse:</td>
- <td style="text-align:right"><form action="list_view.php?id={$id}&#038;did={$did}" method="post"><input class="in_1" type="text" name="add_address" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_add" /></form><br/>
+ <td style="text-align:right"><form action="?moule=list_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_address" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_add" /></form><br/>
  </td>
 </tr>
 </table>
-<div>Die Liste ist {if $public eq 'y'}&ouml;ffentlich{else}privat{/if} - [<a href="./list_view.php?id={$id}&#038;did={$did}&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">&Auml;ndern</a>]</div>
+<div>Die Liste ist {if $public eq 'y'}&ouml;ffentlich{else}privat{/if} - [<a href="?module=list_view&#038;id={$id}&#038;did={$did}&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">&Auml;ndern</a>]</div>
 
 
 {else}

@@ -3,7 +3,7 @@
 {/if} 
 
 {if $if_superadmin != 'y' } 
-<form action="user_autores.php" method="post">
+<form action="?module=user_autores" method="post">
 <table>
 	<tr>
 		<td>Autoresponder aktiv:</td>
