@@ -16,9 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
 $access_domain=check_access_to_domain($_GET['domainid'], $db);
 $smarty->assign('access_domain', $access_domain);
 
@@ -57,12 +54,7 @@ if (isset($_SESSION['superadmin']) &&
 	}
 
 } // ENDE ACCESS OK
-// Menuansicht
-$smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$_GET['domainid']);
 
 $smarty->assign('id',$_GET['id']);
 $smarty->assign('domainid',$_GET['domainid']);
-$smarty->assign('template','list_del.tpl');
-$smarty->display('structure.tpl');
 ?>

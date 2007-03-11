@@ -89,8 +89,4 @@ if (isset($_SESSION['superadmin']) &&
 
 } // ENDE ACCESS OK
 $smarty->assign('id',$_GET['id']);
-
-// Menuansicht
-$smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$_GET['did']);
 ?>

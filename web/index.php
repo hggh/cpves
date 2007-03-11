@@ -47,6 +47,9 @@ switch($_GET['module']) {
 	case 'domain_add':
 		$site="domain_add";
 		break;
+	case 'list_add':
+		$site="list_add";
+		break;
 	case 'email_add':
 		$site="email_add";
 		break;
@@ -106,6 +109,26 @@ switch($_GET['module']) {
 
 require_once(ROOT . "/includes/sites/" . $site . ".php");
 $smarty->assign('template', $site . ".tpl");
+// Build Menu Structure
+if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
+	list($siteB, $siteA) = split("_", $site);
+	if ($siteB == "email" || $siteB == "forward" ||
+	$siteB == "domain" ||$siteB == "list") {
+	    $smarty->assign('if_domain_view', 'y');
+	    $smarty->assign('did',$_GET['did']);
+	}
+}
+// Fetch Domainname from $_GET['did']
+if (isset($_GET['did']) && is_numeric($_GET['did'])) {
+	$sql=sprintf("SELECT dnsname FROM domains WHERE id='%s'",
+		$db->escapeSimple($_GET['did']) );
+	$result=&$db->query($sql);
+	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+	$smarty->assign('dnsname', $data['dnsname']);
+	$smarty->assign('did',$_GET['did']);
+}
+
+
 $smarty->display('structure.tpl');
 $db->disconnect();
 ?>

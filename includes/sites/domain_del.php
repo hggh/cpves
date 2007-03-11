@@ -16,10 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-include("config.inc.php");
-include("check_access.php");
-
 if (isset($_SESSION['superadmin']) && 
     $_SESSION['superadmin']=='y'&& 
     is_numeric($_GET['id']) || is_numeric($_POST['id'])  && 
@@ -97,7 +93,4 @@ else if (isset($_POST['del_ok']) && $_POST['del_ok']== 'y' )
 $smarty->assign('id', $data['id']);
 $smarty->assign('domain', $data['dnsname']);
 $smarty->assign('table_data', $table_data);
-
-$smarty->assign('template','domain_del.tpl');
-$smarty->display('structure.tpl');
 ?>

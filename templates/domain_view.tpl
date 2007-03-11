@@ -62,7 +62,7 @@
  <a href="domain_view.php?id={$row.did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="forward_del.php?domainid={$row.domain}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Weiterleitung l&ouml;schen"/></a>
+  <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Weiterleitung l&ouml;schen"/></a>
   </td>
 </tr>
 {/foreach}
@@ -134,10 +134,10 @@
  <td></td>
  <td style="text-align:right;">
  {if $if_imap eq '1' }
- <a href="domain_view.php?id={$id}&#038;fstate=enableimap">
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=enableimap">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="IMAP aktivieren." /></a>
  {else}
- <a href="domain_view.php?id={$id}&#038;fstate=disableimap">
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=disableimap">
  <img src="img/icons/button_ok.png" style="border:0px;" title="IMAP deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -146,10 +146,10 @@
  <td></td>
  <td style="text-align:right;">
  {if $if_pop3 eq '1' }
-  <a href="domain_view.php?id={$id}&#038;fstate=enablepop3">
+  <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablepop3">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="POP3 aktivieren." /></a>
  {else}
-  <a href="domain_view.php?id={$id}&#038;fstate=disablepop3">
+  <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablepop3">
  <img src="img/icons/button_ok.png" style="border:0px;" title="POP3 deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -158,10 +158,10 @@
  <td></td>
  <td style="text-align:right;">
  {if $if_webmail eq '1' }
-   <a href="domain_view.php?id={$id}&#038;fstate=enablewebmail">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablewebmail">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Webmail aktivieren." /></a>
  {else}
-   <a href="domain_view.php?id={$id}&#038;fstate=disablewebmail">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablewebmail">
  <img src="img/icons/button_ok.png" style="border:0px;" title="Webmail deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -170,10 +170,10 @@
  <td></td>
  <td style="text-align:right;">
  {if $if_spamassassin eq '0' }
-   <a href="domain_view.php?id={$id}&#038;fstate=enablespamassassin">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablespamassassin">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamassassin aktivieren." /></a>
  {else}
-   <a href="domain_view.php?id={$id}&#038;fstate=disablespamassassin">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablespamassassin">
  <img src="img/icons/button_ok.png" style="border:0px;" title="Spamassassin deaktivieren." /></a>
  {/if}</td> 
 </tr>
@@ -222,8 +222,8 @@ Verbraucht/M&ouml;glich
 </tr>
 <tr>
  <td colspan="4">
- <form action="domain_view.php?id={$id}" method="post">
- <input name="dnote" class="in_1" maxlength="30" value="{$dnote}" type="text"/></form>
+ <form action="?module=domain_view&#038;did={$did}" method="post">
+ <input name="dnote" maxlength="30" value="{$dnote}" type="text"/></form>
  </td>
 </tr>
 {/if}

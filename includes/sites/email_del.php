@@ -80,5 +80,5 @@ $smarty->assign('domain_id',$_GET['did']);
 
 
 $smarty->assign('id',$_GET['id']);
-$smarty->assign('domainid',$_GET['did']);
+$smarty->assign('did',$_GET['did']);
 ?>

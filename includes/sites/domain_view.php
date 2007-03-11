@@ -98,7 +98,7 @@ if (isset($_POST['max_forwards']) && is_numeric($_POST['max_forwards']) && $_SES
 {
 	$sql=sprintf("UPDATE domains SET max_forward='%d' WHERE id='%d'",
 		$db->escapeSimple($_POST['max_forwards']),
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$db->query($sql);
 }
 
@@ -107,7 +107,7 @@ if (isset($_POST['max_emails']) && is_numeric($_POST['max_emails']) && $_SESSION
 {
 	$sql=sprintf("UPDATE domains SET max_email='%d' WHERE id='%d'",
 		$db->escapeSimple($_POST['max_emails']),
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$db->query($sql);
 }
 
@@ -117,7 +117,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 {
 	$sql=sprintf("UPDATE domains SET dnote='%s' WHERE id='%d'",
 		$db->escapeSimple($_POST['dnote']),
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$db->query($sql);
 
 }
@@ -133,49 +133,49 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	if ($_GET['fstate'] =='disableimap')
 	{
 		$sql=sprintf("UPDATE domains SET disableimap='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 		$sql2=sprintf("UPDATE users SET disableimap='1' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enableimap')
 	{
 		$sql=sprintf("UPDATE domains SET disableimap='' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] == "disablespamassassin")
 	{
 		$sql=sprintf("UPDATE domains SET spamassassin='0' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] == "enablespamassassin")
 	{
 		$sql=sprintf("UPDATE domains SET  spamassassin='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='disablepop3')
 	{
 		$sql=sprintf("UPDATE domains SET disablepop3='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 		$sql2=sprintf("UPDATE users SET disablepop3='1' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enablepop3')
 	{
 		$sql=sprintf("UPDATE domains SET disablepop3='' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	
 	if ($_GET['fstate'] =='disablewebmail')
 	{
 		$sql=sprintf("UPDATE domains SET disablewebmail='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 		$sql2=sprintf("UPDATE users SET disablewebmail='1' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enablewebmail')
 	{
 		$sql=sprintf("UPDATE domains SET disablewebmail='' WHERE id='%s'",
-			$db->escapeSimple($_GET['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	$db->query($sql);
 	if (isset($sql2))
@@ -308,13 +308,6 @@ else
 {
 	$access_domain=false;
 }
-
-//Menuansicht:
-$smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$_GET['did']);
-
-
-
 
 $smarty->assign('access_domain', $access_domain);
 $smarty->assign('did',$_GET['did']);

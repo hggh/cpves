@@ -16,27 +16,24 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-session_start();
-require_once('config.inc.php');
-require_once('check_access.php');
-$access_domain = check_access_to_domain($_GET['id'], $db);
+$access_domain = check_access_to_domain($_GET['did'], $db);
 $smarty->assign('access_domain', $access_domain);
 
 if (isset($_SESSION['superadmin']) &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
-	isset($_GET['id']) &&
+	isset($_GET['did']) &&
 	$access_domain )
 {
 	$sql = sprintf("SELECT id,dnsname FROM domains WHERE id = %d",
-		$db->escapeSimple($_GET['id']));
+		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data = $result->fetchrow(DB_FETCHMODE_ASSOC);
-	$smarty->assign('id', $_GET['id']);
+	$smarty->assign('did', $_GET['did']);
 	$smarty->assign('domain', $data['dnsname']);
 	$dnsname = $data['dnsname'];
-	$domain_id = $_GET['id'];
+	$domain_id = $_GET['did'];
 	
 	
 	if (isset($_POST['submit']))
@@ -81,13 +78,4 @@ if (isset($_SESSION['superadmin']) &&
 		}
 	}
 }
-
-// Menuansicht
-$smarty->assign('id',$_GET['id']);
-$smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$domain_id);
-$smarty->assign('dnsname', $dnsname);
-
-$smarty->assign('template','list_add.tpl');
-$smarty->display('structure.tpl');
 ?>

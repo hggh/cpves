@@ -336,12 +336,6 @@ if (isset($_SESSION['superadmin']) &&
 } // ENDE ACCESS OK
 
 
-// Menuansicht
-$smarty->assign('if_domain_view', 'y');
-$smarty->assign('domain_id',$domain_id);
-$smarty->assign('dnsname', $dnsname);
-
-
 $smarty->assign('id',$_GET['id']);
 $smarty->assign('domainid',$_GET['did']);
 ?>

@@ -37,7 +37,7 @@
 {elseif $template == "email_del.tpl"}
 	{$email}: eMailadresse l&ouml;schen 
 {elseif $template == "forward_del.tpl"}
-	Weiterleitung l&ouml;schen
+	{$dnsname}: Weiterleitung l&ouml;schen
 {elseif $template == "domain_del.tpl" && $if_del_ok == 'n'}
 	{$domain}: L&ouml;schen
 {elseif $template == "domain_del.tpl" && $if_del_ok != 'n' }
@@ -46,4 +46,6 @@
 	{$email}: Einstellungen
 {elseif $template == "login.tpl" }
 	Login
+{elseif $template == "list_add.tpl" }
+	{$dnsname}: Neue Mailingliste anlegen
 {/if}
