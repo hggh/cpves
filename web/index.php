@@ -106,16 +106,17 @@ switch($_GET['module']) {
 	
 }
 
-
-require_once(ROOT . "/includes/sites/" . $site . ".php");
-$smarty->assign('template', $site . ".tpl");
 // Build Menu Structure
 if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	list($siteB, $siteA) = split("_", $site);
 	if ($siteB == "email" || $siteB == "forward" ||
 	$siteB == "domain" ||$siteB == "list") {
+	    //Build up Menu
 	    $smarty->assign('if_domain_view', 'y');
 	    $smarty->assign('did',$_GET['did']);
+	    
+	    $access_domain=check_access_to_domain($_GET['did'], $db);
+	    $smarty->assign('access_domain', $access_domain);
 	}
 }
 // Fetch Domainname from $_GET['did']
@@ -128,6 +129,9 @@ if (isset($_GET['did']) && is_numeric($_GET['did'])) {
 	$smarty->assign('did',$_GET['did']);
 }
 
+
+require_once(ROOT . "/includes/sites/" . $site . ".php");
+$smarty->assign('template', $site . ".tpl");
 
 $smarty->display('structure.tpl');
 $db->disconnect();

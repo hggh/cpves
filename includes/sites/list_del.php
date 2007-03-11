@@ -16,16 +16,13 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-$access_domain=check_access_to_domain($_GET['domainid'], $db);
-$smarty->assign('access_domain', $access_domain);
-
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['id']) &&
-	is_numeric($_GET['domainid']) &&
+	is_numeric($_GET['did']) &&
 	$_SESSION['superadmin']=='y'||
 	$_SESSION['admin']=='y' &&
 	isset($_GET['id']) &&
-	is_numeric($_GET['domainid']) &&
+	is_numeric($_GET['did']) &&
 	$access_domain )
 {
 	$sql = sprintf("SELECT address FROM lists WHERE id = %d",
@@ -56,5 +53,5 @@ if (isset($_SESSION['superadmin']) &&
 } // ENDE ACCESS OK
 
 $smarty->assign('id',$_GET['id']);
-$smarty->assign('domainid',$_GET['domainid']);
+$smarty->assign('did',$_GET['did']);
 ?>

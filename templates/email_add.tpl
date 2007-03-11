@@ -3,7 +3,7 @@
 <table>
 <tr>
  <td style="width:190px;">eMailadresse:</td>
- <td style="width:300px;"><input type="text" class="in_1" name="emailaddr" value="{$eMail}"/>@{$domain}</td>
+ <td style="width:300px;"><input type="text" name="emailaddr" value="{$eMail}"/>@{$dnsname}</td>
 </tr>
 <tr>
  <td>Voller Name:</td>
