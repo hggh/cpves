@@ -17,15 +17,15 @@
 		</td>
 		<td>
 			{if $table_data[row].access == "y" } 
-			<a href="sadmin_view.php?state=disable&#038;id={$table_data[row].id}">
+			<a href="?module=sadmin_view&#038;state=disable&#038;id={$table_data[row].id}">
 			<img src="img/icons/button_ok.png" style="border:0px;"></a>
 			{else} 
-			<a href="sadmin_view.php?state=enable&#038;id={$table_data[row].id}">
+			<a href="?module=sadmin_view&#038;state=enable&#038;id={$table_data[row].id}">
 			<img src="img/icons/button_cancel.png" style="border:0px;"></a>
 			{/if} 
 		</td>
 		<td>
-			<a href="sadmin_view.php?state=delete&#038;id={$table_data[row].id}">
+			<a href="?module=sadmin_view&#038;state=delete&#038;id={$table_data[row].id}">
 			<img src="img/icons/delete.png" style="border:0px;"></a>
 		</td>
 	</tr>

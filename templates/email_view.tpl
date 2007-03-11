@@ -1,16 +1,5 @@
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
-
-{if $if_valid eq 'n'}
-<div style="text-align:center;color:red;">eMailadresse ist nicht konform. Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_exists eq 'y' }
-<div style="text-align:center;color:red;">eMailadresse ist bereits vorhanden! Bitte korigieren!<br/><br/></div>
-{/if}
-{if $if_missing eq 'y' }
-<div style="text-align:center;color:red;">Fehlerhafte eingabe! Bitte korigieren!<br/><br/></div>
-{/if}
-
-<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<form action="?module=email_view&#038;id={$id}&#038;did={$domainid}" method="post">
 <table>
 <tr>
  <td style="width:190px;">eMailadresse:</td>
@@ -18,11 +7,11 @@
 </tr>
 <tr>
  <td>Voller Name:</td>
- <td><input type="text" class="in_1" name="full_name" value="{$full_name}"/></td>
+ <td><input type="text" name="full_name" value="{$full_name}"/></td>
 </tr>
 <tr>
  <td>Passwort:</td>
- <td><input type="password"  maxlength="{$max_passwd_len}" class="in_1" name="password" value=""/></td>
+ <td><input type="password"  maxlength="{$max_passwd_len}" name="password" value=""/></td>
 </tr>
 {if $if_imap != '1' }
 <tr>
@@ -79,7 +68,7 @@
 <tr>
  <td>{$table_admins[row].dnsname}</td>
  <td style="text-align:right;vertical-align:middle;">
- <a href="email_view.php?id={$id}&#038;did={$domainid}&#038;del={$table_admins[row].del_id}"><img src="img/icons/delete.png" style="border:0px;" /></a></td>
+ <a href="?module=email_view&#038;id={$id}&#038;did={$did}&#038;del={$table_admins[row].del_id}"><img src="img/icons/delete.png" style="border:0px;" /></a></td>
 </tr>
 {/section}
 <tr>
@@ -88,7 +77,7 @@
 </tr>
 <tr>
 {if $if_nodomains_found != "y"}
- <td><form action="email_view.php?id={$id}&#038;did={$domainid}" method="post"> <select name="add_domain">
+ <td><form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post"> <select name="add_domain">
  {section name=row loop=$table_adddns}
  <option value="{$table_adddns[row].dnsid}">{$table_adddns[row].dnsname}</option>
  {/section}
@@ -101,7 +90,7 @@
 {/if}
 
 <!-- Autoresponder feature begin -->
-<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
 <td colspan="2" class="domain_view"><h3>Autoresponder</h3></td>
 </tr>
@@ -132,7 +121,7 @@
 
 
 <!-- Options feature begin -->
-<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
  <td colspan="2" class="domain_view"><h3>Optionen</h3></td>
 </tr>
@@ -156,7 +145,7 @@
 <!-- Options feature end -->
 
 <!-- Forward feature begin -->
-<form action="email_view.php?id={$id}&#038;did={$domainid}" method="post">
+<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
  <td colspan="2" class="domain_view"><h3>Weiterleitung</h3></td>
 </tr>

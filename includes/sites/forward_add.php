@@ -37,6 +37,22 @@ if (isset($_SESSION['superadmin']) &&
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_forwds_max_reached','y');
 	}
+	
+	//fetch all mailaddress:
+	$sql=sprintf("SELECT email FROM users WHERE domainid='%s'  AND enew!='0' ORDER BY email",
+		$db->escapeSimple($_GET['did']));
+	$result=&$db->query($sql);
+	if ($result->numRows() > 0 ) {
+		$table_email=array();
+		while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+			array_push($table_email,array(
+			'mail' => $data['email']));
+		}
+	}
+	else {
+		$table_email=false;
+	}
+	$smarty->assign('table_email', $table_email);
 
 	
 	if (isset($_POST['submit']))

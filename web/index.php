@@ -47,6 +47,9 @@ switch($_GET['module']) {
 	case 'domain_add':
 		$site="domain_add";
 		break;
+	case 'domain_del':
+		$site="domain_del";
+		break;
 	case 'list_add':
 		$site="list_add";
 		break;

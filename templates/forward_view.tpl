@@ -40,7 +40,7 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
 </tr>
 <tr>
  <td valign="top">eMailadresse:</td>
- <td style="text-align:right"><form action="forward_view.php?id={$id}&#038;did={$domainid}" method="post"><input class="in_1" type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
+ <td style="text-align:right"><form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post"><input class="in_1" type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
  
  {if $if_noemail_found != "y" }
  <form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">

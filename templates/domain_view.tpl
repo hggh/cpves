@@ -197,7 +197,7 @@ Verbraucht/M&ouml;glich
  {/if}
  <td style="text-align:right;"  colspan="2">{$emails}/{if $max_emails eq "0" }unbegrenzt{else}{$max_emails}{/if}</td>
 {if $if_superadmin eq 'y' }
- <td style="text-align:right;"><form action="domain_view.php?id={$id}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_emails" class="in_1" style="width:40px;" /></form></td>
+ <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_emails" class="in_1" style="width:40px;" /></form></td>
 {else}
  <td></td>
 {/if} 
@@ -209,7 +209,7 @@ Verbraucht/M&ouml;glich
  {/if}
  <td style="text-align:right;"  colspan="2">{$forwardings}/{if $max_fwd eq "0"}unbegrenzt{else}{$max_fwd}{/if}</td>
 {if $if_superadmin eq 'y' }
- <td style="text-align:right;"><form action="domain_view.php?id={$id}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_forwards" class="in_1" style="width:40px;" /></form></td>
+ <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_forwards" class="in_1" style="width:40px;" /></form></td>
 {else}
  <td></td>
 {/if} 

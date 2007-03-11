@@ -18,7 +18,7 @@
  <td colspan="2" style="color:red;">Soll diese Weiterleitung gel&ouml;scht werden?</td>
 </tr>
 <tr>
- <td colspan="2"><form action="forward_del.php?domainid={$domainid}&#38;id={$id}" method="post">
+ <td colspan="2"><form action="?module=forward_del&#038;did={$did}&#38;id={$id}" method="post">
 <input type="hidden" name="del_ok" value="true"/>
 <input type="submit" class="in_1" name="submit" value="L&ouml;schen" />
 </form></td>
@@ -29,10 +29,10 @@
 <br/>
 {else}
 {if $if_error_postmaster eq 'y' }
-<a href="domain_view.php?id={$domainid}">Zur&uuml;ck zur &Uuml;bersicht</a>
+<a href="?module=domain_view&#038;did={$did}">Zur&uuml;ck zur &Uuml;bersicht</a>
 {else}
 <div style="color:blue;">Weiterleitung wurde gel&ouml;scht!<br/><br/></div>
-<meta http-equiv="refresh" content="1; URL=./domain_view.php?id={$domainid}">
+<meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {/if}
 <br/>
 {/if}

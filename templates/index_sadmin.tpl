@@ -1,7 +1,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>Domain</td>
-		<td>eMail-Adressen</td>
+		<td>E-Mailadressen</td>
 		<td>Weiterleitungen</td>
 		<td>Aktivieren/Deaktivieren</td>
 		<td>L&#246;schen</td>
@@ -33,7 +33,7 @@
 			{/if} 
 		</td>
 		<td>
-			<a href="domain_del.php?id={$row.id}">
+			<a href="?module=domain_del&#038;did={$row.id}">
 			<img src="img/icons/delete.png" style="border:0px;" title="Domain l&#038;schen" />
 			</a>
 		</td>

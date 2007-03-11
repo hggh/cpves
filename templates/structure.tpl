@@ -8,6 +8,12 @@
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <meta name="author" content="Jonas Genannt / Original design by Andreas Viklund - http://andreasviklund.com" />
 <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+{literal}
+<script type="text/javascript">
+function forwardadd_fillform() {
+	document.forms[0].to.value=document.forms[0].mail.value;
+}
+</script>{/literal}
 </head>
 <body{include file="focus_input.tpl"}>
 {if $error_msg == 'y'}

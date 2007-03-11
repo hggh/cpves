@@ -5,13 +5,21 @@
 <tr>
  <td>eMailadresse:</td>
  <td style="width:10px;"></td>
- <td><input type="text" class="in_1" name="from" value="{$from}"/>@{$domain}</td>
+ <td><input type="text" name="from" value="{$from}"/>@{$domain}</td>
 </tr>
 
 <tr>
  <td>Leiten nach:</td>
  <td style="width:10px;"></td>
- <td><input type="text" class="in_1" name="to" value="{$to}"/></td>
+ <td><input type="text" name="to" value="{$to}"/>
+ {if $table_email != false }<input type="button" name="add" value="<"  onclick="forwardadd_fillform()" />
+ <select name="mail">
+ {foreach from=$table_email item=row}
+ <option>{$row.mail}</option>
+ {/foreach}
+ </select>{/if}
+ 
+ </td>
 </tr>
 <tr>
 <td></td>

@@ -44,5 +44,5 @@
 </form>
 
 {if $reload_page == 'y'}
-<meta http-equiv="refresh" content="0; URL=user_forward.php">
+<meta http-equiv="refresh" content="0; URL=?module=user_forward">
 {/if}
