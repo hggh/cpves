@@ -22,14 +22,12 @@
 			</p>
 		</td>
 		<td>
-			{if $row.access == "y" } 
-			<form action="index.php" method="post" >
-				<input type="image" src="img/icons/button_ok.png" value="disable" style="vertical-align:middle;" name="state" alt="Deaktivieren" /> <input type="hidden" name="id" value="{$row.id}" /> 
-			</form>
-			{else} 
-			<form action="index.php" method="post" >
-				<input type="image" src="img/icons/button_cancel.png" style="vertical-align:middle;" value="enable" name="state" alt="Aktivieren" /> <input type="hidden" name="id" value="{$row.id}" /> 
-			</form>
+			{if $row.access == "y" }
+				<a href="?module=main&#038;state=disable&#038;did={$row.id}">
+				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="Deaktivieren" /></a>
+			{else}
+				<a href="?module=main&#038;state=enable&#038;did={$row.id}" >
+				<img src="img/icons/button_cancel.png" style="vertical-align:middle;" title="Aktivieren" /></a>
 			{/if} 
 		</td>
 		<td>

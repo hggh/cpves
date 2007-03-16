@@ -2,18 +2,18 @@
 //Enable or Disable Domain BEGIN
 if (isset($_SESSION['superadmin']) && 
 	$_SESSION['superadmin']=='y'&& 
-	is_numeric($_POST['id']) &&
-	isset($_POST['state']) )
+	is_numeric($_GET['did']) &&
+	isset($_GET['state']) )
 {
-	if ($_POST['state']=='disable')
+	if ($_GET['state']=='disable')
 	{
 		$sql=sprintf("UPDATE domains SET ACCESS='n' WHERE id=%s",
-			$db->escapeSimple($_POST['id']));
+			$db->escapeSimple($_GET['did']));
 	}
-	else if ($_POST['state']=='enable')
+	else if ($_GET['state']=='enable')
 	{
 		$sql=sprintf("UPDATE domains SET ACCESS='y' WHERE id=%s",
-			$db->escapeSimple($_POST['id']));
+			$db->escapeSimple($_GET['did']));
 	}
 	$result=&$db->query($sql);
 	if (!$result)

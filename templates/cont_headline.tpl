@@ -11,7 +11,7 @@
 {elseif $template == "domain_view.tpl"}
 	{$dnsname}: &Uuml;bersicht
 {elseif $template == "email_add.tpl"}
-	{$dnsname}: Neue eMailadresse anlegen
+	{$dnsname}: Neue E-Mailadresse anlegen
 {elseif $template == "email_view.tpl"}
 	{$full_email}: Bearbeiten
 {elseif $template == "forward_add.tpl"}
@@ -35,7 +35,7 @@
 {elseif $template == "forward_view.tpl"}
 	{$forward}: Bearbeiten
 {elseif $template == "email_del.tpl"}
-	{$email}: eMailadresse l&ouml;schen 
+	{$email}: E-Mailadresse l&ouml;schen 
 {elseif $template == "forward_del.tpl"}
 	{$dnsname}: Weiterleitung l&ouml;schen
 {elseif $template == "domain_del.tpl" && $if_del_ok == 'n'}

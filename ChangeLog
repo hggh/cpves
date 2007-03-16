@@ -1,5 +1,6 @@
 CpVES 0.02 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Code Cleanup
+	o Complete new code structure
 	o Fixed: Wrong emailaddr count on index site
 	o Improved Layout (error/success messages)
 	o Improved Run ML-Code only if ML activated
