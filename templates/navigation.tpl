@@ -23,7 +23,7 @@
 	{/if}
 	<a class="nav sub" href="?module=user_forward">Weiterleitung</a>
 	<a class="nav sub" href="?module=user_options">Optionen</a>
-	<a class="nav sub" href="?module=user_mailfilter">Mailfilter</a>
+	<!-- <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a> -->
 {/if}
 {if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
 	<a class="nav" href="?module=user_autores">Autoresponder</a>
@@ -32,7 +32,7 @@
 	{/if}
 	<a class="nav" href="?module=user_forward">Weiterleitung</a>
 	<a class="nav" href="?module=user_options">Optionen</a>
-	<a class="nav" href="?module=user_mailfilter">Mailfilter</a>
+	<!-- <a class="nav" href="?module=user_mailfilter">Mailfilter</a> -->
 {/if}
 {if $if_superadmin == 'y' }
 	<a class="nav" href="?module=domain_add">Neue Domain anlegen</a>

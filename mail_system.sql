@@ -279,3 +279,4 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 -- 
 
+ ALTER TABLE `domains` ADD `spamassassin` TINYINT(1) DEFAULT '1' NOT NULL;
