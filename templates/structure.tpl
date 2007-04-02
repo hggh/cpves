@@ -11,7 +11,23 @@
 {literal}
 <script type="text/javascript">
 function forwardadd_fillform() {
-	document.forms[0].to.value=document.forms[0].mail.value;
+	var fwd = document.forms[0].to.value;
+	if ( fwd == "" ) {
+		document.forms[0].to.value=document.forms[0].mail.value;
+	}
+	if (fwd.search('@') >= 1) {
+		reg = new RegExp(',$');
+		if (reg.test(fwd)) {
+			document.forms[0].to.value=fwd + document.forms[0].mail.value;
+		}
+		else {
+			document.forms[0].to.value=fwd +','+document.forms[0].mail.value;
+		}
+	}
+}
+function autoresp_disable() {
+	document.autoresp.esubject.readOnly = true;
+	document.autoresp.msg.readOnly = true;
 }
 </script>{/literal}
 </head>

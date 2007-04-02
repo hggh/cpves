@@ -90,7 +90,7 @@
 {/if}
 
 <!-- Autoresponder feature begin -->
-<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
+<form name="autoresp" action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
 <td colspan="2" class="domain_view"><h3>Autoresponder</h3></td>
 </tr>
@@ -99,9 +99,9 @@
  <td><select name="autoresponder_active">
   <option value="y">Ja</option>
   {if $autoresponder_active eq 'n' }
-  	<option value="n" selected="selected">Nein</option>
+  	<option value="n" onclick="autoresp_disable();" selected="selected">Nein</option>
   {else}
-  	<option value="n">Nein</option>
+  	<option onclick="autoresp_disable();" value="n">Nein</option>
   {/if}
   </select></td>
 </tr>
@@ -178,6 +178,39 @@
 </form>
 <!-- Forward feature end -->
 
+<!-- Spamassasssin feature begin -->
+<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
+<tr>
+ <td colspan="2" class="domain_view"><h3>Spamfilter</h3></td>
+</tr>
+<tr>
+	<td>Spamfilter aktiv:</td>
+	<td><select name="sa_active">
+		<option value="1">Ja</option>
+		{if $sa_active eq '0' }
+		<option value="0" selected="selected">Nein</option>
+		{else} 
+		<option value="0">Nein</option>
+		{/if}
+	</select></td>
+<tr>
+<tr>
+	<td valign="top">Schreibe Betreffszeile um:</td>
+	<td>{if $rewrite_subject eq '0' }
+		<input type="radio" onClick="this.form.rewrite_subject_header.disabled = true;" name="rewrite_subject" checked="checked" value="0" /> Nein
+		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = false;"  value="1" /> Ja<br />
+		{else}
+		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = true;"  value="0" /> Nein 
+		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = false;"  checked="checked" value="1" /> Ja<br />
+		{/if}
+		<input id="rewrite_subject_header" maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
+	</td>
+</tr>
+
+
+
+</form>
+<!-- Spamassasssin feature end -->
 
 </table>
 
