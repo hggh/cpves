@@ -34,4 +34,6 @@ Benutzername darf nur Buchstaben und Zahlen enthalten!<br/>
 Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen!
 {elseif $if_new_passwd_not_same == 'y'}
 Neue Passw&ouml;rter stimmen nicht &uuml;berein!
+{elseif $if_submit_email_wrong == 'y' }
+E-Mailadresse ist ung&uuml;ltig
 {/if}

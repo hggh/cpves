@@ -1,6 +1,7 @@
 CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder
+	o Added: new autoresponder feature to users interface
 CpVES 0.02 2007-03-16 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Code Cleanup
 	o Complete new code structure

@@ -4,6 +4,7 @@ require_once(ROOT . '/includes/des.inc.php');
 require_once 'Net/DNS.php';
 require_once 'Net/CheckIP.php';
 require_once 'Net/IPv6.php';
+require_once "Validate.php";
 define('SMARTY_DIR', $root .'/smarty/libs/');
 require(SMARTY_DIR .'Smarty.class.php');
 $smarty = new Smarty;

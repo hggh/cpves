@@ -21,7 +21,7 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
 <tr>
  <td valign="top">An: </td>
  <td>
- <select name="etos[]" size="8" multiple="true"  class="in_1">
+ <select name="etos[]" size="8" multiple="true" >
  {section name=row loop=$forwards}
  <option value="{$forwards[row].etosingle}">{$forwards[row].etosingle}</option>
  {/section}

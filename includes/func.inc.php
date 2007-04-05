@@ -36,6 +36,32 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+function val_tos_del($uid,$val_tos_del) {
+	global $db;
+	foreach($val_tos_del as $key) {
+		$sql=sprintf("DELETE FROM autoresponder_recipient WHERE email='%d' AND id='%d'",
+			$db->escapeSimple($uid),
+			$db->escapeSimple($key));
+		$db->query($sql);
+		unset($sql);
+	}
+}
+
+function val_tos_add($uid, $val_tos_add) {
+	global $db;
+	if (Validate::email($val_tos_add) == false) {
+		return 1;
+	}
+	else {
+		$sql=sprintf("INSERT INTO autoresponder_recipient SET email='%d', recip='%s'",
+			$db->escapeSimple($uid),
+			$db->escapeSimple(strtolower($val_tos_add)));
+		$db->query($sql);
+		unset($sql);
+		return 0;
+	}
+	
+}
 function run_systemscripts() {
 	global $config;
 	if( $config['service_enabled'] == 'y' ) {

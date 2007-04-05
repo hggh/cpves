@@ -59,6 +59,18 @@ if (isset($_POST['u_submit']))
 		
 	}
 	
+	
+	
+}
+if(isset($_POST['val_tos_del'])) {
+	val_tos_del($_SESSION['uid'],$_POST['val_tos']);
+
+}
+if(isset($_POST['val_tos_add'])) {
+	if (val_tos_add($_SESSION['uid'], $_POST['val_tos_da'])== 1) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_submit_email_wrong', 'y');
+	}
 }
 
 
@@ -86,6 +98,18 @@ else
 	$active='n';
 }
 
+// outout val_tos
+$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",
+	$db->escapeSimple($_SESSION['uid']));
+$result=&$db->query($sql);
+$table_val_tos = array();
+while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+	array_push($table_val_tos,array(
+		'recip' => $data['recip'],
+		'id'    => $data['id'])); 
+}
+
+$smarty->assign('table_val_tos', $table_val_tos);
 $smarty->assign('esubject', $esubject);
 $smarty->assign('active', $active);
 $smarty->assign('id', $id);

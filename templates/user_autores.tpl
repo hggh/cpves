@@ -30,6 +30,27 @@
 		<td><input type="hidden" name="id" value="{$id}" /></td>
 		<td><input type="submit" value="Speichern" name="u_submit" /></td>
 	</tr>
+	
+	<tr>
+		<td colspan="2">&#160;</td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
+		<td>
+		<select name="val_tos[]" size="8" multiple="true">
+		{foreach from=$table_val_tos item=row }
+		<option value="{$row.id}">{$row.recip}</option>
+		{/foreach}
+		</select><br/>
+		<input type="submit" name="val_tos_del" value="Markierte L&ouml;schen" />
+		</td>
+		
+	</tr>
+	<tr>
+		<td>Hinzuf&uuml;gen:</td>
+		<td><input type="text" name="val_tos_da" /><input type="submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
+	</tr>
 </table>
 </form>
 {/if} 
