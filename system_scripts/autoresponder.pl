@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl 
 #autoresponder.pl
 #Copyright (C) 2006 Jonas Genannt <jonas.genannt@brachium-system.net>
 #
@@ -22,7 +22,9 @@ use Email::Simple;
 use Email::Find;
 use DBI;
 use Config::General;
-my $formated_email;
+my @formated_email;
+my $mail_from;
+my @mail_to;
 
 my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
 my %config = $conf->getall;
@@ -39,8 +41,6 @@ $config{'vmail_safe'} = "/home/vmail_backup" unless defined $config{'vmail_safe'
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
 
 
-
-
 my @emailfrom;
 while (<stdin>)
 {
@@ -55,7 +55,7 @@ if ($mail->header("X-Spam-Flag") =~ m/yes/i)
 	#exit, because of SPAM
 	exit(0);
 }
-if ($mail->as_string =~ m/^List-/mg )
+if ($mail->as_string =~ m/^List-/mg || $mail->as_string=~ m/^X-Mailinglist/mg )
 {
 	#exit, because of ML's
 	exit(0);
@@ -63,25 +63,30 @@ if ($mail->as_string =~ m/^List-/mg )
 
 my $efinder = Email::Find->new(sub {
 		my ($email,$orig_email) = @_;
-		$formated_email= $email->format;
+		push (@formated_email, lc($email->format));
 		return $orig_email;
 	});
 
-if ($efinder->find(\$mail->header("From")) != 1)
+$efinder->find(\$mail->header("From"));
+if ((scalar (@formated_email)) ne 1) {
+	#end, because of no valid from email!
+	exit(0);
+}
+$mail_from = shift(@formated_email);
+undef(@formated_email);
+
+if ($mail_from =~ m/postmaster/gi || $mail_from =~ m/MAILER-DAEMON/gi )
 {
-	#end, because of ne valid email!
+	#exit, because of postmaster email#
 	exit(0);
 }
 
-if ($formated_email =~ m/postmaster/gi )
-{
-	#exit, because of postmaster email
+$efinder->find(\$mail->header("To"));
+if (scalar(@formated_email) le 0 ) {
+	#end, because of no valid to email!
 	exit(0);
 }
-
-#print "eMail: $formated_email\n";
-
-
+@mail_to=@formated_email;
 
 #Now check if autoresponder is enabled
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
@@ -102,38 +107,71 @@ $sth->finish();
 #Now check if allready send an autoresponder to the email address:
 $sql=sprintf("SELECT id FROM autoresponder_send WHERE email=%s AND efromto=%s",
 	$dbh->quote($ARGV[0]),
-	$dbh->quote($formated_email) );
+	$dbh->quote($mail_from) );
 $sth = $dbh->prepare($sql);
 undef($sql);
 $sth->execute;
 if ($sth->rows == 0)
 {
-	#OK send autoresponder to email and save email addr in DB
-	$sql=sprintf("INSERT INTO autoresponder_send SET email=%s, efromto=%s",
-		$dbh->quote($ARGV[0]), 
-		$dbh->quote($formated_email) );
-	$dbh->do($sql);
-	undef($sql);
 	#Now collect data for autpresponder:
 	$sql=sprintf("SELECT a.email AS mailaddr, b.esubject, b.msg FROM users AS a LEFT JOIN autoresponder AS b ON b.email=a.id WHERE b.active='y' AND a.id=%s",
 		$dbh->quote($ARGV[0]));
 	$sth = $dbh->prepare($sql);
 	undef($sql);
 	$sth->execute;
-	print "Send now email .... \n";
 	my @row_ary  = $sth->fetchrow_array;
+	my $sender   = $row_ary[0];
+	my $subject  = $row_ary[1];
+	my $mail_text = $row_ary[2];
+	undef(@row_ary);
+	
+	#Now create an valid repicipent list:
+	my @valid_rep;
+	push(@valid_rep,$sender);
+	$sql=sprintf("SELECT recip FROM autoresponder_recipient WHERE email=%s",
+		$dbh->quote($ARGV[0]));
+	$sth = $dbh->prepare($sql);
+	undef($sql);
+	$sth->execute;
+	while(@row_ary = $sth->fetchrow_array) {
+		push(@valid_rep, $row_ary[0]);
+	}
+	undef(@row_ary);
+	my $found=0;
+	my $second;
+	foreach my $first (@mail_to) {
+		foreach $second (@valid_rep) {
+			if ($first eq $second) {
+				$found=1;
+				last;
+			} 
+		}
+		last if $found==1;
+	}
+	if ($found != 1 ) {
+		#exits because not Mail to
+		$sth->finish();
+		$dbh->disconnect();
+		exit(0);
+	}
 	my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
 		Charset => "iso-8859-15",
 		Disposition => 'inline',
-		Data    => $row_ary[2]);
+		Data    => $mail_text);
 			$e_send_to->head->add("User-Agent", 'CPM/Autoresponder');
-			$e_send_to->head->add("To", $formated_email);
-			$e_send_to->head->add("Sender", $row_ary[0]);
-			$e_send_to->head->add("From", $row_ary[0]);
-			$e_send_to->head->add("Subject", $row_ary[1]);
+			$e_send_to->head->add("To", $mail_from);
+			$e_send_to->head->add("Sender",$sender );
+			$e_send_to->head->add("From", $sender);
+			$e_send_to->head->add("Subject", $subject );
 			$e_send_to->send;
 			$e_send_to->stringify;
+	#OK send autoresponder to email and save email addr in DB
+	$sql=sprintf("INSERT INTO autoresponder_send SET email=%s, efromto=%s",
+		$dbh->quote($ARGV[0]), 
+		$dbh->quote($mail_from) );
+	$dbh->do($sql);
+	undef($sql);
 
 }
 
