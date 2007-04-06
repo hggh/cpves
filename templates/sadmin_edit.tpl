@@ -33,11 +33,11 @@ Sie werden in kuerze Weitergeleitet...
 </tr>
 <tr>
  <td>Name: </td>
- <td><input name="full_name" class="in_1" value="{$full_name}" type="text"/></td>
+ <td><input name="full_name" value="{$full_name}" type="text"/></td>
 </tr>
 <tr>
  <td>Passwort:</td>
- <td><input name="passwd" class="in_1" value="" type="password" maxlength="{$max_passwd_len}" /></td>
+ <td><input name="passwd" value="" type="password" maxlength="{$max_passwd_len}" /></td>
 </tr>
 
 <tr>
@@ -66,7 +66,7 @@ Sie werden in kuerze Weitergeleitet...
 </tr>
 
 <tr>
- <td colspan="2" style="text-align:center;"><input type="submit" name="submit" value="Speichern" class="in_1" /></td>
+ <td colspan="2" style="text-align:center;"><input type="submit" name="submit" value="Speichern" /></td>
 </tr>
 </table>
 </form>
