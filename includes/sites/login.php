@@ -22,6 +22,7 @@ $_SESSION['admin']='n';
 $_SESSION['manager']='n';
 $_SESSION['ad_user']='n';
 $_SESSION['spamassassin']='0';
+$_SESSION['forwarding']='0';
 
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
@@ -69,7 +70,14 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			{
 				$smarty->assign('if_login_ok', 'yes');
 				logging($_SESSION['email']);
-				$_SESSION['spamassassin']=$data_domain['spamassassin'];
+				if ($data_domain['spamassassin'] == 1) {
+					$spamassassin=$daten['spamassassin'];
+				}
+				else {
+					$spamassassin=0;
+				}
+				$_SESSION['spamassassin']=$spamassassin;
+				$_SESSION['forwarding']=$daten['forwarding'];
 				
 			}
 		}

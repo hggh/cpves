@@ -19,7 +19,7 @@
 session_start();
 require_once("../root.php");
 require_once( ROOT . "/includes/config.inc.php");
-if (!isset($_POST['login'])) {
+if (!isset($_POST['login'])  ) {
 	include(ROOT . "/includes/check_access.php");
 }
 

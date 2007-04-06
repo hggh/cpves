@@ -21,7 +21,9 @@
 	{if $if_spamassassin == '1'}
 	<a class="nav sub" href="?module=user_spam">Spamfilter</a>
 	{/if}
+	{if $if_forwarding == '1'}
 	<a class="nav sub" href="?module=user_forward">Weiterleitung</a>
+	{/if}
 	<a class="nav sub" href="?module=user_options">Optionen</a>
 	<!-- <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a> -->
 {/if}
@@ -30,7 +32,9 @@
 	{if $if_spamassassin == '1'}
 	<a class="nav" href="?module=user_spam">Spamfilter</a>
 	{/if}
+	{if $if_forwarding == '1'}
 	<a class="nav" href="?module=user_forward">Weiterleitung</a>
+	{/if}
 	<a class="nav" href="?module=user_options">Optionen</a>
 	<!-- <a class="nav" href="?module=user_mailfilter">Mailfilter</a> -->
 {/if}

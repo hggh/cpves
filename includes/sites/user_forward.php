@@ -28,7 +28,7 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 }
 
 /* foward option save begin */
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && $_SESSION['forwarding'] == 1) {
 	update_mailfilter('mail_forward',
 		$_SESSION['uid'],$_POST['forwardaddress'],
 		$_POST['delete_forward'],
@@ -56,6 +56,10 @@ if ($result->numRows()==1)
 	$smarty->assign('forwardaddress', $data['filter']);
 }
 
+if ($_SESSION['forwarding'] != 1) {
+	header("Location: index.php");
+	exit();
+}
 
 $smarty->assign('email', $_SESSION['email']);
 ?>
