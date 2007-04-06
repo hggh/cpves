@@ -2,7 +2,7 @@
 <form action="?module=email_view&#038;id={$id}&#038;did={$domainid}" method="post">
 <table>
 <tr>
- <td style="width:190px;">eMailadresse:</td>
+ <td style="width:190px;">E-Mailadresse:</td>
  <td style="width:300px;">{$full_email}</td>
 </tr>
 <tr>
@@ -52,6 +52,33 @@
      </select></td>
 </tr>
 {/if}
+<tr>
+	<td>Weiterleitung sichtbar:</td>
+	<td><select name="forward_vis">
+	    <option value="enable">Ja</option>
+	    {if $if_forward_visdisable == 0 }
+	    <option value="disable" selected="selected">Nein</option>
+	    {else}
+	    <option value="disable">Nein</option>
+	    {/if}
+	    </select></td>
+	    
+</tr>
+{if $if_spamassassin != '0' }
+<tr>
+	<td>Spamassassin sichtbar:</td>
+	<td><select name="spamassassin">
+	<option value="enable">Ja</option>
+	{if $if_spamassassindisable == 0 }
+	<option value="disable" selected="selected">Nein</option>
+	{else}
+	<option value="disable">Nein</option>
+	{/if}
+	</select></td>
+</tr>
+{/if}
+
+
 <tr>
 <td></td>
 <td><input type="submit" name="submit" value="Speichern"/></td>

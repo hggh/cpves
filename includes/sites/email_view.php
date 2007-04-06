@@ -38,6 +38,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_imap', $data['disableimap']);
 	$smarty->assign('if_pop3', $data['disablepop3']);
 	$smarty->assign('if_webmail', $data['disablewebmail']);
+	$smarty->assign('if_spamassassin', $data['spamassassin']);
 	$sql=sprintf("SELECT * FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -51,6 +52,8 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_imapdisable', $edata['disableimap']);
 	$smarty->assign('if_pop3disable', $edata['disablepop3']);
 	$smarty->assign('if_webmaildisable', $edata['disablewebmail']);
+	$smarty->assign('if_forward_visdisable', $edata['forwarding']);
+	$smarty->assign('if_spamassassindisable', $edata['spamassassin']);
 	
 	
 	/* Save autoresponder begin */
@@ -285,6 +288,13 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$webmail="1";
 			}
+			if (isset($_POST['forward_vis']) && $_POST['forward_vis'] == "enable" ) {
+				$forward_vis=1;
+			}
+			else
+			{
+				$forward_vis=0;
+			}
 			if (isset($_POST['password']) && !empty($_POST['password']))
 			{
 				if (check_passwd_length($_POST['password'])==false)
@@ -316,13 +326,14 @@ if (isset($_SESSION['superadmin']) &&
 			if (!$error)
 			{
 				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s', disableimap='%d', disablepop3='%d',disablewebmail='%d',
-				cpasswd='%s' WHERE id='%d' ",
+				cpasswd='%s', forwarding='%s' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
 						$db->escapeSimple($pop3),
 					$db->escapeSimple($webmail),
 					$db->escapeSimple($cpasswd),
+					$db->escapeSimple($forward_vis),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
