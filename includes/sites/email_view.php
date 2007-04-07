@@ -35,9 +35,9 @@ if (isset($_SESSION['superadmin']) &&
 	
 	$smarty->assign('domain',$data['dnsname']);
 	$dnsname=$data['dnsname']; // dnsname 
-	$smarty->assign('if_imap', $data['disableimap']);
-	$smarty->assign('if_pop3', $data['disablepop3']);
-	$smarty->assign('if_webmail', $data['disablewebmail']);
+	$smarty->assign('if_imap', $data['imap']);
+	$smarty->assign('if_pop3', $data['pop3']);
+	$smarty->assign('if_webmail', $data['webmail']);
 	$smarty->assign('if_spamassassin', $data['spamassassin']);
 	$sql=sprintf("SELECT * FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
@@ -49,11 +49,11 @@ if (isset($_SESSION['superadmin']) &&
 	$full_email=$edata['email'];
 	$smarty->assign('full_email', $full_email);
 	$smarty->assign('full_name', $edata['full_name']);
-	$smarty->assign('if_imapdisable', $edata['disableimap']);
-	$smarty->assign('if_pop3disable', $edata['disablepop3']);
-	$smarty->assign('if_webmaildisable', $edata['disablewebmail']);
-	$smarty->assign('if_forward_visdisable', $edata['forwarding']);
-	$smarty->assign('if_spamassassindisable', $edata['spamassassin']);
+	$smarty->assign('if_imap_value', $edata['imap']);
+	$smarty->assign('if_pop3_value', $edata['pop3']);
+	$smarty->assign('if_webmail_value', $edata['webmail']);
+	$smarty->assign('if_forwarding_value', $edata['forwarding']);
+	$smarty->assign('if_spamassassin_value', $edata['spamassassin']);
 	
 	
 	/* Save autoresponder begin */
@@ -260,35 +260,45 @@ if (isset($_SESSION['superadmin']) &&
 	{
 			if (isset($_POST['imap']) && 
 			  $_POST['imap'] == "enable" &&
-			check_domain_feature($_GET['id'],'imap',$db))
-			{
-				$imap="0";
-			}
-			else
+			check_domain_feature($_GET['did'],'imap'))
 			{
 				$imap="1";
 			}
+			else
+			{
+				$imap="0";
+			}
 			if (isset($_POST['pop3']) && 
 			  $_POST['pop3'] == "enable" &&
-			  check_domain_feature($_GET['id'],'pop3',$db))
-			{
-				$pop3="0";
-			}
-			else
+			  check_domain_feature($_GET['did'],'pop3'))
 			{
 				$pop3="1";
 			}
+			else
+			{
+				$pop3="o";
+			}
 			if (isset($_POST['webmail']) && 
 			  $_POST['webmail'] == "enable" &&
-			  check_domain_feature($_GET['id'],'webmail',$db))
-			{
-				$webmail="0";
-			}
-			else
+			  check_domain_feature($_GET['did'],'webmail'))
 			{
 				$webmail="1";
 			}
-			if (isset($_POST['forward_vis']) && $_POST['forward_vis'] == "enable" ) {
+			else
+			{
+				$webmail="0";
+			}
+			if (isset($_POST['spamassassin']) && $_POST['spamassassin']=='enable' &&
+			    check_domain_feature($_GET['did'], 'spamassassin'))
+			{
+				$spamassassin=1;
+				
+			}
+			else 
+			{
+				$spamassassin=0;
+			}
+			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
 			else
@@ -325,15 +335,15 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s', disableimap='%d', disablepop3='%d',disablewebmail='%d',
-				cpasswd='%s', forwarding='%s' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',imap='%d', pop3='%d',webmail='%d',	cpasswd='%s', forwarding='%s',spamassassin='%s' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
-						$db->escapeSimple($pop3),
+					$db->escapeSimple($pop3),
 					$db->escapeSimple($webmail),
 					$db->escapeSimple($cpasswd),
 					$db->escapeSimple($forward_vis),
+					$db->escapeSimple($spamassassin),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');

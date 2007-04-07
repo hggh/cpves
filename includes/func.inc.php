@@ -270,9 +270,9 @@ function domain_exist($domain,$db)
 	}
 }
 
-function check_domain_feature($id,$type,$db)
+function check_domain_feature($id,$type)
 {
-	$type="disable".$type;
+	global $db;
 	$sql=sprintf("SELECT %s FROM domains WHERE id='%s'",
 		$type,
 		$db->escapeSimple($id));
@@ -280,9 +280,9 @@ function check_domain_feature($id,$type,$db)
 	$data=$result->fetchRow(DB_FETCHMODE_ASSOC);
 	if ($data[$type] == '1')
 	{
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 function get_ip_for_a($arecord)

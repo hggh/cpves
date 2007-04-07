@@ -13,12 +13,12 @@
  <td>Passwort:</td>
  <td><input type="password"  maxlength="{$max_passwd_len}" name="password" value=""/></td>
 </tr>
-{if $if_imap != '1' }
+{if $if_imap == '1' }
 <tr>
  <td>IMAP-Verbindung:</td>
  <td><select name="imap">
      <option value="enable">Ja</option>
-     {if $if_imapdisable eq 1}
+     {if $if_imap_value == 0}
      <option value="disable" selected="selected">Nein</option>
      {else}
      <option value="disable">Nein</option>
@@ -26,12 +26,12 @@
      </select></td>
 </tr>
 {/if}
-{if $if_pop3 != '1' }
+{if $if_pop3 == '1' }
 <tr>
  <td>POP3-Verbindung:</td>
  <td><select name="pop3">
      <option value="enable">Ja</option>
-     {if $if_pop3disable eq 1}
+     {if $if_pop3_value == 0}
      <option value="disable" selected="selected" >Nein</option>
      {else}
      <option value="disable" >Nein</option>
@@ -39,12 +39,12 @@
      </select></td>
 </tr>
 {/if}
-{if $if_webmail != '1' }
+{if $if_webmail == 1 }
 <tr>
  <td>Webmail m&ouml;glich:</td>
  <td><select name="webmail">
      <option value="enable">Ja</option>
-     {if $if_webmaildisable eq "1"}
+     {if $if_webmail_value == 0 }
      <option value="disable" selected="selected" >Nein</option>
      {else}
      <option value="disable" >Nein</option>
@@ -54,9 +54,9 @@
 {/if}
 <tr>
 	<td>Weiterleitung sichtbar:</td>
-	<td><select name="forward_vis">
+	<td><select name="forwarding">
 	    <option value="enable">Ja</option>
-	    {if $if_forward_visdisable == 0 }
+	    {if $if_forwarding_value == 0 }
 	    <option value="disable" selected="selected">Nein</option>
 	    {else}
 	    <option value="disable">Nein</option>
@@ -64,12 +64,12 @@
 	    </select></td>
 	    
 </tr>
-{if $if_spamassassin != '0' }
+{if $if_spamassassin == '1' }
 <tr>
 	<td>Spamassassin sichtbar:</td>
 	<td><select name="spamassassin">
 	<option value="enable">Ja</option>
-	{if $if_spamassassindisable == 0 }
+	{if $if_spamassassin_value == 0 }
 	<option value="disable" selected="selected">Nein</option>
 	{else}
 	<option value="disable">Nein</option>
@@ -206,6 +206,7 @@
 <!-- Forward feature end -->
 
 <!-- Spamassasssin feature begin -->
+{if $if_spamassassin == 1 }
 <form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
  <td colspan="2" class="domain_view"><h3>Spamfilter</h3></td>
@@ -237,6 +238,7 @@
 
 
 </form>
+{/if}
 <!-- Spamassasssin feature end -->
 
 </table>

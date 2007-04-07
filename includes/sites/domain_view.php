@@ -131,14 +131,14 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$sql2="";
 	if ($_GET['fstate'] =='disableimap')
 	{
-		$sql=sprintf("UPDATE domains SET disableimap='1' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET imap='0' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET disableimap='1' WHERE domainid='%s'",
+		$sql2=sprintf("UPDATE users SET imap='0' WHERE domainid='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enableimap')
 	{
-		$sql=sprintf("UPDATE domains SET disableimap='' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET imap='1' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] == "disablespamassassin")
@@ -153,27 +153,27 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	}
 	if ($_GET['fstate'] =='disablepop3')
 	{
-		$sql=sprintf("UPDATE domains SET disablepop3='1' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET pop3='0' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET disablepop3='1' WHERE domainid='%s'",
+		$sql2=sprintf("UPDATE users SET pop3='0' WHERE domainid='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enablepop3')
 	{
-		$sql=sprintf("UPDATE domains SET disablepop3='' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET pop3='1' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	
 	if ($_GET['fstate'] =='disablewebmail')
 	{
-		$sql=sprintf("UPDATE domains SET disablewebmail='1' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET webmail='0' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET disablewebmail='1' WHERE domainid='%s'",
+		$sql2=sprintf("UPDATE users SET webmail='0' WHERE domainid='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	if ($_GET['fstate'] =='enablewebmail')
 	{
-		$sql=sprintf("UPDATE domains SET disablewebmail='' WHERE id='%s'",
+		$sql=sprintf("UPDATE domains SET webmail='1' WHERE id='%s'",
 			$db->escapeSimple($_GET['did']));
 	}
 	$db->query($sql);
@@ -191,9 +191,9 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
 	$smarty->assign('dnsname', $data['dnsname']);
-	$smarty->assign('if_imap', $data['disableimap']);
-	$smarty->assign('if_pop3', $data['disablepop3']);
-	$smarty->assign('if_webmail', $data['disablewebmail']);
+	$smarty->assign('if_imap', $data['imap']);
+	$smarty->assign('if_pop3', $data['pop3']);
+	$smarty->assign('if_webmail', $data['webmail']);
 	
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);

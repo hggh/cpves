@@ -133,7 +133,7 @@
  <td>IMAP:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_imap eq '1' }
+ {if $if_imap == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=enableimap">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="IMAP aktivieren." /></a>
  {else}
@@ -145,7 +145,7 @@
  <td>POP3:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_pop3 eq '1' }
+ {if $if_pop3 == 0 }
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablepop3">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="POP3 aktivieren." /></a>
  {else}
@@ -157,7 +157,7 @@
  <td>WebMail:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_webmail eq '1' }
+ {if $if_webmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablewebmail">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Webmail aktivieren." /></a>
  {else}
@@ -169,7 +169,7 @@
  <td>Spamassassin:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_spamassassin eq '0' }
+ {if $if_spamassassin == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablespamassassin">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamassassin aktivieren." /></a>
  {else}
