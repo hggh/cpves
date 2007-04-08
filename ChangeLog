@@ -3,12 +3,18 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: autoresponder - now send only to valid to addresses an responder
 	o Improved: check_domain_faeture (database change needed)
 	o Improved: forward_view (sorting of addresses)
+	o Improved: email_view admin domain sorting
+	o Improved: sadmin_edit success message
+	o Improved: index_sadmin.tpl layout
+	o Improved: index_admin.tpl layout
 	o Added: new autoresponder feature to users interface
 	o Added: support forwarding per user dis/enable
 	o Added: ml_postmaster/mailserver_smtp to configfile
 	o Added: listMailer.pl support for configfile
 	o Fixed: create forwarding
+	o Fixed: create mailinglist
 	o Fixed: listMailer.pl config file path
+	o Fixed: sadmin_add redirection to sadmin_view
 CpVES 0.02 2007-03-16 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Code Cleanup
 	o Complete new code structure

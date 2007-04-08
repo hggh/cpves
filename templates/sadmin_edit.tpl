@@ -16,14 +16,6 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 </div>
 <br/>
 {/if}
-{if $if_changed eq 'y' }
-<div style="text-align:center;color:blue;">
-&Auml;nderung erfolgreicht gespeichert.<br/>
-Sie werden in kuerze Weitergeleitet...
-<meta http-equiv="refresh" content="1; URL=?module=sadmin_view">
-</div>
-<br/>
-{/if}
 
 <form accept-charset="?module=sadmin&#038;id={$id}" method="post">
 <table>

@@ -60,7 +60,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$sql=sprintf("INSERT INTO lists SET address = '%s', domainid = '%s', public = '%s'",
 				$db->escapeSimple(strtolower($full_list)),
-				$db->escapeSimple($_GET['id']),
+				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($public));
 				$result = &$db->query($sql);
 				$smarty->assign('success_msg','y');

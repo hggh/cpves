@@ -92,7 +92,8 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 			$db->escapeSimple($cpasswd));
 			$res=&$db->query($sql);
 			if (!PEAR::isError($res)) {
-				$smarty->assign('if_changed','y');
+				$smarty->assign('success_msg', 'y');
+				$smarty->assign('if_sadmin_saved', 'y');
 			}
 		}
 	}

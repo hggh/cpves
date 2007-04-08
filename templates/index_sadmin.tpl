@@ -11,16 +11,8 @@
 	<tr  bgcolor="{cycle values="$color1,$color2"}">
 		<td style="padding-left:3px;">
 		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></td>
-		<td>
-			<p>
-				{$row.count_email} 
-			</p>
-		</td>
-		<td>
-			<p>
-				{$row.count_forward} 
-			</p>
-		</td>
+		<td>{$row.count_email}</td>
+		<td>{$row.count_forward}</td>
 		<td>
 			{if $row.access == "y" }
 				<a href="?module=main&#038;state=disable&#038;did={$row.id}">
@@ -32,14 +24,10 @@
 		</td>
 		<td>
 			<a href="?module=domain_del&#038;did={$row.id}">
-			<img src="img/icons/delete.png" style="border:0px;" title="Domain l&#038;schen" />
+			<img src="img/icons/delete.png" style="border:0px;" title="Domain löschen" />
 			</a>
 		</td>
-		<td>
-			<p>
-				{$row.dnote} 
-			</p>
-		</td>
+		<td>{$row.dnote}</td>
 	</tr>
 	{/foreach} 
 </table>

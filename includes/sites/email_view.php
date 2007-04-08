@@ -235,7 +235,7 @@ if (isset($_SESSION['superadmin']) &&
 		} //ENDE WHILE 
 		$smarty->assign('table_admins', $table_admins);
 		
-		$sql=sprintf("SELECT a.dnsname,b.email,a.id FROM domains AS a LEFT JOIN admin_access AS b ON b.domain = a.id");
+		$sql=sprintf("SELECT a.dnsname,b.email,a.id FROM domains AS a LEFT JOIN admin_access AS b ON b.domain = a.id ORDER BY a.dnsname");
 		$res_dns=&$db->query($sql);
 		$table_adddns= array();
 		while($data=$res_dns->fetchrow(DB_FETCHMODE_ASSOC))
