@@ -27,7 +27,7 @@ use Net::SMTP;
 my $sender;
 my @addresses;
 my @emailfrom;
-my $conf = new Config::General("/home/tgenannt/cpves/system_scripts/mail_config.conf");
+my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
 my %config = $conf->getall;
 $config{'db_host'} = "localhost" unless defined $config{'db_host'};
 $config{'db_username'} = "mail" unless defined $config{'db_username'};
@@ -35,6 +35,8 @@ $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 $config{'vmail_home'} = "/home/vmail/" unless defined $config{'vmail_home'};
 $config{'vmail_safe'} = "/home/vmail_backup" unless defined $config{'vmail_safe'};
+$config{'mailserver_smtp'} = "127.0.0.1" unless defined $config{'mailserver_smtp'};
+$config{'ml_postmaster'} = 'postmaster@localhost' unless defined $config{'ml_postmaster'};
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
 
@@ -96,7 +98,7 @@ sub sendto {
  my($data, $sender) = @_;
  my $recp;
  foreach $recp (@addresses) {
-  my $smtp = Net::SMTP->new('localhost');
+  my $smtp = Net::SMTP->new($config{'mailserver_smtp'});
   $smtp->mail($sender);
   $smtp->to($recp);
   $smtp->data();
@@ -140,8 +142,8 @@ if( $row[3] eq 'n' ) {
 		Data    => "The sender $sender is not allowed to post on the list $list\n\nYour original email:\n\n" . $mail->body);
   $e_send_to->head->add("User-Agent", 'CPM/ListMailer');
   $e_send_to->head->add("To", $sender);
-  $e_send_to->head->add("Sender", "Team-Ulm.de - Postmaster <postmaster\@team-ulm.de>");
-  $e_send_to->head->add("From", "Team-Ulm.de - Postmaster <postmaster\@team-ulm.de>");
+  $e_send_to->head->add("Sender", $config{'ml_postmaster'});
+  $e_send_to->head->add("From", $config{'ml_postmaster'});
   $e_send_to->head->add("Subject", "Mailinglist error");
   $e_send_to->send;
   $e_send_to->stringify;

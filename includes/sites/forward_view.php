@@ -97,6 +97,7 @@ if (isset($_SESSION['superadmin']) &&
 			);
 
 	}
+	sort($forwards);
 	
 	$sql=sprintf("SELECT dnsname,id FROM domains WHERE id='%s'",
 		$db->escapeSimple($_GET['did']));
@@ -107,7 +108,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	
 	$smarty->assign('forwards',$forwards);
-	$sql=sprintf("SELECT id,email FROM users WHERE domainid='%d' AND access='y'",
+	$sql=sprintf("SELECT id,email FROM users WHERE domainid='%d' AND access='y' ORDER BY email",
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$emailfwd=array();

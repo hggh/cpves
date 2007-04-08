@@ -59,7 +59,7 @@ if (isset($_SESSION['superadmin']) &&
 	{
 		if (! empty($_POST['from']) && ! empty($_POST['to']))
 		{
-			$full_email=$_POST['from']."@".$data['dnsname'];
+			$full_email=$_POST['from']."@".$dnsname;
 			if (!email_valid($_POST['from']))
 			{
 			$smarty->assign('error_msg','y');
