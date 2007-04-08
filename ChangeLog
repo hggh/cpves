@@ -7,6 +7,7 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: sadmin_edit success message
 	o Improved: index_sadmin.tpl layout
 	o Improved: index_admin.tpl layout
+	o Improved: forward_view delete complete forward
 	o Added: new autoresponder feature to users interface
 	o Added: support forwarding per user dis/enable
 	o Added: ml_postmaster/mailserver_smtp to configfile

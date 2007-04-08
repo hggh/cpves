@@ -46,7 +46,8 @@ if (isset($_SESSION['superadmin']) &&
 		}
 		if ($etos=="")
 		{
-			$smarty->assign('if_del', 'y');
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_forward_all_del','y');
 		}
 		else
 		{

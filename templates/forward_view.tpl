@@ -1,17 +1,5 @@
 {if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
 
-{if $if_del eq 'y'}
-<div style="text-align:center;color:red;">
-Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser Vorgang l&ouml;scht nun den kompletten Eintrag!<br/>
- <form action="?module=forward_del&#038;id={$id}&#038;did={$domainid}" method="post">
-  <input type="submit" name="del_fwd" class="in_1" value="Loeschen"/>
-  <input type="hidden" name="id" value="{$id}" />
-  <input type="hidden" name="domainid" value="{$domainid}" />
-  </form>
-</div>
-{/if}
-
-
 <form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">
 <table>
 <tr>
@@ -40,23 +28,19 @@ Es wurden alle Adressen der Weiterleitung zum L&ouml;schen markiert.<br/>Dieser 
 </tr>
 <tr>
  <td valign="top">eMailadresse:</td>
- <td style="text-align:right"><form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post"><input class="in_1" type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
+ <td style="text-align:right"><form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
  
  {if $if_noemail_found != "y" }
  <form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">
  <select name="add_fwd">
  {section name=row loop=$table_addemail}
  <option value="{$table_addemail[row].email}">{$table_addemail[row].email}</option>
- {/section}</select><input class="in_1" type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" />
+ {/section}</select><input type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" />
  </form> 
  {/if}
- 
- 
  </td>
 </tr>
 </table>
-
-
 
 {else}
 <meta http-equiv="refresh" content="1; URL=index.php">

@@ -36,4 +36,7 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen!
 Neue Passw&ouml;rter stimmen nicht &uuml;berein!
 {elseif $if_submit_email_wrong == 'y' }
 E-Mailadresse ist ung&uuml;ltig
+{elseif $if_forward_all_del == 'y' }
+Es wurden alle Adressen der Weiterleitung<br/> zum L&ouml;schen markiert.<br/>
+Bitte <a href="?module=forward_del&#038;did={$domainid}&#038;id={$id}">hier klicken</a> um die Weiterleitung zu l&ouml;schen!
 {/if}
