@@ -36,6 +36,41 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+function list_imap_folders($imap_server, $email,$password) {
+	$mbox=@imap_open("{".$imap_server.":143/imap/notls}",$email,$password);
+	if (! $mbox) {
+		return false;
+	}
+	$list = imap_getmailboxes($mbox, "{ffo}", "*");
+	if (is_array($list)) {
+		$imap_folders=array();
+		sort($list);
+		foreach($list as $key => $val) {
+			$trenner = $val->delimiter;
+			$name = ereg_replace("{ffo}", "", $val->name);
+			$name = ereg_replace("INBOX$trenner", "", $name);
+			$name_display=mb_convert_encoding($name, "ISO-8859-15", "UTF7-IMAP");
+			$name_display=str_replace($trenner, "\\ ", $name_display);
+			if (!preg_match('/^sent$/i', $name ) &&
+			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name) && !preg_match('/^drafts$/i',$name)) {
+				array_push($imap_folders,array(
+					'name_display' => $name_display,
+					'name' => $name));
+			}
+		}
+		if (count($imap_folders) > 0 ) {
+			return $imap_folders;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+
 //$_SESSION['uid'],"auto_val_tos_active",$_POST['val_tos_active'], 0
 function update_email_options($uid,$conf,$options,$extra) {
 	global $db;

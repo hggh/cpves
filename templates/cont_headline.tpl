@@ -44,6 +44,8 @@
 	Domain l&ouml;schen
 {elseif $template == "user_options.tpl" }
 	{$email}: Einstellungen
+{elseif $template == "user_archivemail.tpl" }
+	{$email}: Mailarchiv
 {elseif $template == "login.tpl" }
 	Login
 {elseif $template == "list_add.tpl" }

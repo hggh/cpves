@@ -37,7 +37,7 @@ $config['cleartext_passwd']="0";
 $config['max_passwd_len']=10;
 
 //IMAP Server:
-$config['imap_server'] = "localhost";
+$config['imap_server'] = "ssl.brachium-system.net";
 
 //Company Name:
 $config['company_title'] = "Some Company";

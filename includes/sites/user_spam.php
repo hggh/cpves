@@ -227,43 +227,17 @@ else
 	$smarty->assign('rewrite_subject_header', $rewrite_subject['value']);
 }
 
-//fill available spam folders:
-$mbox = @imap_open("{".$config['imap_server'].":143/imap/notls}", $_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
-if (! $mbox) {
- //       exit ("Can't connect: " . imap_last_error() ."\n");
+//get IMAP Folders
+$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
+if ($folders== false ) {
+	$smarty->assign('imap_folder_exits', 0);
 }
-else
-{
-	$list = imap_getmailboxes($mbox, "{ffo}", "*");
-	if (is_array($list)) {
-		$imap_foldery= array();
-		sort($list);
-		foreach ($list as $key => $val) {
-			$trenner= $val->delimiter;
-			$name = ereg_replace("{ffo}", "", $val->name);
-			$name = ereg_replace("INBOX$trenner", "", $name);
-			$name_display=mb_convert_encoding($name, "ISO-8859-15", "UTF7-IMAP");
-			$name_display=str_replace($trenner, "\\ ", $name_display);
-			if (!preg_match('/^sent$/i', $name ) && !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name) && !preg_match('/^drafts$/i',$name)) {
-				
-				array_push($imap_foldery, array('name_display' => $name_display, 'name' => $name));
+else {
+	$smarty->assign('imap_folder_exits', 1);
+	$smarty->assign('available_folders',$folders);
+}
 
-			}
-		}
-	} 
-	else {
-	}
-	$i = count($imap_foldery);
-	if ($i > 0) {
-		$smarty->assign('imap_folder_exits', 1);
-		$smarty->assign('available_folders',$imap_foldery);
-	}
-	else
-	{
-		$smarty->assign('imap_folder_exits', 0);
-	}
-	imap_close($mbox);
-}
+
 //move spam feature:
 $sql=sprintf("SELECT move_spam FROM users WHERE id='%s'",
 	$db->escapeSimple($_SESSION['uid']));
@@ -325,5 +299,4 @@ else
 {
 	
 }	
-$db->disconnect();
 ?>

@@ -104,6 +104,9 @@ switch($_GET['module']) {
 	case 'user_options':
 		$site="user_options";
 		break;
+	case 'user_archivemail':
+		$site="user_archivemail";
+		break;
 	case 'logout':
 		$_SESSION = array();
 		session_destroy();
