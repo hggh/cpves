@@ -36,7 +36,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 		$sql=sprintf("UPDATE users SET spamassassin='%d' WHERE id='%d'",
 			$db->escapeSimple($_POST['active']),
 			$db->escapeSimple($_SESSION['uid']));
-		$result=&$db->query($sql);
+		//$result=&$db->query($sql);
 		//FIXME: in mailfilter ein und austragen!
 		if ($_POST['active']=='1')
 		{
@@ -200,31 +200,20 @@ if (isset($_POST['white_add']) && isset($_POST['white_add_email']) && !empty($_P
 
 }
 
-
-
-
-
-$sql=sprintf("SELECT spamassassin FROM users WHERE id='%d'",
-	$db->escapeSimple($_SESSION['uid']));
-$result=&$db->query($sql);
-$u_data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-$smarty->assign('active', $u_data['spamassassin']);
+$spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
+$smarty->assign('active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);
 
-// Database output rewrite_header subject 
-$sql=sprintf("SELECT value FROM spamassassin WHERE username='%s' AND preference='rewrite_header subject'",
-	$db->escapeSimple($_SESSION['email']));
-$result=&$db->query($sql);
-$rewrite_subject=$result->fetchrow(DB_FETCHMODE_ASSOC);
-if ($result->numRows()==0 || empty($rewrite_subject['value']))
-{
+
+// Database output rewrite_header subject
+$sa_header = get_spamassassin_value($_SESSION['email'], "rewrite_header subject", false);
+if ($sa_header==false) {
 	$smarty->assign('rewrite_subject', '0');
 	$smarty->assign('rewrite_subject_header', "*** SPAM ***");
 }
-else
-{
+else {
 	$smarty->assign('rewrite_subject', '1');
-	$smarty->assign('rewrite_subject_header', $rewrite_subject['value']);
+	$smarty->assign('rewrite_subject_header', $sa_header);
 }
 
 //get IMAP Folders
@@ -253,22 +242,9 @@ else
 	$smarty->assign('move_spam_folder',$move_spam['move_spam'] );
 }
 
-
-
-
 // Database output required_score
-$sql=sprintf("SELECT value FROM spamassassin WHERE username='%s' AND preference='required_score'",
-	$db->escapeSimple($_SESSION['email']));
-$result=&$db->query($sql);
-$required_score=$result->fetchrow(DB_FETCHMODE_ASSOC);
-if ($result->numRows()==0)
-{
-	$smarty->assign('threshold', "5.0");
-}
-else
-{
-	$smarty->assign('threshold', $required_score['value']);
-}
+$sa_threshold = get_spamassassin_value($_SESSION['email'], "required_score", "5.0");
+$smarty->assign('threshold', $sa_threshold);
 
 
 //Database output whitelist_from

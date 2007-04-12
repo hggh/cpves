@@ -250,7 +250,7 @@
 	<td>Spamfilter aktiv:</td>
 	<td><select name="sa_active">
 		<option value="1">Ja</option>
-		{if $sa_active eq '0' }
+		{if $spamassassin_active eq '0' }
 		<option value="0" selected="selected">Nein</option>
 		{else} 
 		<option value="0">Nein</option>
@@ -269,8 +269,12 @@
 		<input id="rewrite_subject_header" maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
 	</td>
 </tr>
-
-
+<tr>
+	<td>Markiere Nachricht als Spam ab:</td>
+	<td>
+		<input type="text" name="threshold" value="{$threshold}" /> 
+	</td>
+<tr>
 
 </form>
 {/if}

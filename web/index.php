@@ -35,7 +35,6 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 }
 
 
-
 $site="";
 switch($_GET['module']) {
 	case 'login':

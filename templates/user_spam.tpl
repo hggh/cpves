@@ -28,11 +28,11 @@
 		<tr>
 			<td valign="top">Schreibe Betreffszeile um:</td>
 			<td>
-				{if $rewrite_subject eq '0' } <input type="radio" name="rewrite_subject" checked="checked" value="0" /> Nein 
-				<input type="radio" name="rewrite_subject"  value="1" /> Ja 
+				{if $rewrite_subject == '1' } <input type="radio" name="rewrite_subject"  value="0" /> Nein 
+				<input type="radio" name="rewrite_subject" checked="checked" value="1" /> Ja 
 				<br />
-				{else} <input type="radio" name="rewrite_subject"  value="0" /> Nein 
-				<input type="radio" name="rewrite_subject"  checked="checked" value="1" /> Ja 
+				{else} <input type="radio" checked="checked" name="rewrite_subject"  value="0" /> Nein 
+				<input type="radio" name="rewrite_subject"   value="1" /> Ja 
 				<br />
 				{/if} <input id="rewrite_subject_header" maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" /> 
 			</td>

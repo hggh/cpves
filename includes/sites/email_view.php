@@ -366,6 +366,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 	}//ende update DB
 
+	// OK OK OK OK OK OK OK OK OK OK OK OUTPUT after INSERT!!
 	// outout val_tos
 	$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",
 	$db->escapeSimple($_GET['id']));
@@ -379,8 +380,24 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('table_val_tos', $table_val_tos);
 	//output val_tos_active
 	$val_tos_active = get_email_options($_GET['id'],"auto_val_tos_active", 0);
-	
 	$smarty->assign('val_tos_active', $val_tos_active);
+	
+	// output spamassassin
+	$spamassassin=get_email_options($_GET['id'],"spamassassin", 0);
+	$smarty->assign('spamassassin_active', $spamassassin);
+	// Database output rewrite_header subject
+	$sa_header = get_spamassassin_value($full_email, "rewrite_header subject", false);
+	if ($sa_header==false) {
+		$smarty->assign('rewrite_subject', '0');
+		$smarty->assign('rewrite_subject_header', "*** SPAM ***");
+	}
+	else {
+		$smarty->assign('rewrite_subject', '1');
+		$smarty->assign('rewrite_subject_header', $sa_header);
+	}
+	// Database output required_score
+	$sa_threshold = get_spamassassin_value($full_email, "required_score", "5.0");
+	$smarty->assign('threshold', $sa_threshold);
 
 
 } // ENDE ACCESS OK

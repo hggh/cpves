@@ -94,6 +94,26 @@ function update_email_options($uid,$conf,$options,$extra) {
 
 }
 
+function get_spamassassin_value($email,$conf,$default) {
+	global $db;
+	$sql=sprintf("SELECT value FROM spamassassin WHERE username='%s' AND preference='%s'",
+		$db->escapeSimple($email),
+		$db->escapeSimple($conf));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		if (empty($data['value'])) {
+			return $default;
+		}
+		return $data['value'];
+	}
+	else {
+		return $default;
+	}
+	
+	
+}
+
 //$_SESSION['uid'],"auto_val_tos_active", 0
 function get_email_options($uid,$conf,$default) {
 	global $db;
