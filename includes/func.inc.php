@@ -36,6 +36,45 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+//$_SESSION['uid'],"auto_val_tos_active",$_POST['val_tos_active'], 0
+function update_email_options($uid,$conf,$options,$extra) {
+	global $db;
+	$sql=sprintf("SELECT id FROM email_options WHERE email='%s' AND conf='%s'",
+		$db->escapeSimple($uid),
+		$db->escapeSimple($conf) );
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1 ) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$sql=sprintf("UPDATE email_options SET options='%s' WHERE id='%s'",
+			$db->escapeSimple($options),
+			$db->escapeSimple($data['id']) );
+	}
+	else {
+		$sql=sprintf("INSERT INTO email_options SET conf='%s',email='%s',options='%s'",
+			$db->escapeSimple($conf),
+			$db->escapeSimple($uid),
+			$db->escapeSimple($options));
+	}
+	$result=&$db->query($sql);
+
+}
+
+//$_SESSION['uid'],"auto_val_tos_active", 0
+function get_email_options($uid,$conf,$default) {
+	global $db;
+	$sql=sprintf("SELECT options FROM email_options WHERE email='%s' AND conf='%s'",
+		$db->escapeSimple($uid),
+		$db->escapeSimple($conf) );
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1 ) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		return $data['options'];
+	}
+	else {
+		return $default;
+	}
+}
+
 function val_tos_del($uid,$val_tos_del) {
 	global $db;
 	foreach($val_tos_del as $key) {

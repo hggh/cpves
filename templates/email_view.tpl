@@ -109,7 +109,7 @@
  <option value="{$table_adddns[row].dnsid}">{$table_adddns[row].dnsname}</option>
  {/section}
  </select></td>
- <td style="text-align:right;"><input type="submit" name="adddns" value="Hinzuf&uuml;gen" class="in_1"/></form></td>
+ <td style="text-align:right;"><input type="submit" name="adddns" value="Hinzuf&uuml;gen" /></form></td>
  {else}
  <td colspan="2">Keine weiteren Domains gefunden!</td>
  {/if}
@@ -143,7 +143,42 @@
 <tr>
  <td></td>
  <td><input type="submit" value="Speichern" name="autoresponder" /></td>
-</tr></form>
+</tr>
+	<tr>
+		<td colspan="2">&#160;</td>
+	</tr>
+	<tr>
+		<td colspan="2">&#160;</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
+		<td>{if $val_tos_active == 1 }
+		<input type="radio" onclick="submit();" checked="checked" name="val_tos_active" value="1"> Ja <input type="radio" onclick="submit();" name="val_tos_active"  value="0"> Nein
+		{else}<input type="radio" onclick="submit();"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();" name="val_tos_active"  value="0"> Nein{/if}</td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
+		<td>
+		<select name="val_tos[]" size="8" multiple="true">
+		{foreach from=$table_val_tos item=row }
+		<option value="{$row.id}">{$row.recip}</option>
+		{/foreach}
+		</select><br/>
+		<input type="submit" name="val_tos_del" value="Markierte L&ouml;schen" />
+		</td>
+		
+	</tr>
+	<tr>
+		<td>Hinzuf&uuml;gen:</td>
+		<td><input type="text" name="val_tos_da" /><input type="submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
+	</tr>
+
+
+</form>
 <!-- Autoresponder feature end -->
 
 

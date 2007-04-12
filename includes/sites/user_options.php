@@ -29,45 +29,17 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 
 if (isset($_POST['save_option']))
 {
-	if (is_numeric($_POST['del_virus_notifi']) && $_POST['del_virus_notifi']==1)
-	{
-		$del_virus_notifi=1;
-	}
-	else
-	{
-		$del_virus_notifi=0;
-	}
-	$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
-		$db->escapeSimple($_SESSION['uid']));
-	$result=&$db->query($sql);
-	if ($result->numRows() == 1 ) {
-		$sql=sprintf("UPDATE email_options SET options='%s' WHERE email='%s' AND conf='del_virus_notifi'",
-			$db->escapeSimple($del_virus_notifi),
-			$db->escapeSimple($_SESSION['uid']));
-	}
-	else if($del_virus_notifi==1)
-	{
-		$sql=sprintf("INSERT INTO email_options SET options='1', email='%s', conf='del_virus_notifi'",
-			$db->escapeSimple($_SESSION['uid']));
-	}
-	$result=&$db->query($sql);
+	
+	update_email_options($_SESSION['uid'],"del_virus_notifi",$_POST['del_virus_notifi'], 0);
+	
 	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $del_virus_notifi,0,0);
 	// activate System-Script
 	run_systemscripts();
 }
 
 
-
-$sql=sprintf("SELECT id,conf,extra,options FROM email_options WHERE email='%s' AND conf='del_virus_notifi'",
-	$db->escapeSimple($_SESSION['uid']));
-$result=&$db->query($sql);
-if ($result->numRows() ==1) {
-	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-}
-else {
-	$data['options']=0;
-}
-$smarty->assign('del_virus_notifi', $data['options']);
+$del_virus_notifi = get_email_options($_SESSION['uid'],"del_virus_notifi", 0);
+$smarty->assign('del_virus_notifi',$del_virus_notifi );
 
 
 $smarty->assign('email', $_SESSION['email']);

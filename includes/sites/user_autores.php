@@ -62,6 +62,13 @@ if (isset($_POST['u_submit']))
 	
 	
 }
+
+if (isset($_POST['val_tos_active'])&& is_numeric($_POST['val_tos_active'])) {
+	update_email_options($_SESSION['uid'],"auto_val_tos_active",$_POST['val_tos_active'], 0);
+
+}
+
+
 if(isset($_POST['val_tos_del'])) {
 	val_tos_del($_SESSION['uid'],$_POST['val_tos']);
 
@@ -108,6 +115,10 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
 		'recip' => $data['recip'],
 		'id'    => $data['id'])); 
 }
+
+//output val_tos_active
+$val_tos_active = get_email_options($_SESSION['uid'],"auto_val_tos_active", 0);
+$smarty->assign('val_tos_active', $val_tos_active);
 
 $smarty->assign('table_val_tos', $table_val_tos);
 $smarty->assign('esubject', $esubject);

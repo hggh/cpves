@@ -56,6 +56,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spamassassin_value', $edata['spamassassin']);
 	
 	
+	
 	/* Save autoresponder begin */
 	if (isset($_POST['autoresponder'])) {
 		$error=false;
@@ -86,6 +87,20 @@ if (isset($_SESSION['superadmin']) &&
 		run_systemscripts();
 		}
 	
+	}
+	
+	if (isset($_POST['val_tos_active'])&& is_numeric($_POST['val_tos_active'])) {
+		update_email_options($_GET['id'],"auto_val_tos_active",$_POST['val_tos_active'], 0);
+	}
+	if(isset($_POST['val_tos_del'])) {
+		val_tos_del($_GET['id'],$_POST['val_tos']);
+	}
+	
+	if(isset($_POST['val_tos_add'])) {
+		if (val_tos_add($_GET['id'], $_POST['val_tos_da'])== 1) {
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_submit_email_wrong', 'y');
+		}
 	}
 	/* Save autoresponder end */
 	
@@ -350,6 +365,23 @@ if (isset($_SESSION['superadmin']) &&
 				$smarty->assign('if_email_data_saved', 'y');
 			}
 	}//ende update DB
+
+	// outout val_tos
+	$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",
+	$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	$table_val_tos = array();
+	while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		array_push($table_val_tos,array(
+		'recip' => $data['recip'],
+		'id'    => $data['id'])); 
+	}
+	$smarty->assign('table_val_tos', $table_val_tos);
+	//output val_tos_active
+	$val_tos_active = get_email_options($_GET['id'],"auto_val_tos_active", 0);
+	
+	$smarty->assign('val_tos_active', $val_tos_active);
+
 
 } // ENDE ACCESS OK
 

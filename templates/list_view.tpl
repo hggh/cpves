@@ -15,7 +15,7 @@
 <tr>
  <td valign="top">Empf&auml;nger: </td>
  <td>
- <select name="addresses[]" size="8" multiple="true"  class="in_1">
+ <select name="addresses[]" size="8" multiple="true" >
  {foreach item=row from=$recps}
  <option value="{$row}">{$row}</option>
  {/foreach}
