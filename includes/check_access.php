@@ -23,6 +23,7 @@ $smarty->assign('if_manager',$_SESSION['manager']);
 $smarty->assign('username', $_SESSION['email']);
 $smarty->assign('if_spamassassin', $_SESSION['spamassassin']);
 $smarty->assign('if_forwarding', $_SESSION['forwarding']);
+$smarty->assign('p_mailarchive', $_SESSION['p_mailarchive']);
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&
 	 $_SESSION['superadmin']=='y' && 

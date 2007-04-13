@@ -133,11 +133,11 @@
  <td>IMAP:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_imap == 0  }
- <a href="?module=domain_view&#038;did={$did}&#038;fstate=enableimap">
+ {if $p_imap == 0  }
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=imap">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="IMAP aktivieren." /></a>
  {else}
- <a href="?module=domain_view&#038;did={$did}&#038;fstate=disableimap">
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=imap">
  <img src="img/icons/button_ok.png" style="border:0px;" title="IMAP deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -145,11 +145,11 @@
  <td>POP3:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_pop3 == 0 }
-  <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablepop3">
+ {if $p_pop3 == 0 }
+  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=pop3">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="POP3 aktivieren." /></a>
  {else}
-  <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablepop3">
+  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=pop3">
  <img src="img/icons/button_ok.png" style="border:0px;" title="POP3 deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -157,11 +157,11 @@
  <td>WebMail:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_webmail ==  0 }
-   <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablewebmail">
+ {if $p_webmail ==  0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webmail">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Webmail aktivieren." /></a>
  {else}
-   <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablewebmail">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webmail">
  <img src="img/icons/button_ok.png" style="border:0px;" title="Webmail deaktivieren." /></a>
  {/if}</td>
 </tr>
@@ -169,12 +169,25 @@
  <td>Spamassassin:</td>
  <td></td>
  <td style="text-align:right;">
- {if $if_spamassassin == 0 }
-   <a href="?module=domain_view&#038;did={$did}&#038;fstate=enablespamassassin">
+ {if $p_spamassassin == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spamassassin">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamassassin aktivieren." /></a>
  {else}
-   <a href="?module=domain_view&#038;did={$did}&#038;fstate=disablespamassassin">
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spamassassin">
  <img src="img/icons/button_ok.png" style="border:0px;" title="Spamassassin deaktivieren." /></a>
+ {/if}</td> 
+</tr>
+
+<tr>
+ <td>Mailarchiv:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_mailarchive == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mailarchive">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Mailarchiv aktivieren." /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=mailarchive">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Mailarchiv deaktivieren." /></a>
  {/if}</td> 
 </tr>
 

@@ -120,66 +120,11 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 
 }
 
-
-
-
 //Domain features veraendern ANFANG
-if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate']))
+if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
-	$sql="";
-	$sql2="";
-	if ($_GET['fstate'] =='disableimap')
-	{
-		$sql=sprintf("UPDATE domains SET p_imap='0' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET p_imap='0' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] =='enableimap')
-	{
-		$sql=sprintf("UPDATE domains SET imap='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] == "disablespamassassin")
-	{
-		$sql=sprintf("UPDATE domains SET spamassassin='0' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] == "enablespamassassin")
-	{
-		$sql=sprintf("UPDATE domains SET  spamassassin='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] =='disablepop3')
-	{
-		$sql=sprintf("UPDATE domains SET pop3='0' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET pop3='0' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] =='enablepop3')
-	{
-		$sql=sprintf("UPDATE domains SET pop3='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	
-	if ($_GET['fstate'] =='disablewebmail')
-	{
-		$sql=sprintf("UPDATE domains SET p_webmail='0' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-		$sql2=sprintf("UPDATE users SET p_webmail='0' WHERE domainid='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	if ($_GET['fstate'] =='enablewebmail')
-	{
-		$sql=sprintf("UPDATE domains SET p_webmail='1' WHERE id='%s'",
-			$db->escapeSimple($_GET['did']));
-	}
-	$db->query($sql);
-	if (isset($sql2))
-	{
-		$db->query($sql2);
-	}
+	change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);
+
 }
 // Domain feature veraendern ENDE
 
@@ -190,16 +135,15 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
 	$smarty->assign('dnsname', $data['dnsname']);
-	$smarty->assign('if_imap', $data['p_imap']);
-	$smarty->assign('if_pop3', $data['p_pop3']);
-	$smarty->assign('if_webmail', $data['p_webmail']);
+	$smarty->assign('p_imap', $data['p_imap']);
+	$smarty->assign('p_pop3', $data['p_pop3']);
+	$smarty->assign('p_webmail', $data['p_webmail']);
+	$smarty->assign('p_spamassassin', $data['p_spamassassin']);
+	$smarty->assign('p_mailarchive', $data['p_mailarchive']);
 	
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);
 	$smarty->assign('dnote', $data['dnote']);
-	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
-	
-	
 	
 $smarty->assign('emails', get_forem_domain($_GET['did'],'users', $db));
 $smarty->assign('forwardings', get_forem_domain($_GET['did'],'forwardings', $db));
@@ -312,5 +256,4 @@ $smarty->assign('table_email', $table_email);
 $smarty->assign('table_list', $table_list);
 $smarty->assign('table_forward', $table_forward);
 $smarty->assign('template','domain_view.tpl');
-//$smarty->display('structure.tpl');
 ?>

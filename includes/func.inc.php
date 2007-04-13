@@ -36,6 +36,57 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+function change_domain_feature($did,$feature,$state) {
+	global $db;
+	if (!is_numeric($state)) return false;
+	switch ($feature) {
+		case 'imap':
+			$do='p_imap';
+			break;
+		case 'pop3':
+			$do='p_pop3';
+			break;
+		case 'webmail':
+			$do='p_webmail';
+			break;
+		case 'spamassassin':
+			$do='p_spamassassin';
+			break;
+		case 'mailarchive':
+			$do='p_mailarchive';
+			break;
+		default:
+			return false;
+	}
+	$sql=sprintf("UPDATE domains SET %s='%s' WHERE id='%s'",
+		$do,
+		$db->escapeSimple($state),
+		$db->escapeSimple($did));
+	$result=&$db->query($sql);
+	if ($result) {
+		return true;
+	}
+	return false;
+}
+
+function check_du_fetaure($uid,$did,$typ) {
+	global $db;
+	$sql=sprintf("SELECT %s FROM domains WHERE id='%s'",
+		$db->escapeSimple($typ),
+		$db->escapeSimple($did));
+	$domain=&$db->getRow($sql,array(),DB_FETCHMODE_ORDERED);
+	if ($domain[0] == 1) {
+		$sql=sprintf("SELECT %s FROM users WHERE id='%s'",
+			$db->escapeSimple($typ),
+			$db->escapeSimple($uid));
+		$user=&$db->getRow($sql,array(),DB_FETCHMODE_ORDERED);
+		if ($user[0] == 1) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 function list_imap_folders($imap_server, $email,$password) {
 	$mbox=@imap_open("{".$imap_server.":143/imap/notls}",$email,$password);
 	if (! $mbox) {

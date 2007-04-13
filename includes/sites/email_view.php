@@ -39,22 +39,11 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_pop3', $data['p_pop3']);
 	$smarty->assign('if_webmail', $data['p_webmail']);
 	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
-	$sql=sprintf("SELECT * FROM users WHERE id='%s'",
+	$smarty->assign('if_mailarchive', $data['p_mailarchive']);
+	$sql=sprintf("SELECT passwd,cpasswd FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
 	$edata=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	
-	
-	
-	$full_email=$edata['email'];
-	$smarty->assign('full_email', $full_email);
-	$smarty->assign('full_name', $edata['full_name']);
-	$smarty->assign('if_imap_value', $edata['p_imap']);
-	$smarty->assign('if_pop3_value', $edata['p_pop3']);
-	$smarty->assign('if_webmail_value', $edata['p_webmail']);
-	$smarty->assign('if_forwarding_value', $edata['p_forwarding']);
-	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
-	
 	
 	
 	/* Save autoresponder begin */
@@ -366,7 +355,23 @@ if (isset($_SESSION['superadmin']) &&
 			}
 	}//ende update DB
 
+	
+	
 	// OK OK OK OK OK OK OK OK OK OK OK OUTPUT after INSERT!!
+	//get email 
+	$sql=sprintf("SELECT * FROM users WHERE id='%s'",
+		$db->escapeSimple($_GET['id']));
+	$edata=&$db->getRow($sql,array(),DB_FETCHMODE_ASSOC);
+	$full_email=$edata['email'];
+	$smarty->assign('full_email', $full_email);
+	$smarty->assign('full_name', $edata['full_name']);
+	$smarty->assign('if_imap_value', $edata['p_imap']);
+	$smarty->assign('if_pop3_value', $edata['p_pop3']);
+	$smarty->assign('if_webmail_value', $edata['p_webmail']);
+	$smarty->assign('if_forwarding_value', $edata['p_forwarding']);
+	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
+	
+	
 	// outout val_tos
 	$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",
 	$db->escapeSimple($_GET['id']));

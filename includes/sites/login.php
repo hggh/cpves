@@ -23,6 +23,7 @@ $_SESSION['manager']='n';
 $_SESSION['ad_user']='n';
 $_SESSION['spamassassin']='0';
 $_SESSION['forwarding']='0';
+$_SESSION['p_mailarchive']='0';
 
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
@@ -57,7 +58,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 				$_SESSION['admin']='y';
 			}
 			// checke ob domain aktiv ist:
-			$sql=sprintf("SELECT access,spamassassin FROM domains where id=%s",
+			$sql=sprintf("SELECT access,p_spamassassin,p_mailarchive FROM domains where id=%s",
 				$db->escapeSimple($daten['domainid']));
 			$res_domain=&$db->query($sql);
 			
@@ -70,14 +71,17 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			{
 				$smarty->assign('if_login_ok', 'yes');
 				logging($_SESSION['email']);
-				if ($data_domain['spamassassin'] == 1) {
-					$spamassassin=$daten['spamassassin'];
+				if ($data_domain['p_spamassassin'] == 1) {
+					$spamassassin=$daten['p_spamassassin'];
 				}
 				else {
 					$spamassassin=0;
 				}
-				$_SESSION['spamassassin']=$spamassassin;
-				$_SESSION['forwarding']=$daten['forwarding'];
+				
+				$_SESSION['spamassassin']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spamassassin');
+				$_SESSION['p_mailarchive']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_mailarchive');
+				$_SESSION['forwarding']=$daten['p_forwarding'];
+				
 				
 			}
 		}
