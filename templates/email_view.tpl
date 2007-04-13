@@ -77,6 +77,15 @@
 	</select></td>
 </tr>
 {/if}
+{if $if_mailarchive == 1 }
+<tr>
+	<td>Mailarchiv sichtbar:</td>
+	<td><select name="mailachrive">
+	<option value="enable">Ja</option>
+	<option value="disbale">Nein</option>
+	</select></td>
+</tr>
+{/if}
 
 
 <tr>

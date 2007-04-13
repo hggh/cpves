@@ -129,6 +129,14 @@ if ($sth->rows == 0)
 	my $mail_text = $row_ary[2];
 	undef(@row_ary);
 	
+	#Now check if vaild repi list is enabled:
+	$sth = $dbh->prepare("SELECT options FROM email_options WHERE email=? AND conf='auto_val_tos_active'");
+	$sth->execute($ARGV[0]);
+	my @row_val_ac;
+	if ($sth->rows == 1) {
+		@row_val_ac = $sth->fetchrow_array;
+	}
+	
 	#Now create an valid repicipent list:
 	my @valid_rep;
 	push(@valid_rep,$sender);
@@ -152,12 +160,14 @@ if ($sth->rows == 0)
 		}
 		last if $found==1;
 	}
-	if ($found != 1 ) {
+	if ($found != 1 && $row_val_ac[0] eq 1 ) {
 		#exits because not Mail to
 		$sth->finish();
 		$dbh->disconnect();
 		exit(0);
 	}
+	
+	
 	my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
 		Charset => "iso-8859-15",

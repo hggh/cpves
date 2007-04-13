@@ -35,10 +35,10 @@ if (isset($_SESSION['superadmin']) &&
 	
 	$smarty->assign('domain',$data['dnsname']);
 	$dnsname=$data['dnsname']; // dnsname 
-	$smarty->assign('if_imap', $data['imap']);
-	$smarty->assign('if_pop3', $data['pop3']);
-	$smarty->assign('if_webmail', $data['webmail']);
-	$smarty->assign('if_spamassassin', $data['spamassassin']);
+	$smarty->assign('if_imap', $data['p_imap']);
+	$smarty->assign('if_pop3', $data['p_pop3']);
+	$smarty->assign('if_webmail', $data['p_webmail']);
+	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$sql=sprintf("SELECT * FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -49,11 +49,11 @@ if (isset($_SESSION['superadmin']) &&
 	$full_email=$edata['email'];
 	$smarty->assign('full_email', $full_email);
 	$smarty->assign('full_name', $edata['full_name']);
-	$smarty->assign('if_imap_value', $edata['imap']);
-	$smarty->assign('if_pop3_value', $edata['pop3']);
-	$smarty->assign('if_webmail_value', $edata['webmail']);
-	$smarty->assign('if_forwarding_value', $edata['forwarding']);
-	$smarty->assign('if_spamassassin_value', $edata['spamassassin']);
+	$smarty->assign('if_imap_value', $edata['p_imap']);
+	$smarty->assign('if_pop3_value', $edata['p_pop3']);
+	$smarty->assign('if_webmail_value', $edata['p_webmail']);
+	$smarty->assign('if_forwarding_value', $edata['p_forwarding']);
+	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
 	
 	
 	
@@ -275,7 +275,7 @@ if (isset($_SESSION['superadmin']) &&
 	{
 			if (isset($_POST['imap']) && 
 			  $_POST['imap'] == "enable" &&
-			check_domain_feature($_GET['did'],'imap'))
+			check_domain_feature($_GET['did'],'p_imap'))
 			{
 				$imap="1";
 			}
@@ -285,7 +285,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (isset($_POST['pop3']) && 
 			  $_POST['pop3'] == "enable" &&
-			  check_domain_feature($_GET['did'],'pop3'))
+			  check_domain_feature($_GET['did'],'p_pop3'))
 			{
 				$pop3="1";
 			}
@@ -295,7 +295,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (isset($_POST['webmail']) && 
 			  $_POST['webmail'] == "enable" &&
-			  check_domain_feature($_GET['did'],'webmail'))
+			  check_domain_feature($_GET['did'],'p_webmail'))
 			{
 				$webmail="1";
 			}
@@ -304,7 +304,7 @@ if (isset($_SESSION['superadmin']) &&
 				$webmail="0";
 			}
 			if (isset($_POST['spamassassin']) && $_POST['spamassassin']=='enable' &&
-			    check_domain_feature($_GET['did'], 'spamassassin'))
+			    check_domain_feature($_GET['did'], 'p_spamassassin'))
 			{
 				$spamassassin=1;
 				
@@ -350,7 +350,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',imap='%d', pop3='%d',webmail='%d',	cpasswd='%s', forwarding='%s',spamassassin='%s' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
