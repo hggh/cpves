@@ -9,6 +9,8 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: index_admin.tpl layout
 	o Improved: functions for email_options
 	o Improved: forward_view delete complete forward
+	o Added: X-Loop and X-No-Loop check for autoresponder
+	o Added: Sending autoresponder with X-Loop and X-No-Loop header
 	o Added: new autoresponder feature to users interface
 	o Added: new autoresponder feature to admins interface
 	o Added: support forwarding per user dis/enable

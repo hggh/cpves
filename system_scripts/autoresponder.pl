@@ -55,6 +55,10 @@ if ($mail->header("X-Spam-Flag") =~ m/yes/i)
 	#exit, because of SPAM
 	exit(0);
 }
+if ($mail->header("X-Loop") =~ m/no/i || $mail->header("X-No-Loop") =~ m/yes/i) {
+	#exit, because of X-Loop Header in Mail
+	exit(0);
+}
 if ($mail->as_string =~ m/^List-/mg || $mail->as_string=~ m/^X-Mailinglist/mg )
 {
 	#exit, because of ML's
@@ -161,6 +165,8 @@ if ($sth->rows == 0)
 		Data    => $mail_text);
 			$e_send_to->head->add("User-Agent", 'CPM/Autoresponder');
 			$e_send_to->head->add("To", $mail_from);
+			$e_send_to->head->add("X-Loop", "No");
+			$e_send_to->head->add("X-No-Loop", "Yes");
 			$e_send_to->head->add("Sender",$sender );
 			$e_send_to->head->add("From", $sender);
 			$e_send_to->head->add("Subject", $subject );
