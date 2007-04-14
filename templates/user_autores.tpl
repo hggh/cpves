@@ -3,8 +3,8 @@
 {/if} 
 
 {if $if_superadmin != 'y' } 
-<form action="?module=user_autores" method="post">
-<table>
+
+<table><form action="?module=user_autores" method="post">
 	<tr>
 		<td>Autoresponder aktiv:</td>
 		<td><select name="active">
@@ -36,10 +36,10 @@
 	</tr>
 	<tr>
 		<td colspan="2">&#160;</td>
-	</tr>
+	</tr></form>
 	
 	
-	
+	<form action="?module=user_autores" method="post">
 	<tr>
 		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
 		<td>{if $val_tos_active == 1 }
@@ -62,7 +62,7 @@
 	<tr>
 		<td>Hinzuf&uuml;gen:</td>
 		<td><input type="text" name="val_tos_da" /><input type="submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
-	</tr>
+	</tr></form>
 </table>
-</form>
+
 {/if} 

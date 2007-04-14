@@ -75,7 +75,8 @@ if (isset($_SESSION['superadmin']) &&
 	{
 		if (strlen($_POST['rewrite_subject_header'])>15)
 		{
-			$smarty->assign('if_subject_to_long','1');
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_sa_subjecttag','y');
 		}
 		else
 		{

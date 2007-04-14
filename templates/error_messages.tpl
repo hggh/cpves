@@ -40,5 +40,7 @@ E-Mailadresse ist ung&uuml;ltig
 Es wurden alle Adressen der Weiterleitung<br/> zum L&ouml;schen markiert.<br/>
 Bitte <a href="?module=forward_del&#038;did={$domainid}&#038;id={$id}">hier klicken</a> um die Weiterleitung zu l&ouml;schen!
 {elseif $if_wrong_sa_threshold == 'y'}
-Falsches Format f&uuml;r den Spamassassin-threshold! 
+Falsches Format f&uuml;r den Spamassassin-threshold!
+{elseif $if_wrong_sa_subjecttag == 'y' }
+Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein! 
 {/if}
