@@ -16,16 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
-{
-	$smarty->assign('if_ad_user','y');
-	$_SESSION['ad_user']='y';
-}
-if (isset($_GET['user']) && $_GET['user']=='n')
-{
-	$smarty->assign('if_ad_user','n');
-	$_SESSION['ad_user']='n';
-}
 
 /* foward option save begin */
 if (isset($_POST['submit']) && $_SESSION['forwarding'] == 1) {

@@ -130,6 +130,21 @@ if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	    $smarty->assign('access_domain', $access_domain);
 	}
 }
+// Normal user fix for viewing coorect menu:
+if ((ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user')) {
+
+	if (isset($_GET['user'])
+	    && $_GET['user']=='y' || $_SESSION['ad_user']=='y') {
+		$smarty->assign('if_ad_user','y');
+		$_SESSION['ad_user']='y';
+	}
+	if (isset($_GET['user']) && $_GET['user']=='n') {
+		$smarty->assign('if_ad_user','n');
+		$_SESSION['ad_user']='n';
+	}
+
+}
+
 // Fetch Domainname from $_GET['did']
 if (isset($_GET['did']) && is_numeric($_GET['did'])) {
 	$sql=sprintf("SELECT dnsname FROM domains WHERE id='%s'",

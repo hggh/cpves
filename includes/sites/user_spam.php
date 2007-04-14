@@ -16,27 +16,13 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
-{
-	$smarty->assign('if_ad_user','y');
-	$_SESSION['ad_user']='y';
-}
-if (isset($_GET['user']) && $_GET['user']=='n')
-{
-	$smarty->assign('if_ad_user','n');
-	$_SESSION['ad_user']='n';
-}
-
 
 //Save Options to database:
 if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 {
 	if (isset($_POST['active']) && is_numeric($_POST['active']))
 	{
-		$sql=sprintf("UPDATE users SET spamassassin='%d' WHERE id='%d'",
-			$db->escapeSimple($_POST['active']),
-			$db->escapeSimple($_SESSION['uid']));
-		//$result=&$db->query($sql);
+		update_email_options($_SESSION['uid'],"spamassassin",$_POST['active'],0);
 		//FIXME: in mailfilter ein und austragen!
 		if ($_POST['active']=='1')
 		{
@@ -58,78 +44,36 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 	}
 	if (isset($_POST['rewrite_subject']) && is_numeric($_POST['rewrite_subject']))
 	{
-		$sql=sprintf("SELECT value FROM spamassassin WHERE username='%s' AND preference='rewrite_header subject'",
-			$db->escapeSimple($_SESSION['email']));
-		$result=&$db->query($sql);
-		unset($sql);
 		if (strlen($_POST['rewrite_subject_header'])>15)
 		{
 			$smarty->assign('if_subject_to_long','1');
-		}
-		elseif ($result->numRows()==1)
-		{
-			if ($_POST['rewrite_subject']==0)
-			{
-			$sql=sprintf("UPDATE spamassassin SET value='' WHERE username='%s' AND preference='rewrite_header subject'",
-				$db->escapeSimple($_SESSION['email']));
-			}
-			elseif ($_POST['rewrite_subject']==1)
-			{
-				$sql=sprintf("UPDATE spamassassin SET value='%s' WHERE username='%s' AND preference='rewrite_header subject'",
-				$db->escapeSimple($_POST['rewrite_subject_header']),
-				$db->escapeSimple($_SESSION['email']));
-			
-			}
-			
 		}
 		else
 		{
 			if ($_POST['rewrite_subject']==0)
 			{
-			$sql=sprintf("INSERT INTO spamassassin SET value='', username='%s',preference='rewrite_header subject'",
-				$db->escapeSimple($_SESSION['email']));
+				$rewrite_subject='';
 			}
 			elseif ($_POST['rewrite_subject']==1)
 			{
-				$sql=sprintf("INSERT INTO spamassassin SET value='%s', username='%s', preference='rewrite_header subject'",
-				$db->escapeSimple($_POST['rewrite_subject_header']),
-				$db->escapeSimple($_SESSION['email']));
+				$rewrite_subject=$_POST['rewrite_subject_header'];
 			
 			}
+			update_spamassassin_value($_SESSION['email'],"rewrite_header subject",$rewrite_subject );
 			
-		}
-		if (!empty($sql))
-		{
-			$result=&$db->query($sql);
 		}
 	}
 	if (isset($_POST['threshold']) && !empty($_POST['threshold']))
 	{
-		$sql=sprintf("SELECT value FROM spamassassin WHERE username='%s' AND preference='required_score'",
-			$db->escapeSimple($_SESSION['email']));
-		$result=&$db->query($sql);
-		unset($sql);
 		if (ereg("^[0-9]{1,2}\.[0-9]$",$_POST['threshold'])==0)
 		{
-			$smarty->assign('if_wrong_threshold', '1');
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_sa_threshold', 'y');
 		}
-		elseif($result->numRows()==1)
+		else
 		{
-			$sql=sprintf("UPDATE spamassassin SET value='%s' WHERE username='%s' AND preference='required_score'",
-				$db->escapeSimple($_POST['threshold']),
-				$db->escapeSimple($_SESSION['email']));
+			update_spamassassin_value($_SESSION['email'],"required_score",$_POST['threshold']);
 		}
-		elseif($result->numRows()==0)
-		{
-			$sql=sprintf("INSERT INTO spamassassin SET value='%s', username='%s', preference='required_score'",
-				$db->escapeSimple($_POST['threshold']),
-				$db->escapeSimple($_SESSION['email']));
-		}
-		if (!empty($sql))
-		{
-			$result=&$db->query($sql);
-		}
-	
 	}
 	//save move_spam 
 	if ($_POST['move_spam']==0) {
@@ -204,7 +148,6 @@ $spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
 $smarty->assign('active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);
 
-
 // Database output rewrite_header subject
 $sa_header = get_spamassassin_value($_SESSION['email'], "rewrite_header subject", false);
 if ($sa_header==false) {
@@ -271,8 +214,4 @@ if ($_SESSION['spamassassin'] != 1) {
 	header("Location: index.php");
 	exit();
 }
-else
-{
-	
-}	
 ?>

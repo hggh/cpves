@@ -40,11 +40,72 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_webmail', $data['p_webmail']);
 	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$smarty->assign('if_mailarchive', $data['p_mailarchive']);
-	$sql=sprintf("SELECT passwd,cpasswd FROM users WHERE id='%s'",
+	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
 	$edata=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
+	
+	/* save spamassassin begin */
+	if (isset($_POST['save_option']))
+{
+	if (isset($_POST['sa_active']) && is_numeric($_POST['sa_active']))
+	{
+		update_email_options($_GET['id'],"spamassassin",$_POST['sa_active'],0);
+		//FIXME: in mailfilter ein und austragen!
+		if ($_POST['sa_active']=='1')
+		{
+			//INSERT INTO
+			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
+				$db->escapeSimple($_GET['id']));
+			$result=&$db->query($sql);
+			$sql=sprintf("INSERT INTO mailfilter SET email='%d', active='1',prio='5', type='spamassassin'",
+				$db->escapeSimple($_GET['id']));
+			$result=&$db->query($sql);
+		}
+		else if($_POST['sa_active']=='0')
+		{
+			//reset filter
+			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
+				$db->escapeSimple($_GET['id']));
+			$result=&$db->query($sql);
+		}
+	}
+	if (isset($_POST['rewrite_subject']) && is_numeric($_POST['rewrite_subject']))
+	{
+		if (strlen($_POST['rewrite_subject_header'])>15)
+		{
+			$smarty->assign('if_subject_to_long','1');
+		}
+		else
+		{
+			if ($_POST['rewrite_subject']==0)
+			{
+				$rewrite_subject='';
+			}
+			elseif ($_POST['rewrite_subject']==1)
+			{
+				$rewrite_subject=$_POST['rewrite_subject_header'];
+			
+			}
+			update_spamassassin_value($edata['email'],"rewrite_header subject",$rewrite_subject );
+			
+		}
+	}
+	if (isset($_POST['threshold']) && !empty($_POST['threshold']))
+	{
+		if (ereg("^[0-9]{1,2}\.[0-9]$",$_POST['threshold'])==0)
+		{
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_sa_threshold', 'y');
+		}
+		else
+		{
+			update_spamassassin_value($edata['email'],"required_score",$_POST['threshold']);
+		}
+	}
+	}
+	/* save spamassassin end */
 	
 	/* Save autoresponder begin */
 	if (isset($_POST['autoresponder'])) {

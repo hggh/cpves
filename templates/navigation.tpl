@@ -41,7 +41,7 @@
 	<a class="nav" href="?module=user_options">Optionen</a>
 	<!-- <a class="nav" href="?module=user_mailfilter">Mailfilter</a> -->
 	{if $p_mailarchive == 1}
-	<a class="nav sub" href="?module=user_archivemail">Mailarchiv</a>
+	<a class="nav" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}
 {/if}
 {if $if_superadmin == 'y' }

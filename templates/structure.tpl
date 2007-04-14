@@ -31,7 +31,7 @@ function autoresp_disable() {
 }
 </script>{/literal}
 </head>
-<body{include file="focus_input.tpl"}>
+<body {include file="focus_input.tpl"}>
 {if $error_msg == 'y'}
 <div style="background-color:#EF9398;border:1px solid#DC5757;float:right;width:450px;text-align:left;">
 <div style="float:left;margin:6px;"><img src="img/icons/stop.png" /></div>
@@ -76,5 +76,5 @@ function autoresp_disable() {
 </div>
 </div>
 <div id="footer"></div>
-</body{include>
+</body>
 </html>

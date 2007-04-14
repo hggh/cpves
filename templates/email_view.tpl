@@ -251,7 +251,7 @@
 
 <!-- Spamassasssin feature begin -->
 {if $if_spamassassin == 1 }
-<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
+<r action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
  <td colspan="2" class="domain_view"><h3>Spamfilter</h3></td>
 </tr>
@@ -283,8 +283,11 @@
 	<td>
 		<input type="text" name="threshold" value="{$threshold}" /> 
 	</td>
+</tr>
 <tr>
-
+	<td></td>
+	<td><input name="save_option" type="submit" value="Speichern" /> </td>
+</tr>
 </form>
 {/if}
 <!-- Spamassasssin feature end -->

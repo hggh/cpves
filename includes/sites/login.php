@@ -71,13 +71,6 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			{
 				$smarty->assign('if_login_ok', 'yes');
 				logging($_SESSION['email']);
-				if ($data_domain['p_spamassassin'] == 1) {
-					$spamassassin=$daten['p_spamassassin'];
-				}
-				else {
-					$spamassassin=0;
-				}
-				
 				$_SESSION['spamassassin']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spamassassin');
 				$_SESSION['p_mailarchive']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_mailarchive');
 				$_SESSION['forwarding']=$daten['p_forwarding'];
@@ -146,6 +139,4 @@ if ($no_login==0)
 	header("Location: index.php");
 }
 $smarty->assign('if_login' , 'y');
-//$smarty->assign('template', 'login.tpl');
-//$smarty->display('structure.tpl');
 ?>

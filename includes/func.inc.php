@@ -102,8 +102,8 @@ function list_imap_folders($imap_server, $email,$password) {
 			$name = ereg_replace("INBOX$trenner", "", $name);
 			$name_display=mb_convert_encoding($name, "ISO-8859-15", "UTF7-IMAP");
 			$name_display=str_replace($trenner, "\\ ", $name_display);
-			if (!preg_match('/^sent$/i', $name ) &&
-			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name) && !preg_match('/^drafts$/i',$name)) {
+			if (!preg_match('/^drafts$/i', $name ) &&
+			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name)) {
 				array_push($imap_folders,array(
 					'name_display' => $name_display,
 					'name' => $name));
@@ -143,6 +143,28 @@ function update_email_options($uid,$conf,$options,$extra) {
 	}
 	$result=&$db->query($sql);
 
+}
+
+function update_spamassassin_value($email,$preference,$value) {
+	global $db;
+	$sql=sprintf("SELECT prefid FROM spamassassin WHERE username='%s' AND preference='%s'",
+		$db->escapeSimple($email),
+		$db->escapeSimple($preference));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1) {
+		$sql=sprintf("UPDATE spamassassin SET value='%s' WHERE username='%s' AND preference='%s'",
+			$db->escapeSimple($value),
+			$db->escapeSimple($email),
+			$db->escapeSimple($preference));
+	}
+	else {
+		$sql=sprintf("INSERT INTO spamassassin SET value='%s',username='%s',preference='%s'",
+			$db->escapeSimple($value),
+			$db->escapeSimple($email),
+			$db->escapeSimple($preference));
+	}
+	$result=&$db->query($sql);
+	return true;
 }
 
 function get_spamassassin_value($email,$conf,$default) {

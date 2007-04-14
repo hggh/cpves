@@ -2,11 +2,6 @@
 <div style="text-align:center;color:red;">
 	Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein! 
 </div>
-{/if} {if $if_wrong_threshold eq '1' } 
-<div style="text-align:center;color:red">
-	Falsches Format f&uuml;r "Markiere Nachricht als Spam"! 
-</div>
-{/if} 
 <form action="?module=user_spam" name="spam" method="post">
 	<table>
 		<tr>
