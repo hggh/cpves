@@ -591,7 +591,6 @@ if ($type == 'mail_forward') {
 }
 
 
-
 function save_autoresponder($uid,$active,$esubject,$msg) {
 	global $db;
 	$sql=sprintf("SELECT id FROM autoresponder WHERE email='%d'",
@@ -600,12 +599,20 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 	if ($result->numRows()==1) 
 	{
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-		$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
+		if ($active == 'n' ) {
+			$sql=sprintf("UPDATE autoresponder SET active='%s' WHERE id='%d' AND email='%d' ",
+				$db->escapeSimple($active),
+				$db->escapeSimple($data['id']),
+				$db->escapeSimple($uid) );
+		}
+		else {
+			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
 				$db->escapeSimple($esubject),
 				$db->escapeSimple($msg),
 				$db->escapeSimple($active),
 				$db->escapeSimple($data['id']),
 				$db->escapeSimple($uid) );
+		}
 	}
 	else
 	{

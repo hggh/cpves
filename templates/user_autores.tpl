@@ -1,34 +1,33 @@
-{if $if_query_ok eq 'y' } 
-<meta http-equiv="refresh" content="0; URL=./index.php">
-{/if} 
-
 {if $if_superadmin != 'y' } 
-
-<table><form action="?module=user_autores" method="post">
+<table>
+<form action="?module=user_autores" method="post">
 	<tr>
 		<td>Autoresponder aktiv:</td>
-		<td><select name="active">
-			<option value="y">Ja</option>
-			{if $active eq 'n' }
-			<option value="n" selected="selected">Nein</option>
+		<td><select name="autores_active">
+			<option value="y" onclick="cpves_autores_field('');">Ja</option>
+			{if $autores_active eq 'n' }
+			<option value="n" onclick="cpves_autores_field('true');" selected="selected">Nein</option>
 			{else}
-			<option value="n">Nein</option>
+			<option value="n"  onclick="cpves_autores_field('true');">Nein</option>
 			{/if}
 		</select></td>
 	</tr>
 	<tr>
 		<td>Autoresponder Betreff:</td>
-		<td><input type="text" name="esubject" maxlength="50" value="{$esubject}" /></td>
+		<td><input type="text" id="autores_subject" name="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 	</tr>
 	<tr>
 		<td valign="top">Nachricht:</td>
 		<td>
-		<textarea name="msg" cols="50" rows="15">{$msg}</textarea>
+		<textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea>
 		</td>
 	</tr>
 	<tr>
-		<td><input type="hidden" name="id" value="{$id}" /></td>
-		<td><input type="submit" value="Speichern" name="u_submit" /></td>
+		<td></td>
+		<td><input type="submit" value="Speichern" name="autores_submit" />
+		{if $autores_active eq 'n' }
+		    <script type="text/javascript">cpves_autores_field('true');
+			</script>{/if}</td>
 	</tr>
 	
 	<tr>
@@ -64,5 +63,4 @@
 		<td><input type="text" name="val_tos_da" /><input type="submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
 	</tr></form>
 </table>
-
-{/if} 
+{/if}

@@ -25,9 +25,15 @@ function forwardadd_fillform() {
 		}
 	}
 }
-function autoresp_disable() {
-	document.autoresp.esubject.readOnly = true;
-	document.autoresp.msg.readOnly = true;
+
+function armail_check_both() {
+	var c = document.forms[0].checkboth.checked;
+	document.forms[0].armail_folder_month.checked=c;
+	document.forms[0].armail_folder_year.checked=c;
+}
+function cpves_autores_field(c) {
+	document.getElementById('autores_subject').disabled=c;
+	document.getElementById('autores_msg').disabled=c;
 }
 </script>{/literal}
 </head>

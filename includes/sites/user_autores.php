@@ -16,21 +16,21 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_POST['u_submit']))
+if (isset($_POST['autores_submit']))
 {
-	if (empty($_POST['esubject']))
+	if (empty($_POST['autores_subject']) && $_POST['autores_active'] == 'y')
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_subject_empty', 'y');
 		$error=true;
 	}
-	else if (empty($_POST['msg']))
+	else if (empty($_POST['autores_msg'])  && $_POST['autores_active'] == 'y')
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_msg_empty', 'y');
 		$error=true;
 	}
-	else if(strlen($_POST['esubject']) > 50)
+	else if(strlen($_POST['autores_subject']) > 50  && $_POST['autores_active'] == 'y')
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_subject_to_long', 'y');
@@ -39,13 +39,11 @@ if (isset($_POST['u_submit']))
 	else
 	{
 		save_autoresponder($_SESSION['uid'],
-			$_POST['active'],
-			$_POST['esubject'],
+			$_POST['autores_active'],
+			$_POST['autores_subject'],
 			$_POST['msg']);
 		// activate System-Script
 		run_systemscripts();
-		$smarty->assign('if_query_ok','y');
-		
 	}
 	
 	
@@ -84,9 +82,9 @@ if ($result->numRows()==1)
 }
 elseif($error)
 {
-	$active=$_POST['active'];
-	$msg=$_POST['msg'];
-	$esubject=$_POST['esubject'];
+	$active=$_POST['autores_active'];
+	$msg=$_POST['autores_msg'];
+	$esubject=$_POST['autores_subject'];
 	
 }
 else
@@ -110,9 +108,9 @@ $val_tos_active = get_email_options($_SESSION['uid'],"auto_val_tos_active", 0);
 $smarty->assign('val_tos_active', $val_tos_active);
 
 $smarty->assign('table_val_tos', $table_val_tos);
-$smarty->assign('esubject', $esubject);
-$smarty->assign('active', $active);
+$smarty->assign('autores_subject', $esubject);
+$smarty->assign('autores_active', $active);
 $smarty->assign('id', $id);
-$smarty->assign('msg', $msg);
+$smarty->assign('autores_msg', $msg);
 $smarty->assign('email', $_SESSION['email']);
 ?>

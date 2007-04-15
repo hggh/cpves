@@ -132,26 +132,26 @@
 </tr>
 <tr>
  <td>Autoresponder aktiv:</td>
- <td><select name="autoresponder_active">
-  <option value="y">Ja</option>
-  {if $autoresponder_active eq 'n' }
-  	<option value="n" onclick="autoresp_disable();" selected="selected">Nein</option>
+ <td><select name="autores_active">
+  <option value="y" onclick="cpves_autores_field('');">Ja</option>
+  {if $autores_active eq 'n' }
+  	<option value="n" onclick="cpves_autores_field('true');" selected="selected">Nein</option>
   {else}
-  	<option onclick="autoresp_disable();" value="n">Nein</option>
+  	<option value="n" onclick="cpves_autores_field('true');">Nein</option>
   {/if}
   </select></td>
 </tr>
 <tr>
  <td>Autoresponder Betreff:</td>
- <td><input type="text" name="esubject" maxlength="50" value="{$esubject}" /></td>
+ <td><input type="text" name="autores_subject" id="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 </tr>
 <tr>
  <td valign="top">Nachricht:</td>
- <td><textarea name="msg" cols="50" rows="15">{$msg}</textarea></td>
+ <td><textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea>{if $autores_active eq 'n' }<script type="text/javascript">cpves_autores_field('true');</script>{/if}</td>
 </tr>
 <tr>
  <td></td>
- <td><input type="submit" value="Speichern" name="autoresponder" /></td>
+ <td><input type="submit" value="Speichern" name="autores_submit" /></td>
 </tr>
 	<tr>
 		<td colspan="2">&#160;</td>
@@ -251,7 +251,7 @@
 
 <!-- Spamassasssin feature begin -->
 {if $if_spamassassin == 1 }
-<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
+<form action="?module=email_view&#038;id={$id}&#038;did={$did}" name="sa_form" id="sa_form" method="post">
 <tr>
  <td colspan="2" class="domain_view"><h3>Spamfilter</h3></td>
 </tr>

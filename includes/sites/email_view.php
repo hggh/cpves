@@ -109,21 +109,21 @@ if (isset($_SESSION['superadmin']) &&
 	/* save spamassassin end */
 	
 	/* Save autoresponder begin */
-	if (isset($_POST['autoresponder'])) {
+	if (isset($_POST['autores_submit'])) {
 		$error=false;
-		if (empty($_POST['esubject']))
+		if (empty($_POST['autores_subject']) && $_POST['autores_active'] == 'y')
 		{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_subject_empty', 'y');
 		$error=true;
 		}
-		else if (empty($_POST['msg']))
+		else if (empty($_POST['autores_msg']) && $_POST['autores_active'] == 'y')
 		{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_msg_empty', 'y');
 		$error=true;
 		}
-		else if(strlen($_POST['esubject']) > 50)
+		else if(strlen($_POST['autores_subject']) > 50 && $_POST['autores_active'] == 'y')
 		{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_autores_subject_to_long', 'y');
@@ -132,9 +132,9 @@ if (isset($_SESSION['superadmin']) &&
 		else
 		{
 		save_autoresponder($_GET['id'],
-			$_POST['autoresponder_active'],
-			$_POST['esubject'],
-			$_POST['msg']);
+			$_POST['autores_active'],
+			$_POST['autores_subject'],
+			$_POST['autores_msg']);
 		run_systemscripts();
 		}
 	
@@ -170,9 +170,9 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	elseif($error)
 	{
-		$active=$_POST['autoresponder_active'];
-		$msg=$_POST['msg'];
-		$esubject=$_POST['esubject'];
+		$active=$_POST['autores_active'];
+		$msg=$_POST['autores_msg'];
+		$esubject=$_POST['autores_subject'];
 	}
 	else
 	{
@@ -180,10 +180,10 @@ if (isset($_SESSION['superadmin']) &&
 		$msg=$config_autores_msg;
 		$esubject=$config_autores_subject;
 	}
-	$smarty->assign('esubject', $esubject);
-	$smarty->assign('autoresponder_active', $active);
+	$smarty->assign('autores_subject', $esubject);
+	$smarty->assign('autores_active', $active);
 	$smarty->assign('id', $id);
-	$smarty->assign('msg', $msg);
+	$smarty->assign('autores_msg', $msg);
 	$smarty->assign('email', $_SESSION['email']);
 	/*  Autoresponder end */
 	
