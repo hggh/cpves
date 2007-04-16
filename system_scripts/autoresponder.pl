@@ -55,6 +55,11 @@ if ($mail->header("X-Spam-Flag") =~ m/yes/i)
 	#exit, because of SPAM
 	exit(0);
 }
+if ($mail->header("X-Bogosity") =~m/Spam, tests=bogofilter,/i)
+{
+	#exit, because of SPAM
+	exit(0);
+}
 if ($mail->header("X-Loop") =~ m/no/i || $mail->header("X-No-Loop") =~ m/yes/i) {
 	#exit, because of X-Loop Header in Mail
 	exit(0);

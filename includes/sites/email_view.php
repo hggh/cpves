@@ -50,11 +50,12 @@ if (isset($_SESSION['superadmin']) &&
 	/* save spamassassin begin */
 	if (isset($_POST['save_option']))
 {
-	if (isset($_POST['sa_active']) && is_numeric($_POST['sa_active']))
+	if (isset($_POST['spamassasin_active']) && is_numeric($_POST['spamassasin_active']))
 	{
-		update_email_options($_GET['id'],"spamassassin",$_POST['sa_active'],0);
+		update_email_options($_GET['id'],"spamassassin",$_POST['spamassasin_active'],0);
+		update_email_options($_GET['id'],"bogofilter",$_POST['bogofilter_active'],0);
 		//FIXME: in mailfilter ein und austragen!
-		if ($_POST['sa_active']=='1')
+		if ($_POST['spamassasin_active']=='1')
 		{
 			//INSERT INTO
 			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
@@ -64,7 +65,7 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($_GET['id']));
 			$result=&$db->query($sql);
 		}
-		else if($_POST['sa_active']=='0')
+		else if($_POST['spamassasin_active']=='0')
 		{
 			//reset filter
 			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
@@ -469,7 +470,9 @@ if (isset($_SESSION['superadmin']) &&
 	
 	// output spamassassin
 	$spamassassin=get_email_options($_GET['id'],"spamassassin", 0);
+	$bogofilter=get_email_options($_GET['id'],"bogofilter", 0);
 	$smarty->assign('spamassassin_active', $spamassassin);
+	$smarty->assign('bogofilter_active', $bogofilter);
 	// Database output rewrite_header subject
 	$sa_header = get_spamassassin_value($full_email, "rewrite_header subject", false);
 	if ($sa_header==false) {

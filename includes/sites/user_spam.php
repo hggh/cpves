@@ -20,11 +20,12 @@
 //Save Options to database:
 if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 {
-	if (isset($_POST['active']) && is_numeric($_POST['active']))
+	if (isset($_POST['spamassassin_active']) && is_numeric($_POST['spamassassin_active']))
 	{
-		update_email_options($_SESSION['uid'],"spamassassin",$_POST['active'],0);
+		update_email_options($_SESSION['uid'],"spamassassin",$_POST['spamassassin_active'],0);
+		update_email_options($_SESSION['uid'],"bogofilter",$_POST['bogofilter_active'],0);
 		//FIXME: in mailfilter ein und austragen!
-		if ($_POST['active']=='1')
+		if ($_POST['spamassassin_active']=='1')
 		{
 			//INSERT INTO
 			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
@@ -34,7 +35,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 				$db->escapeSimple($_SESSION['uid']));
 			$result=&$db->query($sql);
 		}
-		else if($_POST['active']=='0')
+		else if($_POST['spamassassin_active']=='0')
 		{
 			//reset filter
 			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='spamassassin'",
@@ -146,7 +147,9 @@ if (isset($_POST['white_add']) && isset($_POST['white_add_email']) && !empty($_P
 }
 
 $spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
-$smarty->assign('active', $spamassassin);
+$bogofilter=get_email_options($_SESSION['uid'],"bogofilter",0);
+$smarty->assign('bogofilter_active', $bogofilter);
+$smarty->assign('spamassassin_active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);
 
 // Database output rewrite_header subject

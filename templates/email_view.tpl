@@ -274,37 +274,56 @@
 </tr>
 <tr>
 	<td>Spamfilter aktiv:</td>
-	<td><select name="sa_active">
-		<option value="1">Ja</option>
-		{if $spamassassin_active eq '0' }
-		<option value="0" selected="selected">Nein</option>
-		{else} 
-		<option value="0">Nein</option>
-		{/if}
+	<td><select id="spamassasin_active" name="spamassasin_active">
+	<option value="1" onclick="cpves_sa_active('1');">Ja</option>
+	{if $spamassassin_active eq '0' }
+	<option value="0" onclick="cpves_sa_active('0');" selected="selected">Nein</option>
+	{else}
+	<option value="0" onclick="cpves_sa_active('0');">Nein</option>
+	{/if}
 	</select></td>
+</tr>
+
+{if $if_bogofilter == 1}
 <tr>
+	<td>Bogofilter aktiv:</td>
+	<td><select id="bogofilter_active" name="bogofilter_active">
+	<option value="1">Ja</option>
+	{if $bogofilter_active == 0}
+	<option value="0" selected="selected">Nein</option>
+	{else}
+	<option value="0">Nein</option>
+	{/if}
+	</select></td>
+</tr>
+{/if}
+	
 <tr>
 	<td valign="top">Schreibe Betreffszeile um:</td>
-	<td>{if $rewrite_subject eq '0' }
-		<input type="radio" onClick="this.form.rewrite_subject_header.disabled = true;" name="rewrite_subject" checked="checked" value="0" /> Nein
-		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = false;"  value="1" /> Ja<br />
-		{else}
-		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = true;"  value="0" /> Nein 
-		<input type="radio" name="rewrite_subject" onClick="this.form.rewrite_subject_header.disabled = false;"  checked="checked" value="1" /> Ja<br />
-		{/if}
-		<input id="rewrite_subject_header" maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
+	<td>{if $rewrite_subject == '1' } 
+	<input type="radio" name="rewrite_subject"  value="0" /> Nein 
+	<input type="radio" name="rewrite_subject" checked="checked" value="1" /> Ja<br />
+	{else} 
+	<input type="radio" checked="checked" name="rewrite_subject"  value="0" /> Nein 
+	<input type="radio" name="rewrite_subject" value="1" /> Ja<br />
+	{/if}
+	<input id="spamassassin_subject_header"  maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
 	</td>
 </tr>
+	
 <tr>
 	<td>Markiere Nachricht als Spam ab:</td>
-	<td>
-		<input type="text" name="threshold" value="{$threshold}" /> 
+	<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" />	
+	
+	{if $spamassassin_active eq '0' }
+	<script type="text/javascript">
+	cpves_sa_active('0');
+	</script>
+	{/if}
+	<input name="save_option" type="submit" value="Speichern" /> 
 	</td>
 </tr>
-<tr>
-	<td></td>
-	<td><input name="save_option" type="submit" value="Speichern" /> </td>
-</tr>
+
 </form>
 {/if}
 <!-- Spamassasssin feature end -->

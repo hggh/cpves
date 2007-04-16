@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl 
 #create_mailfilters.pl
 #Copyright (C) 2006 Jonas Genannt <jonas.genannt@brachium-system.net>
 #
@@ -16,8 +16,8 @@
 #along with this program; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-use strict;
 use DBI;
+use Fcntl;
 use Config::General;
 
 my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
@@ -31,6 +31,7 @@ $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 $config{'vmail_home'} = "/home/vmail" unless defined $config{'vmail_home'};
 $config{'vmail_safe'} = "/home/vmail_backup" unless defined $config{'vmail_safe'};
 $config{'spamassassin'} = "/usr/bin/spamc" unless defined $config{'spamassassin'};
+$config{'bogofilter'} = "/usr/bin/bogofilter" unless defined $config{'bogofilter'};
 
 if (! -d $config{'vmail_home'})
 {
@@ -50,6 +51,36 @@ sub del_mailfilter($) {
 	}
 }
 
+sub get_bogofilter($$) {
+	my $uid=$_[0];
+	my $email=$_[1];
+	my $b_sth = $dbh->prepare("SELECT options FROM email_options WHERE conf='bogofilter' AND email=?");
+	$b_sth->execute($uid);
+	if ($b_sth->rows == 1) {
+		my @row_b = $b_sth->fetchrow_array;
+		if ($row_b[0]== "1") {
+			my $b_s_sth=$dbh->prepare("SELECT value FROM spamassassin WHERE preference='rewrite_header subject' AND username=?");
+			$b_s_sth->execute($email);
+			my $bogo_subject;
+			if ($b_s_sth->rows == 1) {
+				my @row_b_s=$b_s_sth->fetchrow_array;
+				$bogo_subject=$row_b_s[0];
+			}
+			else {
+				$bogo_subject='';
+			}
+			my $bogofilter_line;
+			$bogofilter_line =sprintf("if (! /^X-Spam-Status: Yes/)\n{\nexception {\n xfilter \"%s --bogofilter-dir %s/.bogofilter/  -e -p -C -l --spam-subject-tag '%s' --unsure-subject-tag '' \"\n }\n}\n",
+			
+				$config{'bogofilter'},
+				$config{'vmail_home'},
+				$bogo_subject);
+			return $bogofilter_line;
+			
+		}
+	}
+	return 0;
+}
 
 my $sql=sprintf("SELECT CONCAT(%s ,'/',SUBSTRING_INDEX(b.email,'@\',-1),'/',SUBSTRING_INDEX(b.email,'@\',1)) AS epath, b.id AS emailid FROM mailfilter AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active='0' OR a.active='1' GROUP BY a.email",
 	 $dbh->quote($config{'vmail_home'}));
@@ -88,12 +119,16 @@ while(@data = $sth->fetchrow_array)
 			my $emailaddr	= $udata[3];
 			my $type	= $udata[4];
 			my $filter	= $udata[5];
-			#print "  -> $upath - $uid -  $emailaddr - $type - $filter\n";
+			print "  -> $upath - $uid -  $emailaddr - $type - $filter\n";
 			if ( $type eq "spamassassin") {
 				$mailfilter = sprintf("%s\nexception {\n xfilter \"%s -f -u %s \"\n}\n",
 					$mailfilter,
 					$config{'spamassassin'},
 					$emailaddr);
+				my $bogofilter=get_bogofilter($id,$emailaddr);
+				if ($bogofilter ne "0" ) {
+					$mailfilter =sprintf("%s\n%s",$mailfilter, $bogofilter);
+				}
 			}
 			if ( $type eq "autoresponder") {
 				$mailfilter = sprintf("%s\nexception {\n cc \"|%s %s\"\n}\n ",
@@ -113,7 +148,7 @@ while(@data = $sth->fetchrow_array)
 			}
 			if ( $type eq "move_spam") {
 				#if ( -d "$path/Maildir/.$filter") {
-					$mailfilter = sprintf("%s\nexception {\nif (/^X-Spam-Flag: Yes/)\n  to \"Maildir/.%s/\"\n}\n",
+					$mailfilter = sprintf("%s\nexception {\nif (/^X-Spam-Flag: Yes/ || /^X-Bogosity: Spam, tests=bogofilter/)\n  to \"Maildir/.%s/\"\n}\n",
 						$mailfilter,
 						$filter);
 					
@@ -135,8 +170,11 @@ while(@data = $sth->fetchrow_array)
 		}
 		if ( -d $path )
 		{
-			
-			`echo '$mailfilter' > $path/.mailfilter`;
+			my $handle;
+			sysopen($handle,"$path/.mailfilter", O_WRONLY|O_CREAT, 0600);
+			print $handle $mailfilter;
+			close($handle);
+			undef $handle;
 			`chmod 600 $path/.mailfilter`;
 		}
 		undef $mailfilter;
@@ -149,6 +187,7 @@ while(@data = $sth->fetchrow_array)
 	
 
 }
+
 
 $sth->finish();
 $dbh->disconnect();

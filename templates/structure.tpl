@@ -35,6 +35,18 @@ function cpves_autores_field(c) {
 	document.getElementById('autores_subject').disabled=c;
 	document.getElementById('autores_msg').disabled=c;
 }
+function cpves_sa_active(a) { 
+	if (a == 1 ) {
+		document.getElementById('bogofilter_active').disabled='';
+		document.getElementById('spamassassin_threshold').disabled='';
+		document.getElementById('spamassassin_subject_header').disabled='';
+	}
+	else {
+		document.getElementById('bogofilter_active').disabled=true;
+		document.getElementById('spamassassin_threshold').disabled=true;
+		document.getElementById('spamassassin_subject_header').disabled=true;
+	}
+}
 </script>{/literal}
 </head>
 <body {include file="focus_input.tpl"}>
