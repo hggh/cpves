@@ -24,6 +24,7 @@ $_SESSION['ad_user']='n';
 $_SESSION['spamassassin']='0';
 $_SESSION['forwarding']='0';
 $_SESSION['p_mailarchive']='0';
+$_SESSION['p_bogofilter']='0';
 
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
@@ -73,6 +74,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 				logging($_SESSION['email']);
 				$_SESSION['spamassassin']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spamassassin');
 				$_SESSION['p_mailarchive']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_mailarchive');
+				$_SESSION['p_bogofilter']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_bogofilter');
 				$_SESSION['forwarding']=$daten['p_forwarding'];
 				
 				

@@ -26,10 +26,10 @@ function forwardadd_fillform() {
 	}
 }
 
-function armail_check_both() {
-	var c = document.forms[0].checkboth.checked;
-	document.forms[0].armail_folder_month.checked=c;
-	document.forms[0].armail_folder_year.checked=c;
+function armail_check_both(a) {
+	var c = document.getElementById('checkboth' +a).checked;
+	document.getElementById('armail_folder_month'+a).checked=c;
+	document.getElementById('armail_folder_year' +a).checked=c;
 }
 function cpves_autores_field(c) {
 	document.getElementById('autores_subject').disabled=c;

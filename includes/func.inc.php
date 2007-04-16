@@ -55,6 +55,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'mailarchive':
 			$do='p_mailarchive';
 			break;
+		case 'bogofilter':
+			$do='p_bogofilter';
+			break;
 		default:
 			return false;
 	}
@@ -101,12 +104,22 @@ function list_imap_folders($imap_server, $email,$password) {
 			$name = ereg_replace("{ffo}", "", $val->name);
 			$name = ereg_replace("INBOX$trenner", "", $name);
 			$name_display=mb_convert_encoding($name, "ISO-8859-15", "UTF7-IMAP");
-			$name_display=str_replace($trenner, "\\ ", $name_display);
+			$name_display=str_replace($trenner, "/", $name_display);
 			if (!preg_match('/^drafts$/i', $name ) &&
 			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name)) {
+				
+				if (preg_match('/SPAM/i',$name)) {
 				array_push($imap_folders,array(
 					'name_display' => $name_display,
-					'name' => $name));
+					'name' => $name,
+					'type' => 'spam'));
+				}
+				else {
+				array_push($imap_folders,array(
+					'name_display' => $name_display,
+					'name' => $name,
+					'type' => 'normal'));
+				}
 			}
 		}
 		if (count($imap_folders) > 0 ) {

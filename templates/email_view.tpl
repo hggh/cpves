@@ -77,12 +77,29 @@
 	</select></td>
 </tr>
 {/if}
+{if $if_bogofilter == '1' }
+<tr>
+	<td>Bogofilter sichtbar:</td>
+	<td><select name="bogofilter">
+	<option value="enable">Ja</option>
+	{if $if_bogofilter_value == 0 }
+	<option value="disable" selected="selected">Nein</option>
+	{else}
+	<option value="disable">Nein</option>
+	{/if}
+	</select></td>
+</tr>
+{/if}
 {if $if_mailarchive == 1 }
 <tr>
 	<td>Mailarchiv sichtbar:</td>
 	<td><select name="mailachrive">
 	<option value="enable">Ja</option>
+	{if $if_mailarchive_value == 0}
+	<option value="disbale" selected="selected">Nein</option>
+	{else}
 	<option value="disbale">Nein</option>
+	{/if}
 	</select></td>
 </tr>
 {/if}

@@ -40,6 +40,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_webmail', $data['p_webmail']);
 	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$smarty->assign('if_mailarchive', $data['p_mailarchive']);
+	$smarty->assign('if_bogofilter', $data['p_bogofilter']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -364,6 +365,20 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$spamassassin=0;
 			}
+			if (isset($_POST['mailachrive']) && $_POST['mailachrive'] =="enable" && check_domain_feature($_GET['did'],'p_mailarchive')) {
+				$mailarchive=1;
+			}
+			else
+			{
+				$mailarchive=0;
+			}
+			if (isset($_POST['bogofilter']) && $_POST['bogofilter'] =="enable" && check_domain_feature($_GET['did'],'p_bogofilter')) {
+				$bogofilter=1;
+			}
+			else
+			{
+				$bogofilter=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -401,7 +416,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -410,6 +425,8 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($cpasswd),
 					$db->escapeSimple($forward_vis),
 					$db->escapeSimple($spamassassin),
+					$db->escapeSimple($mailarchive),
+					$db->escapeSimple($bogofilter),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -432,7 +449,8 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_webmail_value', $edata['p_webmail']);
 	$smarty->assign('if_forwarding_value', $edata['p_forwarding']);
 	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
-	
+	$smarty->assign('if_mailarchive_value', $edata['p_mailarchive']);
+	$smarty->assign('if_bogofilter_value', $edata['p_bogofilter']);
 	
 	// outout val_tos
 	$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",

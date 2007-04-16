@@ -179,6 +179,19 @@
 </tr>
 
 <tr>
+ <td>Bogofilter:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_bogofilter == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=bogofilter">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Bogofilter aktivieren." /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=bogofilter">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Bogofilter deaktivieren." /></a>
+ {/if}</td> 
+</tr>
+
+<tr>
  <td>Mailarchiv:</td>
  <td></td>
  <td style="text-align:right;">
