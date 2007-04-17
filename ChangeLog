@@ -9,6 +9,7 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: index_admin.tpl layout
 	o Improved: functions for email_options
 	o Improved: forward_view delete complete forward
+	o Added: automatic autoresponder disable feature
 	o Added: Initial Bogofilter frontend support
 	o Added: An SQL-Upgrade file
 	o Added: X-Loop and X-No-Loop check for autoresponder

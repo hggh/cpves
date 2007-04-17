@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl -w
 #create_mailfilters.pl
 #Copyright (C) 2006 Jonas Genannt <jonas.genannt@brachium-system.net>
 #
@@ -42,6 +42,24 @@ if (! -d $config{'vmail_home'})
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
+
+#disable autoresponder:
+my $da_sth= $dbh->prepare("SELECT email,id FROM autoresponder_disable WHERE UNIX_TIMESTAMP(a_date) < UNIX_TIMESTAMP() AND active='1'");
+$da_sth->execute();
+my @da_row;
+my $dd_sth;
+while (@da_row=$da_sth->fetchrow_array) {
+	#print "->",$da_row[0], "\n";
+	$dd_sth=$dbh->prepare("UPDATE mailfilter SET active='0' WHERE type='autoresponder' AND email=?");
+	$dd_sth->execute($da_row[0]);
+	undef $dd_sth;
+	$dd_sth=$dbh->prepare("UPDATE autoresponder_disable SET active='0' WHERE id=?");
+	$dd_sth->execute($da_row[1]);
+	undef $dd_sth;
+	$dd_sth=$dbh->prepare("UPDATE autoresponder SET active='n' WHERE email=?");
+	$dd_sth->execute($da_row[0]);
+	undef $dd_sth;
+}
 
 sub del_mailfilter($) {
 	my $path=$_[0];
@@ -119,7 +137,7 @@ while(@data = $sth->fetchrow_array)
 			my $emailaddr	= $udata[3];
 			my $type	= $udata[4];
 			my $filter	= $udata[5];
-			print "  -> $upath - $uid -  $emailaddr - $type - $filter\n";
+			#print "  -> $upath - $uid -  $emailaddr - $type - $filter\n";
 			if ( $type eq "spamassassin") {
 				$mailfilter = sprintf("%s\nexception {\n xfilter \"%s -f -u %s \"\n}\n",
 					$mailfilter,
