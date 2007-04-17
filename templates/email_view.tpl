@@ -164,12 +164,47 @@
 </tr>
 <tr>
  <td valign="top">Nachricht:</td>
- <td><textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea>{if $autores_active eq 'n' }<script type="text/javascript">cpves_autores_field('true');</script>{/if}</td>
+ <td><textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea></td>
 </tr>
 <tr>
  <td></td>
  <td><input type="submit" value="Speichern" name="autores_submit" /></td>
 </tr>
+	<form action="?module=user_autores" method="post">
+	<tr>
+		<td valign="top">Dekativiere Autoresponder:</td>
+		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
+		<option value="1" onclick="cpves_autores_datedisable('')">Ja</option>
+		{if $autores_disable.active == 0 }
+		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">Nein</option>
+		{else}
+		<option value="0" onclick="cpves_autores_datedisable('true')">Nein</option>
+		{/if}
+		</select></td>
+	</tr>
+	<tr>
+		<td>Ab Datum:</td>
+		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
+	</tr>
+	<tr>
+		<td>Ab Uhrzeit:</td>
+		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="Speichern" /></td>
+	</tr>
+	</form>
+	{if $autores_active eq 'n' }
+	<script type="text/javascript">cpves_autores_field('true');
+	</script>
+	{/if}
+	{if $autores_disable.active == 0 }
+	<script type="text/javascript">
+	cpves_autores_datedisable('true');
+	</script>
+	{/if}
+
 	<tr>
 		<td colspan="2">&#160;</td>
 	</tr>

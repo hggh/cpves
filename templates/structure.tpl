@@ -34,6 +34,14 @@ function armail_check_both(a) {
 function cpves_autores_field(c) {
 	document.getElementById('autores_subject').disabled=c;
 	document.getElementById('autores_msg').disabled=c;
+	document.getElementById('autores_datedisable_active').disabled=c;
+	document.getElementById('autores_datedisable_date').disabled=c;
+	document.getElementById('autores_datedisable_time').disabled=c;
+	document.getElementById('autores_datedisable_submit').disabled=c;
+}
+function cpves_autores_datedisable(c) {
+	document.getElementById('autores_datedisable_date').disabled=c;
+	document.getElementById('autores_datedisable_time').disabled=c;
 }
 function cpves_sa_active(a) { 
 	if (a == 1 ) {

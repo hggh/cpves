@@ -42,5 +42,11 @@ Bitte <a href="?module=forward_del&#038;did={$domainid}&#038;id={$id}">hier klic
 {elseif $if_wrong_sa_threshold == 'y'}
 Falsches Format f&uuml;r den Spamassassin-threshold!
 {elseif $if_wrong_sa_subjecttag == 'y' }
-Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein! 
+Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein!
+{elseif $if_error_autores_date_wrong == 'y'}
+Das Datum hat das falsche Format! (DD.MM.JJJJ)
+{elseif $if_error_autores_time_wrong == 'y'}
+Die Uhrzeit hat das falsche Format! (HH.MM.SS)
+{elseif $if_error_autores_disable_in_past == 'y' }
+Das angegebene Datum + Uhrzeit liegt in der Vergangenheit!
 {/if}

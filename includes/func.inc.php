@@ -35,6 +35,33 @@ $db=&DB::connect($dsn, $options);
 if (PEAR::isError($db)) {
     die($db->getMessage());
 }
+function get_autores_disable($uid) {
+	global $db;
+	$sql=sprintf("SELECT active,DATE_FORMAT(a_date, '%%d.%%m.%%Y') AS a_date,DATE_FORMAT(a_date, '%%H:%%i:%%s') AS a_time FROM autoresponder_disable WHERE email='%s'",
+		$db->escapeSimple($uid));
+	$res=&$db->query($sql);
+	if ($res->numRows() == 1) {
+		$data=$res->fetchrow(DB_FETCHMODE_ASSOC);
+		return $data;
+	}
+	return array('active '=> 0);
+}
+
+function check_autores_date_disable($a_date,$a_time) {
+	list($hour,$minute,$second)=split(':',$a_time,3);
+	list($day,$month,$year)=split("[.]",$a_date);
+	$date_user=mktime($hour,$minute,$second,$month,$day,$year);
+	if (time()<$date_user) {
+		return true;
+	}
+	return false;
+}
+
+function autores_date_format($a_date,$a_time) {
+	list($hour,$minute,$second)=split(':',$a_time,3);
+	list($day,$month,$year)=split("[.]",$a_date);
+	return mktime($hour,$minute,$second,$month,$day,$year);
+}
 
 function change_domain_feature($did,$feature,$state) {
 	global $db;
@@ -648,6 +675,12 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 	if ($active == 'y' )
 	{
 		$sql=sprintf("INSERT INTO mailfilter SET email='%d', active='1',prio='10', type='autoresponder'",
+			$db->escapeSimple($uid));
+		$result=&$db->query($sql);
+	}
+	
+	if ($active!='y') {
+		$sql=sprintf("UPDATE autoresponder_disable SET active='0' WHERE email='%d'",
 			$db->escapeSimple($uid));
 		$result=&$db->query($sql);
 	}

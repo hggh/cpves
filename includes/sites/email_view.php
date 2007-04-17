@@ -142,6 +142,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	}
 	
+	
 	if (isset($_POST['val_tos_active'])&& is_numeric($_POST['val_tos_active'])) {
 		update_email_options($_GET['id'],"auto_val_tos_active",$_POST['val_tos_active'], 0);
 	}
@@ -155,6 +156,47 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('if_submit_email_wrong', 'y');
 		}
 	}
+	
+	//automatic disable autoresponder:
+	//save automatic autoresponder disable feaure
+	if (isset($_POST['autores_datedisable_submit'])) {
+	if ($_POST['autores_datedisable_active'] == 0) {
+		$sql=sprintf("UPDATE autoresponder_disable SET active='0' WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$result=&$db->query($sql);
+	}
+	elseif (! preg_match('/^([0-9]{2}).([0-9]{2}).([0-9]{4})$/', $_POST['autores_datedisable_date'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_date_wrong', 'y');
+	}
+	elseif (! preg_match('/^([0-9]{2}):([0-9]{2}):([0-9]{2})$/', $_POST['autores_datedisable_time'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_time_wrong', 'y');
+	}
+	elseif (! check_autores_date_disable($_POST['autores_datedisable_date'],$_POST['autores_datedisable_time'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_disable_in_past', 'y');
+	}
+	else {
+		$unix_time=autores_date_format($_POST['autores_datedisable_date'],$_POST['autores_datedisable_time']);
+		$sql=sprintf("SELECT id FROM autoresponder_disable WHERE email='%d'",
+			$db->escapeSimple($_GET['id']));
+		$result=&$db->query($sql);
+		if ($result->numRows() == 1) {
+			$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+			$sql=sprintf("UPDATE autoresponder_disable SET a_date=FROM_UNIXTIME('%s'), active='1'",
+				$db->escapeSimple($unix_time));
+		}
+		else {
+			$sql=sprintf("INSERT INTO autoresponder_disable SET a_date=FROM_UNIXTIME('%s'),email='%d',active='1'",
+				$db->escapeSimple($unix_time),
+				$db->escapeSimple($_GET['id']));
+		}
+		$result=&$db->query($sql);
+	}
+	}
+	
+	
 	/* Save autoresponder end */
 	
 	
@@ -187,6 +229,9 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('id', $id);
 	$smarty->assign('autores_msg', $msg);
 	$smarty->assign('email', $_SESSION['email']);
+	//output autoresponder disabled feature
+	$autores_disable=get_autores_disable($_GET['id']);
+	$smarty->assign('autores_disable', $autores_disable);
 	/*  Autoresponder end */
 	
 	/* foward option save begin */

@@ -41,7 +41,7 @@ if (isset($_POST['autores_submit']))
 		save_autoresponder($_SESSION['uid'],
 			$_POST['autores_active'],
 			$_POST['autores_subject'],
-			$_POST['msg']);
+			$_POST['autores_msg']);
 		// activate System-Script
 		run_systemscripts();
 	}
@@ -67,6 +67,43 @@ if(isset($_POST['val_tos_add'])) {
 	}
 }
 
+//save automatic autoresponder disable feaure
+if (isset($_POST['autores_datedisable_submit'])) {
+	if ($_POST['autores_datedisable_active'] == 0) {
+		$sql=sprintf("UPDATE autoresponder_disable SET active='0' WHERE email='%d'",
+			$db->escapeSimple($_SESSION['uid']));
+		$result=&$db->query($sql);
+	}
+	elseif (! preg_match('/^([0-9]{2}).([0-9]{2}).([0-9]{4})$/', $_POST['autores_datedisable_date'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_date_wrong', 'y');
+	}
+	elseif (! preg_match('/^([0-9]{2}):([0-9]{2}):([0-9]{2})$/', $_POST['autores_datedisable_time'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_time_wrong', 'y');
+	}
+	elseif (! check_autores_date_disable($_POST['autores_datedisable_date'],$_POST['autores_datedisable_time'])) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_disable_in_past', 'y');
+	}
+	else {
+		$unix_time=autores_date_format($_POST['autores_datedisable_date'],$_POST['autores_datedisable_time']);
+		$sql=sprintf("SELECT id FROM autoresponder_disable WHERE email='%d'",
+			$db->escapeSimple($_SESSION['uid']));
+		$result=&$db->query($sql);
+		if ($result->numRows() == 1) {
+			$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+			$sql=sprintf("UPDATE autoresponder_disable SET a_date=FROM_UNIXTIME('%s'), active='1'",
+				$db->escapeSimple($unix_time));
+		}
+		else {
+			$sql=sprintf("INSERT INTO autoresponder_disable SET a_date=FROM_UNIXTIME('%s'),email='%d',active='1'",
+				$db->escapeSimple($unix_time),
+				$db->escapeSimple($_SESSION['uid']));
+		}
+		$result=&$db->query($sql);
+	}
+}
 
 $sql=sprintf("SELECT id,email,active,msg,esubject FROM autoresponder WHERE email='%d'",
 	$db->escapeSimple($_SESSION['uid']));
@@ -107,6 +144,11 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
 $val_tos_active = get_email_options($_SESSION['uid'],"auto_val_tos_active", 0);
 $smarty->assign('val_tos_active', $val_tos_active);
 
+
+//output autoresponder disabled feature
+$autores_disable=get_autores_disable($_SESSION['uid']);
+
+$smarty->assign('autores_disable', $autores_disable);
 $smarty->assign('table_val_tos', $table_val_tos);
 $smarty->assign('autores_subject', $esubject);
 $smarty->assign('autores_active', $active);

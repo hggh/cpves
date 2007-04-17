@@ -26,3 +26,12 @@ ALTER TABLE `users` ADD `p_mailarchive` TINYINT( 1 ) DEFAULT '0';
 
 ALTER TABLE `domains` ADD `p_bogofilter` TINYINT( 1 ) DEFAULT '0' NOT NULL ; 
 ALTER TABLE `users` ADD `p_bogofilter` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
+
+CREATE TABLE `autoresponder_disable` (
+  `id` int(11) NOT NULL auto_increment,
+  `email` int(11) NOT NULL default '0',
+  `active` tinyint(1) NOT NULL default '1',
+  `a_date` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`),
+  KEY `email` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
