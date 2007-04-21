@@ -27,7 +27,6 @@ if (isset($_SESSION['superadmin']) &&
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	$smarty->assign('id', $_GET['id']);
 	$smarty->assign('if_imap', $data['disableimap']);
 	$smarty->assign('if_pop3', $data['disablepop3']);
 	$smarty->assign('if_webmail', $data['disablewebmail']);
@@ -82,33 +81,33 @@ if (isset($_SESSION['superadmin']) &&
 		{
 			if (isset($_POST['imap']) && 
 			  $_POST['imap'] == "enable" &&
-			check_domain_feature($_GET['id'],'imap',$db))
-			{
-				$imap="";
-			}
-			else
+			check_domain_feature($_GET['did'],'p_imap',$db))
 			{
 				$imap="1";
 			}
+			else
+			{
+				$imap="0";
+			}
 			if (isset($_POST['pop3']) && 
 			  $_POST['pop3'] == "enable" &&
-			check_domain_feature($_GET['id'],'pop3',$db))
-			{
-				$pop3="";
-			}
-			else
+			check_domain_feature($_GET['did'],'p_pop3',$db))
 			{
 				$pop3="1";
 			}
+			else
+			{
+				$pop3="0";
+			}
 			if (isset($_POST['webmail']) && 
 			  $_POST['webmail'] == "enable" &&
-			check_domain_feature($_GET['id'],'webmail',$db))
+			check_domain_feature($_GET['did'],'p_webmail',$db))
 			{
-				$webmail="";
+				$webmail="1";
 			}
 			else
 			{
-				$webmail="1";
+				$webmail="0";
 			} 
 			if ($config['cleartext_passwd']==1) {
 				$cleartext=$_POST['password'];
@@ -117,7 +116,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$cleartext="";
 			}
-			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',disableimap='%s', disablepop3='%s',disablewebmail='%s',cpasswd='%s' ",
+			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',p_imap='%s', p_pop3='%s',p_webmail='%s',cpasswd='%s' ",
 				$db->escapeSimple(trim(strtolower($full_email))),
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($cleartext),
@@ -132,7 +131,7 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('if_email_saved', 'y');
 			$smarty->assign('success_msg', 'y');
 			$smarty->assign('if_email_saved', 'y');
-			// activate System-Script
+			//activate System-Script
 			run_systemscripts();
 
 		}
