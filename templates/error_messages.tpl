@@ -46,7 +46,7 @@ Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein!
 {elseif $if_error_autores_date_wrong == 'y'}
 Das Datum hat das falsche Format! (DD.MM.JJJJ)
 {elseif $if_error_autores_time_wrong == 'y'}
-Die Uhrzeit hat das falsche Format! (HH.MM.SS)
+Die Uhrzeit hat das falsche Format! (HH:MM:SS)
 {elseif $if_error_autores_disable_in_past == 'y' }
 Das angegebene Datum + Uhrzeit liegt in der Vergangenheit!
 {/if}
