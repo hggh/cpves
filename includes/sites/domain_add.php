@@ -31,31 +31,6 @@ if (isset($_POST['submit']) &&
 		}
 		else
 		{
-			//insert domain
-			if ($_POST['imap']=="enable")
-			{
-				$imap="";
-			}
-			else
-			{
-				$imap="1";
-			}
-			if ($_POST['pop3']=="enable")
-			{
-				$pop3="";
-			}
-			else
-			{
-				$pop3="1";
-			}
-			if ($_POST['webmail']=="enable")
-			{
-				$webmail="";
-			}
-			else
-			{
-				$webmail="1";
-			}
 			if (isset($_POST['max_email']) && is_numeric($_POST['max_email']))
 			{
 				$max_email=$_POST['max_email'];
@@ -73,15 +48,17 @@ if (isset($_POST['submit']) &&
 				$max_forward=0;
 			}
 			$dnsname=trim(strtolower($_POST['dnsname']));
-			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', disableimap='%s', disablepop3='%s', disablewebmail='%s',max_email='%d', max_forward='%d', dnote='%s',spamassassin='%s'",
+			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', p_imap='%s', p_pop3='%s', p_webmail='%s',max_email='%d', max_forward='%d', dnote='%s',p_spamassassin='%s',p_bogofilter='%s',p_mailarchive='%s'",
 				$db->escapeSimple($dnsname),
-				$db->escapeSimple($imap),
-				$db->escapeSimple($pop3),
-				$db->escapeSimple($webmail),
+				$db->escapeSimple($_POST['p_imap']),
+				$db->escapeSimple($_POST['p_pop3']),
+				$db->escapeSimple($_POST['p_webmail']),
 				$db->escapeSimple($max_email),
 				$db->escapeSimple($max_forward),
 				$db->escapeSimple(substr($_POST['dnote'],0,30)),
-				$db->escapeSimple($_POST['spamassassin']));
+				$db->escapeSimple($_POST['p_spamassassin']),
+				$db->escapeSimple($_POST['p_bogofilter']),
+				$db->escapeSimple($_POST['p_mailarchive']));
 			$res=&$db->query($sql);
 	
 			$sql=sprintf("SELECT id FROM domains WHERE dnsname='%s'",

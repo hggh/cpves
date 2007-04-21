@@ -83,7 +83,9 @@ function cpves_sa_active(a) {
 <span class="text">Benutzer: {$username}</span> | 
 {if $if_superadmin != 'y' && $if_login != 'y'}
 	<span class="text">Autoresponder: {if $if_autoresponder == 'y'}aktiv{else}nicht aktiv{/if}</span>  | 
+	{if $if_forwarding == 1}
 	<span class="text">Weiterleitung:{if $if_weiterleitung == 'y'}aktiv{else}nicht aktiv{/if}</span> |{/if}
+	{/if}
 {if $if_superadmin == 'y' && $if_manager == 'y'}
 <span class="text"> Rechte: Superadmin Manager</span> |
 {elseif $if_superadmin == 'y'&& $if_manager != 'y'} 

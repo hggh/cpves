@@ -67,33 +67,47 @@
 	<tr>
 		<td>IMAP-Verbindung:</td>
 		<td>
-			<select name="imap"> 
-				<option value="enable">Ja</option>
-				<option value="disable">Nein</option>
+			<select name="p_imap"> 
+				<option value="1">Ja</option>
+				<option value="0">Nein</option>
 			</select> 
 		</td>
 	</tr>
 	<tr>
 		<td>POP3-Verbindung:</td>
 		<td>
-			<select name="pop3"> 
-				<option value="enable">Ja</option>
-				<option value="disable">Nein</option>
+			<select name="p_pop3"> 
+				<option value="1">Ja</option>
+				<option value="0">Nein</option>
 			</select> 
 		</td>
 	</tr>
 	<tr>
 		<td>Webmail m&ouml;glich:</td>
-		<td><select name="webmail">
-			<option value="enable">Ja</option>
-			<option value="disable">Nein</option>
+		<td><select name="p_webmail">
+			<option value="1">Ja</option>
+			<option value="0">Nein</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Spamassassin m&ouml;glich:</td>
-		<td><select name="spamassassin">
+		<td><select name="p_spamassassin">
 			<option value="1">Ja</option>
 			<option value="0">Nein</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>Bogofilter m&ouml;glich:</td>
+		<td><select name="p_bogofilter">
+			<option value="0">Nein</option>
+			<option value="1">Ja</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>Mailarchiv m&ouml;glich:</td>
+		<td><select name="p_mailarchive">
+			<option value="0">Nein</option>
+			<option value="1">Ja</option>
 		</select></td>
 	</tr>
 	<tr>
