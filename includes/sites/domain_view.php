@@ -90,6 +90,41 @@ if (is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
 }
 //ENABLE or DISABLE EMAIL
 
+//Whitelist add:
+if (isset($_POST['sa_whitelist_data_add_submit']) && ($_SESSION['spamassassin']==1||$_SESSION['superadmin']== 'y') ) {
+	if (!isset($_POST['sa_whitelist_data_add']) || empty($_POST['sa_whitelist_data_add'])) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('sa_whitelist_data_add_empty', 'y');
+		
+	}
+	elseif (check_whitelist_addr($_POST['sa_whitelist_data_add'])== 0) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('sa_whitelist_data_add_wrong', 'y');
+	}
+	else {
+		$addr=trim(strtolower($_POST['sa_whitelist_data_add']));
+		$sql=sprintf("INSERT INTO sa_wb_listing SET domainid='%s',email='0',sa_from='%s',type='1'",
+			$db->escapeSimple($_GET['did']),
+			$db->escapeSimple($addr));
+		$result=&$db->query($sql);
+
+	}
+}
+//Whitelist add (END)
+
+//Whitelist del:
+if (isset($_POST['sa_whitelist_data_del']) && !empty($_POST['sa_whitelist_data'])) {
+	
+	foreach($_POST['sa_whitelist_data'] as $key) {
+		$sql=sprintf("DELETE FROM sa_wb_listing WHERE domainid='%d' AND id='%d'",
+			$db->escapeSimple($_GET['did']),
+			$db->escapeSimple($key));
+		$db->query($sql);
+		unset($sql);
+	}
+}
+//Whitelist del (END)
+
 
 //change MAX_forwards in database:
 if (isset($_POST['max_forwards']) && is_numeric($_POST['max_forwards']) && $_SESSION['superadmin'] && $_SESSION['superadmin']=='y')
@@ -123,7 +158,18 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 //Domain features veraendern ANFANG
 if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
-	change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);
+	if ($_GET['f']=='spamassassin' && $_GET['f']==0
+	&& check_domain_feature($_GET['did'], 'p_bogofilter')) {
+		change_domain_feature($_GET['did'],'bogofilter','0');
+	}
+	if ($_GET['f']=='bogofilter' 
+	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
+	   $smarty->assign('error_msg', 'y');
+	   $smarty->assign('if_error_sa_disabled_enable_bogofilter','y');
+	}
+	else {
+		change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);
+	}
 
 }
 // Domain feature veraendern ENDE
@@ -243,6 +289,22 @@ else
 {
 	$smarty->assign('if_catchall' , 'n');
 }
+
+
+//get Spamfilter whitelist
+if ($_SESSION['spamassassin']==1 ||$_SESSION['superadmin'] == 'y') {
+	$sql=sprintf("SELECT id,sa_from FROM sa_wb_listing WHERE domainid='%s' ORDER BY sa_from",
+		$db->escapeSimple($_GET['did']));
+	$result=&$db->query($sql);
+	$table_sa_whitelist=array();
+	while($row=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		array_push($table_sa_whitelist,array(
+			'id' => $row['id'],
+			'sa_from' => $row['sa_from']));
+	}
+	$smarty->assign('table_sa_whitelist',$table_sa_whitelist);
+}
+//get Spamfilter whitelist END
 
 
 }//Access OK

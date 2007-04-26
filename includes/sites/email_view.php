@@ -497,6 +497,12 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
 	$smarty->assign('if_mailarchive_value', $edata['p_mailarchive']);
 	$smarty->assign('if_bogofilter_value', $edata['p_bogofilter']);
+	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
+		$smarty->assign('sa_move_spam',$edata['move_spam'] );
+	}
+	else {
+		$smarty->assign('sa_move_spam','0');
+	}
 	
 	// outout val_tos
 	$sql=sprintf("SELECT recip,id FROM autoresponder_recipient WHERE email='%d'",

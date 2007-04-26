@@ -217,7 +217,7 @@ Verbraucht/M&ouml;glich
  {/if}</span></td>
 </tr>
 <tr>
- <td>eMailadressen</td>
+ <td>E-Mailadressen:</td>
  {if $if_superadmin != 'y' }
  <td></td>
  {/if}
@@ -229,7 +229,7 @@ Verbraucht/M&ouml;glich
 {/if} 
 </tr>
 <tr>
- <td>Weiterleitungen</td>
+ <td>Weiterleitungen:</td>
  {if $if_superadmin != 'y' }
  <td></td>
  {/if}
@@ -251,6 +251,32 @@ Verbraucht/M&ouml;glich
  <form action="?module=domain_view&#038;did={$did}" method="post">
  <input name="dnote" maxlength="30" value="{$dnote}" type="text"/></form>
  </td>
+</tr>
+{/if}
+
+{if $if_spamassassin == 1 || ( $if_superadmin == 'y' && $p_spamassassin == 1) }
+<tr>
+	<td colspan="4" class="domain_view"><h3>Spamfilter - Whitelist</h3></td>
+</tr>
+<tr>
+	<td valign="top">Whitelist:</td>
+	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
+	<select name="sa_whitelist_data[]" size="10" multiple="true">
+	{foreach from=$table_sa_whitelist item=row}
+	<option value="{$row.id}">{$row.sa_from}</option>
+	{/foreach}
+	</select><br/>
+	<input type="submit" name="sa_whitelist_data_del" value="Markierte L&ouml;schen"/>
+	</form></td>
+</tr>
+<tr>
+	<td colspan="4" style="height:10px;"></td>
+</tr>
+<tr>
+	<td>Hinzuf&uuml;gen:</td>
+	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
+	<input type="text" size="30" name="sa_whitelist_data_add"/><br/>
+	<input type="submit" name="sa_whitelist_data_add_submit" value="Speichern"/></form></td>
 </tr>
 {/if}
 

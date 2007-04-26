@@ -130,7 +130,7 @@ if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	    $smarty->assign('access_domain', $access_domain);
 	}
 }
-// Normal user fix for viewing coorect menu:
+// Normal user fix for viewing correct menu:
 if ((ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user')) {
 
 	if (isset($_GET['user'])
@@ -147,7 +147,7 @@ if ((ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user')) {
 
 // Fetch Domainname from $_GET['did']
 if (isset($_GET['did']) && is_numeric($_GET['did'])) {
-	$sql=sprintf("SELECT dnsname FROM domains WHERE id='%s'",
+	$sql=sprintf("SELECT dnsname,p_spamassassin FROM domains WHERE id='%s'",
 		$db->escapeSimple($_GET['did']) );
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);

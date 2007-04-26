@@ -3,7 +3,7 @@
 <form action="?module=forward_add&#038;did={$did}" method="post">
 <table>
 <tr>
- <td>eMailadresse:</td>
+ <td>E-Mailadresse:</td>
  <td style="width:10px;"></td>
  <td><input type="text" name="from" value="{$from}"/>@{$domain}</td>
 </tr>

@@ -38,10 +38,22 @@ function cpves_autores_field(c) {
 	document.getElementById('autores_datedisable_date').disabled=c;
 	document.getElementById('autores_datedisable_time').disabled=c;
 	document.getElementById('autores_datedisable_submit').disabled=c;
+	document.getElementById('autores_valtos_active_off').disabled=c;
+	document.getElementById('autores_valtos_active_on').disabled=c;
+	document.getElementById('autores_valtos_data').disabled=c;
+	document.getElementById('autores_valtos_del').disabled=c;
+	document.getElementById('autores_valtos_add_data').disabled=c;
+	document.getElementById('autores_valtos_add_submit').disabled=c;
 }
 function cpves_autores_datedisable(c) {
 	document.getElementById('autores_datedisable_date').disabled=c;
 	document.getElementById('autores_datedisable_time').disabled=c;
+}
+function cpves_autores_valtos(c) {
+	document.getElementById('autores_valtos_data').disabled=c;
+	document.getElementById('autores_valtos_del').disabled=c;
+	document.getElementById('autores_valtos_add_data').disabled=c;
+	document.getElementById('autores_valtos_add_submit').disabled=c;
 }
 function cpves_sa_active(a) { 
 	if (a == 1 ) {

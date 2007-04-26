@@ -93,12 +93,12 @@
 		<td>Spamassassin m&ouml;glich:</td>
 		<td><select name="p_spamassassin">
 			<option value="1">Ja</option>
-			<option value="0">Nein</option>
+			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;">Nein</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Bogofilter m&ouml;glich:</td>
-		<td><select name="p_bogofilter">
+		<td><select id="p_bogofilter" name="p_bogofilter">
 			<option value="0">Nein</option>
 			<option value="1">Ja</option>
 		</select></td>

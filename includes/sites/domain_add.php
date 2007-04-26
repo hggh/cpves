@@ -47,6 +47,13 @@ if (isset($_POST['submit']) &&
 			{
 				$max_forward=0;
 			}
+			if ($_POST['p_spamassassin']!= 1) {
+				$bogofilter=0;
+			}
+			else {
+				$bogofilter=$_POST['p_bogofilter'];
+			}
+			
 			$dnsname=trim(strtolower($_POST['dnsname']));
 			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', p_imap='%s', p_pop3='%s', p_webmail='%s',max_email='%d', max_forward='%d', dnote='%s',p_spamassassin='%s',p_bogofilter='%s',p_mailarchive='%s'",
 				$db->escapeSimple($dnsname),
@@ -57,7 +64,7 @@ if (isset($_POST['submit']) &&
 				$db->escapeSimple($max_forward),
 				$db->escapeSimple(substr($_POST['dnote'],0,30)),
 				$db->escapeSimple($_POST['p_spamassassin']),
-				$db->escapeSimple($_POST['p_bogofilter']),
+				$db->escapeSimple($bogofilter),
 				$db->escapeSimple($_POST['p_mailarchive']));
 			$res=&$db->query($sql);
 	

@@ -35,6 +35,20 @@ $db=&DB::connect($dsn, $options);
 if (PEAR::isError($db)) {
     die($db->getMessage());
 }
+function check_whitelist_addr($addr) {
+	if (preg_match('/^@/', $addr)) { //addr is an domain
+		if (preg_match('/^([a-zA-Z_.\-@]+)$/',$addr)) {
+			return 1;
+		}
+	}
+	else {
+		if (Validate::email($addr)== 1) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 function get_autores_disable($uid) {
 	global $db;
 	$sql=sprintf("SELECT active,DATE_FORMAT(a_date, '%%d.%%m.%%Y') AS a_date,DATE_FORMAT(a_date, '%%H:%%i:%%s') AS a_time FROM autoresponder_disable WHERE email='%s'",

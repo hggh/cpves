@@ -59,15 +59,7 @@
 		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="Speichern" /></td>
 	</tr>
 	</form>
-	{if $autores_active eq 'n' }
-	<script type="text/javascript">cpves_autores_field('true');
-	</script>
-	{/if}
-	{if $autores_disable.active == 0 }
-	<script type="text/javascript">
-	cpves_autores_datedisable('true');
-	</script>
-	{/if}
+
 
 	<tr style="height:25px;">
 		<td></td>
@@ -78,25 +70,42 @@
 	<tr>
 		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
 		<td>{if $val_tos_active == 1 }
-		<input type="radio" onclick="submit();" checked="checked" name="val_tos_active" value="1"> Ja <input type="radio" onclick="submit();" name="val_tos_active"  value="0"> Nein
-		{else}<input type="radio" onclick="submit();"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();" name="val_tos_active"  value="0"> Nein{/if}</td>
+		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> Ja <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> Nein
+		{else}
+		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> Nein{/if}</td>
 	</tr>
 	
 	<tr>
 		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
 		<td>
-		<select name="val_tos[]" size="8" multiple="true">
+		<select name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
 		<option value="{$row.id}">{$row.recip}</option>
 		{/foreach}
 		</select><br/>
-		<input type="submit" name="val_tos_del" value="Markierte L&ouml;schen" />
+		<input type="submit" id="autores_valtos_del" name="val_tos_del" value="Markierte L&ouml;schen" />
 		</td>
 		
 	</tr>
 	<tr>
 		<td>Hinzuf&uuml;gen:</td>
-		<td><input type="text" name="val_tos_da" /><input type="submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
+		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
 	</tr></form>
 </table>
+{if $autores_active eq 'n' }
+	<script type="text/javascript">cpves_autores_field('true');
+	</script>
+{/if}
+{if $autores_disable.active == 0 }
+	<script type="text/javascript">
+	cpves_autores_datedisable('true');
+	</script>
+{/if}
+{if $val_tos_active == 0 }
+	<script type="text/javascript">
+	cpves_autores_valtos('true');
+	</script>
+{/if}
+
+
 {/if}

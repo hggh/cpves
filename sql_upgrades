@@ -35,3 +35,14 @@ CREATE TABLE `autoresponder_disable` (
   PRIMARY KEY  (`id`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `sa_wb_listing` (
+  `id` int(11) NOT NULL auto_increment,
+  `domainid` int(11) NOT NULL default '0',
+  `email` int(11) NOT NULL default '0',
+  `sa_from` varchar(250) NOT NULL default '',
+  `type` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`id`),
+  KEY `domainid` (`domainid`),
+  KEY `type` (`type`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

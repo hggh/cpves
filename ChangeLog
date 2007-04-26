@@ -9,6 +9,7 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: index_admin.tpl layout
 	o Improved: functions for email_options
 	o Improved: forward_view delete complete forward
+	o Added: Whitelisting Support to Interface
 	o Added: automatic autoresponder disable feature
 	o Added: Initial Bogofilter frontend support
 	o Added: An SQL-Upgrade file
@@ -20,6 +21,7 @@ CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: ml_postmaster/mailserver_smtp to configfile
 	o Added: listMailer.pl support for configfile
 	o Added: index_sadmin: display sadmin privileges
+	o Added: sadmin/admin see move_spam option (ready only)
 	o Fixed: create forwarding
 	o Fixed: create mailinglist
 	o Fixed: listMailer.pl config file path

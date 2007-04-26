@@ -49,4 +49,11 @@ Das Datum hat das falsche Format! (DD.MM.JJJJ)
 Die Uhrzeit hat das falsche Format! (HH:MM:SS)
 {elseif $if_error_autores_disable_in_past == 'y' }
 Das angegebene Datum + Uhrzeit liegt in der Vergangenheit!
+{elseif $if_error_sa_disabled_enable_bogofilter == 'y' }
+Bogofilter ben&ouml;tigt Spamassassin!<br/>
+Bitte erst Spamassassin freischalten.
+{elseif $sa_whitelist_data_add_empty == 'y' }
+Whitelistfeld darf nicht leer sein!
+{elseif $sa_whitelist_data_add_wrong == 'y'}
+Whitelistfeld enth&auml;lt ung&uuml;ltige Zeichen!
 {/if}
