@@ -389,7 +389,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			else
 			{
-				$pop3="o";
+				$pop3="0";
 			}
 			if (isset($_POST['webmail']) && 
 			  $_POST['webmail'] == "enable" &&
