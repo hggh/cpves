@@ -24,6 +24,7 @@ use Config::General;
 my @email_from;
 my $email_input;
 my $did;
+my $emailid;
 
 my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
 my %config = $conf->getall;
@@ -33,8 +34,9 @@ $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
 
-$email_input = shift;
+$emailid     = shift;
 $did         = shift;
+$email_input = shift;
 
 if ($did eq '' || $did !~ m/^([0-9]+)$/) {
 	print "1\n";
