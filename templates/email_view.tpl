@@ -363,7 +363,7 @@
 </tr>
 <tr>
 	<td>Verschiebe erkannten Spam:</td>
-	<td>{if $sa_move_spam == 0}Nicht aktiviert{else}
+	<td>{if $sa_move_spam == '0'}Nicht aktiviert{else}
 	INBOX/{$sa_move_spam}
 	{/if}
 	</td>
