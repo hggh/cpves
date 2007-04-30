@@ -1,4 +1,4 @@
-CpVES 0.03 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder
 	o Improved: check_domain_faeture (database change needed)
