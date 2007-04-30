@@ -9,7 +9,7 @@
 <tr>
  <td valign="top">An: </td>
  <td>
- <select name="etos[]" size="8" multiple="true" >
+ <select style="min-width:250px;" name="etos[]" size="8" multiple="true" >
  {section name=row loop=$forwards}
  <option value="{$forwards[row].etosingle}">{$forwards[row].etosingle}</option>
  {/section}

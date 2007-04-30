@@ -9,9 +9,10 @@
 </tr>
 
 <tr>
- <td>Leiten nach:</td>
+ <td valign="top">Leiten nach:</td>
  <td style="width:10px;"></td>
- <td><input type="text" name="to" value="{$to}"/>
+ <td><textarea cols="40" rows="10" name="to" value="{$to}"></textarea>
+
  {if $table_email != false }<input type="button" name="add" value="<"  onclick="forwardadd_fillform()" />
  <select name="mail">
  {foreach from=$table_email item=row}

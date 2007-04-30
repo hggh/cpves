@@ -215,7 +215,7 @@
 	<tr>
 		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
 		<td>
-		<select name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
+		<select style="min-width:250px;" name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
 		<option value="{$row.id}">{$row.recip}</option>
 		{/foreach}

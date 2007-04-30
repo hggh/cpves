@@ -23,7 +23,7 @@ $config['postmaster'] = "postmaster@localhost";
 
 //DES Key for de/encrypt users passwd in session:
 //It have to be 24 chars long!!
-$config['des_key']="hs§#+ska81k!%&Y>FJMJflDT";
+$config['des_key']="hs#+ska81k!%&Y>FJMJflDT";
 
 //set to false if no logging!
 $config['write_login_log']=false;
@@ -34,10 +34,10 @@ $config['write_login_log']=false;
 $config['cleartext_passwd']="0";
 
 //set max password lenth:
-$config['max_passwd_len']=10;
+$config['max_passwd_len']=15;
 
 //IMAP Server:
-$config['imap_server'] = "ssl.brachium-system.net";
+$config['imap_server'] = "localhost";
 
 //Company Name:
 $config['company_title'] = "Some Company";

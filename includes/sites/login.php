@@ -53,7 +53,6 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			$sql=sprintf("SELECT id FROM admin_access WHERE email='%s'",
 				$db->escapeSimple($daten['id']));
 			$res=&$db->query($sql);
-			
 			if ($res->numRows() > 0 )
 			{
 				$_SESSION['admin']='y';

@@ -5,12 +5,12 @@ Version 0.02 to SVN
 ALTER TABLE `domains` CHANGE `disableimap` `p_imap` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `domains` CHANGE `disablepop3` `p_pop3` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `domains` CHANGE `disablewebmail` `p_webmail` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `domains` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '0';
+ALTER TABLE `domains` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '1';
 
 ALTER TABLE `users` CHANGE `disableimap` `p_imap` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `users` CHANGE `disablepop3` `p_pop3` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `users` CHANGE `disablewebmail` `p_webmail` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `users` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '0';
+ALTER TABLE `users` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `users` ADD `p_forwarding` TINYINT( 1 ) NULL DEFAULT '1';
 
 CREATE TABLE `autoresponder_recipient` (
@@ -46,3 +46,5 @@ CREATE TABLE `sa_wb_listing` (
   KEY `domainid` (`domainid`),
   KEY `type` (`type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE `domains` ADD `p_sa_wb_listing` TINYINT( 1 ) DEFAULT '0' NOT NULL ;

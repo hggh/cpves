@@ -99,6 +99,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'bogofilter':
 			$do='p_bogofilter';
 			break;
+		case 'sa_wb_listing':
+			$do='p_sa_wb_listing';
+			break;
 		default:
 			return false;
 	}
@@ -144,7 +147,7 @@ function list_imap_folders($imap_server, $email,$password) {
 			$trenner = $val->delimiter;
 			$name = ereg_replace("{ffo}", "", $val->name);
 			$name = ereg_replace("INBOX$trenner", "", $name);
-			$name_display=mb_convert_encoding($name, "ISO-8859-15", "UTF7-IMAP");
+			$name_display=mb_convert_encoding($name, "UTF-8", "UTF7-IMAP");
 			$name_display=str_replace($trenner, "/", $name_display);
 			if (!preg_match('/^drafts$/i', $name ) &&
 			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name)) {

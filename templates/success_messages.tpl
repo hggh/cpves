@@ -13,7 +13,7 @@ Superadmin wurde angelegt.
 {elseif $if_password_changed == 'y'}
 Passwort erfolgreich ge&auml;ndert.
 {elseif $if_email_data_saved == 'y'}
-Daten der E-Mailadresse erfolgreicht gespeichert.
+Daten der E-Mailadresse erfolgreich gespeichert.
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_list_created == 'y'}
 Mailingliste wurde erfolgreich angelegt.

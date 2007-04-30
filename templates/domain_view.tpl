@@ -26,9 +26,9 @@
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access eq 'y' }
- <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="eMailadresse deaktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="E-Mailadresse deaktivieren."/></a>
  {else}
- <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="eMailadresse aktivieren."/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="E-Mailadresse aktivieren."/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
   <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="eMailadresse l&ouml;schen" />
@@ -203,6 +203,18 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="Mailarchiv deaktivieren." /></a>
  {/if}</td> 
 </tr>
+<tr>
+ <td>Spamfilter Whitelisting:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_sa_wb_listing == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_wb_listing">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamfilter Whitelisting aktivieren." /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_wb_listing">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Spamfilter Whitelisting deaktivieren." /></a>
+ {/if}</td> 
+</tr>
 
 
 {/if}
@@ -254,14 +266,14 @@ Verbraucht/M&ouml;glich
 </tr>
 {/if}
 
-{if $if_spamassassin == 1 || ( $if_superadmin == 'y' && $p_spamassassin == 1) }
+{if ($if_spamassassin == 1 || ( $if_superadmin == 'y' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
 <tr>
 	<td colspan="4" class="domain_view"><h3>Spamfilter - Whitelist</h3></td>
 </tr>
 <tr>
 	<td valign="top">Whitelist:</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
-	<select name="sa_whitelist_data[]" size="10" multiple="true">
+	<select style="min-width:250px;" name="sa_whitelist_data[]" size="10" multiple="true">
 	{foreach from=$table_sa_whitelist item=row}
 	<option value="{$row.id}">{$row.sa_from}</option>
 	{/foreach}

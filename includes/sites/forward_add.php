@@ -82,9 +82,10 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			else
 			{
+				$eto=preg_replace("(\n|\r)",'',$_POST['to']);
 				$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', domainid='%s', access='y'",
 				$db->escapeSimple(strtolower($full_email)),
-				$db->escapeSimple($_POST['to']),
+				$db->escapeSimple($eto),
 				$db->escapeSimple($_GET['did']));
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
