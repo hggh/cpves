@@ -35,7 +35,7 @@ $config{'bogofilter'} = "/usr/bin/bogofilter" unless defined $config{'bogofilter
 $config{'sa_wb_listing'} = "/etc/mail-admin/sa_wb_listing.pl" unless defined $config{'sa_wb_listing'};
 $config{'reformail'} = "/usr/bin/reformail" unless defined $config{'reformail'};
 
-my $sa_wblist = sprintf("exception {\nif ( /^From:\s*(.*)/ )\n{\nADDR=getaddr($MATCH1)\nWHITELIST=`%s DID EMAILID $ADDR`\nif ($WHITELIST eq 0)\n{\nxfilter \"%s -A'X-CpVES: Whitelist'\"\n}\n}\n}\n", $config{'sa_wb_listing'}, $config{'reformail'} );
+my $sa_wblist = sprintf("exception {\nif ( /^From:\\s*(.*)/ )\n{\nADDR=getaddr(\$MATCH1)\nWHITELIST=`%s DID EMAILID \$ADDR`\nif (\$WHITELIST eq 0)\n{\nxfilter \"%s -A'X-CpVES: Whitelist'\"\n}\n}\n}\n", $config{'sa_wb_listing'}, $config{'reformail'} );
 
 if (! -d $config{'vmail_home'})
 {
@@ -92,7 +92,7 @@ sub get_bogofilter($$) {
 				$bogo_subject='';
 			}
 			my $bogofilter_line;
-			$bogofilter_line =sprintf("if ($WHITELIST ne 0 )\n{\nif (! /^X-Spam-Status: Yes/)\n{\nexception {\n xfilter \"%s --bogofilter-dir %s/.bogofilter/  -e -p -C -l --spam-subject-tag '%s' --unsure-subject-tag '' \"\n }\n}\n}\n",
+			$bogofilter_line =sprintf("if (\$WHITELIST ne 0 )\n{\nif (! /^X-Spam-Status: Yes/)\n{\nexception {\n xfilter \"%s --bogofilter-dir %s/.bogofilter/  -e -p -C -l --spam-subject-tag '%s' --unsure-subject-tag '' \"\n }\n}\n}\n",
 			
 				$config{'bogofilter'},
 				$config{'vmail_home'},
@@ -104,7 +104,7 @@ sub get_bogofilter($$) {
 	return 0;
 }
 
-my $sql=sprintf("SELECT CONCAT(%s ,'/',SUBSTRING_INDEX(b.email,'@\',-1),'/',SUBSTRING_INDEX(b.email,'@\',1)) AS epath, b.id AS emailid, A.domainid AS domainid FROM mailfilter AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active='0' OR a.active='1' GROUP BY a.email",
+my $sql=sprintf("SELECT CONCAT(%s ,'/',SUBSTRING_INDEX(b.email,'@\',-1),'/',SUBSTRING_INDEX(b.email,'@\',1)) AS epath, b.id AS emailid, b.domainid AS domainid FROM mailfilter AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active='0' OR a.active='1' GROUP BY a.email",
 	 $dbh->quote($config{'vmail_home'}));
 my $sth = $dbh->prepare($sql);
 undef $sql;
@@ -150,7 +150,7 @@ while(@data = $sth->fetchrow_array)
 				$sa_wblist_temp=~ s/EMAILID/$id/;
 
 				$mailfilter = sprintf("%s\n%s", $mailfilter,$sa_wblist_temp );
-				$mailfilter = sprintf("%s\nif ($WHITELIST ne 0 )\n{\nexception {\n xfilter \"%s -f -u %s \"\n}\n}\n",
+				$mailfilter = sprintf("%s\nif (\$WHITELIST ne 0 )\n{\nexception {\n xfilter \"%s -f -u %s \"\n}\n}\n",
 					$mailfilter,
 					$config{'spamassassin'},
 					$emailaddr);

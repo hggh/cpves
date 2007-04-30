@@ -37,7 +37,7 @@ if (PEAR::isError($db)) {
 }
 function check_whitelist_addr($addr) {
 	if (preg_match('/^@/', $addr)) { //addr is an domain
-		if (preg_match('/^([a-zA-Z_.\-@]+)$/',$addr)) {
+		if (preg_match('/^([0-9a-zA-Z_.\-@]+)$/',$addr)) {
 			return 1;
 		}
 	}

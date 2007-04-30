@@ -34,8 +34,8 @@ $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
 
-$emailid     = shift;
 $did         = shift;
+$emailid     = shift;
 $email_input = shift;
 
 if ($did eq '' || $did !~ m/^([0-9]+)$/) {
