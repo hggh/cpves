@@ -13,30 +13,40 @@
  <td>Passwort:</td>
  <td><input type="password" name="password" maxlength="{$max_passwd_len}" value=""/></td>
 </tr>
-{if $if_imap != '1' }
+{if $if_imap == '1' }
 <tr>
  <td>IMAP-Verbindung:</td>
  <td><select name="imap">
-     <option value="enable">Ja</option>
-     <option value="disable">Nein</option></select></td>
+     <option value="1">Ja</option>
+     <option value="0">Nein</option></select></td>
 </tr>
 {/if}
-{if $if_pop3 != '1' }
+{if $if_pop3 == '1' }
 <tr>
  <td>POP3-Verbindung:</td>
  <td><select name="pop3">
-     <option value="enable">Ja</option>
-     <option value="disable">Nein</option></select></td>
+     <option value="1">Ja</option>
+     <option value="0">Nein</option></select></td>
 </tr>
 {/if}
-{if $if_webmail != '1' }
+{if $if_webmail == '1' }
 <tr>
  <td>Webmail moeglich:</td>
  <td><select name="webmail">
-     <option value="enable">Ja</option>
-     <option value="disable">Nein</option></select></td>
+     <option value="1">Ja</option>
+     <option value="0">Nein</option></select></td>
 </tr>
 {/if}
+{if $if_spamassassin == '1'}
+<tr>
+	<td>Spamassassin sichtbar:</td>
+	<td><select name="p_spamassassin">
+		<option value="1">Ja</option>
+		<option value="0">Nein</option>
+	</select></td>
+</tr>
+{/if}
+
 <tr>
 <td></td>
 <td><input type="submit" name="submit" value="Anlegen" /></td>

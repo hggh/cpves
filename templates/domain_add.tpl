@@ -111,6 +111,13 @@
 		</select></td>
 	</tr>
 	<tr>
+		<td>Spamfilter - Whitelist:</td>
+		<td><select name="p_sa_wb_listing">
+			<option value="0">Nein</option>
+			<option value="1">Ja</option>
+		</select></td>
+	</tr>
+	<tr>
 		<td>Max. E-Mailadressen:</td>
 		<td><input value="0" name="max_email"/>&#160; 0 = Unbegrenzt</td>
 	</tr>

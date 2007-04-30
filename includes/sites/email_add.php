@@ -27,9 +27,10 @@ if (isset($_SESSION['superadmin']) &&
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	$smarty->assign('if_imap', $data['disableimap']);
-	$smarty->assign('if_pop3', $data['disablepop3']);
-	$smarty->assign('if_webmail', $data['disablewebmail']);
+	$smarty->assign('if_imap', $data['p_imap']);
+	$smarty->assign('if_pop3', $data['p_pop3']);
+	$smarty->assign('if_webmail', $data['p_webmail']);
+	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$domain_id=$_GET['did'];
 	
 	$smarty->assign('domain',$data['dnsname']);
@@ -80,7 +81,7 @@ if (isset($_SESSION['superadmin']) &&
 		else
 		{
 			if (isset($_POST['imap']) && 
-			  $_POST['imap'] == "enable" &&
+			  $_POST['imap'] == "1" &&
 			check_domain_feature($_GET['did'],'p_imap',$db))
 			{
 				$imap="1";
@@ -90,7 +91,7 @@ if (isset($_SESSION['superadmin']) &&
 				$imap="0";
 			}
 			if (isset($_POST['pop3']) && 
-			  $_POST['pop3'] == "enable" &&
+			  $_POST['pop3'] == "1" &&
 			check_domain_feature($_GET['did'],'p_pop3',$db))
 			{
 				$pop3="1";
@@ -100,7 +101,7 @@ if (isset($_SESSION['superadmin']) &&
 				$pop3="0";
 			}
 			if (isset($_POST['webmail']) && 
-			  $_POST['webmail'] == "enable" &&
+			  $_POST['webmail'] == "1" &&
 			check_domain_feature($_GET['did'],'p_webmail',$db))
 			{
 				$webmail="1";
@@ -108,7 +109,15 @@ if (isset($_SESSION['superadmin']) &&
 			else
 			{
 				$webmail="0";
-			} 
+			}
+			if (isset($_POST['p_spamassassin']) && $_POST['p_spamassassin']== 1 &&check_domain_feature($_GET['did'],'p_spamassassin',$db))
+			{
+				$p_spamassassin=1;
+			}
+			else
+			{
+				$p_spamassassin=0;
+			}
 			if ($config['cleartext_passwd']==1) {
 				$cleartext=$_POST['password'];
 			}
@@ -116,7 +125,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$cleartext="";
 			}
-			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',p_imap='%s', p_pop3='%s',p_webmail='%s',cpasswd='%s' ",
+			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',p_imap='%s', p_pop3='%s',p_webmail='%s',cpasswd='%s',p_spamassassin='%s' ",
 				$db->escapeSimple(trim(strtolower($full_email))),
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($cleartext),
@@ -124,7 +133,8 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),
 				$db->escapeSimple($webmail),
-				$db->escapeSimple(crypt($_POST['password']))) ;
+				$db->escapeSimple(crypt($_POST['password'])),
+				$db->escapeSimple($p_spamassassin)) ;
 			$result=&$db->query($sql);
 			
 			
