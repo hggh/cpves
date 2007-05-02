@@ -28,6 +28,9 @@ $config['des_key']="hs#+ska81k!%&Y>FJMJflDT";
 //set to false if no logging!
 $config['write_login_log']=false;
 
+//webmail
+//$config['webmail_link']="http://your-mailserver.com/webmail/";
+$config['webmail_link']=false;
 
 //Save cleartext password in the database
 //NOT RECOMMENDED!!!! secuity hole

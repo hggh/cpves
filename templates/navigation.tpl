@@ -51,6 +51,9 @@
 	<a class="nav" href="?module=sadmin_view">Superadmin UserManager</a>
 	<a class="nav" href="?module=sadmin_add">Neuen SuperAdmin anlegen</a>
 {/if}
+{if $webmail_link != false }
+	<a class="nav" href="{$webmail_link}">Webmail</a>
+{/if}
 <a class="nav" href="?module=logout">Logout</a>
 
 </p>
