@@ -666,7 +666,7 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 		else {
 			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
 				$db->escapeSimple($esubject),
-				$db->escapeSimple($msg),
+				$msg,
 				$db->escapeSimple($active),
 				$db->escapeSimple($data['id']),
 				$db->escapeSimple($uid) );
@@ -676,7 +676,7 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 	{
 		$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d'",
 				$db->escapeSimple($esubject),
-				$db->escapeSimple($msg),
+				$msg,
 				$db->escapeSimple($active),
 				$db->escapeSimple($uid) );
 	}

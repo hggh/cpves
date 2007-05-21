@@ -172,10 +172,17 @@ if ($sth->rows == 0)
 		exit(0);
 	}
 	
-	
+	##UTF-8 fix:
+	if (! utf8::is_utf8($mail_text)) {
+		utf8::decode($mail_text);
+	}
+	if (! utf8::is_utf8($subject)) {
+		utf8::decode($subject);
+	}
+
 	my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
-		Charset => "iso-8859-15",
+		Charset => "UTF-8",
 		Disposition => 'inline',
 		Data    => $mail_text);
 			$e_send_to->head->add("User-Agent", 'CPM/Autoresponder');
