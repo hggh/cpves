@@ -1,20 +1,20 @@
 <div id="leftside">
 <h1>Menu</h1>
 <p>
-<a class="nav active" href="index.php?user=n">&Uuml;bersicht</a>
+<a class="nav active" href="index.php?user=n">{$labels.menu}</a>
 {if $if_domain_view == 'y' }
 	<a class="nav sub" href="?module=domain_view&#038;did={$did}">Domainansicht</a>
-	<a class="nav sub" href="?module=email_add&#038;did={$did}">Neue eMailadresse</a>
-	<a class="nav sub" href="?module=forward_add&#038;did={$did}">Neue Weiterleitung</a>
+	<a class="nav sub" href="?module=email_add&#038;did={$did}">{$labels.new_mailaddress}</a>
+	<a class="nav sub" href="?module=forward_add&#038;did={$did}">{$labels.new_forwarding}</a>
 	{if $if_listings == 'y' }
-	<a class="nav sub" href="?module=list_add&#038;did={$did}">Neue Liste</a>
+	<a class="nav sub" href="?module=list_add&#038;did={$did}">{$labels.new_ml}</a>
 	{/if}
 {/if}
 {if $if_superadmin eq 'y' }
-    <a class="nav" href="?module=sadmin_passwd">Passwort &#228;ndern</a>
+    <a class="nav" href="?module=sadmin_passwd">{$labels.password_change}</a>
 {/if}
 {if $if_admin eq 'y'  }
-	<a class="nav" href="index.php?user=y">Pers&ouml;nliche Einstellungen</a>
+	<a class="nav" href="index.php?user=y">{$labels.personal_settings}</a>
 {/if}
 {if $if_superadmin != 'y' && $menu_user_open == 'y' }
 	<a class="nav sub" href="?module=user_autores">Autoresponder</a>
@@ -22,7 +22,7 @@
 	<a class="nav sub" href="?module=user_spam">Spamfilter</a>
 	{/if}
 	{if $if_forwarding == '1'}
-	<a class="nav sub" href="?module=user_forward">Weiterleitung</a>
+	<a class="nav sub" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav sub" href="?module=user_options">Optionen</a>
 	<!-- <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a> -->
@@ -36,7 +36,7 @@
 	<a class="nav" href="?module=user_spam">Spamfilter</a>
 	{/if}
 	{if $if_forwarding == '1'}
-	<a class="nav" href="?module=user_forward">Weiterleitung</a>
+	<a class="nav" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav" href="?module=user_options">Optionen</a>
 	<!-- <a class="nav" href="?module=user_mailfilter">Mailfilter</a> -->
@@ -45,7 +45,7 @@
 	{/if}
 {/if}
 {if $if_superadmin == 'y' }
-	<a class="nav" href="?module=domain_add">Neue Domain anlegen</a>
+	<a class="nav" href="?module=domain_add">{$labels.new_domain}</a>
 {/if}
 {if $if_manager == 'y' }
 	<a class="nav" href="?module=sadmin_view">Superadmin UserManager</a>
@@ -54,7 +54,7 @@
 {if $webmail_link != false }
 	<a class="nav" href="{$webmail_link}">Webmail</a>
 {/if}
-<a class="nav" href="?module=logout">Logout</a>
+<a class="nav" href="?module=logout">{$labels.logout}</a>
 
 </p>
 </div>

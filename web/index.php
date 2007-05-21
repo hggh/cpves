@@ -19,6 +19,8 @@
 session_start();
 require_once("../root.php");
 require_once( ROOT . "/includes/config.inc.php");
+include( ROOT . "/includes/localization/de_DE/labels.inc.php");
+$smarty->assign('labels', $labels);
 if (!isset($_POST['login'])  ) {
 	include(ROOT . "/includes/check_access.php");
 }
@@ -33,7 +35,6 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$smarty->assign('if_ad_user','n');
 	$_SESSION['ad_user']='n';
 }
-
 
 $site="";
 switch($_GET['module']) {

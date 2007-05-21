@@ -8,7 +8,7 @@ Soll die eMail Adresse {$email} wirklich gel&ouml;scht werden?<br/><br/>
 </div>
 <form action="?module=email_del&#038;id={$id}&#038;did={$did}" method="post">
 <input type="hidden" name="del_ok" value="true"/>
-<input type="submit" name="submit" value="L&ouml;schen" />
+<input type="submit" name="submit" value="{$labels.del}" />
 </form>
 <br/>
 {else}

@@ -19,7 +19,7 @@
 <tr>
 <td></td>
 <td style="width:10px;"></td>
-<td><input type="submit" name="submit" value="Anlegen" /></td>
+<td><input type="submit" name="submit" value="{$labels.create}" /></td>
 </tr>
 </table>
 </form>

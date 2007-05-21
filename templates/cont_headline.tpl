@@ -11,15 +11,15 @@
 {elseif $template == "domain_view.tpl"}
 	{$dnsname}: &Uuml;bersicht
 {elseif $template == "email_add.tpl"}
-	{$dnsname}: Neue E-Mailadresse anlegen
+	{$dnsname}: {$labels.new_mailaddress_add}
 {elseif $template == "email_view.tpl"}
 	{$full_email}: Bearbeiten
 {elseif $template == "forward_add.tpl"}
-	{$dnsname}: Neue Weiterleitung anlegen
+	{$dnsname}: {$labels.new_forwarding_add}
 {elseif $template == "forward_catchall.tpl"}
 	{$dnsname}: Catchall
 {elseif $template == "sadmin_passwd.tpl"}
-	Passwort &auml;ndern
+	{$labels.password_change}
 {elseif $template == "user_spam.tpl"}
 	{$email}: Spamfilter
 {elseif $template == "user_forward.tpl"}
@@ -31,7 +31,7 @@
 {elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index != 'y' }
 	Domain&uuml;bersicht
 {elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index == 'y' }
-	Pers&ouml;nliche Einstellungen
+	{$labels.personal_settings}
 {elseif $template == "forward_view.tpl"}
 	{$forward}: Bearbeiten
 {elseif $template == "email_del.tpl"}
@@ -43,11 +43,11 @@
 {elseif $template == "domain_del.tpl" && $if_del_ok != 'n' }
 	Domain l&ouml;schen
 {elseif $template == "user_options.tpl" }
-	{$email}: Einstellungen
+	{$email}: {$labels.settings}
 {elseif $template == "user_archivemail.tpl" }
 	{$email}: Mailarchiv
 {elseif $template == "login.tpl" }
-	Login
+	{$labels.login}
 {elseif $template == "list_add.tpl" }
 	{$dnsname}: Neue Mailingliste anlegen
 {elseif $template == "list_del.tpl" }

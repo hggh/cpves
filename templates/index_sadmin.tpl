@@ -1,10 +1,10 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>Domain</td>
-		<td>E-Mailadressen</td>
-		<td>Weiterleitungen</td>
-		<td>Aktivieren/Deaktivieren</td>
-		<td>L&#246;schen</td>
+		<td>{$labels.domain}</td>
+		<td>{$labels.email_addresses}</td>
+		<td>{$labels.email_forwardings}</td>
+		<td>{$labels.activate}/{$labels.deactivate}</td>
+		<td>{$labels.del}</td>
 		<td>Notiz</td>
 	</tr>
 	{foreach from=$table_data item=row} 
@@ -16,15 +16,15 @@
 		<td>
 			{if $row.access == "y" }
 				<a href="?module=main&#038;state=disable&#038;did={$row.id}">
-				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="Deaktivieren" /></a>
+				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="{$labels.deactivate}" /></a>
 			{else}
 				<a href="?module=main&#038;state=enable&#038;did={$row.id}" >
-				<img src="img/icons/button_cancel.png" style="vertical-align:middle;" title="Aktivieren" /></a>
+				<img src="img/icons/button_cancel.png" style="vertical-align:middle;" title="{$labels.activate}" /></a>
 			{/if} 
 		</td>
 		<td>
 			<a href="?module=domain_del&#038;did={$row.id}">
-			<img src="img/icons/delete.png" style="border:0px;" title="Domain löschen" />
+			<img src="img/icons/delete.png" style="border:0px;" title="Domain loeschen" />
 			</a>
 		</td>
 		<td>{$row.dnote}</td>

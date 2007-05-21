@@ -2,26 +2,26 @@
 <form action="?module=email_view&#038;id={$id}&#038;did={$domainid}" method="post">
 <table>
 <tr>
- <td style="width:190px;">E-Mailadresse:</td>
+ <td style="width:190px;">{$labels.email_address}:</td>
  <td style="width:300px;">{$full_email}</td>
 </tr>
 <tr>
- <td>Voller Name:</td>
+ <td>{$labels.full_name}:</td>
  <td><input type="text" name="full_name" value="{$full_name}"/></td>
 </tr>
 <tr>
- <td>Passwort:</td>
+ <td>{$labels.password}:</td>
  <td><input type="password"  maxlength="{$max_passwd_len}" name="password" value=""/></td>
 </tr>
 {if $if_imap == '1' }
 <tr>
  <td>IMAP-Verbindung:</td>
  <td><select name="imap">
-     <option value="enable">Ja</option>
+     <option value="enable">{$labels.opt_yes}</option>
      {if $if_imap_value == 0}
-     <option value="disable" selected="selected">Nein</option>
+     <option value="disable" selected="selected">{$labels.opt_no}</option>
      {else}
-     <option value="disable">Nein</option>
+     <option value="disable">{$labels.opt_no}</option>
      {/if}
      </select></td>
 </tr>
@@ -30,11 +30,11 @@
 <tr>
  <td>POP3-Verbindung:</td>
  <td><select name="pop3">
-     <option value="enable">Ja</option>
+     <option value="enable">{$labels.opt_yes}</option>
      {if $if_pop3_value == 0}
-     <option value="disable" selected="selected" >Nein</option>
+     <option value="disable" selected="selected" >{$labels.opt_no}</option>
      {else}
-     <option value="disable" >Nein</option>
+     <option value="disable" >{$labels.opt_no}</option>
      {/if}
      </select></td>
 </tr>
@@ -43,11 +43,11 @@
 <tr>
  <td>Webmail m&ouml;glich:</td>
  <td><select name="webmail">
-     <option value="enable">Ja</option>
+     <option value="enable">{$labels.opt_yes}</option>
      {if $if_webmail_value == 0 }
-     <option value="disable" selected="selected" >Nein</option>
+     <option value="disable" selected="selected" >{$labels.opt_no}</option>
      {else}
-     <option value="disable" >Nein</option>
+     <option value="disable" >{$labels.opt_no}</option>
      {/if}
      </select></td>
 </tr>
@@ -55,11 +55,11 @@
 <tr>
 	<td>Weiterleitung sichtbar:</td>
 	<td><select name="forwarding">
-	    <option value="enable">Ja</option>
+	    <option value="enable">{$labels.opt_yes}</option>
 	    {if $if_forwarding_value == 0 }
-	    <option value="disable" selected="selected">Nein</option>
+	    <option value="disable" selected="selected">{$labels.opt_no}</option>
 	    {else}
-	    <option value="disable">Nein</option>
+	    <option value="disable">{$labels.opt_no}</option>
 	    {/if}
 	    </select></td>
 	    
@@ -68,11 +68,11 @@
 <tr>
 	<td>Spamassassin sichtbar:</td>
 	<td><select name="spamassassin">
-	<option value="enable">Ja</option>
+	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_spamassassin_value == 0 }
-	<option value="disable" selected="selected">Nein</option>
+	<option value="disable" selected="selected">{$labels.opt_no}</option>
 	{else}
-	<option value="disable">Nein</option>
+	<option value="disable">{$labels.opt_no}</option>
 	{/if}
 	</select></td>
 </tr>
@@ -81,11 +81,11 @@
 <tr>
 	<td>Bogofilter sichtbar:</td>
 	<td><select name="bogofilter">
-	<option value="enable">Ja</option>
+	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_bogofilter_value == 0 }
-	<option value="disable" selected="selected">Nein</option>
+	<option value="disable" selected="selected">{$labels.opt_no}</option>
 	{else}
-	<option value="disable">Nein</option>
+	<option value="disable">{$labels.opt_no}</option>
 	{/if}
 	</select></td>
 </tr>
@@ -94,11 +94,11 @@
 <tr>
 	<td>Mailarchiv sichtbar:</td>
 	<td><select name="mailachrive">
-	<option value="enable">Ja</option>
+	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_mailarchive_value == 0}
-	<option value="disbale" selected="selected">Nein</option>
+	<option value="disbale" selected="selected">{$labels.opt_no}</option>
 	{else}
-	<option value="disbale">Nein</option>
+	<option value="disbale">{$labels.opt_no}</option>
 	{/if}
 	</select></td>
 </tr>
@@ -107,7 +107,7 @@
 
 <tr>
 <td></td>
-<td><input type="submit" name="submit" value="Speichern"/></td>
+<td><input type="submit" name="submit" value="{$labels.opt_save}"/></td>
 </tr>
 </form>
 
@@ -135,7 +135,7 @@
  <option value="{$table_adddns[row].dnsid}">{$table_adddns[row].dnsname}</option>
  {/section}
  </select></td>
- <td style="text-align:right;"><input type="submit" name="adddns" value="Hinzuf&uuml;gen" /></form></td>
+ <td style="text-align:right;"><input type="submit" name="adddns" value="{$labels.add}" /></form></td>
  {else}
  <td colspan="2">Keine weiteren Domains gefunden!</td>
  {/if}
@@ -150,11 +150,11 @@
 <tr>
  <td>Autoresponder aktiv:</td>
  <td><select name="autores_active">
-  <option value="y" onclick="cpves_autores_field('');">Ja</option>
+  <option value="y" onclick="cpves_autores_field('');">{$labels.opt_yes}</option>
   {if $autores_active eq 'n' }
-  	<option value="n" onclick="cpves_autores_field('true');" selected="selected">Nein</option>
+  	<option value="n" onclick="cpves_autores_field('true');" selected="selected">{$labels.opt_no}</option>
   {else}
-  	<option value="n" onclick="cpves_autores_field('true');">Nein</option>
+  	<option value="n" onclick="cpves_autores_field('true');">{$labels.opt_no}</option>
   {/if}
   </select></td>
 </tr>
@@ -168,17 +168,17 @@
 </tr>
 <tr>
  <td></td>
- <td><input type="submit" value="Speichern" name="autores_submit" /></td>
+ <td><input type="submit" value="{$labels.opt_save}" name="autores_submit" /></td>
 </tr>
 	<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 	<tr>
 		<td valign="top">Dekativiere Autoresponder:</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
-		<option value="1" onclick="cpves_autores_datedisable('')">Ja</option>
+		<option value="1" onclick="cpves_autores_datedisable('')">{$labels.opt_yes}</option>
 		{if $autores_disable.active == 0 }
-		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">Nein</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">{$labels.opt_no}</option>
 		{else}
-		<option value="0" onclick="cpves_autores_datedisable('true')">Nein</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')">{$labels.opt_no}</option>
 		{/if}
 		</select></td>
 	</tr>
@@ -192,7 +192,7 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="Speichern" /></td>
+		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="{$labels.opt_save}" /></td>
 	</tr>
 	</form>
 	<tr>
@@ -207,9 +207,9 @@
 	<tr>
 		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
 		<td>{if $val_tos_active == 1 }
-		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> Ja <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> Nein
+		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {$labels.opt_yes} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {$labels.opt_no}
 		{else}
-		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> Nein{/if}</td>
+		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> {$labels.opt_no}{/if}</td>
 	</tr>
 	
 	<tr>
@@ -226,7 +226,7 @@
 	</tr>
 	<tr>
 		<td>Hinzuf&uuml;gen:</td>
-		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
+		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{$labels.add}" /></td>
 	</tr>
 </form>
 {if $autores_active eq 'n' }

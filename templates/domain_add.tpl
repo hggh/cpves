@@ -68,8 +68,8 @@
 		<td>IMAP-Verbindung:</td>
 		<td>
 			<select name="p_imap"> 
-				<option value="1">Ja</option>
-				<option value="0">Nein</option>
+				<option value="1">{$labels.opt_yes}</option>
+				<option value="0">{$labels.opt_no}</option>
 			</select> 
 		</td>
 	</tr>
@@ -77,44 +77,44 @@
 		<td>POP3-Verbindung:</td>
 		<td>
 			<select name="p_pop3"> 
-				<option value="1">Ja</option>
-				<option value="0">Nein</option>
+				<option value="1">{$labels.opt_yes}</option>
+				<option value="0">{$labels.opt_no}</option>
 			</select> 
 		</td>
 	</tr>
 	<tr>
 		<td>Webmail m&ouml;glich:</td>
 		<td><select name="p_webmail">
-			<option value="1">Ja</option>
-			<option value="0">Nein</option>
+			<option value="1">{$labels.opt_yes}</option>
+			<option value="0">{$labels.opt_no}</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Spamassassin m&ouml;glich:</td>
 		<td><select name="p_spamassassin">
-			<option value="1">Ja</option>
-			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;">Nein</option>
+			<option value="1">{$labels.opt_yes}</option>
+			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;">{$labels.opt_no}</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Bogofilter m&ouml;glich:</td>
 		<td><select id="p_bogofilter" name="p_bogofilter">
-			<option value="0">Nein</option>
-			<option value="1">Ja</option>
+			<option value="0">{$labels.opt_no}</option>
+			<option value="1">{$labels.opt_yes}</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Mailarchiv m&ouml;glich:</td>
 		<td><select name="p_mailarchive">
-			<option value="0">Nein</option>
-			<option value="1">Ja</option>
+			<option value="0">{$labels.opt_no}</option>
+			<option value="1">{$labels.opt_yes}</option>
 		</select></td>
 	</tr>
 	<tr>
 		<td>Spamfilter - Whitelist:</td>
 		<td><select name="p_sa_wb_listing">
-			<option value="0">Nein</option>
-			<option value="1">Ja</option>
+			<option value="0">{$labels.opt_no}</option>
+			<option value="1">{$labels.opt_yes}</option>
 		</select></td>
 	</tr>
 	<tr>
@@ -129,7 +129,7 @@
 		<td>
 		</td>
 		<td>
-		<input type="submit" name="submit" value="Domain eintragen" />
+		<input type="submit" name="submit" value="{$labels.create}" />
 		</td>
 	</tr>
 </table>

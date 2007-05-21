@@ -93,8 +93,9 @@ if (isset($_POST['autores_datedisable_submit'])) {
 		$result=&$db->query($sql);
 		if ($result->numRows() == 1) {
 			$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-			$sql=sprintf("UPDATE autoresponder_disable SET a_date=FROM_UNIXTIME('%s'), active='1'",
-				$db->escapeSimple($unix_time));
+			$sql=sprintf("UPDATE autoresponder_disable SET a_date=FROM_UNIXTIME('%s'), active='1' WHERE email='%d'",
+				$db->escapeSimple($unix_time),
+				$db->escapeSimple($_SESSION['uid']));
 		}
 		else {
 			$sql=sprintf("INSERT INTO autoresponder_disable SET a_date=FROM_UNIXTIME('%s'),email='%d',active='1'",

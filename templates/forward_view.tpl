@@ -27,15 +27,15 @@
  <td colspan="2" class="domain_view"><h3>Adresse hinzuf&uuml;gen:</h3></td>
 </tr>
 <tr>
- <td valign="top">eMailadresse:</td>
- <td style="text-align:right"><form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_fwd" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" /></form><br/>
+ <td valign="top">{$labels.email_address}:</td>
+ <td style="text-align:right"><form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_fwd" /><br/><input  type="submit" value="{$labels.create}" name="submit_fwd" /></form><br/>
  
  {if $if_noemail_found != "y" }
  <form action="?module=forward_view&#038;id={$id}&#038;did={$domainid}" method="post">
  <select name="add_fwd">
  {section name=row loop=$table_addemail}
  <option value="{$table_addemail[row].email}">{$table_addemail[row].email}</option>
- {/section}</select><input type="submit" value="Hinzuf&uuml;gen" name="submit_fwd" />
+ {/section}</select><input type="submit" value="{$labels.create}" name="submit_fwd" />
  </form> 
  {/if}
  </td>

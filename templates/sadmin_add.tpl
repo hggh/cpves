@@ -31,7 +31,7 @@
 			<td>
 			</td>
 			<td>
-				<input type="submit" name="submit" value="Speichern"  /> 
+				<input type="submit" name="submit" value="{$labels.create}"  /> 
 			</td>
 		</tr>
 	</table>

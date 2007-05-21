@@ -15,7 +15,7 @@
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3" ><h3>E-Mailadressen</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">Ausblenden</a>]</td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">{$labels.hide}</a>]</td>
 </tr>
 </table>
 <table id="mailst" border="0">
@@ -46,7 +46,7 @@
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3"><h3>Weiterleitungen</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">Ausblenden</a>]</td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">{$labels.hide}</a>]</td>
 </tr>
 </table>
 <table id="forwardt" border="0">
@@ -72,7 +72,7 @@
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3"><h3>Mailinglisten</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">Ausblenden</a>]</td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">{$labels.hide}</a>]</td>
 </tr>
 </table>
 <table id="listst" border="0">
@@ -285,7 +285,7 @@ Verbraucht/M&ouml;glich
 	<td colspan="4" style="height:10px;"></td>
 </tr>
 <tr>
-	<td>Hinzuf&uuml;gen:</td>
+	<td>{$labels.add}:</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
 	<input type="text" size="30" name="sa_whitelist_data_add"/><br/>
 	<input type="submit" name="sa_whitelist_data_add_submit" value="Speichern"/></form></td>

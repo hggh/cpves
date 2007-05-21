@@ -20,7 +20,7 @@
 <tr>
  <td colspan="2"><form action="?module=forward_del&#038;did={$did}&#38;id={$id}" method="post">
 <input type="hidden" name="del_ok" value="true"/>
-<input type="submit" name="submit" value="L&ouml;schen" />
+<input type="submit" name="submit" value="{$labels.del}" />
 </form></td>
 </tr>
 </table>

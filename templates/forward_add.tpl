@@ -25,7 +25,7 @@
 <tr>
 <td></td>
 <td style="width:10px;"></td>
-<td><input type="submit" name="submit" value="Anlegen" /> <input type="reset" value="Zur&uuml;cksetzen"</td>
+<td><input type="submit" name="submit" value="{$labels.create}" /> <input type="reset" value="Zur&uuml;cksetzen"</td>
 </tr>
 </table>
 </form>
