@@ -3,11 +3,11 @@
 	<tr>
 		<td>Spamfilter aktiv:</td>
 		<td><select id="spamassassin_active" name="spamassassin_active">
-		<option value="1" onclick="cpves_sa_active('1');">Ja</option>
+		<option value="1" onclick="cpves_sa_active('1');">{$labels.opt_yes}</option>
 		{if $spamassassin_active eq '0' }
-		<option value="0" onclick="cpves_sa_active('0');" selected="selected">Nein</option>
+		<option value="0" onclick="cpves_sa_active('0');" selected="selected">{$labels.opt_no}</option>
 		{else}
-		<option value="0" onclick="cpves_sa_active('0');">Nein</option>
+		<option value="0" onclick="cpves_sa_active('0');">{$labels.opt_no}</option>
 		{/if}
 		</select></td>
 	</tr>
@@ -18,9 +18,9 @@
 		<td><select id="bogofilter_active" name="bogofilter_active">
 		<option value="1">Ja</option>
 		{if $bogofilter_active == 0}
-		<option value="0" selected="selected">Nein</option>
+		<option value="0" selected="selected">{$labels.opt_no}</option>
 		{else}
-		<option value="0">Nein</option>
+		<option value="0">{$labels.opt_no}</option>
 		{/if}
 		</select></td>
 	</tr>
@@ -29,11 +29,11 @@
 	<tr>
 		<td valign="top">Schreibe Betreffszeile um:</td>
 		<td>{if $rewrite_subject == '1' } 
-		<input type="radio" name="rewrite_subject"  value="0" /> Nein 
-		<input type="radio" name="rewrite_subject" checked="checked" value="1" /> Ja<br />
+		<input type="radio" name="rewrite_subject"  value="0" /> {$labels.opt_no} 
+		<input type="radio" name="rewrite_subject" checked="checked" value="1" /> {$labels.opt_yes}<br />
 		{else} 
-		<input type="radio" checked="checked" name="rewrite_subject"  value="0" /> Nein 
-		<input type="radio" name="rewrite_subject" value="1" /> Ja<br />
+		<input type="radio" checked="checked" name="rewrite_subject"  value="0" /> {$labels.opt_no} 
+		<input type="radio" name="rewrite_subject" value="1" /> {$labels.opt_yes}<br />
 		{/if}
 		<input id="spamassassin_subject_header"  maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
 		</td>
@@ -46,10 +46,10 @@
 
 	<tr>
 		<td valign="top">Verschiebe erkannten Spam nach:</td>
-		<td>{if $move_spam eq '0' } <input type="radio" name="move_spam" checked="checked" value="0" /> Nein 
-		<input type="radio" name="move_spam"  value="1" /> Ja<br />
-		{else} <input type="radio" name="move_spam"  value="0" /> Nein 
-			<input type="radio" name="move_spam"  checked="checked" value="1" /> Ja <br />{/if}
+		<td>{if $move_spam eq '0' } <input type="radio" name="move_spam" checked="checked" value="0" /> {$labels.opt_no} 
+		<input type="radio" name="move_spam"  value="1" /> {$labels.opt_yes}<br />
+		{else} <input type="radio" name="move_spam"  value="0" /> {$labels.opt_no} 
+			<input type="radio" name="move_spam"  checked="checked" value="1" /> {$labels.opt_yes} <br />{/if}
 		
 		{if $imap_folder_exits == "1" }
 		<select name="spam_folder">
@@ -63,13 +63,33 @@
 		
 		{else}<p>Kein Imap Ordner gefunden!<br/>Bitte Ordner im Mailprogramm anlegen!</p>
 		{/if}
-		
+		</td>
+	<tr>
+	<tr>
+		<td valign="top">{$labels.del_known_spam}:</td>
+		<td>
+		<select name="del_known_spam" id="del_known_spam">
+			<option value="0" onClick="cpves_sa_del_knowndisable('0')">{$labels.opt_no}</option>
+			{if $del_known_spam == 1 }
+			<option value="1" selected="selected" onClick="cpves_sa_del_knowndisable('1')" >{$labels.opt_yes}</option>
+			{else}
+			<option value="1" onClick="cpves_sa_del_knowndisable('1')">{$labels.opt_yes}</option>
+			{/if}
+			
+		</select><br/>
+		<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/>
+		<br/>
+		<input name="save_option" type="submit" value="{$labels.opt_save}" />
+		{if $del_known_spam != 1}
+		<script type="text/javascript">
+		cpves_sa_del_knowndisable('0');
+		</script>
+		{/if}
 		{if $spamassassin_active eq '0' }
 		<script type="text/javascript">
 		cpves_sa_active('0');
 		</script>
 		{/if}
-		<input name="save_option" type="submit" value="Speichern" /> 
 		</td>
 	</tr>
 {*	

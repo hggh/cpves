@@ -107,6 +107,26 @@ if (isset($_SESSION['superadmin']) &&
 			update_spamassassin_value($edata['email'],"required_score",$_POST['threshold']);
 		}
 	}
+	//save the del_known_spam option
+	if (is_numeric($_POST['del_known_spam']) && $_POST['del_known_spam']== 1) {
+		if (ereg("^[0-9]{1,2}\.[0-9]$",$_POST['del_known_spam_value'])==0)
+		{
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_del_known_spam_value', 'y');
+		}
+		elseif (get_spamassassin_value($edata['email'], "required_score", "5.0") >= $_POST['del_known_spam_value'] ) {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_del_known_spam_value_lower', 'y');
+		}
+		else
+		{
+			update_email_options($_GET['id'],'del_known_spam_value',$_POST['del_known_spam_value'],0);
+			update_email_options($_GET['id'],'del_known_spam','1',0);
+		}
+	}
+	else {
+		update_email_options($_GET['id'],'del_known_spam','0',0);
+	}
 	}
 	/* save spamassassin end */
 	
@@ -433,9 +453,9 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$forward_vis=0;
 			}
-			if (isset($_POST['password']) && !empty($_POST['password']))
+			if (isset($_POST['npassword']) && !empty($_POST['npassword']))
 			{
-				if (check_passwd_length($_POST['password'])==false)
+				if (check_passwd_length($_POST['npassword'])==false)
 				{
 					$smarty->assign('error_msg', 'y');
 					$smarty->assign('if_error_password_long','y');
@@ -445,8 +465,8 @@ if (isset($_SESSION['superadmin']) &&
 				}
 				else
 				{
-					$password=$_POST['password'];
-					$cpasswd=crypt($_POST['password']);
+					$password=$_POST['npassword'];
+					$cpasswd=crypt($_POST['npassword']);
 				}
 			} 
 			else
@@ -523,8 +543,12 @@ if (isset($_SESSION['superadmin']) &&
 	// output spamassassin
 	$spamassassin=get_email_options($_GET['id'],"spamassassin", 0);
 	$bogofilter=get_email_options($_GET['id'],"bogofilter", 0);
+	$del_known_spam=get_email_options($_GET['id'],"del_known_spam",0);
+	$del_known_spam_value=get_email_options($_GET['id'],"del_known_spam_value",10);
 	$smarty->assign('spamassassin_active', $spamassassin);
 	$smarty->assign('bogofilter_active', $bogofilter);
+	$smarty->assign('del_known_spam', $del_known_spam);
+	$smarty->assign('del_known_spam_value', $del_known_spam_value);
 	// Database output rewrite_header subject
 	$sa_header = get_spamassassin_value($full_email, "rewrite_header subject", false);
 	if ($sa_header==false) {
@@ -538,6 +562,7 @@ if (isset($_SESSION['superadmin']) &&
 	// Database output required_score
 	$sa_threshold = get_spamassassin_value($full_email, "required_score", "5.0");
 	$smarty->assign('threshold', $sa_threshold);
+	
 
 
 } // ENDE ACCESS OK

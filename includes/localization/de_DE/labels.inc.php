@@ -29,5 +29,6 @@
 	$labels['activate']="Aktivieren";
 	$labels['deactivate']="Deaktivieren";
 	$labels['settings']="Einstellungen";
+	$labels['del_known_spam']="L&ouml;sche Spam ab";
 	
 ?>

@@ -11,7 +11,7 @@
 </tr>
 <tr>
  <td>{$labels.password}:</td>
- <td><input type="password" name="password" maxlength="{$max_passwd_len}" value=""/></td>
+ <td><input type="password" name="npassword" maxlength="{$max_passwd_len}" value=""/></td>
 </tr>
 {if $if_imap == '1' }
 <tr>

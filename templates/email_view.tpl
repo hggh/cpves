@@ -11,7 +11,7 @@
 </tr>
 <tr>
  <td>{$labels.password}:</td>
- <td><input type="password"  maxlength="{$max_passwd_len}" name="password" value=""/></td>
+ <td><input type="password"  maxlength="{$max_passwd_len}" name="npassword" value=""/></td>
 </tr>
 {if $if_imap == '1' }
 <tr>
@@ -351,14 +351,34 @@
 	
 <tr>
 	<td>Markiere Nachricht als Spam ab:</td>
-	<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" />	
+	<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" />
+</td>
+<tr>
+	<td valign="top">{$labels.del_known_spam}:</td>
+	<td>
+	<select name="del_known_spam" id="del_known_spam">
+		<option value="0" onClick="cpves_sa_del_knowndisable('0')">{$labels.opt_no}</option>
+		{if $del_known_spam == 1 }
+		<option value="1" selected="selected" onClick="cpves_sa_del_knowndisable('1')" >{$labels.opt_yes}</option>
+		{else}
+		<option value="1" onClick="cpves_sa_del_knowndisable('1')">{$labels.opt_yes}</option>
+		{/if}
+		
+	</select><br/>
+	<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/>
+	<br/>
+	{if $del_known_spam != 1}
+	<script type="text/javascript">
+	cpves_sa_del_knowndisable('0');
+	</script>
+	{/if}	
 	
 	{if $spamassassin_active eq '0' }
 	<script type="text/javascript">
 	cpves_sa_active('0');
 	</script>
 	{/if}
-	<input name="save_option" type="submit" value="Speichern" /> 
+	<input name="save_option" type="submit" value="{$labels.opt_save}" />
 	</td>
 </tr>
 <tr>

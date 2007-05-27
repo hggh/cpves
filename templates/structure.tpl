@@ -59,12 +59,24 @@ function cpves_sa_active(a) {
 	if (a == 1 ) {
 		document.getElementById('spamassassin_threshold').disabled='';
 		document.getElementById('spamassassin_subject_header').disabled='';
+		document.getElementById('del_known_spam').disabled='';
+		document.getElementById('del_known_spam_value').disabled='';
 		document.getElementById('bogofilter_active').disabled='';
 	}
 	else {
 		document.getElementById('spamassassin_threshold').disabled=true;
 		document.getElementById('spamassassin_subject_header').disabled=true;
+		document.getElementById('del_known_spam').disabled=true;
+		document.getElementById('del_known_spam_value').disabled=true;
 		document.getElementById('bogofilter_active').disabled=true;
+	}
+}
+function cpves_sa_del_knowndisable(a) {
+	if (a == 1) {
+		document.getElementById('del_known_spam_value').disabled='';
+	}
+	else {
+		document.getElementById('del_known_spam_value').disabled=true;
 	}
 }
 </script>{/literal}

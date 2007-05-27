@@ -104,6 +104,28 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 		$result=&$db->query($sql);
 		
 	}
+	//save the del_known_spam option
+	if (is_numeric($_POST['del_known_spam']) && $_POST['del_known_spam']== 1) {
+		if (ereg("^[0-9]{1,2}\.[0-9]$",$_POST['del_known_spam_value'])==0)
+		{
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_del_known_spam_value', 'y');
+		}
+		elseif (get_spamassassin_value($_SESSION['email'], "required_score", "5.0") >= $_POST['del_known_spam_value'] ) {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_wrong_del_known_spam_value_lower', 'y');
+		}
+		else
+		{
+			update_email_options($_SESSION['uid'],'del_known_spam_value',$_POST['del_known_spam_value'],0);
+			update_email_options($_SESSION['uid'],'del_known_spam','1',0);
+		}
+	}
+	else {
+		update_email_options($_SESSION['uid'],'del_known_spam','0',0);
+	}
+
+
 	// activate System-Script
 	run_systemscripts();
 	
@@ -148,9 +170,13 @@ if (isset($_POST['white_add']) && isset($_POST['white_add_email']) && !empty($_P
 
 $spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
 $bogofilter=get_email_options($_SESSION['uid'],"bogofilter",0);
+$del_known_spam=get_email_options($_SESSION['uid'],"del_known_spam",0);
+$del_known_spam_value=get_email_options($_SESSION['uid'],"del_known_spam_value",10);
 $smarty->assign('bogofilter_active', $bogofilter);
 $smarty->assign('spamassassin_active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);
+$smarty->assign('del_known_spam', $del_known_spam);
+$smarty->assign('del_known_spam_value', $del_known_spam_value);
 
 // Database output rewrite_header subject
 $sa_header = get_spamassassin_value($_SESSION['email'], "rewrite_header subject", false);

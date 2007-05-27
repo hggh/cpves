@@ -56,4 +56,8 @@ Bitte erst Spamassassin freischalten.
 Whitelistfeld darf nicht leer sein!
 {elseif $sa_whitelist_data_add_wrong == 'y'}
 Whitelistfeld enth&auml;lt ung&uuml;ltige Zeichen!
+{elseif $if_wrong_del_known_spam_value == 'y'}
+Falsches Format f&uuml;r die Option "L&ouml;sche erkannten Spam"!
+{elseif $if_wrong_del_known_spam_value_lower == 'y'}
+Option "L&ouml;sche erkannten Spam"<br/> ist niedriger als "Markiere Nachricht" als Spam!
 {/if}

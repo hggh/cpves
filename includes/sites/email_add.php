@@ -45,7 +45,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	if (isset($_POST['submit']))
 	{
-	if (!empty($_POST['emailaddr']) && !empty($_POST['password']))
+	if (!empty($_POST['emailaddr']) && !empty($_POST['npassword']))
 	{
 		$full_email=$_POST['emailaddr']."@".$data['dnsname'];
 		if (get_forem_domain($data['id'],'users', $db)>=$data['max_email'] && $data['max_email']!=0 )
@@ -71,7 +71,7 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('eMail',$_POST['emailaddr'] );
 			$smarty->assign('full_name',$_POST['full_name'] );
 		}
-		else if (check_passwd_length($_POST['password'])==false)
+		else if (check_passwd_length($_POST['npassword'])==false)
 		{
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_password_long','y');
@@ -119,7 +119,7 @@ if (isset($_SESSION['superadmin']) &&
 				$p_spamassassin=0;
 			}
 			if ($config['cleartext_passwd']==1) {
-				$cleartext=$_POST['password'];
+				$cleartext=$_POST['npassword'];
 			}
 			else
 			{
@@ -133,7 +133,7 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),
 				$db->escapeSimple($webmail),
-				$db->escapeSimple(crypt($_POST['password'])),
+				$db->escapeSimple(crypt($_POST['npassword'])),
 				$db->escapeSimple($p_spamassassin)) ;
 			$result=&$db->query($sql);
 			
