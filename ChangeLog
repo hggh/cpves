@@ -2,10 +2,12 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: Webmail to config.inc.php and navigation for direct webmail link
 	o Added: initial language split
 	o Added: delete known spam option (frontend)
+	o Added: delete known spam option (backend)
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)
 	o Fixed: autorepsonder quoting problems
 	o Fixed: Password dialog forms (#5)
+	o Improved: move_spam (only called in autoresponder if spamassassin is active)
 CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder

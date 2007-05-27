@@ -104,6 +104,21 @@ sub get_bogofilter($$) {
 	return 0;
 }
 
+sub get_email_option($$$) {
+	my $uid = $_[0];
+	my $conf = $_[1];
+	my $default = $_[2];
+	my $ge_sth=$dbh->prepare("SELECT options FROM email_options WHERE email=? AND conf=?");
+	$ge_sth->execute($uid,$conf);
+	if ($ge_sth->rows==1) {
+		my @row_ge = $ge_sth->fetchrow_array;
+		return $row_ge[0];
+	}
+	else {
+		return $default;
+	}
+}
+
 my $sql=sprintf("SELECT CONCAT(%s ,'/',SUBSTRING_INDEX(b.email,'@\',-1),'/',SUBSTRING_INDEX(b.email,'@\',1)) AS epath, b.id AS emailid, b.domainid AS domainid FROM mailfilter AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active='0' OR a.active='1' GROUP BY a.email",
 	 $dbh->quote($config{'vmail_home'}));
 my $sth = $dbh->prepare($sql);
@@ -158,6 +173,12 @@ while(@data = $sth->fetchrow_array)
 				if ($bogofilter ne "0" ) {
 					$mailfilter =sprintf("%s\n%s",$mailfilter, $bogofilter);
 				}
+				if (get_email_option($id,'del_known_spam', '0') eq "1") {
+					my $del_known_spam_value=get_email_option($id,'del_known_spam_value', '100');
+					$mailfilter=sprintf("%s\nexception {\nif ( /^X-Spam-Status: Yes, score=([0-9.]+) required=/:h )\n{\nif (\$MATCH1 >= %s)\n{\nto \"|cat - > /dev/null\"\n}\n}\n}\n",
+					$mailfilter,
+					$del_known_spam_value);
+				}
 			}
 			if ( $type eq "autoresponder") {
 				$mailfilter = sprintf("%s\nexception {\n cc \"|%s %s\"\n}\n ",
@@ -175,7 +196,7 @@ while(@data = $sth->fetchrow_array)
 					$mailfilter,
 					$filter);
 			}
-			if ( $type eq "move_spam") {
+			if ( $type eq "move_spam" && get_email_option($id,'spamassassin', '0') eq "1") {
 				#if ( -d "$path/Maildir/.$filter") {
 					$mailfilter = sprintf("%s\nexception {\nif (/^X-Spam-Flag: Yes/ || /^X-Bogosity: Spam, tests=bogofilter/)\n  to \"Maildir/.%s/\"\n}\n",
 						$mailfilter,
