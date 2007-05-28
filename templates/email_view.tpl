@@ -312,7 +312,7 @@
 </tr>
 <tr>
 	<td>Spamfilter aktiv:</td>
-	<td><select id="spamassasin_active" name="spamassasin_active">
+	<td><select id="spamassassin_active" name="spamassasin_active">
 	<option value="1" onclick="cpves_sa_active('1');">Ja</option>
 	{if $spamassassin_active eq '0' }
 	<option value="0" onclick="cpves_sa_active('0');" selected="selected">Nein</option>

@@ -96,7 +96,7 @@ function cpves_update_sa_warning() {
 	document.getElementById('sa_del_known_spam').innerHTML=neu;
 }
 function cpves_sa_check_warning() {
-	if (document.getElementById('del_known_spam').value == 0 || document.getElementById('spamassasin_active').value == 0 ) {
+	if (document.getElementById('del_known_spam').value == 0 || document.getElementById('spamassassin_active').value == 0 ) {
 		cpves_check_state=0;
 		document.getElementById('sa_form').submit();
 	}

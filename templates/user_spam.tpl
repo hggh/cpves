@@ -1,4 +1,4 @@
-<form action="?module=user_spam" name="spam" method="post">
+<form action="?module=user_spam" name="spam" id="sa_form" method="post">
 <table>
 	<tr>
 		<td>Spamfilter aktiv:</td>
@@ -79,7 +79,8 @@
 		</select><br/>
 		<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/>
 		<br/>
-		<input name="save_option" type="submit" value="{$labels.opt_save}" />
+		<input type="hidden" name="save_option" value="OK" />
+		<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="Erkannten Spam l&ouml;schen?" class="thickbox" name="save" value="{$labels.opt_save}" onclick="cpves_sa_check_warning();" />
 		{if $del_known_spam != 1}
 		<script type="text/javascript">
 		cpves_sa_del_knowndisable('0');
@@ -156,3 +157,18 @@
 *}
 </table>
 </form>
+<div id="myOnPageContent" style="display:none">
+<span style="color:red;font-weight:bold;font-size:15pt;">- ACHTUNG -</span><br/>
+<br/>
+<span style="font-weight:bold;">Diese Option ist gef&auml;hrlich, ein falscher Wert l&ouml;scht nicht nur Spam sondern auch Ham!</span><br/><br/>
+Der Wert f&uuml;rs l&ouml;schen von Spam sollte deutlich h&ouml;her liegen als der Wert, womit nur Spam als Spam markiert wird!
+<br/><br/>
+Spam wird marktiert ab: <span id="sa_thresshold_value"></span><br/>
+Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
+<br/>
+<p style="text-align:center">
+<a href="#" onClick="tb_remove();">Abbrechen</a> |
+<a href="#" onclick="cpves_sa_warning_ok();">Ja, Spam soll gel&ouml;scht werden</a>
+</p>
+<script type="text/javascript">cpves_update_sa_warning(); </script>
+</div>
