@@ -46,6 +46,8 @@
 	{$email}: {$labels.settings}
 {elseif $template == "user_archivemail.tpl" }
 	{$email}: Mailarchiv
+{elseif $template == "user_mailfilter.tpl" }
+	{$email}: Mailfilter
 {elseif $template == "login.tpl" }
 	{$labels.login}
 {elseif $template == "list_add.tpl" }

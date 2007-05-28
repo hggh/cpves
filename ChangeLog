@@ -3,6 +3,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: initial language split
 	o Added: delete known spam option (frontend)
 	o Added: delete known spam option (backend)
+	o Added: optional Mailgraphlink for admin and superadmin
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)
 	o Fixed: autorepsonder quoting problems

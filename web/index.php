@@ -107,6 +107,9 @@ switch($_GET['module']) {
 	case 'user_archivemail':
 		$site="user_archivemail";
 		break;
+	case 'user_mailfilter':
+		$site="user_mailfilter";
+		break;
 	case 'logout':
 		$_SESSION = array();
 		session_destroy();
@@ -133,6 +136,11 @@ if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 }
 // Normal user fix for viewing correct menu:
 if ((ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user')) {
+	$sql=sprintf("SELECT email FROM users WHERE id='%s'",
+		$db->escapeSimple($_SESSION['uid']));
+	$result=&$db->query($sql);
+	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+	$smarty->assign('email', $data['email']);
 
 	if (isset($_GET['user'])
 	    && $_GET['user']=='y' || $_SESSION['ad_user']=='y') {

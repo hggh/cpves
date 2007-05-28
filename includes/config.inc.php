@@ -32,6 +32,10 @@ $config['write_login_log']=false;
 //$config['webmail_link']="http://your-mailserver.com/webmail/";
 $config['webmail_link']=false;
 
+//Mailgraph statistics (only visible for the admin and superadmin):
+//$config['mailgraph_link']="http://your-mailserver.com/cgi-bin/mailgraph.cgi";
+$config['mailgraph_link']=false;
+
 //Save cleartext password in the database
 //NOT RECOMMENDED!!!! secuity hole
 $config['cleartext_passwd']="0";

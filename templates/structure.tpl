@@ -7,8 +7,14 @@
 <title>:: CpVES :: {$company_title} ::</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="author" content="Jonas Genannt / Original design by Andreas Viklund - http://andreasviklund.com" />
+<link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
 {literal}
+<script type="text/javascript" >
+	var cpves_check_state=1;
+</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/thickbox.js"></script>
 <script type="text/javascript">
 function forwardadd_fillform() {
 	var fwd = document.forms[0].to.value;
@@ -79,6 +85,23 @@ function cpves_sa_del_knowndisable(a) {
 		document.getElementById('del_known_spam_value').disabled=true;
 	}
 }
+function cpves_sa_warning_ok() {
+                document.getElementById('sa_form').submit();
+		tb_remove();
+}
+function cpves_update_sa_warning() {
+	var neu=document.getElementById('spamassassin_threshold').value;
+	document.getElementById('sa_thresshold_value').innerHTML=neu;
+	neu=document.getElementById('del_known_spam_value').value;
+	document.getElementById('sa_del_known_spam').innerHTML=neu;
+}
+function cpves_sa_check_warning() {
+	if (document.getElementById('del_known_spam').value == 0 || document.getElementById('spamassasin_active').value == 0 ) {
+		cpves_check_state=0;
+		document.getElementById('sa_form').submit();
+	}
+	}
+	</script>
 </script>{/literal}
 </head>
 <body {include file="focus_input.tpl"}>

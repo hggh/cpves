@@ -20,6 +20,7 @@ $smarty->assign('if_listings', $config['mailinglisten']);
 $smarty->assign('company_title', $config['company_title']);
 $smarty->assign('max_passwd_len', $config['max_passwd_len']);
 $smarty->assign('webmail_link',$config['webmail_link']);
+$smarty->assign('mailgraph_link',$config['mailgraph_link']);
 /*
 mailfilter prios:
 

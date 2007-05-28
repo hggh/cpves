@@ -25,7 +25,7 @@
 	<a class="nav sub" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav sub" href="?module=user_options">Optionen</a>
-	<!-- <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a> -->
+	 <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a>
 	{if $p_mailarchive == 1}
 	<a class="nav sub" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}
@@ -39,7 +39,7 @@
 	<a class="nav" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav" href="?module=user_options">Optionen</a>
-	<!-- <a class="nav" href="?module=user_mailfilter">Mailfilter</a> -->
+	<a class="nav" href="?module=user_mailfilter">Mailfilter</a>
 	{if $p_mailarchive == 1}
 	<a class="nav" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}
@@ -53,6 +53,9 @@
 {/if}
 {if $webmail_link != false }
 	<a class="nav" href="{$webmail_link}">Webmail</a>
+{/if}
+{if $mailgraph_link != false && ($if_superadmin != 'y' || $if_admin !='y') }
+	<a class="nav" href="{$mailgraph_link}">Mailstatistik</a>
 {/if}
 <a class="nav" href="?module=logout">{$labels.logout}</a>
 
