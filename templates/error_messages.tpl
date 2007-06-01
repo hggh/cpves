@@ -60,4 +60,6 @@ Whitelistfeld enth&auml;lt ung&uuml;ltige Zeichen!
 Falsches Format f&uuml;r die Option "L&ouml;sche erkannten Spam"!
 {elseif $if_wrong_del_known_spam_value_lower == 'y'}
 Option "L&ouml;sche erkannten Spam"<br/> ist niedriger als "Markiere Nachricht" als Spam!
+{elseif $if_error_forwardaddr_valid == 'y' }
+Weiterleitungsadresse ist nicht konform!
 {/if}

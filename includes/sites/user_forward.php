@@ -19,11 +19,17 @@
 
 /* foward option save begin */
 if (isset($_POST['submit']) && $_SESSION['forwarding'] == 1) {
-	update_mailfilter('mail_forward',
-		$_SESSION['uid'],$_POST['forwardaddress'],
-		$_POST['delete_forward'],
-		$_POST['save_local']);
-	run_systemscripts();
+	if (!empty($_POST['forwardaddress']) &&  Validate::email($_POST['forwardaddress']) !=1 ) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_forwardaddr_valid', 'y');
+	}
+	else {
+		update_mailfilter('mail_forward',
+			$_SESSION['uid'],$_POST['forwardaddress'],
+			$_POST['delete_forward'],
+			$_POST['save_local']);
+		run_systemscripts();
+	}
 }
 /* foward option save begin */
 

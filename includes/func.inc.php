@@ -617,7 +617,7 @@ if ($type == 'mail_forward') {
 	$delete=$opt_2;
 	$fwdoption=$opt_3;
 		
-	if (isset($delete) && $delete == 'on') {
+	if ((isset($delete) && $delete == 'on') || empty($fwdmailaddr)) {
 		$sql=sprintf("UPDATE mailfilter SET active='0'  WHERE email='%d' AND type LIKE 'forward%%'",
 			$db->escapeSimple($uid));
 		$res=&$db->query($sql);

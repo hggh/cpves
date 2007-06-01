@@ -257,11 +257,18 @@ if (isset($_SESSION['superadmin']) &&
 	
 	/* foward option save begin */
 	if (isset($_POST['fwdmail_submit'])) {
+
+	if (!empty($_POST['forwardaddress']) &&  Validate::email($_POST['forwardaddress']) !=1 ) {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_forwardaddr_valid', 'y');
+	}
+	else {
 		update_mailfilter('mail_forward',
 			$_GET['id'],$_POST['forwardaddress'],
 			$_POST['delete_forward'],
 			$_POST['save_local']);
 		run_systemscripts();
+	}
 	}
 	/* foward option save begin */
 	
