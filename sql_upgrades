@@ -53,3 +53,4 @@ ALTER TABLE `domains` ADD `p_sa_wb_listing` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
 Version 0.03 to 0.04
 ALTER TABLE `domains` ADD `p_mailfilter` TINYINT( 1 ) NOT NULL DEFAULT '0';
 ALTER TABLE `domains` ADD `p_spam_del` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `p_spam_del` TINYINT( 1 ) NOT NULL DEFAULT '0';

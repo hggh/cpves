@@ -65,6 +65,7 @@
 		{/if}
 		</td>
 	<tr>
+	{if $p_spam_del == 1}
 	<tr>
 		<td valign="top">{$labels.del_known_spam}:</td>
 		<td>
@@ -78,21 +79,28 @@
 			
 		</select><br/>
 		<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/>
-		<br/>
-		<input type="hidden" name="save_option" value="OK" />
-		<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="Erkannten Spam l&ouml;schen?" class="thickbox" name="save" value="{$labels.opt_save}" onclick="cpves_sa_check_warning();" />
 		{if $del_known_spam != 1}
 		<script type="text/javascript">
 		cpves_sa_del_knowndisable('0');
 		</script>
 		{/if}
-		{if $spamassassin_active eq '0' }
-		<script type="text/javascript">
-		cpves_sa_active('0');
-		</script>
-		{/if}
+		
 		</td>
 	</tr>
+	{/if}
+	<tr>
+		<td></td>
+		<td>
+		<input type="hidden" name="save_option" value="OK" />
+		<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="Erkannten Spam l&ouml;schen?" class="thickbox" name="save" value="{$labels.opt_save}" onclick="cpves_sa_check_warning();" />
+		</td>
+	</tr>
+
+	{if $spamassassin_active eq '0' }
+	<script type="text/javascript">
+	cpves_sa_active('0');
+	</script>
+	{/if}
 {*	
 	<tr>
 		<td colspan="2"><h2>Whitelist</h2></td>
@@ -170,5 +178,4 @@ Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
 <a href="#" onClick="tb_remove();">Abbrechen</a> |
 <a href="#" onclick="cpves_sa_warning_ok();">Ja, Spam soll gel&ouml;scht werden</a>
 </p>
-<script type="text/javascript">cpves_update_sa_warning(); </script>
 </div>

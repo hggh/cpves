@@ -41,6 +41,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$smarty->assign('if_mailarchive', $data['p_mailarchive']);
 	$smarty->assign('if_bogofilter', $data['p_bogofilter']);
+	$smarty->assign('if_spam_del', $data['p_spam_del']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -453,6 +454,13 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$bogofilter=0;
 			}
+			if (isset($_POST['spam_del']) && $_POST['spam_del'] =="enable" && check_domain_feature($_GET['did'],'p_spam_del')) {
+				$spam_del=1;
+			}
+			else
+			{
+				$spam_del=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -490,7 +498,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -501,6 +509,7 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($spamassassin),
 					$db->escapeSimple($mailarchive),
 					$db->escapeSimple($bogofilter),
+					$db->escapeSimple($spam_del),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -525,6 +534,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
 	$smarty->assign('if_mailarchive_value', $edata['p_mailarchive']);
 	$smarty->assign('if_bogofilter_value', $edata['p_bogofilter']);
+	$smarty->assign('if_spam_del_value', $edata['p_spam_del']);
 	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
 		$smarty->assign('sa_move_spam',$edata['move_spam'] );
 	}

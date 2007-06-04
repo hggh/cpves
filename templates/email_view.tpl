@@ -77,6 +77,17 @@
 	</select></td>
 </tr>
 {/if}
+{if $if_spam_del == 1 }
+	<td>Spam l&ouml;schen m&ouml;glich:</td>
+	<td><select name="spam_del">
+	<option value="enable">{$labels.opt_yes}</option>
+	{if $if_spam_del_value == 0}
+	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	{else}
+	<option value="disable">{$labels.opt_no}</option>
+	{/if}
+	</select></td>
+{/if}
 {if $if_bogofilter == '1' }
 <tr>
 	<td>Bogofilter sichtbar:</td>
@@ -407,7 +418,6 @@ Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
 <a href="#" onClick="tb_remove();">Abbrechen</a> |
 <a href="#" onclick="cpves_sa_warning_ok();">Ja, Spam soll gel&ouml;scht werden</a>
 </p>
-<script type="text/javascript">cpves_update_sa_warning(); </script>
 </div>
 
 
