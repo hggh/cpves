@@ -62,4 +62,7 @@ Falsches Format f&uuml;r die Option "L&ouml;sche erkannten Spam"!
 Option "L&ouml;sche erkannten Spam"<br/> ist niedriger als "Markiere Nachricht" als Spam!
 {elseif $if_error_forwardaddr_valid == 'y' }
 Weiterleitungsadresse ist nicht konform!
+{elseif $if_error_sa_disable_enable_spam_del == 'y' } 
+Diese Option ben&ouml;tigt Spamassassin.<br/>
+Bitte erst Spamassassin aktivieren, danach diese Option!
 {/if}

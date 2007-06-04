@@ -25,7 +25,9 @@
 	<a class="nav sub" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav sub" href="?module=user_options">Optionen</a>
+	{if $p_mailfilter == 1 }
 	 <a class="nav sub" href="?module=user_mailfilter">Mailfilter</a>
+	{/if}
 	{if $p_mailarchive == 1}
 	<a class="nav sub" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}
@@ -39,7 +41,9 @@
 	<a class="nav" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
 	<a class="nav" href="?module=user_options">Optionen</a>
+	{if $p_mailfilter == 1 }
 	<a class="nav" href="?module=user_mailfilter">Mailfilter</a>
+	{/if}
 	{if $p_mailarchive == 1}
 	<a class="nav" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}

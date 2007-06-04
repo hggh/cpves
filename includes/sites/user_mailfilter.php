@@ -16,10 +16,20 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-
-
 if ($_SESSION['p_mailfilter'] != 1) {
 	header("Location: index.php");
 	exit();
 }
+
+//get IMAP Folders
+$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
+if ($folders== false ) {
+	$smarty->assign('imap_folder_exits', 0);
+}
+else {
+	$smarty->assign('imap_folder_exits', 1);
+	$smarty->assign('available_folders',$folders);
+}
+
+
 ?>

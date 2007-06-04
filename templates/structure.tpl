@@ -100,6 +100,7 @@ function cpves_sa_check_warning() {
 		cpves_check_state=0;
 		document.getElementById('sa_form').submit();
 	}
+	cpves_update_sa_warning();
 	}
 	</script>
 </script>{/literal}

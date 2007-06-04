@@ -104,6 +104,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'sa_wb_listing':
 			$do='p_sa_wb_listing';
 			break;
+		case 'spam_del':
+			$do='p_spam_del';
+			break;
 		default:
 			return false;
 	}
