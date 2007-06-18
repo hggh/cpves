@@ -12,6 +12,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: Password dialog forms (#5)
 	o Improved: move_spam (only called in autoresponder if spamassassin is active)
 	o Improved: possible inputfailture on forwarding add
+	o Improved: moved all cpves js code to separate file (js/cpves.js)
 CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder
