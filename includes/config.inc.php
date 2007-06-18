@@ -8,10 +8,11 @@ require_once "Validate.php";
 define('SMARTY_DIR', $root .'/smarty/libs/');
 require(SMARTY_DIR .'Smarty.class.php');
 $smarty = new Smarty;
+$smarty->use_sub_dirs = false; 
 $smarty->compile_check = true;
 $smarty->caching = false;
 $smarty->template_dir = $root . '/templates';
-$smarty->compile_dir = '/tmp/';
+$smarty->compile_dir = "/tmp/";
 $smarty->config_overwrite = false;
 
 //Server IP
