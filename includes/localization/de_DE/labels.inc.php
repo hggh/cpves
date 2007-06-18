@@ -3,6 +3,7 @@
 	$labels['domain']="Domain";
 	$labels['username']="Benutzername";
 	$labels['password']="Passwort";
+	$labels['access']="Zugriff";
 	$labels['login']="Anmelden";
 	$labels['logout']="Abmelden";
 	$labels['menu']="&Uuml;bersicht";
@@ -29,6 +30,30 @@
 	$labels['activate']="Aktivieren";
 	$labels['deactivate']="Deaktivieren";
 	$labels['settings']="Einstellungen";
-	$labels['del_known_spam']="L&ouml;sche Spam ab";
-	
+	$labels['del_known_spam']="Lösche Spam ab";
+	$labels['options']="Optionen";
+	$labels['autoresponder']="Autorepsonder";
+	$labels['spamfilter']="Spamfilter";
+	$labels['create_new_sadmin']="Neuen SuperAdmin anlegen";
+	$labels['sadmin_manager']="Superadmin Benutzerverwaltung";
+	$labels['domain_view']="Domainansicht";
+	$labels['sadmin_manager']="Manager";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";
+	$labels['']="";	
 ?>

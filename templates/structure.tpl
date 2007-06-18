@@ -89,6 +89,11 @@ function cpves_sa_warning_ok() {
                 document.getElementById('sa_form').submit();
 		tb_remove();
 }
+function cpves_mf_rebuild_ok() {
+		document.getElementById('mf_rebuild').value="1";
+		document.getElementById('sadmin_mf_rebuild').submit();
+		tb_remove();
+}
 function cpves_update_sa_warning() {
 	var neu=document.getElementById('spamassassin_threshold').value;
 	document.getElementById('sa_thresshold_value').innerHTML=neu;

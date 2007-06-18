@@ -21,4 +21,6 @@ Mailingliste wurde erfolgreich angelegt.
 {elseif $if_sadmin_saved == 'y'}
 Superadmin erfolgreich ge&auml;ndert.
 <meta http-equiv="refresh" content="1; URL=?module=sadmin_view">
+{elseif $if_mf_rebuild == 'y' }
+Die Mailfilter werden neu gebaut.
 {/if}

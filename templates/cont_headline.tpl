@@ -2,6 +2,8 @@
 	Superadmin: Benutzer &Uuml;bersicht
 {elseif $template == "sadmin_add.tpl"}
 	Superadmin: Benutzer hinzuf&uuml;gen
+{elseif $template == "sadmin_options.tpl"}
+	Superadmin: Optionen
 {elseif $template == "index_admin.tpl"}
 	Superadmin: Uebersicht
 {elseif $template == "sadmin_edit.tpl" }

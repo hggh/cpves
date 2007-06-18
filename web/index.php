@@ -89,6 +89,9 @@ switch($_GET['module']) {
 	case 'sadmin_passwd':
 		$site="sadmin_passwd";
 		break;
+	case 'sadmin_options':
+		$site="sadmin_options";
+		break;
 	case 'sadmin_view':
 		$site="sadmin_view";
 		break;
