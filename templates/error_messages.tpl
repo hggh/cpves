@@ -52,6 +52,9 @@ Das angegebene Datum + Uhrzeit liegt in der Vergangenheit!
 {elseif $if_error_sa_disabled_enable_bogofilter == 'y' }
 Bogofilter ben&ouml;tigt Spamassassin!<br/>
 Bitte erst Spamassassin freischalten.
+{elseif $if_error_sa_disable_enable_sa_wb_listing == 'y' }
+Whitelisting ben&ouml;tigt Spamassassin!<br/>
+Bitte erst Spamassassin freischalten.
 {elseif $sa_whitelist_data_add_empty == 'y' }
 Whitelistfeld darf nicht leer sein!
 {elseif $sa_whitelist_data_add_wrong == 'y'}

@@ -162,6 +162,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	&& check_domain_feature($_GET['did'], 'p_bogofilter')) {
 		change_domain_feature($_GET['did'],'bogofilter','0');
 		change_domain_feature($_GET['did'],'spam_del','0');
+		change_domain_feature($_GET['did'],'sa_wb_listing','0');
 	}
 	if ($_GET['f']=='bogofilter' 
 	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
@@ -172,6 +173,11 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
 		$smarty->assign('error_msg', 'y');
 		$smarty->assign('if_error_sa_disable_enable_spam_del', 'y');
+	}
+	elseif ($_GET['f']=='sa_wb_listing' 
+	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('if_error_sa_disable_enable_sa_wb_listing', 'y');
 	}
 	else {
 		change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);

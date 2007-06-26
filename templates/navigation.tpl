@@ -18,9 +18,9 @@
 	<a class="nav" href="index.php?user=y">{$labels.personal_settings}</a>
 {/if}
 {if $if_superadmin != 'y' && $menu_user_open == 'y' }
-	<a class="nav sub" href="?module=user_autores">{$lables.autoresponder}</a>
+	<a class="nav sub" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
-	<a class="nav sub" href="?module=user_spam">{$lables.spamfilter}</a>
+	<a class="nav sub" href="?module=user_spam">{$labels.spamfilter}</a>
 	{/if}
 	{if $if_forwarding == '1'}
 	<a class="nav sub" href="?module=user_forward">{$labels.email_forwarding}</a>
@@ -34,9 +34,9 @@
 	{/if}
 {/if}
 {if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
-	<a class="nav" href="?module=user_autores">{$lables.autoresponder}</a>
+	<a class="nav" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
-	<a class="nav" href="?module=user_spam">{$lables.spamfilter}</a>
+	<a class="nav" href="?module=user_spam">{$labels.spamfilter}</a>
 	{/if}
 	{if $if_forwarding == '1'}
 	<a class="nav" href="?module=user_forward">{$labels.email_forwarding}</a>

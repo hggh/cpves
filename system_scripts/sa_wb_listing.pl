@@ -26,6 +26,11 @@ my $email_input;
 my $did;
 my $emailid;
 
+if (! -f "/etc/mail-admin/mail_config.conf") {
+	print "1\n";
+	exit (0);
+}
+
 my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
 my %config = $conf->getall;
 $config{'db_host'} = "localhost" unless defined $config{'db_host'};
@@ -60,7 +65,7 @@ else {
 
 (my $mail_addr, my $mail_host) = split(/@/, $mail_from);
 my $state=1;
-my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
+my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'})or print "1\n" ; exit(0) ;
 
 #Check Domain:
 my $sth=$dbh->prepare("SELECT id FROM sa_wb_listing WHERE type='1' AND email='0' AND sa_from=? AND domainid=?");
