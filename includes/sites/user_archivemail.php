@@ -17,6 +17,15 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
 $smarty->assign('email', $_SESSION['email']);
+
+//save option BEGIN
+if (isset($_POST['armail_save'])) {
+	
+}
+//save option END
+
+
+
 //get IMAP Folders
 $folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
 if ($folders== false ) {

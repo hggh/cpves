@@ -3,6 +3,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: initial language split
 	o Added: delete known spam option (frontend)
 	o Added: delete known spam option (backend)
+	o Added: domain perms for sa_wb_listing
 	o Added: optional Mailgraphlink for admin and superadmin
 	o Added: permission for using spam_del option (more secure about stupid users)
 	o Added: sadmin: rebuild all mailfilters

@@ -2,11 +2,12 @@
 <table border="0">
 	{foreach key=fid from=$available_folders item=row}
 	{if $row.type == 'spam' }
+	{* If spam folder: only delete option should be used *}
 	{else}
 	<tr>
 	<td valign="top" style="padding-right:10px;"><b>IMAP-Order: </b> <i>{$row.name_display}</i></td>
 	<td valign="top" style="padding-bottom:19px;">
-	<form >
+	<form action="?module=user_archivemail" method="post">
 		<table>
 		<tr>
 			<td colspan="2" style="font-weight:bold;" class="domain_view">Mailarchiv erstellen:</td>
@@ -30,7 +31,7 @@
 		
 		<tr>
 			<td>Mit Jahr (z.B. Archiv\Ordner_2007):</td>
-			<td><input type="checkbox" id="armail_folder_year{$fid}" name="armail_folder_yea{$fid}r"/></td>
+			<td><input type="checkbox" id="armail_folder_year{$fid}" name="armail_folder_year{$fid}"/></td>
 		</tr>
 		<tr>
 			<td>Mit Jahr und Monat:</td>
@@ -45,7 +46,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align:right;">
-			<input type="hidden" name="armail_folder" value="{$row.name_display}"/>
+			<input type="hidden" name="armail_folder" value="{$row.name}"/>
 			<input type="hidden" name="armail_id" value="{$fid}"/>
 			<input type="submit" name="armail_save" value="Speichern"/></td>
 		</tr>
