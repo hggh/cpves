@@ -68,4 +68,7 @@ Weiterleitungsadresse ist nicht konform!
 {elseif $if_error_sa_disable_enable_spam_del == 'y' } 
 Diese Option ben&ouml;tigt Spamassassin.<br/>
 Bitte erst Spamassassin aktivieren, danach diese Option!
+{elseif $if_error_artime == 'y'}
+Archivieren nach n Tagen ist entweder leer oder ung&uuml;ltig!<br/>
+Bitte nur Zahlen verwenden.
 {/if}

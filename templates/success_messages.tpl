@@ -23,4 +23,6 @@ Superadmin erfolgreich ge&auml;ndert.
 <meta http-equiv="refresh" content="1; URL=?module=sadmin_view">
 {elseif $if_mf_rebuild == 'y' }
 Die Mailfilter werden neu gebaut.
+{elseif $if_mailarchive_saved == 'y'}
+Die &Auml;nderungen wurden gespeichert.
 {/if}

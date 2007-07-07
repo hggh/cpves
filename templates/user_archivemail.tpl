@@ -14,24 +14,39 @@
 		</tr>
 		<tr>
 			<td>Archivieren nach:</td>
-			<td><input type="text" size="5" value="" name="armail_time{$fid}" />   (Tagen)</td>
+			<td><input type="text" size="5" value="{$row.adays}" name="armail_time{$fid}" />   (Tagen)</td>
 		</tr>
 		
 		<tr>
 			<td>Nur gelesene Mails:</td>
-			<td><input type="checkbox" checked="checked" name="armail_read{$fid}" value="1"></td>
+			{if $row.mailsread == 0 }
+				{assign var="mailsread" value=""}
+			{else}
+				{assign var="mailsread" value='checked="checked"'}
+			{/if}
+			<td><input type="checkbox" {$mailsread} name="armail_read{$fid}" value="1"></td>
 		</tr>
 		
 		<td colspan="2" style="font-weight:bold;" class="domain_view">Archiv-Ordnername:</td>
 		
 		<tr>
 			<td>Mit Monat (z.B. Archiv\Ordner_05):</td>
-			<td><input type="checkbox" id="armail_folder_month{$fid}" name="armail_folder_month{$fid}"/></td>
+			{if $row.fname_month == 0 }
+				{assign var="fname_month" value=""}
+			{else}
+				{assign var="fname_month" value='checked="checked"'}
+			{/if}
+			<td><input type="checkbox" id="armail_folder_month{$fid}" value="1" {$fname_month} name="armail_folder_month{$fid}"/></td>
 		</tr>
 		
 		<tr>
 			<td>Mit Jahr (z.B. Archiv\Ordner_2007):</td>
-			<td><input type="checkbox" id="armail_folder_year{$fid}" name="armail_folder_year{$fid}"/></td>
+			{if $row.fname_year == 0 }
+				{assign var="fname_year" value=""}
+			{else}
+				{assign var="fname_year" value='checked="checked"'}
+			{/if}
+			<td><input type="checkbox" id="armail_folder_year{$fid}" value="1" {$fname_year} name="armail_folder_year{$fid}"/></td>
 		</tr>
 		<tr>
 			<td>Mit Jahr und Monat:</td>
@@ -41,7 +56,11 @@
 			<td>Archivierung aktiv:</td>
 			<td><select name="armail_active">
 			<option selected="selected" value="0">Nein</option>
-			<option value="1">Ja</option>
+			{if $row.active == 1 }
+			<option selected="selected" value="1">Ja</option>
+			{else}
+			<option  value="1">Ja</option>
+			{/if}
 			</select></td>
 		</tr>
 		<tr>

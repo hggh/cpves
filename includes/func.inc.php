@@ -51,6 +51,38 @@ function check_whitelist_addr($addr) {
 	return 0;
 }
 
+function insert_mailarchive($uid,$options) {
+	global $db;
+	$sql=sprintf("SELECT id FROM mailarchive WHERE email='%s' AND folder='%s'",
+		$db->escapeSimple($uid),
+		$db->escapeSimple($options['folder']));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$sql=sprintf("UPDATE mailarchive SET folder='%s',adays='%d',fname_month='%d',fname_year='%d',active='%d',mailsread='%d' WHERE email='%d' AND id='%d'",
+			$db->escapeSimple($options['folder']),
+			$db->escapeSimple($options['adays']),
+			$db->escapeSimple($options['fname_month']),
+			$db->escapeSimple($options['fname_year']),
+			$db->escapeSimple($options['active']),
+			$db->escapeSimple($options['mailsread']),
+			$db->escapeSimple($uid),
+			$db->escapeSimple($data['id']));
+		$res=&$db->query($sql);
+	}
+	else {
+		$sql=sprintf("INSERT INTO mailarchive SET email='%d',folder='%s',adays='%d',fname_month='%d',fname_year='%d',active='%d',mailsread='%d'",
+			$db->escapeSimple($uid),
+			$db->escapeSimple($options['folder']),
+			$db->escapeSimple($options['adays']),
+			$db->escapeSimple($options['fname_month']),
+			$db->escapeSimple($options['fname_year']),
+			$db->escapeSimple($options['active']),
+			$db->escapeSimple($options['mailsread']));
+		$res=&$db->query($sql);
+	}
+}
+
 function get_autores_disable($uid) {
 	global $db;
 	$sql=sprintf("SELECT active,DATE_FORMAT(a_date, '%%d.%%m.%%Y') AS a_date,DATE_FORMAT(a_date, '%%H:%%i:%%s') AS a_time FROM autoresponder_disable WHERE email='%s'",

@@ -20,7 +20,23 @@ $smarty->assign('email', $_SESSION['email']);
 
 //save option BEGIN
 if (isset($_POST['armail_save'])) {
-	
+	$index = $_POST['armail_id'];
+	if (empty($_POST['armail_time' . $index]) || !is_numeric($_POST['armail_time' . $index]) ||
+        $_POST['armail_time' . $index] == "0") {
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_artime', 'y');
+	}
+	else {
+		$mailarchive['adays']=$_POST['armail_time' . $index];
+		$mailarchive['mailsread']=$_POST['armail_read' . $index];
+		$mailarchive['fname_month']=$_POST['armail_folder_month' . $index];
+		$mailarchive['fname_year']=$_POST['armail_folder_year' . $index];
+		$mailarchive['active']=$_POST['armail_active'];
+		$mailarchive['folder']=$_POST['armail_folder'];
+		insert_mailarchive($_SESSION['uid'], $mailarchive);
+		$smarty->assign('success_msg', 'y');
+		$smarty->assign('if_mailarchive_saved' , 'y');
+	}
 }
 //save option END
 
@@ -32,6 +48,23 @@ if ($folders== false ) {
 	$smarty->assign('imap_folder_exits', 0);
 }
 else {
+	$sql=sprintf("SELECT * FROM mailarchive WHERE email='%s'",
+		$db->escapeSimple($_SESSION['uid']));
+	$result=&$db->query($sql);
+	if ($result->numRows() > 0 ) {
+		$archive=array();
+		while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+			foreach ($folders  as $key => $value) {
+					if ($value['name']== $data['folder']) {
+						$folders[$key]['adays']=$data['adays'];
+						$folders[$key]['mailsread']=$data['mailsread'];
+						$folders[$key]['fname_month']=$data['fname_month'];
+						$folders[$key]['fname_year']=$data['fname_year'];
+						$folders[$key]['active']=$data['active'];
+					}
+			}
+		}
+	}
 	$smarty->assign('imap_folder_exits', 1);
 	$smarty->assign('available_folders',$folders);
 }
