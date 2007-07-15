@@ -1,0 +1,34 @@
+<?php
+	$headline['sadmin_user_overview']="Superadmin: Benutzer &Uuml;bersicht";
+	$headline['sadmin_user_add']="Superadmin: Benutzer hinzuf&uuml;gen";
+	$headline['sadmin_options']="Superadmin: Optionen";
+	$headline['sadmin_overview']="Superadmin: Uebersicht";
+	$headline['sadmin_domain_add']="Superadmin: Neue Domain anlegen";
+	$headline['sadmin_domain_overview']="&Uuml;bersicht";
+	$headline['catchall']="Catchall";
+	$headline['sadmin_domain_overview']="Superadmin: Domain&uuml;bersicht";
+	$headline['domain_overview']="Domain&uuml;bersicht";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+	$headline['']="";
+?>

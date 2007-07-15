@@ -61,6 +61,7 @@ else {
 						$folders[$key]['fname_month']=$data['fname_month'];
 						$folders[$key]['fname_year']=$data['fname_year'];
 						$folders[$key]['active']=$data['active'];
+						continue;
 					}
 			}
 		}
