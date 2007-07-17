@@ -80,7 +80,7 @@ sub get_bogofilter($$) {
 	$b_sth->execute($uid);
 	if ($b_sth->rows == 1) {
 		my @row_b = $b_sth->fetchrow_array;
-		if ($row_b[0]== "1") {
+		if ($row_b[0]== 1) {
 			my $b_s_sth=$dbh->prepare("SELECT value FROM spamassassin WHERE preference='rewrite_header subject' AND username=?");
 			$b_s_sth->execute($email);
 			my $bogo_subject;
@@ -214,6 +214,13 @@ while(@data = $sth->fetchrow_array)
 					$temp_data);
 				
 				
+				undef $temp_data;
+			}
+			if ( $type eq "del_dups_mails") {
+				$temp_data=qq(`reformail -D 8000 duplicate.cache`\nif ($RETURNCODE == 0)\nexit);
+				$mailfiter=sprintf("%s\nexception {\n%s\n}\n",
+					$mailfiter,
+					$temp_data);
 				undef $temp_data;
 			}
 				

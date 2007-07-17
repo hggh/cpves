@@ -275,8 +275,22 @@
   </select></td>  
 </tr>
 <tr>
+	<td>Filtere doppelte Mails:</td>
+	<td>
+		<select name="del_dups_mails">
+		{if $del_dups_mails == 1}
+			<option value="1" selected="selected">Ja</option>
+			<option value="0">Nein</option>
+		{else}
+			<option value="1">Ja</option>
+			<option value="0" selected="selected">Nein</option>
+		{/if}
+		</select>
+	</td>
+</tr>
+<tr>
 	<td></td>
-	<td><input type="submit" name="virus_submit" value="Speichern" /></td>
+	<td><input type="submit" name="submit_mailoptions" value="Speichern" /></td>
 </tr>
 </form>
 <!-- Options feature end -->

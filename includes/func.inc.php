@@ -23,7 +23,7 @@ $smarty->assign('webmail_link',$config['webmail_link']);
 $smarty->assign('mailgraph_link',$config['mailgraph_link']);
 /*
 mailfilter prios:
-
+del_dups_mails		- 2
 mailinglists		- 3
 del virusnotifications	- 4
 Spamassassin		- 5
@@ -621,7 +621,6 @@ function decrypt_passwd($cypher)  {
 function update_mailfilter($type,$uid,$opt_1,$opt_2,$opt_3) {
 global $db;
 if ($type=='del_virus_notifi') {
-
 	$sql=sprintf("SELECT id FROM mailfilter WHERE type='del_virus_notifi' AND email='%d'",$db->escapeSimple($uid));
 	$result=&$db->query($sql);
 	if ($result->numRows() ==1 )
@@ -647,6 +646,32 @@ if ($type=='del_virus_notifi') {
 	
 	$result=&$db->query($sql);
 } //ENDE: del_virus_notifi
+if ($type=='del_dups_mails') {
+	$sql=sprintf("SELECT id FROM mailfilter WHERE type='del_dups_mails' AND email='%d'",$db->escapeSimple($uid));
+	$result=&$db->query($sql);
+	if ($result->numRows() ==1 )
+	{
+		if ($opt_1==1) {
+			$sql=sprintf("UPDATE mailfilter SET active='1' WHERE email='%s' AND type='del_dups_mails'",
+			$db->escapeSimple($uid));
+		}
+		else {
+			$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%s' AND type='del_dups_mails'",
+			$db->escapeSimple($uid));
+		}
+	}
+	elseif ($opt_1 == 1) {
+		$sql_del=sprintf("DELETE FROM mailfilter WHERE type='del_dups_mails' AND email='%s'",
+			$db->escapeSimple($uid));
+		$result=&$db->query($sql_del);
+		
+		$sql=sprintf("INSERT INTO mailfilter SET active='1',type='del_dups_mails',filter='1',email='%s',prio='2'",
+			$db->escapeSimple($uid));
+		
+	}
+	
+	$result=&$db->query($sql);
+} //ENDE: del_dups_mails
 if ($type == 'mail_forward') {
 	$fwdmailaddr=$opt_1;
 	$delete=$opt_2;

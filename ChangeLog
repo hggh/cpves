@@ -8,10 +8,12 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: mailarchive frontend
 	o Added: permission for using spam_del option (more secure about stupid users)
 	o Added: sadmin: rebuild all mailfilters
+	o Added: user/admin option: delete duplicate mails
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)
 	o Fixed: autorepsonder quoting problems
 	o Fixed: Password dialog forms (#5)
+	o Fixed: create_mailfilters.pl: if() in bogofilter
 	o Improved: move_spam (only called in autoresponder if spamassassin is active)
 	o Improved: possible inputfailture on forwarding add
 	o Improved: moved all cpves js code to separate file (js/cpves.js)

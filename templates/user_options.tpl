@@ -7,7 +7,7 @@
 	<td style="width:10px;"></td>
 	<td>
 		<select name="del_virus_notifi">
-		{if $del_virus_notifi eq 1}
+		{if $del_virus_notifi == 1}
 			<option value="1" selected="selected">Ja</option>
 			<option value="0">Nein</option>
 		{else}
@@ -15,6 +15,21 @@
 			<option value="0" selected="selected">Nein</option>
 		{/if}
 		</select>  
+	</td>
+</tr>
+<tr>
+	<td>Filtere doppelte Mails:</td>
+	<td style="width:10px;"></td>
+	<td>
+		<select name="del_dups_mails">
+		{if $del_dups_mails == 1}
+			<option value="1" selected="selected">Ja</option>
+			<option value="0">Nein</option>
+		{else}
+			<option value="1">Ja</option>
+			<option value="0" selected="selected">Nein</option>
+		{/if}
+		</select>
 	</td>
 </tr>
 

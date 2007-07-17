@@ -21,8 +21,10 @@ if (isset($_POST['save_option']))
 {
 	
 	update_email_options($_SESSION['uid'],"del_virus_notifi",$_POST['del_virus_notifi'], 0);
-	
-	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $del_virus_notifi,0,0);
+	update_email_options($_SESSION['uid'],"del_dups_mails",$_POST['del_dups_mails'], 0);
+
+	update_mailfilter('del_virus_notifi',$_SESSION['uid'], $_POST['del_virus_notifi'],0,0);
+	update_mailfilter('del_dups_mails',$_SESSION['uid'], $_POST['del_dups_mails'],0,0);
 	// activate System-Script
 	run_systemscripts();
 }
@@ -30,6 +32,9 @@ if (isset($_POST['save_option']))
 
 $del_virus_notifi = get_email_options($_SESSION['uid'],"del_virus_notifi", 0);
 $smarty->assign('del_virus_notifi',$del_virus_notifi );
+
+$del_dups_mails = get_email_options($_SESSION['uid'],"del_dups_mails", 0);
+$smarty->assign('del_dups_mails',$del_dups_mails );
 
 
 $smarty->assign('email', $_SESSION['email']);
