@@ -217,9 +217,9 @@ while(@data = $sth->fetchrow_array)
 				undef $temp_data;
 			}
 			if ( $type eq "del_dups_mails") {
-				$temp_data=qq(`reformail -D 8000 duplicate.cache`\nif ($RETURNCODE == 0)\nexit);
-				$mailfiter=sprintf("%s\nexception {\n%s\n}\n",
-					$mailfiter,
+				$temp_data=qq(`reformail -D 8000 duplicate.cache`\nif (\$RETURNCODE == 0)\nexit);
+				$mailfilter=sprintf("%s\nexception {\n%s\n}\n",
+					$mailfilter,
 					$temp_data);
 				undef $temp_data;
 			}

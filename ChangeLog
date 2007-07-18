@@ -9,6 +9,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: permission for using spam_del option (more secure about stupid users)
 	o Added: sadmin: rebuild all mailfilters
 	o Added: user/admin option: delete duplicate mails
+	o Fixed: typo in delete duplicate mails create_mailfilters.pl
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)
 	o Fixed: autorepsonder quoting problems
