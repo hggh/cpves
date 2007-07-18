@@ -36,12 +36,18 @@ if (isset($_POST['autores_submit']))
 		$smarty->assign('if_error_autores_subject_to_long', 'y');
 		$error=true;
 	}
+	else if ( $_POST['autores_sendback_times'] != "n" && ($_POST['autores_sendback_times'] < 1 && $_POST['autores_sendback_times'] > 5 ))
+	{
+		$smarty->assign('error_msg','y');
+		$smarty->assign('if_error_autores_send_times', 'y');
+		$error=true;
+	}
 	else
 	{
 		save_autoresponder($_SESSION['uid'],
 			$_POST['autores_active'],
 			$_POST['autores_subject'],
-			$_POST['autores_msg']);
+			$_POST['autores_msg'], $_POST['autores_sendback_times']);
 		// activate System-Script
 		run_systemscripts();
 	}
@@ -106,7 +112,7 @@ if (isset($_POST['autores_datedisable_submit'])) {
 	}
 }
 
-$sql=sprintf("SELECT id,email,active,msg,esubject FROM autoresponder WHERE email='%d'",
+$sql=sprintf("SELECT id,email,active,msg,esubject,times FROM autoresponder WHERE email='%d'",
 	$db->escapeSimple($_SESSION['uid']));
 $result=&$db->query($sql);
 if ($result->numRows()==1)
@@ -116,13 +122,14 @@ if ($result->numRows()==1)
 	$msg=$data['msg'];
 	$esubject=$data['esubject'];
 	$id=$data['id'];
-	
+	$times=$data['times'];
 }
 elseif($error)
 {
 	$active=$_POST['autores_active'];
 	$msg=$_POST['autores_msg'];
 	$esubject=$_POST['autores_subject'];
+	$times=$_POST['autores_sendback_times'];
 	
 }
 else
@@ -153,6 +160,14 @@ $smarty->assign('autores_disable', $autores_disable);
 $smarty->assign('table_val_tos', $table_val_tos);
 $smarty->assign('autores_subject', $esubject);
 $smarty->assign('autores_active', $active);
+$smarty->assign('autores_sendback_times_selects', 
+		array( 1 => 'Nur bei der ersten Mail',
+		2 => 'Bis zur zweiten Mail',
+		3 => 'Bis zur dritten Mail',
+		4 => 'Bis zur vierten Mail',
+		5 => 'Bis zur f&uuml;nften Mail',
+		n => 'Bei jeder Mail'));
+$smarty->assign('autores_sendback_times_value', $times);
 $smarty->assign('id', $id);
 $smarty->assign('autores_msg', $msg);
 $smarty->assign('email', $_SESSION['email']);

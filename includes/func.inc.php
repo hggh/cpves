@@ -710,7 +710,7 @@ if ($type == 'mail_forward') {
 }
 
 
-function save_autoresponder($uid,$active,$esubject,$msg) {
+function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 	global $db;
 	$sql=sprintf("SELECT id FROM autoresponder WHERE email='%d'",
 		$db->escapeSimple($uid));
@@ -725,21 +725,23 @@ function save_autoresponder($uid,$active,$esubject,$msg) {
 				$db->escapeSimple($uid) );
 		}
 		else {
-			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s' WHERE id='%d' AND email='%d'",
+			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s',times='%s' WHERE id='%d' AND email='%d'",
 				$db->escapeSimple($esubject),
 				$msg,
 				$db->escapeSimple($active),
+				$db->escapeSimple($send_times),
 				$db->escapeSimple($data['id']),
 				$db->escapeSimple($uid) );
 		}
 	}
 	else
 	{
-		$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d'",
+		$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d',times='%s'",
 				$db->escapeSimple($esubject),
 				$msg,
 				$db->escapeSimple($active),
-				$db->escapeSimple($uid) );
+				$db->escapeSimple($uid),
+				$db->escapeSimple($send_times) );
 	}
 	$result=&$db->query($sql);
 	

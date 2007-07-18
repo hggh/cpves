@@ -21,7 +21,9 @@ Betreff des Autoresponders darf nicht leer sein!
 {elseif $if_error_autores_msg_empty == 'y'}
 Nachricht des Autoresponders darf nicht leer sein! 
 {elseif $if_error_autores_subject_to_long == 'y'}
-Betreff des Autoresponders ist zu lang! 
+Betreff des Autoresponders ist zu lang!
+{elseif $if_error_autores_send_times == 'y'}
+Fehler: Sende Autoresponder bis! INTERNAL ERROR!
 {elseif $if_email_valid == 'y'}
 E-Mailadresse ist nicht konform.
 {elseif $if_error_forwds_max_reached == 'y'}

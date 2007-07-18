@@ -157,7 +157,7 @@ if (isset($_SESSION['superadmin']) &&
 		save_autoresponder($_GET['id'],
 			$_POST['autores_active'],
 			$_POST['autores_subject'],
-			$_POST['autores_msg']);
+			$_POST['autores_msg'],$_POST['autores_sendback_times']);
 		run_systemscripts();
 		}
 	

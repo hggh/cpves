@@ -13,6 +13,12 @@
 		</select></td>
 	</tr>
 	<tr>
+		<td>Sende Autoresonder an den Absender:</td>
+		<td>
+			{html_options name="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
+		</td>
+	</tr>
+	<tr>
 		<td>Autoresponder Betreff:</td>
 		<td><input type="text" id="autores_subject" name="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 	</tr>
