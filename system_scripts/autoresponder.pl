@@ -99,7 +99,7 @@ if (scalar(@formated_email) le 0 ) {
 
 #Now check if autoresponder is enabled
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
-my $sql=sprintf("SELECT email FROM autoresponder WHERE email=%s AND active='y'",
+my $sql=sprintf("SELECT email,times FROM autoresponder WHERE email=%s AND active='y'",
 	$dbh->quote($ARGV[0]));
 my $sth = $dbh->prepare($sql);
 undef($sql);
@@ -111,6 +111,8 @@ if ($sth->rows != 1)
 	$dbh->disconnect();
 	exit(0);
 }
+my $row_autores = $sth->fetchrow_hashref;
+my $autores_times = $row_autores->{'times'};
 $sth->finish();
 
 #Now check if allready send an autoresponder to the email address:
@@ -120,7 +122,8 @@ $sql=sprintf("SELECT id FROM autoresponder_send WHERE email=%s AND efromto=%s",
 $sth = $dbh->prepare($sql);
 undef($sql);
 $sth->execute;
-if ($sth->rows == 0)
+print "->> $autores_times  - ROws: ",$sth->rows, "\n";
+if ($sth->rows < $autores_times || $autores_times eq "n")
 {
 	#Now collect data for autpresponder:
 	$sql=sprintf("SELECT a.email AS mailaddr, b.esubject, b.msg FROM users AS a LEFT JOIN autoresponder AS b ON b.email=a.id WHERE b.active='y' AND a.id=%s",

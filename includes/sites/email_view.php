@@ -223,7 +223,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	
 	/*  Autoresponder begin */
-	$sql=sprintf("SELECT id,email,active,msg,esubject FROM autoresponder WHERE email='%d'",
+	$sql=sprintf("SELECT id,email,active,msg,esubject,times FROM autoresponder WHERE email='%d'",
 	$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
 	if ($result->numRows()==1)
@@ -233,12 +233,14 @@ if (isset($_SESSION['superadmin']) &&
 		$msg=$data['msg'];
 		$esubject=$data['esubject'];
 		$id=$data['id'];
+		$times=$data['times'];
 	}
 	elseif($error)
 	{
 		$active=$_POST['autores_active'];
 		$msg=$_POST['autores_msg'];
 		$esubject=$_POST['autores_subject'];
+		$times=$_POST['autores_sendback_times'];
 	}
 	else
 	{
@@ -248,6 +250,7 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	$smarty->assign('autores_subject', $esubject);
 	$smarty->assign('autores_active', $active);
+	$smarty->assign('autores_sendback_times_value', $times);
 	$smarty->assign('id', $id);
 	$smarty->assign('autores_msg', $msg);
 	$smarty->assign('email', $_SESSION['email']);

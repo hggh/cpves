@@ -767,4 +767,11 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 	}
 	
 }
+$smarty->assign('autores_sendback_times_selects', 
+		array( 1 => 'Nur bei der ersten Mail',
+		2 => 'Bis zur zweiten Mail',
+		3 => 'Bis zur dritten Mail',
+		4 => 'Bis zur vierten Mail',
+		5 => 'Bis zur f&uuml;nften Mail',
+		n => 'Bei jeder Mail'));
 ?>
