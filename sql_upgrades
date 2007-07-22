@@ -66,3 +66,4 @@ INDEX ( `email` , `active` )
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE `mailarchive` ADD `mailsread` TINYINT( 1 ) NOT NULL ;
 ALTER TABLE `autoresponder` ADD `times` CHAR( 1 ) NOT NULL DEFAULT '1';
+ALTER TABLE `domains` ADD `enew` TINYINT( 1 ) NOT NULL DEFAULT '1';

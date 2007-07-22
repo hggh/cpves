@@ -50,13 +50,45 @@ if (! isset($_POST['del_ok']))
 }
 else if (isset($_POST['del_ok']) && $_POST['del_ok']== 'y' ) 
 {
-	$sql=sprintf("SELECT id FROM users WHERE domainid='%d'",
+	$sql=sprintf("SELECT id,email FROM users WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$result=&$db->query($sql);
 	while($row=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	{
 		$sql=sprintf("DELETE FROM admin_access WHERE email='%d'",
 			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM autoresponder WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM autoresponder_disable WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM autoresponder_recipient WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM mailarchive WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM mailfilter WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM email_options WHERE email='%d'",
+			$db->escapeSimple($row['id']));
+		$res=&$db->query($sql);
+
+		$sql=sprintf("DELETE FROM spamassassin WHERE username='%s'",
+			$db->escapeSimple($row['email']));
 		$res=&$db->query($sql);
 	}
 	
@@ -65,24 +97,31 @@ else if (isset($_POST['del_ok']) && $_POST['del_ok']== 'y' )
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
-	
-	mail($config['postmaster'], "Delete Domain: ".$data['dnsname'], "Please move complete domain to save_dir!" );
-	
 	$sql=sprintf("DELETE FROM users WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);
 	
-	$sql=sprintf("DELETE FROM forwardings WHERE domainid='%d'",
+	$sql=sprintf("DELETE FROM lists WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);
-	
-	$sql=sprintf("DELETE FROM domains WHERE id='%s'",
+
+	$sql=sprintf("DELETE FROM sa_wb_listing WHERE domainid='%d'",
+		$db->escapeSimple($_POST['did']));
+	$db->query($sql);
+
+	$sql=sprintf("DELETE FROM forwardings WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);
 	
 	$sql=sprintf("DELETE FROM admin_access WHERE domain=%s",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);
+
+	// Update enew to 0 for the script that moves the complete datadir to vmail_safe:
+	$sql=sprintf("UPDATE domains SET enew='0' WHERE id='%s'",
+		$db->escapeSimple($_POST['did']));
+	$db->query($sql);
+	
 
 	header("Location: index.php" );
 }

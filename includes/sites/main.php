@@ -29,7 +29,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' || isset($_SE
 
 if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' )
 {
-	$sql="SELECT * FROM domains ORDER BY dnsname";
+	$sql="SELECT * FROM domains WHERE enew!=0 ORDER BY dnsname";
 }
 else
 {
@@ -42,11 +42,11 @@ else
 	{
 		if ($e==0)
 		{
-			$sql.="'".$daten['domain']. "'";
+			$sql.="'".$daten['domain']. "' AND enew!=0 ";
 		}
 		else
 		{
-			$sql.=" OR id='".$daten['domain']. "'";
+			$sql.=" OR id='".$daten['domain']. "' AND enew!=0 ";
 		}
 		$e++;
 		
