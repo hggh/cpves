@@ -59,7 +59,7 @@
 {if $webmail_link != false }
 	<a class="nav" href="{$webmail_link}">Webmail</a>
 {/if}
-{if $mailgraph_link != false && ($if_superadmin != 'y' || $if_admin !='y') }
+{if $mailgraph_link != false && ($if_superadmin == 'y' || $if_admin =='y') }
 	<a class="nav" href="{$mailgraph_link}">Mailstatistik</a>
 {/if}
 <a class="nav" href="?module=logout">{$labels.logout}</a>
