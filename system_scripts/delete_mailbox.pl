@@ -36,13 +36,40 @@ if (! -d $config{'vmail_home'} || ! -d  $config{'vmail_safe'})
 	print "Error: ".$config{'vmail_home'}. " or ".$config{'vmail_safe'}." does not exists!\n";
 	exit(1);
 }
-
+my $datum = `date +"%d-%m-%Y"`;
+chomp($datum);
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
 
+my $sth = $dbh->prepare("SELECT dnsname,id FROM domains WHERE enew=0");
+$sth->execute();
+my $row;
+my $domain_path;
+my $domain_save;
+while($row=$sth->fetchrow_hashref) {
+	$domain_path = $config{'vmail_home'} . "/" . $row->{'dnsname'};
+	if (-d $domain_path ) {
+		`rmdir --ignore-fail-on-non-empty $domain_path`;
+		if (-d $domain_path ) {
+			$domain_save = $config{'vmail_safe'} ."/" . $datum ."/";
+			system("mkdir -p $domain_save") unless (-d $domain_save);
+			if (! system("mv $domain_path $domain_save")) {
+				my $sth_save = $dbh->prepare("DELETE FROM domains WHERE id=?");
+				$sth_save->execute($row->{'id'});
+				undef $sth_save;
+			}
+			else {
+				print "Error on move to safe dir: $domain_path -> $domain_save\n";
+				exit(1);
+			}
+		}
+	}
+	undef $domain_path;
+}
+
 my $sql=sprintf("SELECT CONCAT(SUBSTRING_INDEX(a.email,'@\',1)) AS emailaddr,a.id, b.dnsname FROM users AS a LEFT JOIN domains AS b ON b.id=a.domainid WHERE a.enew='0'");
-my $sth = $dbh->prepare($sql);
+$sth = $dbh->prepare($sql);
 undef $sql;
 $sth->execute;
 my @data;
@@ -53,10 +80,8 @@ while(@data= $sth->fetchrow_array) {
 	my $path_email=$config{'vmail_home'}."/". $dnsname. "/". $emailaddr;
 	if (-d $path_email)
 	{
-		my $datum = `date +"%d-%m-%Y"`;
-		$datum=~s/\n//;
 		my $path_save = $config{'vmail_safe'} ."/" . $datum ."/". $dnsname."/";
-		`mkdir -p $path_save`;
+		system("mkdir -p $path_save") unless (-d $path_save);
 		if (-d $path_save)
 		{
 			if (! system("mv $path_email $path_save"))
