@@ -19,6 +19,7 @@
 use strict;
 use DBI;
 use Config::General;
+use Proc::PID::File;
 
 my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
 my %config = $conf->getall;
@@ -36,6 +37,8 @@ if (! -d $config{'vmail_home'} || ! -d  $config{'vmail_safe'})
 	print "Error: ".$config{'vmail_home'}. " or ".$config{'vmail_safe'}." does not exists!\n";
 	exit(1);
 }
+die "Already running!" if Proc::PID::File->running();
+
 my $datum = `date +"%d-%m-%Y"`;
 chomp($datum);
 
