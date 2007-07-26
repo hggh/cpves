@@ -55,9 +55,17 @@
 		<select name="spam_folder">
 		{foreach from=$available_folders item=row}
 			{if $move_spam_folder == $row.name}
+				{if $row.type == 'spam'}
+				 <option value="{$row.name}" style="font-weight:bold;" selected="selected">{$row.name_display}</option>
+				{else}
 				<option value="{$row.name}" selected="selected">{$row.name_display}</option> 
+				{/if}
 			{else}
+				{if $row.type == 'spam'}
+				<option style="font-weight:bold;" value="{$row.name}">{$row.name_display}</option>
+				{else}
 				<option value="{$row.name}">{$row.name_display}</option>
+				{/if}
 			{/if}
 		{/foreach}</select>
 		
