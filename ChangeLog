@@ -24,6 +24,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: Upgrade to newest smarty version
 	o Improved: format error of del_known_spam (#6)
 	o Improved: delete domain; no email to sysadmin any more (#8)
+	o Improved: list_imap_folders: non-spam /spam folder
 CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder

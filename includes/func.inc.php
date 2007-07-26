@@ -189,7 +189,7 @@ function list_imap_folders($imap_server, $email,$password) {
 			if (!preg_match('/^drafts$/i', $name ) &&
 			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name)) {
 				
-				if (preg_match('/SPAM/i',$name)) {
+				if (preg_match('/SPAM/i',$name) || preg_match('/JUNK/i',$name)) {
 				array_push($imap_folders,array(
 					'name_display' => $name_display,
 					'name' => $name,
