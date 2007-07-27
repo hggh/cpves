@@ -115,6 +115,9 @@ switch($_GET['module']) {
 	case 'user_mailfilter':
 		$site="user_mailfilter";
 		break;
+	case 'user_salearn':
+		$site="user_salearn";
+		break;
 	case 'logout':
 		$_SESSION = array();
 		session_destroy();
@@ -169,6 +172,9 @@ if (isset($_GET['did']) && is_numeric($_GET['did'])) {
 	$smarty->assign('did',$_GET['did']);
 }
 
+if (! check_access_to_site($site)) {
+	$site="main";
+}
 
 require_once(ROOT . "/includes/sites/" . $site . ".php");
 $smarty->assign('template', $site . ".tpl");

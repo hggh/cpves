@@ -27,6 +27,7 @@ $smarty->assign('p_mailarchive', $_SESSION['p_mailarchive']);
 $smarty->assign('p_bogofilter', $_SESSION['p_bogofilter']);
 $smarty->assign('p_mailfilter', $_SESSION['p_mailfilter']);
 $smarty->assign('p_spam_del', $_SESSION['p_spam_del']);
+$smarty->assign('p_sa_learn', $_SESSION['p_sa_learn']);
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&
 	 $_SESSION['superadmin']=='y' && 

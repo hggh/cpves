@@ -22,6 +22,9 @@
 	{if $if_spamassassin == '1'}
 	<a class="nav sub" href="?module=user_spam">{$labels.spamfilter}</a>
 	{/if}
+	{if $p_sa_learn == '1' }
+	<a class="nav sub" href="?module=user_salearn">{$labels.sa_learn}</a>
+	{/if}
 	{if $if_forwarding == '1'}
 	<a class="nav sub" href="?module=user_forward">{$labels.email_forwarding}</a>
 	{/if}
@@ -37,6 +40,9 @@
 	<a class="nav" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
 	<a class="nav" href="?module=user_spam">{$labels.spamfilter}</a>
+	{/if}
+	{if $p_sa_learn == '1' }
+	<a class="nav" href="?module=user_salearn">{$labels.sa_learn}</a>
 	{/if}
 	{if $if_forwarding == '1'}
 	<a class="nav" href="?module=user_forward">{$labels.email_forwarding}</a>

@@ -139,6 +139,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'spam_del':
 			$do='p_spam_del';
 			break;
+		case 'sa_learn':
+			$do='p_sa_learn';
+			break;
 		default:
 			return false;
 	}
@@ -767,6 +770,23 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 	}
 	
 }
+
+function check_access_to_site($site) {
+	if (ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user') {
+		$sites = array(
+			'user_archivemail' => 'p_mailarchive',
+			'user_mailfilter'  => 'p_mailfilter',
+			'user_spam'        => 'spamassassin',
+			'user_forward'     => 'forwarding',
+			'user_salearn'     => 'p_sa_learn');
+		if (in_array($site, $sites)) {
+			if ( $_SESSION[$sites[$site]] ==0) return 0;
+		}
+		
+	}
+	return 1;
+}
+
 $smarty->assign('autores_sendback_times_selects', 
 		array( 1 => 'Nur bei der ersten Mail',
 		2 => 'Bis zur zweiten Mail',

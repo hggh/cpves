@@ -67,3 +67,6 @@ INDEX ( `email` , `active` )
 ALTER TABLE `mailarchive` ADD `mailsread` TINYINT( 1 ) NOT NULL ;
 ALTER TABLE `autoresponder` ADD `times` CHAR( 1 ) NOT NULL DEFAULT '1';
 ALTER TABLE `domains` ADD `enew` TINYINT( 1 ) NOT NULL DEFAULT '1';
+
+ALTER TABLE `domains` ADD `p_sa_learn` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `p_sa_learn` TINYINT( 1 ) NOT NULL DEFAULT '0';

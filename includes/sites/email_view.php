@@ -42,6 +42,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_mailarchive', $data['p_mailarchive']);
 	$smarty->assign('if_bogofilter', $data['p_bogofilter']);
 	$smarty->assign('if_spam_del', $data['p_spam_del']);
+	$smarty->assign('if_sa_learn', $data['p_sa_learn']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -440,6 +441,13 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$spam_del=0;
 			}
+			if (isset($_POST['sa_learn']) && $_POST['sa_learn'] =="enable" && check_domain_feature($_GET['did'],'p_sa_learn')) {
+				$sa_learn=1;
+			}
+			else
+			{
+				$sa_learn=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -477,7 +485,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -489,6 +497,7 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($mailarchive),
 					$db->escapeSimple($bogofilter),
 					$db->escapeSimple($spam_del),
+					$db->escapeSimple($sa_learn),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -514,6 +523,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_mailarchive_value', $edata['p_mailarchive']);
 	$smarty->assign('if_bogofilter_value', $edata['p_bogofilter']);
 	$smarty->assign('if_spam_del_value', $edata['p_spam_del']);
+	$smarty->assign('if_sa_learn_value', $edata['p_sa_learn']);
 	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
 		$smarty->assign('sa_move_spam',$edata['move_spam'] );
 	}
@@ -541,6 +551,7 @@ if (isset($_SESSION['superadmin']) &&
 	$bogofilter=get_email_options($_GET['id'],"bogofilter", 0);
 	$del_known_spam=get_email_options($_GET['id'],"del_known_spam",0);
 	$del_known_spam_value=get_email_options($_GET['id'],"del_known_spam_value",10);
+	
 	$smarty->assign('spamassassin_active', $spamassassin);
 	$smarty->assign('bogofilter_active', $bogofilter);
 	$smarty->assign('del_known_spam', $del_known_spam);

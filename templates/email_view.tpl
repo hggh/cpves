@@ -77,6 +77,17 @@
 	</select></td>
 </tr>
 {/if}
+{if $if_sa_learn == 1 }
+	<td>Spam/Ham-lernbar:</td>
+	<td><select name="sa_learn">
+	<option value="enable">{$labels.opt_yes}</option>
+	{if $if_sa_learn_value == 0}
+	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	{else}
+	<option value="disable">{$labels.opt_no}</option>
+	{/if}
+	</select></td>
+{/if}
 {if $if_spam_del == 1 }
 	<td>Spam l&ouml;schen m&ouml;glich:</td>
 	<td><select name="spam_del">

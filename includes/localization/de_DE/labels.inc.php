@@ -48,7 +48,7 @@
 	$labels['mailarchive']="Mailarchiv";
 	$labels['mailfilter']="Mailfilter";
 	$labels['domain_del']="Domain l&ouml;schen";
-	$labels['']="";
+	$labels['sa_learn']="Spam/Ham-lernen";
 	$labels['']="";
 	$labels['']="";
 	$labels['']="";

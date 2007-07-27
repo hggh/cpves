@@ -177,6 +177,18 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="Spamassassin deaktivieren." /></a>
  {/if}</td> 
 </tr>
+<tr>
+ <td>Spam/Ham lernbar:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_sa_learn == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_learn">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Spam/Ham lernbar aktivieren." /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_learn">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Spam/Ham lernbar deaktivieren." /></a>
+ {/if}</td> 
+</tr>
 
 <tr>
  <td>Spam l&ouml;schbar:</td>

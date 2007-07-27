@@ -158,11 +158,11 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 //Domain features veraendern ANFANG
 if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
-	if ($_GET['f']=='spamassassin' && $_GET['f']==0
-	&& check_domain_feature($_GET['did'], 'p_bogofilter')) {
+	if ($_GET['f']=='spamassassin' && $_GET['f']==0) {
 		change_domain_feature($_GET['did'],'bogofilter','0');
 		change_domain_feature($_GET['did'],'spam_del','0');
 		change_domain_feature($_GET['did'],'sa_wb_listing','0');
+		change_domain_feature($_GET['did'],'sa_learn','0');
 	}
 	if ($_GET['f']=='bogofilter' 
 	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
@@ -178,6 +178,11 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
 		$smarty->assign('error_msg', 'y');
 		$smarty->assign('if_error_sa_disable_enable_sa_wb_listing', 'y');
+	}
+	elseif($_GET['f']=='sa_learn' 
+	   && !check_domain_feature($_GET['did'], 'p_spamassassin')) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('if_error_sa_disable_enable_sa_learn', 'y');
 	}
 	else {
 		change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);
@@ -197,6 +202,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$smarty->assign('p_pop3', $data['p_pop3']);
 	$smarty->assign('p_webmail', $data['p_webmail']);
 	$smarty->assign('p_spamassassin', $data['p_spamassassin']);
+	$smarty->assign('p_sa_learn', $data['p_sa_learn']);
 	$smarty->assign('p_spam_del', $data['p_spam_del']);
 	$smarty->assign('p_mailarchive', $data['p_mailarchive']);
 	$smarty->assign('p_bogofilter', $data['p_bogofilter']);
