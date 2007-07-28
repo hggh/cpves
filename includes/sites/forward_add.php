@@ -27,12 +27,13 @@ if (isset($_SESSION['superadmin']) &&
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	$smarty->assign('id', $_GET['id']);
+	//$smarty->assign('id', $_GET['id']);
 	$smarty->assign('domain',$data['dnsname']);
 	$dnsname=$data['dnsname'];
 	$domain_id=$_GET['did'];
+	$max_forward=$data['max_forward'];
 	
-	if (get_forem_domain($data['did'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
+	if (get_forem_domain($data['id'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_forwds_max_reached','y');
@@ -67,7 +68,7 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('from',$_POST['from'] );
 			$smarty->assign('to',$_POST['to'] );
 			}
-			else if (get_forem_domain($data['id'],'forwardings', $db)>=$data['max_forward'] && $data['max_forward']!=0)
+			else if (get_forem_domain($domain_id,'forwardings', $db)>=$max_forward && $max_forward!=0)
 			{
 				$smarty->assign('error_msg','y');
 				$smarty->assign('if_error_forwds_max_reached','y');

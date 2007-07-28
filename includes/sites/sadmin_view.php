@@ -20,17 +20,17 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
     && isset($_SESSION['manager'])
     && $_SESSION['manager'] =='y')
 {
-	if ($_GET['state']=='disable')
+	if (isset($_GET['state']) && $_GET['state'] =='disable')
 	{
 		$sql=sprintf("UPDATE adm_users SET access='n' WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));
 	}
-	else if ($_GET['state']=='enable')
+	else if (isset($_GET['state']) && $_GET['state']=='enable')
 	{
 		$sql=sprintf("UPDATE adm_users SET access='y' WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));
 	}
-	else if ($_GET['state']=="delete")
+	else if (isset($_GET['state']) && $_GET['state']=="delete")
 	{
 		$sql=sprintf("DELETE FROM adm_users WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));

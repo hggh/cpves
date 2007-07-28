@@ -27,7 +27,8 @@ if (!isset($_POST['login'])  ) {
 	include(ROOT . "/includes/check_access.php");
 }
 
-if (isset($_GET['user']) && $_GET['user']=='y' || $_SESSION['ad_user']=='y')
+if ((isset($_GET['user']) && $_GET['user']=='y') ||
+    (isset( $_SESSION['ad_user']) && $_SESSION['ad_user']=='y') )
 {
 	$smarty->assign('if_ad_user','y');
 	$_SESSION['ad_user']='y';

@@ -18,6 +18,9 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: Password dialog forms (#5)
 	o Fixed: create_mailfilters.pl: if() in bogofilter
 	o Fixed: delete domains (no old data will stay in other tables)
+	o Fixed: max forwardings in domain
+	o Fixed: max email addresses in domain
+	o Fixed: fixed some variable errors/usages
 	o Improved: move_spam (only called in autoresponder if spamassassin is active)
 	o Improved: possible inputfailture on forwarding add
 	o Improved: moved all cpves js code to separate file (js/cpves.js)

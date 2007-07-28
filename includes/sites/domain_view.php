@@ -26,7 +26,7 @@ if (isset($_SESSION['superadmin']) &&
 	$access_domain )
 {
 //Enable or Disable EMAIL BEGIN
-if (is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
+if (isset($_GET['eid']) && is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
 {
 	if ($_GET['type'] == "catchall" && $_GET['state'] == "delete")
 	{ // loesche den catchall

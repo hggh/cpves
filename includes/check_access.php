@@ -16,18 +16,18 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
+if (isset($_SESSION['superadmin']))    $smarty->assign('if_superadmin', $_SESSION['superadmin']);
+if (isset($_SESSION['admin']))         $smarty->assign('if_admin', $_SESSION['admin']);
+if (isset($_SESSION['manager']))       $smarty->assign('if_manager',$_SESSION['manager']);
+if (isset($_SESSION['email']))         $smarty->assign('username', $_SESSION['email']);
+if (isset($_SESSION['spamassassin']))  $smarty->assign('if_spamassassin', $_SESSION['spamassassin']);
+if (isset($_SESSION['forwarding']))    $smarty->assign('if_forwarding', $_SESSION['forwarding']);
+if (isset($_SESSION['p_mailarchive'])) $smarty->assign('p_mailarchive', $_SESSION['p_mailarchive']);
+if (isset($_SESSION['p_bogofilter']))  $smarty->assign('p_bogofilter', $_SESSION['p_bogofilter']);
+if (isset($_SESSION['p_mailfilter']))  $smarty->assign('p_mailfilter', $_SESSION['p_mailfilter']);
+if (isset($_SESSION['p_spam_del']))    $smarty->assign('p_spam_del', $_SESSION['p_spam_del']);
+if (isset($_SESSION['p_sa_learn']))    $smarty->assign('p_sa_learn', $_SESSION['p_sa_learn']);
 
-$smarty->assign('if_superadmin', $_SESSION['superadmin']);
-$smarty->assign('if_admin', $_SESSION['admin']);
-$smarty->assign('if_manager',$_SESSION['manager']);
-$smarty->assign('username', $_SESSION['email']);
-$smarty->assign('if_spamassassin', $_SESSION['spamassassin']);
-$smarty->assign('if_forwarding', $_SESSION['forwarding']);
-$smarty->assign('p_mailarchive', $_SESSION['p_mailarchive']);
-$smarty->assign('p_bogofilter', $_SESSION['p_bogofilter']);
-$smarty->assign('p_mailfilter', $_SESSION['p_mailfilter']);
-$smarty->assign('p_spam_del', $_SESSION['p_spam_del']);
-$smarty->assign('p_sa_learn', $_SESSION['p_sa_learn']);
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&
 	 $_SESSION['superadmin']=='y' && 
@@ -95,17 +95,17 @@ if ($no_login==1)
 }
 
 
-if ($_SESSION['menu_user_open']== 'y')
+if (isset($_SESSION['menu_user_open']) && $_SESSION['menu_user_open']== 'y')
 {
 	$smarty->assign('menu_user_open', 'y');
 }
-elseif ($_GET['user'] == 'y')
+elseif (isset($_GET['user']) && $_GET['user'] == 'y')
 {
 	$smarty->assign('menu_user_open', 'y');
 	$_SESSION['menu_user_open']='y';
 }
 
-if ($_GET['user']== 'n')
+if (isset($_GET['user']) && $_GET['user']== 'n')
 {
 	$smarty->assign('menu_user_open', 'n');
 	$_SESSION['menu_user_open']='n';

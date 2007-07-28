@@ -2,6 +2,7 @@
 //Enable or Disable Domain BEGIN
 if (isset($_SESSION['superadmin']) && 
 	$_SESSION['superadmin']=='y'&& 
+	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
 	isset($_GET['state']) )
 {
@@ -68,7 +69,7 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 	 'dnote' => $row['dnote']
          )
       );
-      $i++; 
+      //$i++; 
 } 
 }
 //check for spam:

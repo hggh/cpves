@@ -83,6 +83,32 @@ function insert_mailarchive($uid,$options) {
 	}
 }
 
+function insert_sa_learn($uid,$options) {
+	global $db;
+	$sql=sprintf("SELECT id FROM spamassassin_learn WHERE email='%s' AND folder='%s'",
+		$db->escapeSimple($uid),
+		$db->escapeSimple($options['folder']));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$sql=sprintf("UPDATE spamassassin_learn SET folder='%s',active='%d',type='%s' WHERE email='%d' AND id='%d'",
+			$db->escapeSimple($options['folder']),
+			$db->escapeSimple($options['active']),
+			$db->escapeSimple($options['satype']),
+			$db->escapeSimple($uid),
+			$db->escapeSimple($data['id']));
+		$res=&$db->query($sql);
+	}
+	else {
+		$sql=sprintf("INSERT INTO spamassassin_learn SET email='%d', folder='%s',active='%d',type='%s'",
+			$db->escapeSimple($uid),
+			$db->escapeSimple($options['folder']),
+			$db->escapeSimple($options['active']),
+			$db->escapeSimple($options['satype']));
+		$res=&$db->query($sql);
+	}
+}
+
 function get_autores_disable($uid) {
 	global $db;
 	$sql=sprintf("SELECT active,DATE_FORMAT(a_date, '%%d.%%m.%%Y') AS a_date,DATE_FORMAT(a_date, '%%H:%%i:%%s') AS a_time FROM autoresponder_disable WHERE email='%s'",
@@ -396,6 +422,7 @@ function check_multi_forward($forward)
 
 function check_access_to_domain($domainid,$db)
 {
+	if (! isset($_SESSION['uid'])) return false;
 	$sql=sprintf("SELECT id FROM admin_access WHERE email='%s' AND domain='%s'",
 		$db->escapeSimple($_SESSION['uid']),
 		$db->escapeSimple($domainid));
@@ -788,10 +815,10 @@ function check_access_to_site($site) {
 }
 
 $smarty->assign('autores_sendback_times_selects', 
-		array( 1 => 'Nur bei der ersten Mail',
-		2 => 'Bis zur zweiten Mail',
-		3 => 'Bis zur dritten Mail',
-		4 => 'Bis zur vierten Mail',
-		5 => 'Bis zur f&uuml;nften Mail',
-		n => 'Bei jeder Mail'));
+		array( '1' => 'Nur bei der ersten Mail',
+		'2' => 'Bis zur zweiten Mail',
+		'3' => 'Bis zur dritten Mail',
+		'4' => 'Bis zur vierten Mail',
+		'5' => 'Bis zur f&uuml;nften Mail',
+		'n' => 'Bei jeder Mail'));
 ?>

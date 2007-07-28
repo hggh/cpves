@@ -32,11 +32,12 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_webmail', $data['p_webmail']);
 	$smarty->assign('if_spamassassin', $data['p_spamassassin']);
 	$domain_id=$_GET['did'];
+	$max_email=$data['max_email'];
 	
 	$smarty->assign('domain',$data['dnsname']);
 	$smarty->assign('dnsname',$data['dnsname']);
 	
-	if (get_forem_domain($data['did'],'users', $db)>=$data['max_email'] && $data['max_email']!=0 )
+	if (get_forem_domain($domain_id,'users', $db)>=$max_email && $max_email!=0 )
 	{
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_email_max_reached','y');	
@@ -48,7 +49,7 @@ if (isset($_SESSION['superadmin']) &&
 	if (!empty($_POST['emailaddr']) && !empty($_POST['npassword']))
 	{
 		$full_email=$_POST['emailaddr']."@".$data['dnsname'];
-		if (get_forem_domain($data['id'],'users', $db)>=$data['max_email'] && $data['max_email']!=0 )
+		if (get_forem_domain($domain_id,'users', $db)>=$max_email && $max_email!=0 )
 		{
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_email_max_reached','y');

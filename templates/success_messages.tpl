@@ -25,4 +25,6 @@ Superadmin erfolgreich ge&auml;ndert.
 Die Mailfilter werden neu gebaut.
 {elseif $if_mailarchive_saved == 'y'}
 Die &Auml;nderungen wurden gespeichert.
+{elseif $if_salearn_saved == 'y'}
+Die &Auml;nderungen wurden gespeichert.
 {/if}
