@@ -49,7 +49,7 @@
 	$labels['mailfilter']="Mailfilter";
 	$labels['domain_del']="Domain l&ouml;schen";
 	$labels['sa_learn']="Spam/Ham-lernen";
-	$labels['']="";
+	$labels['sa_learn_title']="Spam/Hamlernen";
 	$labels['']="";
 	$labels['']="";
 	$labels['']="";
