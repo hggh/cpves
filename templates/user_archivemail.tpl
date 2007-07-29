@@ -5,7 +5,7 @@
 	{* If spam folder: only delete option should be used *}
 	{else}
 	<tr>
-	<td valign="top" style="padding-right:10px;"><b>IMAP-Order: </b> <i>{$row.name_display}</i></td>
+	<td valign="top" style="padding-right:10px;"><b>IMAP-Ordner: </b> <i>{$row.name_display}</i></td>
 	<td valign="top" style="padding-bottom:19px;">
 	<form action="?module=user_archivemail" method="post">
 		<table>

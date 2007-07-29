@@ -18,8 +18,8 @@
 ******************************************************************************/
 
 if (isset($_POST['sa_learn_submit'])) {
-	if (isset($_POST['sa_learn_type']) && 
-           ($_POST['sa_learn_type']=='spam' || $_POST['sa_learn_type']=='ham')) {
+	if (isset($_POST['sa_learn_type']) && isset($_POST['sa_learn_type']) &&
+           ($_POST['sa_learn_type']=='spam' ||$_POST['sa_learn_type']=='ham'||$_POST['sa_learn_type']=='0' )) {
 		$sa_learn['satype']=$_POST['sa_learn_type'];
 		$sa_learn['active']=$_POST['sa_learn_active'];
 		$sa_learn['folder']=$_POST['sa_learn_folder'];

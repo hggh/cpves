@@ -64,7 +64,7 @@ $options = array(
 );
 $dsn = array(
     'phptype'  => 'mysql',
-    'username' => 'root',
+    'username' => 'mail_web',
     'password' => '',
     'hostspec' => 'localhost',
     'database' => 'mail_system',

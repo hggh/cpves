@@ -91,12 +91,19 @@ function insert_sa_learn($uid,$options) {
 	$result=&$db->query($sql);
 	if ($result->numRows() == 1) {
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-		$sql=sprintf("UPDATE spamassassin_learn SET folder='%s',active='%d',type='%s' WHERE email='%d' AND id='%d'",
-			$db->escapeSimple($options['folder']),
-			$db->escapeSimple($options['active']),
-			$db->escapeSimple($options['satype']),
-			$db->escapeSimple($uid),
-			$db->escapeSimple($data['id']));
+		if ($options['folder']== 0) {
+			$sql=sprintf("DELETE FROM spamassassin_learn WHERE email='%d' AND id='%d'",
+				$db->escapeSimple($uid),
+				$db->escapeSimple($data['id']));
+		}
+		else {		
+			$sql=sprintf("UPDATE spamassassin_learn SET folder='%s',active='%d',type='%s' WHERE email='%d' AND id='%d'",
+				$db->escapeSimple($options['folder']),
+				$db->escapeSimple($options['active']),
+				$db->escapeSimple($options['satype']),
+				$db->escapeSimple($uid),
+				$db->escapeSimple($data['id']));
+		}
 		$res=&$db->query($sql);
 	}
 	else {
