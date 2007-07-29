@@ -171,7 +171,7 @@ if (isset($_POST['white_add']) && isset($_POST['white_add_email']) && !empty($_P
 $spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
 $bogofilter=get_email_options($_SESSION['uid'],"bogofilter",0);
 $del_known_spam=get_email_options($_SESSION['uid'],"del_known_spam",0);
-$del_known_spam_value=get_email_options($_SESSION['uid'],"del_known_spam_value",10);
+$del_known_spam_value=get_email_options($_SESSION['uid'],"del_known_spam_value",'10.0');
 $smarty->assign('bogofilter_active', $bogofilter);
 $smarty->assign('spamassassin_active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);

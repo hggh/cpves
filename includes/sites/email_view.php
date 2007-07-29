@@ -550,7 +550,7 @@ if (isset($_SESSION['superadmin']) &&
 	$spamassassin=get_email_options($_GET['id'],"spamassassin", 0);
 	$bogofilter=get_email_options($_GET['id'],"bogofilter", 0);
 	$del_known_spam=get_email_options($_GET['id'],"del_known_spam",0);
-	$del_known_spam_value=get_email_options($_GET['id'],"del_known_spam_value",10);
+	$del_known_spam_value=get_email_options($_GET['id'],"del_known_spam_value",'10.0');
 	
 	$smarty->assign('spamassassin_active', $spamassassin);
 	$smarty->assign('bogofilter_active', $bogofilter);

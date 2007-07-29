@@ -87,6 +87,7 @@
 	<option value="disable">{$labels.opt_no}</option>
 	{/if}
 	</select></td>
+</tr>
 {/if}
 {if $if_spam_del == 1 }
 	<td>Spam l&ouml;schen m&ouml;glich:</td>

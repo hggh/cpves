@@ -21,6 +21,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: max forwardings in domain
 	o Fixed: max email addresses in domain
 	o Fixed: fixed some variable errors/usages
+	o Fixed: default spam_del value (10 -> 10.0) (#14)
 	o Improved: move_spam (only called in autoresponder if spamassassin is active)
 	o Improved: possible inputfailture on forwarding add
 	o Improved: moved all cpves js code to separate file (js/cpves.js)
