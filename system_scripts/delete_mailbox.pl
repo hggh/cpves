@@ -37,7 +37,7 @@ if (! -d $config{'vmail_home'} || ! -d  $config{'vmail_safe'})
 	print "Error: ".$config{'vmail_home'}. " or ".$config{'vmail_safe'}." does not exists!\n";
 	exit(1);
 }
-die "Already running!" if Proc::PID::File->running();
+die "Already running!" if Proc::PID::File->running('dir' => '/tmp/' );
 
 my $datum = `date +"%d-%m-%Y"`;
 chomp($datum);

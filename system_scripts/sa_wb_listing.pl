@@ -65,7 +65,7 @@ else {
 
 (my $mail_addr, my $mail_host) = split(/@/, $mail_from);
 my $state=1;
-my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'})or print "1\n" ; exit(0) ;
+my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'})or exit(0) ;
 
 #Check Domain:
 my $sth=$dbh->prepare("SELECT id FROM sa_wb_listing WHERE type='1' AND email='0' AND sa_from=? AND domainid=?");

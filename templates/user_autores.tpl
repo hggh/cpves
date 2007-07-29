@@ -42,7 +42,7 @@
 
 	<form action="?module=user_autores" method="post">
 	<tr>
-		<td valign="top">Dekativiere Autoresponder:</td>
+		<td valign="top">Deaktiviere Autoresponder:</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
 		<option value="1" onclick="cpves_autores_datedisable('')">Ja</option>
 		{if $autores_disable.active == 0 }
