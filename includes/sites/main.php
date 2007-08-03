@@ -102,7 +102,7 @@ $smarty->assign('table_spam', $table_spam);
 //email user part:
 if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='n')
 {
-	$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
+	$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']), 1);
 	if ($folders== false ) {
 	$smarty->assign('imap_folder_exits', 0);
 	}

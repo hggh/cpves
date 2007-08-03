@@ -207,7 +207,7 @@ function check_du_fetaure($uid,$did,$typ) {
 	return 0;
 }
 
-function list_imap_folders($imap_server, $email,$password) {
+function list_imap_folders($imap_server, $email,$password, $stati) {
 	$mbox=@imap_open("{".$imap_server.":143/imap/notls}",$email,$password);
 	if (! $mbox) {
 		return false;
@@ -226,6 +226,7 @@ function list_imap_folders($imap_server, $email,$password) {
 			if (!preg_match('/^drafts$/i', $name ) &&
 			   !preg_match("/^Trash$trenner/i", $name)) {
 
+				if ($stati==1) {
 				$status = imap_status($mbox, "{".$imap_server."}". $folder, SA_ALL );
 				if ($status) {
 					$messages=$status->messages;
@@ -235,6 +236,8 @@ function list_imap_folders($imap_server, $email,$password) {
 					$messages=0;
 					$unseen  =0;
 				}
+				}
+
 				if (preg_match('/SPAM/i',$name) || preg_match('/JUNK/i',$name)) {
 					$type="spam";
 				}
