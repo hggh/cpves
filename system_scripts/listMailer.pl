@@ -27,7 +27,7 @@ use Net::SMTP;
 my $sender;
 my @addresses;
 my @emailfrom;
-my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 $config{'db_host'} = "localhost" unless defined $config{'db_host'};
 $config{'db_username'} = "mail" unless defined $config{'db_username'};

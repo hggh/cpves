@@ -26,7 +26,7 @@ my $email_input;
 my $did;
 my $emailid;
 
-if (! -f "/etc/mail-admin/mail_config.conf") {
+if (! -f "/etc/cpves/mail_config.conf") {
 	print "1\n";
 	exit (0);
 }

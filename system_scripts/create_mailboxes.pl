@@ -20,7 +20,7 @@ use strict;
 use DBI;
 use Config::General;
 
-my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 
 

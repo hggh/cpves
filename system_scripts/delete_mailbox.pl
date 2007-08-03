@@ -21,7 +21,7 @@ use DBI;
 use Config::General;
 use Proc::PID::File;
 
-my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 
 

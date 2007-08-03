@@ -20,7 +20,7 @@ use DBI;
 use Fcntl;
 use Config::General;
 
-my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 
 
@@ -132,8 +132,6 @@ while(@data = $sth->fetchrow_array)
 	my $id = $data[1];
 	my $did= $data[2];
 	#print "-> " . $path . " -> ". $id . "\n";
-	#Delete the mailfilters.
-	del_mailfilter($path);
 	#Delete Database entries
 	$sql = sprintf("DELETE FROM mailfilter WHERE email=%s AND active='0'",
 		$dbh->quote($id));
@@ -175,7 +173,7 @@ while(@data = $sth->fetchrow_array)
 				}
 				if (get_email_option($id,'del_known_spam', '0') eq "1") {
 					my $del_known_spam_value=get_email_option($id,'del_known_spam_value', '100');
-					$mailfilter=sprintf("%s\nexception {\nif ( /^X-Spam-Status: Yes, score=([0-9.]+) required=/:h )\n{\nif (\$MATCH1 >= %s)\n{\nto \"|cat - > /dev/null\"\n}\n}\n}\n",
+					$mailfilter=sprintf("%s\nexception {\nif ( /^X-Spam-Status: Yes, score=([0-9.]+) required=/:h )\n{\nif (\$MATCH1 >= %s)\n{\n exit \n}\n}\n}\n",
 					$mailfilter,
 					$del_known_spam_value);
 				}
@@ -208,8 +206,8 @@ while(@data = $sth->fetchrow_array)
 				#}
 			}
 			if ( $type eq "del_virus_notifi") {
-				$temp_data=qq(if (/^X-Virus: CpVES\$/ && /^From: .*postmaster\@/ )\n{\nexception {\nto );
-				$mailfilter = sprintf("%s\n%s \"|cat - > /dev/null\"\n}\n}\n",
+				$temp_data=qq(if (/^X-Virus: CpVES\$/ && /^From: .*postmaster\@/ )\n{\nexception {\n );
+				$mailfilter = sprintf("%s\n%s exit \n}\n}\n",
 					$mailfilter,
 					$temp_data);
 				
@@ -227,6 +225,8 @@ while(@data = $sth->fetchrow_array)
 		}
 		if ( -d $path )
 		{
+			#Delete the mailfilters.
+			del_mailfilter($path);
 			my $handle;
 			sysopen($handle,"$path/.mailfilter", O_WRONLY|O_CREAT, 0600);
 			print $handle $mailfilter;
