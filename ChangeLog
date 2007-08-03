@@ -11,6 +11,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: user/admin option: delete duplicate mails
 	o Added: autoresponder send feature (#7)
 	 (specify how many responds will send to one address back)
+	o Added: extra site for users password change
 	o Fixed: typo in delete duplicate mails create_mailfilters.pl
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)

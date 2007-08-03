@@ -24,6 +24,8 @@
 	{$labels.password_change}
 {elseif $template == "user_spam.tpl"}
 	{$email}: {$labels.spamfilter}
+{elseif $template == "user_password.tpl" }
+	{$email}: {$labels.password}
 {elseif $template == "user_salearn.tpl"}
 	{$email}: {$labels.sa_learn_title}
 {elseif $template == "user_forward.tpl"}

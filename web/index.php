@@ -119,6 +119,9 @@ switch($_GET['module']) {
 	case 'user_salearn':
 		$site="user_salearn";
 		break;
+	case 'user_password':
+		$site="user_password";
+		break;
 	case 'logout':
 		$_SESSION = array();
 		session_destroy();

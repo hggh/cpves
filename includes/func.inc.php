@@ -219,25 +219,39 @@ function list_imap_folders($imap_server, $email,$password) {
 		foreach($list as $key => $val) {
 			$trenner = $val->delimiter;
 			$name = ereg_replace("{ffo}", "", $val->name);
+			$folder = ereg_replace("{ffo}", "", $val->name);
 			$name = ereg_replace("INBOX$trenner", "", $name);
 			$name_display=mb_convert_encoding($name, "UTF-8", "UTF7-IMAP");
 			$name_display=str_replace($trenner, "/", $name_display);
 			if (!preg_match('/^drafts$/i', $name ) &&
-			  !preg_match('/^INBOX$/i', $name) && !preg_match("/^Trash$trenner/i", $name)) {
-				
-				if (preg_match('/SPAM/i',$name) || preg_match('/JUNK/i',$name)) {
-				array_push($imap_folders,array(
-					'name_display' => $name_display,
-					'name' => $name,
-					'type' => 'spam'));
+			   !preg_match("/^Trash$trenner/i", $name)) {
+
+				$status = imap_status($mbox, "{".$imap_server."}". $folder, SA_ALL );
+				if ($status) {
+					$messages=$status->messages;
+					$unseen  =$status->unseen;
 				}
 				else {
+					$messages=0;
+					$unseen  =0;
+				}
+				if (preg_match('/SPAM/i',$name) || preg_match('/JUNK/i',$name)) {
+					$type="spam";
+				}
+				else if (preg_match('/^INBOX$/i', $name))  {
+					$type="inbox";
+				}
+				else {
+					$type="normal";
+				}
 				array_push($imap_folders,array(
 					'name_display' => $name_display,
 					'name' => $name,
-					'type' => 'normal'));
-				}
+					'type' => $type,
+					'messages' => $messages,
+					'unseen' => $unseen));
 			}
+			$type="";
 		}
 		if (count($imap_folders) > 0 ) {
 			return $imap_folders;

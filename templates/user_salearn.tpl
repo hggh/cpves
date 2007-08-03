@@ -1,6 +1,7 @@
 {if $imap_folder_exits == 1 }
 <table border="0">
 	{foreach key=fid from=$available_folders item=row}
+	{if $row.type != 'inbox' }
 	<tr>
 	<td valign="top" style="padding-right:10px;"><b>IMAP-Ordner: </b> <i>{$row.name_display}</i></td>
 	<td valign="top" style="padding-bottom:19px;">
@@ -34,6 +35,7 @@
 	</table></form>
 	</td>
 	</tr>
+	{/if}
 	{/foreach}
 </table>
 {else}
