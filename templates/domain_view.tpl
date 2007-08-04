@@ -14,7 +14,7 @@
 {/literal}
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3" ><h3>E-Mailadressen</h3></td>
+ <td style="width:580px;" colspan="3" ><h3>{$labels.email_addresses}</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">{$labels.hide}</a>]</td>
 </tr>
 </table>
@@ -37,7 +37,7 @@
 </tr>
 {foreachelse}
 <tr>
- <td colspan="4">Keine E-Mailadressen vorhanden!</td>
+ <td colspan="4">{$labels.no_mailadresses_exists}</td>
 </tr>
 {/foreach}
 
@@ -45,7 +45,7 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>Weiterleitungen</h3></td>
+ <td style="width:580px;" colspan="3"><h3>{$labels.email_forwardings}</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">{$labels.hide}</a>]</td>
 </tr>
 </table>
@@ -71,7 +71,7 @@
 {if $if_listings == 'y' }
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>Mailinglisten</h3></td>
+ <td style="width:580px;" colspan="3"><h3>{$labels.email_mailinglists}</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">{$labels.hide}</a>]</td>
 </tr>
 </table>
@@ -93,7 +93,7 @@
 </tr> 
 {foreachelse}
 <tr>
- <td colspan="4">Keine Mailingliste unter dieser Domain vorhanden!</td>
+ <td colspan="4">{$labels.no_mailinglists_exists}</td>
 </tr>
 {/foreach}
 </table>
@@ -101,13 +101,13 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:670px;" colspan="4"><h3>Catchall</h3></td>
+ <td style="width:670px;" colspan="4"><h3>{$labels.catchall}</h3></td>
 </tr>
 </table>
 <table id="catcht" border="0">
 <tr>
   {if $if_catchall eq 'n' }
-  <td colspan="4"  style="width:670px;">Kein CatchAll f&uuml;r {$dnsname} konfiguiert.<br/><a href="?module=forward_catchall&#038;did={$did}&#038;new=yes">Hier klicken um einen Einzurichten.</a></td>
+  <td colspan="4"  style="width:670px;">{$labels.catchall_no} {$dnsname} {$labels.catchall_configure}<br/><a href="?module=forward_catchall&#038;did={$did}&#038;new=yes">{$labels.catchall_make_configure}</a></td>
   {else}
   <td style="width:300px;"><a href="?module=forward_catchall&#038;did={$did}">@{$dnsname}</a></td>
   <td style="width:300px;">{$catchall_to}</td>
@@ -127,7 +127,7 @@
 
 {if $if_superadmin eq 'y' }
 <tr>
- <td colspan="4" class="domain_view"><h3>Eigenschaften von {$dnsname}</h3></td>
+ <td colspan="4" class="domain_view"><h3>{$labels.dv_settings} {$dnsname}</h3></td>
 </tr>
 <tr>
  <td>IMAP:</td>
@@ -178,7 +178,7 @@
  {/if}</td> 
 </tr>
 <tr>
- <td>Spam/Ham lernbar:</td>
+ <td>{$labels.ham_spam_learn}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_sa_learn == 0 }
@@ -191,7 +191,7 @@
 </tr>
 
 <tr>
- <td>Spam l&ouml;schbar:</td>
+ <td>{$labels.del_spam}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spam_del == 0 }
@@ -254,7 +254,7 @@ Verbraucht/M&ouml;glich
  {/if}</span></td>
 </tr>
 <tr>
- <td>E-Mailadressen:</td>
+ <td{$labels.email_addresses}:</td>
  {if $if_superadmin != 'y' }
  <td></td>
  {/if}
@@ -266,7 +266,7 @@ Verbraucht/M&ouml;glich
 {/if} 
 </tr>
 <tr>
- <td>Weiterleitungen:</td>
+ <td>{$labels.email_forwardings}:</td>
  {if $if_superadmin != 'y' }
  <td></td>
  {/if}

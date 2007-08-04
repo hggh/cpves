@@ -15,7 +15,7 @@
 </tr>
 {if $if_imap == '1' }
 <tr>
- <td>IMAP-Verbindung:</td>
+ <td>{$labels.imap_connection}:</td>
  <td><select name="imap">
      <option value="1">{$labels.opt_yes}</option>
      <option value="0">{$labels.opt_no}</option></select></td>
@@ -23,7 +23,7 @@
 {/if}
 {if $if_pop3 == '1' }
 <tr>
- <td>POP3-Verbindung:</td>
+ <td>{$labels.pop3_connection}:</td>
  <td><select name="pop3">
      <option value="1">{$labels.opt_yes}</option>
      <option value="0">{$labels.opt_no}</option></select></td>
@@ -31,7 +31,7 @@
 {/if}
 {if $if_webmail == '1' }
 <tr>
- <td>Webmail moeglich:</td>
+ <td>{$labels.p_webmail}:</td>
  <td><select name="webmail">
      <option value="1">{$labels.opt_yes}</option>
      <option value="0">{$labels.opt_no}</option></select></td>
@@ -39,7 +39,7 @@
 {/if}
 {if $if_spamassassin == '1'}
 <tr>
-	<td>Spamassassin sichtbar:</td>
+	<td>{$labels.p_sa}:</td>
 	<td><select name="p_spamassassin">
 		<option value="1">{$labels.opt_yes}</option>
 		<option value="0">{$labels.opt_no}</option>

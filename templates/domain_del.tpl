@@ -5,7 +5,7 @@
 {if $if_no_data != 'y' }
 <table >
 <tr>
- <td style="width:110px;font-weight:bold;">E-Mailadressen:</td>
+ <td style="width:110px;font-weight:bold;">{$labels.email_addresses}:</td>
 </tr>
 {section name=row loop=$table_data}
 <tr style="background-color:{cycle values=#rcolor#}" >
@@ -15,11 +15,11 @@
 </table>
 {else}
 <div style="color:blue;">
-Es existieren keine E-Mailadressen.</div>
+{$lables.no_mailadresses_exists}</div>
 {/if}
 <br/>
 <div style="text-align:left">
-<div style="color:red;margin-bottom:10px;">Soll diese Domain wirklich gel&ouml;scht werden?</div>
+<div style="color:red;margin-bottom:10px;">{$labels.dd_relly_delete}</div>
 <form action="?module=domain_del" method="post">
 <input type="hidden" name="did" value="{$did}"/>
 <input type="hidden" name="state" value="delete"/>
@@ -28,7 +28,7 @@ Es existieren keine E-Mailadressen.</div>
 </form>
 </div>
 {else}
-<div style="color:blue;">Domain wird gel&ouml;scht!</div><br/>
+<div style="color:blue;">{$labels.dd_delete_domain}</div><br/>
 <meta http-equiv="refresh" content="1; URL=./index.php">
 {/if}
 

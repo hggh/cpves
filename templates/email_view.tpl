@@ -15,7 +15,7 @@
 </tr>
 {if $if_imap == '1' }
 <tr>
- <td>IMAP-Verbindung:</td>
+ <td>{$labels.imap_connection}:</td>
  <td><select name="imap">
      <option value="enable">{$labels.opt_yes}</option>
      {if $if_imap_value == 0}
@@ -28,7 +28,7 @@
 {/if}
 {if $if_pop3 == '1' }
 <tr>
- <td>POP3-Verbindung:</td>
+ <td>{$labels.pop3_connection}:</td>
  <td><select name="pop3">
      <option value="enable">{$labels.opt_yes}</option>
      {if $if_pop3_value == 0}
@@ -41,7 +41,7 @@
 {/if}
 {if $if_webmail == 1 }
 <tr>
- <td>Webmail m&ouml;glich:</td>
+ <td>{$labels.p_webmail}:</td>
  <td><select name="webmail">
      <option value="enable">{$labels.opt_yes}</option>
      {if $if_webmail_value == 0 }
@@ -53,7 +53,7 @@
 </tr>
 {/if}
 <tr>
-	<td>Weiterleitung sichtbar:</td>
+	<td>{$labels.p_forwarding}:</td>
 	<td><select name="forwarding">
 	    <option value="enable">{$labels.opt_yes}</option>
 	    {if $if_forwarding_value == 0 }
@@ -66,7 +66,7 @@
 </tr>
 {if $if_spamassassin == '1' }
 <tr>
-	<td>Spamassassin sichtbar:</td>
+	<td>{$labels.p_sa}:</td>
 	<td><select name="spamassassin">
 	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_spamassassin_value == 0 }
@@ -102,7 +102,7 @@
 {/if}
 {if $if_bogofilter == '1' }
 <tr>
-	<td>Bogofilter sichtbar:</td>
+	<td>{$labels.p_bogofilter}:</td>
 	<td><select name="bogofilter">
 	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_bogofilter_value == 0 }
@@ -115,7 +115,7 @@
 {/if}
 {if $if_mailarchive == 1 }
 <tr>
-	<td>Mailarchiv sichtbar:</td>
+	<td>{$labels.p_mailarchive}:</td>
 	<td><select name="mailachrive">
 	<option value="enable">{$labels.opt_yes}</option>
 	{if $if_mailarchive_value == 0}
