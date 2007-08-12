@@ -78,3 +78,5 @@ CREATE TABLE `spamassassin_learn` (
 `active` TINYINT( 1 ) NOT NULL DEFAULT '0',
 `type` ENUM( 'spam', 'ham' ) NOT NULL
 ) ENGINE = MYISAM ;
+ALTER TABLE `domains` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0'

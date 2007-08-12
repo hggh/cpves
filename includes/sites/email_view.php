@@ -43,6 +43,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_bogofilter', $data['p_bogofilter']);
 	$smarty->assign('if_spam_del', $data['p_spam_del']);
 	$smarty->assign('if_sa_learn', $data['p_sa_learn']);
+	$smarty->assign('if_fetchmail', $data['p_fetchmail']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -427,7 +428,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$mailarchive=0;
 			}
-			if (isset($_POST['bogofilter']) && $_POST['bogofilter'] =="enable" && check_domain_feature($_GET['did'],'p_bogofilter')) {
+			if (isset($_POST['bogofilter']) &&  $_POST['bogofilter'] =="enable" && check_domain_feature($_GET['did'],'p_bogofilter')) {
 				$bogofilter=1;
 			}
 			else
@@ -447,6 +448,12 @@ if (isset($_SESSION['superadmin']) &&
 			else
 			{
 				$sa_learn=0;
+			}
+			if (isset($_POST['fetchmail']) && $_POST['fetchmail'] && check_domain_feature($_GET['did'], 'p_fetchmail')) {
+				$fetchmail=1;
+			}
+			else {
+				$fetchmail=0;
 			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
@@ -485,7 +492,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -498,6 +505,7 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($bogofilter),
 					$db->escapeSimple($spam_del),
 					$db->escapeSimple($sa_learn),
+					$db->escapeSimple($fetchmail),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -524,6 +532,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_bogofilter_value', $edata['p_bogofilter']);
 	$smarty->assign('if_spam_del_value', $edata['p_spam_del']);
 	$smarty->assign('if_sa_learn_value', $edata['p_sa_learn']);
+	$smarty->assign('if_fetchmail_value',$edata['p_fetchmail']);
 	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
 		$smarty->assign('sa_move_spam',$edata['move_spam'] );
 	}

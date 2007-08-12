@@ -207,6 +207,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fsta
 	$smarty->assign('p_mailarchive', $data['p_mailarchive']);
 	$smarty->assign('p_bogofilter', $data['p_bogofilter']);
 	$smarty->assign('p_sa_wb_listing', $data['p_sa_wb_listing']);
+	$smarty->assign('p_fetchmail', $data['p_fetchmail']);
 
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);

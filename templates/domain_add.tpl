@@ -90,7 +90,7 @@
 		<td>{$labels.p_sa}:</td>
 		<td><select name="p_spamassassin">
 			<option value="1">{$labels.opt_yes}</option>
-			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;">{$labels.opt_no}</option>
+			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{$labels.opt_no}</option>
 		</select></td>
 	</tr>
 	<tr>
@@ -109,7 +109,7 @@
 	</tr>
 	<tr>
 		<td>{$labels.p_sa_whitelist}:</td>
-		<td><select name="p_sa_wb_listing">
+		<td><select name="p_sa_wb_listing" id="p_sa_wb_listing">
 			<option value="0">{$labels.opt_no}</option>
 			<option value="1">{$labels.opt_yes}</option>
 		</select></td>

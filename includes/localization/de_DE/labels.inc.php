@@ -90,7 +90,7 @@
 	$labels['de_email_del1']="Soll die E-Mail Adresse";
 	$labels['de_email_del2']="wirklich gel&ouml;scht werden?";
 	$labels['p_forwarding']="Weiterleitung sichtbar";
-	$labels['']="";
+	$labels['del_spam']="Spam l&ouml;schbar";
 	$labels['']="";
 	$labels['']="";
 	$labels['']="";

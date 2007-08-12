@@ -166,6 +166,18 @@
  {/if}</td>
 </tr>
 <tr>
+ <td>Fetchmail:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_fetchmail ==  0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=fetchmail">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Fetchmail aktivieren." /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=fetchmail">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Fetchmail deaktivieren." /></a>
+ {/if}</td>
+</tr>
+<tr>
  <td>Spamassassin:</td>
  <td></td>
  <td style="text-align:right;">
@@ -191,7 +203,7 @@
 </tr>
 
 <tr>
- <td>{$labels.del_spam}</td>
+ <td>{$labels.del_spam}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spam_del == 0 }
@@ -254,7 +266,7 @@ Verbraucht/M&ouml;glich
  {/if}</span></td>
 </tr>
 <tr>
- <td{$labels.email_addresses}:</td>
+ <td>{$labels.email_addresses}:</td>
  {if $if_superadmin != 'y' }
  <td></td>
  {/if}

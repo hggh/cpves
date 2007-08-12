@@ -53,6 +53,12 @@ if (isset($_POST['submit']) &&
 			else {
 				$bogofilter=$_POST['p_bogofilter'];
 			}
+			if ($_POST['p_spamassassin']!=1) {
+				$sa_wb_listing=0;
+			}
+			else {
+				$sa_wb_listing=$_POST['p_sa_wb_listing'];
+			}
 			
 			$dnsname=trim(strtolower($_POST['dnsname']));
 			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', p_imap='%s', p_pop3='%s', p_webmail='%s',max_email='%d', max_forward='%d', dnote='%s',p_spamassassin='%s',p_bogofilter='%s',p_mailarchive='%s',p_sa_wb_listing='%s'",
@@ -66,7 +72,7 @@ if (isset($_POST['submit']) &&
 				$db->escapeSimple($_POST['p_spamassassin']),
 				$db->escapeSimple($bogofilter),
 				$db->escapeSimple($_POST['p_mailarchive']),
-				$db->escapeSimple($_POST['p_sa_wb_listing']));
+				$db->escapeSimple($sa_wb_listing));
 			$res=&$db->query($sql);
 	
 			$sql=sprintf("SELECT id FROM domains WHERE dnsname='%s'",
