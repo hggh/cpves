@@ -122,6 +122,9 @@ switch($_GET['module']) {
 	case 'user_password':
 		$site="user_password";
 		break;
+	case 'user_fetchmail':
+		$site="user_fetchmail";
+		break;
 	case 'logout':
 		$_SESSION = array();
 		session_destroy();

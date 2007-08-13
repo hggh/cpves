@@ -36,6 +36,9 @@
 	{if $p_mailarchive == 1}
 	<a class="nav sub" href="?module=user_archivemail">Mailarchiv</a>
 	{/if}
+	{if $p_fetchmail == 1}
+	<a class="nav sub" href="?module=user_fetchmail">Fetchmail</a>
+	{/if}
 {/if}
 {if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
 	<a class="nav" href="?module=user_password">{$labels.password_change}</a>
@@ -55,6 +58,9 @@
 	{/if}
 	{if $p_mailarchive == 1}
 	<a class="nav" href="?module=user_archivemail">Mailarchiv</a>
+	{/if}
+	{if $p_fetchmail == 1}
+	<a class="nav" href="?module=user_fetchmail">Fetchmail</a>
 	{/if}
 {/if}
 {if $if_superadmin == 'y' }

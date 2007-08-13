@@ -27,7 +27,7 @@ if (isset($_SESSION['p_bogofilter']))  $smarty->assign('p_bogofilter', $_SESSION
 if (isset($_SESSION['p_mailfilter']))  $smarty->assign('p_mailfilter', $_SESSION['p_mailfilter']);
 if (isset($_SESSION['p_spam_del']))    $smarty->assign('p_spam_del', $_SESSION['p_spam_del']);
 if (isset($_SESSION['p_sa_learn']))    $smarty->assign('p_sa_learn', $_SESSION['p_sa_learn']);
-if (isset($_SESSION['p_fetchmail']))   $smarty->smarty('p_fetchmail',$_SESSION['p_fetchmail']);
+if (isset($_SESSION['p_fetchmail']))   $smarty->assign('p_fetchmail',$_SESSION['p_fetchmail']);
 
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&

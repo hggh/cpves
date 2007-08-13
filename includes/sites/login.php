@@ -61,7 +61,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 				$_SESSION['admin']='y';
 			}
 			// checke ob domain aktiv ist:
-			$sql=sprintf("SELECT access,p_spamassassin,p_mailarchive,p_bogofilter,p_mailfilter FROM domains where id=%s",
+			$sql=sprintf("SELECT access,p_spamassassin,p_mailarchive,p_bogofilter,p_mailfilter,p_fetchmail FROM domains where id=%s",
 				$db->escapeSimple($daten['domainid']));
 			$res_domain=&$db->query($sql);
 			

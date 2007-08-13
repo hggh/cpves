@@ -832,7 +832,8 @@ function check_access_to_site($site) {
 			'user_mailfilter'  => 'p_mailfilter',
 			'user_spam'        => 'spamassassin',
 			'user_forward'     => 'forwarding',
-			'user_salearn'     => 'p_sa_learn');
+			'user_salearn'     => 'p_sa_learn',
+			'user_fetchmail'   => 'p_fetchmail');
 		if (in_array($site, $sites)) {
 			if ( $_SESSION[$sites[$site]] ==0) return 0;
 		}
