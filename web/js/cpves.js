@@ -1,15 +1,15 @@
 function forwardadd_fillform() {
 	var fwd = document.forms[0].to.value;
 	if ( fwd == "" ) {
-		document.forms[0].to.value=document.forms[0].mail.value;
+		document.forms[0].to.value=document.forms[0].mail.options[document.forms[0].mail.selectedIndex].text;
 	}
 	if (fwd.search('@') >= 1) {
 		reg = new RegExp(',$');
 		if (reg.test(fwd)) {
-			document.forms[0].to.value=fwd + document.forms[0].mail.value;
+			document.forms[0].to.value=fwd + '\n' + document.forms[0].mail.options[document.forms[0].mail.selectedIndex].text;
 		}
 		else {
-			document.forms[0].to.value=fwd +',\n'+document.forms[0].mail.value;
+			document.forms[0].to.value=fwd +',\n'+document.forms[0].mail.options[document.forms[0].mail.selectedIndex].text;
 		}
 	}
 }

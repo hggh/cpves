@@ -27,6 +27,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: spelling error (#16)
 	o Fixed: incorrect pidfile (#20)
 	o Fixed: error in sa_wb_listing.pl (#21)
+	o Fixed: forwardadd_fillform() (#23)
 	o Improved: backendscripts (default: /usr/local/cpves) (#21)
 	o Improved: config dir now default in /etc/cpves
 	o Improved: move_spam (only called in autoresponder if spamassassin is active)
