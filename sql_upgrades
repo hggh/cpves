@@ -81,14 +81,16 @@ CREATE TABLE `spamassassin_learn` (
 ALTER TABLE `domains` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0';
 ALTER TABLE `users` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0';
 CREATE TABLE `fetchmail` (
-`id` INT NOT NULL AUTO_INCREMENT ,
-`email` INT NOT NULL ,
-`server` VARCHAR( 255 ) NOT NULL ,
-`proto` TINYINT( 1 ) NOT NULL ,
-`conn_type` TINYINT( 1 ) NOT NULL ,
-`username` VARCHAR( 255 ) NOT NULL ,
-`password` VARCHAR( 255 ) NOT NULL ,
-`keep_mails` TINYINT( 1 ) NOT NULL ,
-PRIMARY KEY ( `id` ) ,
-INDEX ( `email` )
-) TYPE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
+  `id` int(11) NOT NULL auto_increment,
+  `email` int(11) NOT NULL default '0',
+  `server` varchar(255) NOT NULL default '',
+  `proto` tinyint(1) NOT NULL default '0',
+  `conn_type` tinyint(1) NOT NULL default '0',
+  `username` varchar(255) NOT NULL default '',
+  `password` varchar(255) NOT NULL default '',
+  `keep_mails` tinyint(1) NOT NULL default '0',
+  `active` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`id`),
+  KEY `email` (`email`),
+  KEY `active` (`active`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

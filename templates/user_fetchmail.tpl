@@ -1,15 +1,34 @@
  
-<table border="1">
+<table border="0">
 <tr>
-	<td>Server</td>
-	<td>Protokoll</td>
-	<td>Benutzer</td>
-	<td>Aktiv</td>
-	<td>L&ouml;schen</td>
+	<td style="font-weight:bold;padding-right:20px;">Server</td>
+	<td style="font-weight:bold;padding-right:20px;">Protokoll</td>
+	<td style="font-weight:bold;padding-right:20px;">Benutzer</td>
+	<td style="font-weight:bold;padding-right:20px;">Aktiv</td>
+	<td style="font-weight:bold;">L&ouml;schen</td>
 </tr>
+{foreach key=fid from=$table_fetchmail item=row}
+<tr>
+	<td style="padding-right:10px;"><a href="?module=user_fetchmail&#038;id={$row.id}">{$row.server}</a></td>
+	<td>{if $row.proto == 1}POP3{elseif $row.proto == 2}IMAP{/if}
+	</td>
+	<td style="padding-right:10px;">{$row.username}</td>
+	<td style="padding-right:10px;">{if $row.active == 1}<a href="?module=user_fetchmail&#038;disable={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;vertical-align:middle;" /></a>
+	{else}
+	<a href="?module=user_fetchmail&#038;enable={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;vertical-align:middle;" /></a>
+	{/if}
+	</td>
+	<td style="text-align:center;"><a href="?module=user_fetchmail&#038;delete={$row.id}"><img src="img/icons/delete.png" style="border:0px;vertical-align:middle;" /></a></td>
+</tr>
+{foreachelse}
+<tr>
+	<td colspan="5">Kein Fetchmail konfiguriert!</td>
+</tr>
+{/foreach}
 </table>
 <br/>
 <h3>Neuen POP/IMAP Server hinzuf&uuml;gen:</h3>
+<form action="?module=user_fetchmail" method="post">
 <table style="border:0x;">
 <tr>
 	<td>Server:</td>
@@ -24,7 +43,7 @@
 </tr>
 <tr>
 	<td>Verbindung:</td>
-	<td><select name="fm_ssl" style="width:90px;">
+	<td><select name="fm_conn_type" style="width:90px;">
 		<option value="1">Kein SSL</option>
 		<option value="2">Mit SSL</option>
 	</select></td>
@@ -49,4 +68,4 @@
 	<td><input type="submit" name="fm_submit" value="Speichern" /></td>
 </tr>
 
-</table>
+</table></form>

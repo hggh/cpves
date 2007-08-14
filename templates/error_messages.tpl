@@ -77,4 +77,6 @@ Bitte erst Spamassassin aktivieren, danach diese Option!
 {elseif $if_error_artime == 'y'}
 Archivieren nach n Tagen ist entweder leer oder ung&uuml;ltig!<br/>
 Bitte nur Zahlen verwenden.
+{elseif $fm_missing_error == 'y'}
+Bitte alle Felder ausf&uuml;llen!
 {/if}
