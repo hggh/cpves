@@ -8,12 +8,12 @@ if (isset($_SESSION['superadmin']) &&
 {
 	if ($_GET['state']=='disable')
 	{
-		$sql=sprintf("UPDATE domains SET ACCESS='n' WHERE id=%s",
+		$sql=sprintf("UPDATE domains SET ACCESS='0' WHERE id=%s",
 			$db->escapeSimple($_GET['did']));
 	}
 	else if ($_GET['state']=='enable')
 	{
-		$sql=sprintf("UPDATE domains SET ACCESS='y' WHERE id=%s",
+		$sql=sprintf("UPDATE domains SET ACCESS='1' WHERE id=%s",
 			$db->escapeSimple($_GET['did']));
 	}
 	$result=&$db->query($sql);

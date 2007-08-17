@@ -18,8 +18,8 @@
 ******************************************************************************/
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
-	$_SESSION['superadmin']=='y'||
-	$_SESSION['admin']=='y' &&
+	$_SESSION['superadmin']=='1'||
+	$_SESSION['admin']=='1' &&
 	isset($_GET['did']) &&
 	$access_domain )
 {
@@ -126,7 +126,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$cleartext="";
 			}
-			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='y',enew='1',p_imap='%s', p_pop3='%s',p_webmail='%s',cpasswd='%s',p_spamassassin='%s' ",
+			$sql=sprintf("INSERT INTO users SET email='%s',domainid='%s',passwd='%s', full_name='%s',access='1',enew='1',p_imap='%s', p_pop3='%s',p_webmail='%s',cpasswd='%s',p_spamassassin='%s' ",
 				$db->escapeSimple(trim(strtolower($full_email))),
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($cleartext),
@@ -158,5 +158,4 @@ if (isset($_SESSION['superadmin']) &&
 	
 
 }
-
 ?>

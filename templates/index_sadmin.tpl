@@ -14,7 +14,7 @@
 		<td>{$row.count_email}</td>
 		<td>{$row.count_forward}</td>
 		<td>
-			{if $row.access == "y" }
+			{if $row.access == "1" }
 				<a href="?module=main&#038;state=disable&#038;did={$row.id}">
 				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="{$labels.deactivate}" /></a>
 			{else}

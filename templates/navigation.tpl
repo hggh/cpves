@@ -14,7 +14,7 @@
     <a class="nav" href="?module=sadmin_passwd">{$labels.password_change}</a>
     <a class="nav" href="?module=sadmin_options">{$labels.options}</a>
 {/if}
-{if $if_admin eq 'y'  }
+{if $if_admin == '1'  }
 	<a class="nav" href="index.php?user=y">{$labels.personal_settings}</a>
 {/if}
 {if $if_superadmin != '1' && $menu_user_open == 'y' }
@@ -40,7 +40,7 @@
 	<a class="nav sub" href="?module=user_fetchmail">Fetchmail</a>
 	{/if}
 {/if}
-{if $if_superadmin != '1' && $if_admin !='y' && $if_login != 'y'}
+{if $if_superadmin != '1' && $if_admin !='1' && $if_login != 'y'}
 	<a class="nav" href="?module=user_password">{$labels.password_change}</a>
 	<a class="nav" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
@@ -73,7 +73,7 @@
 {if $webmail_link != false }
 	<a class="nav" href="{$webmail_link}">Webmail</a>
 {/if}
-{if $mailgraph_link != false && ($if_superadmin == '1' || $if_admin =='y') }
+{if $mailgraph_link != false && $if_superadmin == '1' }
 	<a class="nav" href="{$mailgraph_link}">Mailstatistik</a>
 {/if}
 <a class="nav" href="?module=logout">{$labels.logout}</a>

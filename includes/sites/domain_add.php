@@ -59,7 +59,7 @@ if (isset($_POST['submit']))
 			}
 			
 			$dnsname=trim(strtolower($_POST['dnsname']));
-			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='y', p_imap='%s', p_pop3='%s', p_webmail='%s',max_email='%d', max_forward='%d', dnote='%s',p_spamassassin='%s',p_bogofilter='%s',p_mailarchive='%s',p_sa_wb_listing='%s'",
+			$sql=sprintf("INSERT INTO domains SET dnsname='%s', access='1', p_imap='%s', p_pop3='%s', p_webmail='%s',max_email='%d', max_forward='%d', dnote='%s',p_spamassassin='%s',p_bogofilter='%s',p_mailarchive='%s',p_sa_wb_listing='%s'",
 				$db->escapeSimple($dnsname),
 				$db->escapeSimple($_POST['p_imap']),
 				$db->escapeSimple($_POST['p_pop3']),

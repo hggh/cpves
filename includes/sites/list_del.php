@@ -19,8 +19,8 @@
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['id']) &&
 	is_numeric($_GET['did']) &&
-	$_SESSION['superadmin']=='y'||
-	$_SESSION['admin']=='y' &&
+	$_SESSION['superadmin']=='1'||
+	$_SESSION['admin']=='1' &&
 	isset($_GET['id']) &&
 	is_numeric($_GET['did']) &&
 	$access_domain )

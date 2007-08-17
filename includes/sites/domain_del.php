@@ -17,7 +17,7 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
 if (isset($_SESSION['superadmin']) && 
-    $_SESSION['superadmin']=='y'&& 
+    $_SESSION['superadmin']=='1'&& 
     is_numeric($_GET['did']) || is_numeric($_POST['did'])  && 
     isset($_POST['state']) &&
     $_POST['state']=='delete' )

@@ -35,7 +35,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']
 
 if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 {
-	$sql=sprintf("SELECT * FROM users WHERE email='%s' AND access='1'",
+	$sql=sprintf("SELECT a.* FROM users AS a LEFT JOIN domains AS b ON b.id = a.domainid WHERE a.email='%s' AND a.access='1' AND b.access='1'",
 		$db->escapeSimple($_POST['email']) );
 	$result=&$db->query($sql);
 	if (!$result)
@@ -62,30 +62,25 @@ if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 				$_SESSION['admin']='1';
 			}
 			// checke ob domain aktiv ist:
-			$sql=sprintf("SELECT access,p_spamassassin,p_mailarchive,p_bogofilter,p_mailfilter,p_fetchmail FROM domains where id=%s",
+			$sql=sprintf("SELECT p_spamassassin,p_mailarchive,p_bogofilter,p_mailfilter,p_fetchmail FROM domains where id=%s",
 				$db->escapeSimple($daten['domainid']));
 			$res_domain=&$db->query($sql);
 			
 			$data_domain=$res_domain->fetchrow(DB_FETCHMODE_ASSOC);
-			if ($data_domain['access']=='n')
-			{
-				$login=0;
-			}
-			else
-			{
-				$smarty->assign('if_login_ok', 'yes');
-				logging($_SESSION['email']);
-				$_SESSION['spamassassin']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spamassassin');
-				$_SESSION['p_mailarchive']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_mailarchive');
-				$_SESSION['p_bogofilter']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_bogofilter');
-				$_SESSION['p_spam_del']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spam_del');
-				$_SESSION['p_sa_learn']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_sa_learn');
-				$_SESSION['p_fetchmail']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_fetchmail');
-				$_SESSION['forwarding']=$daten['p_forwarding'];
-				$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
+
+			$smarty->assign('if_login_ok', 'yes');
+			logging($_SESSION['email']);
+			$_SESSION['spamassassin']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spamassassin');
+			$_SESSION['p_mailarchive']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_mailarchive');
+			$_SESSION['p_bogofilter']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_bogofilter');
+			$_SESSION['p_spam_del']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spam_del');
+			$_SESSION['p_sa_learn']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_sa_learn');
+			$_SESSION['p_fetchmail']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_fetchmail');
+			$_SESSION['forwarding']=$daten['p_forwarding'];
+			$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
+			
 				
-				
-			}
+		
 		}
 		
 		
