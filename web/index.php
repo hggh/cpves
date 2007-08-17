@@ -179,9 +179,11 @@ if (isset($_GET['did']) && is_numeric($_GET['did'])) {
 	$smarty->assign('did',$_GET['did']);
 }
 
+// site access checking:
 if (! check_access_to_site($site)) {
 	$site="main";
 }
+
 
 require_once(ROOT . "/includes/sites/" . $site . ".php");
 $smarty->assign('template', $site . ".tpl");

@@ -1,4 +1,3 @@
-{if $if_superadmin eq 'y' and $if_manager eq 'y' } 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td><h3>Benutzername</h3></td>
@@ -16,7 +15,7 @@
 				{$table_data[row].full_name}
 		</td>
 		<td>
-			{if $table_data[row].access == "y" } 
+			{if $table_data[row].access == '1' } 
 			<a href="?module=sadmin_view&#038;state=disable&#038;id={$table_data[row].id}">
 			<img src="img/icons/button_ok.png" style="border:0px;"></a>
 			{else} 
@@ -31,7 +30,3 @@
 	</tr>
 	{/section} 
 </table>
-{else} 
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if} 
- 

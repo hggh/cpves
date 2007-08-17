@@ -19,7 +19,7 @@
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
-	$_SESSION['superadmin']=='y'||
+	$_SESSION['superadmin']=='1'||
 	$_SESSION['admin']=='y' &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&

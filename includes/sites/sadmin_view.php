@@ -16,18 +16,14 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
-    && isset($_SESSION['manager'])
-    && $_SESSION['manager'] =='y')
-{
 	if (isset($_GET['state']) && $_GET['state'] =='disable')
 	{
-		$sql=sprintf("UPDATE adm_users SET access='n' WHERE id='%s'",
+		$sql=sprintf("UPDATE adm_users SET access='0' WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));
 	}
 	else if (isset($_GET['state']) && $_GET['state']=='enable')
 	{
-		$sql=sprintf("UPDATE adm_users SET access='y' WHERE id='%s'",
+		$sql=sprintf("UPDATE adm_users SET access='1' WHERE id='%s'",
 			$db->escapeSimple($_GET['id']));
 	}
 	else if (isset($_GET['state']) && $_GET['state']=="delete")
@@ -49,5 +45,4 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 		));
 	}
 $smarty->assign('table_data', $table_data);
-}
 ?>

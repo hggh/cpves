@@ -1,4 +1,3 @@
-{if $if_superadmin eq 'y' and $if_manager eq 'y' }
 <table border="0">
 	<tr>
 		<td style="width:140px;">Mailfiter:</td>
@@ -7,9 +6,7 @@
 		</form></td>
 	</tr>
 </table>
-{else} 
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if}
+
 
 <div id="myOnPageContent" style="display:none">
 <span style="color:red;font-weight:bold;font-size:15pt;">- ACHTUNG -</span><br/>

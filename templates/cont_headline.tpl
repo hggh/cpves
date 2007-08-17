@@ -34,7 +34,7 @@
 	{$email}: {$labels.forwarding}
 {elseif $template == "user_autores.tpl"}
 	{$email}: {$labels.autoresponder}
-{elseif $template == "main.tpl" && $if_superadmin == 'y'}
+{elseif $template == "main.tpl" && $if_superadmin == '1'}
 	{$headline.sadmin_domain_overview}
 {elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index != 'y' }
 	{$headline.domain_overview}

@@ -826,18 +826,29 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 }
 
 function check_access_to_site($site) {
-	if (ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user') {
+	$usersite = substr($site,0, strpos($site, '_'));
+	if (ereg("_", $site) && ($usersite == 'user' || $usersite == 'sadmin')) {
 		$sites = array(
 			'user_archivemail' => 'p_mailarchive',
 			'user_mailfilter'  => 'p_mailfilter',
 			'user_spam'        => 'spamassassin',
 			'user_forward'     => 'forwarding',
 			'user_salearn'     => 'p_sa_learn',
-			'user_fetchmail'   => 'p_fetchmail');
-		if (in_array($site, $sites)) {
-			if ( $_SESSION[$sites[$site]] ==0) return 0;
+			'user_fetchmail'   => 'p_fetchmail',
+			'sadmin_view'      => 'manager',
+			'sadmin_add'       => 'manager',
+			'sadmin_edit'      => 'manager',
+			'sadmin_options'   => 'manager',
+			'sadmin_passwd'    => 'superadmin',
+			'domain_add'       => 'superadmin');
+		if (array_key_exists($site,$sites)) {
+			if ($_SESSION[$sites[$site]] == '0' ) {
+				return 0;
+			}
+			if ($_SESSION[$sites[$site]] == 'n' ) {
+				return 0;
+			}
 		}
-		
 	}
 	return 1;
 }

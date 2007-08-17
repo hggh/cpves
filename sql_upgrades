@@ -94,3 +94,17 @@ CREATE TABLE `fetchmail` (
   KEY `email` (`email`),
   KEY `active` (`active`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+ALTER TABLE `adm_users` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
+update adm_users SET access='1' WHERE access='y';
+update adm_users SET access='0' WHERE access='n';
+ALTER TABLE `adm_users` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
+ALTER TABLE `adm_users` CHANGE `manager` `manager` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
+update adm_users SET manager='1' WHERE manager='y';
+update adm_users SET manager='0' WHERE manager='n';
+ALTER TABLE `adm_users` CHANGE `manager` `manager` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` DROP `admin` ;
+ALTER TABLE `users` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
+update users SET access='1' WHERE access='y';
+update users SET access='0' WHERE access='n';
+ALTER TABLE `users` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '0';
+

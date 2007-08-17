@@ -31,10 +31,10 @@ if (isset($_SESSION['p_fetchmail']))   $smarty->assign('p_fetchmail',$_SESSION['
 
 $no_login=0;
 if (isset($_SESSION['superadmin']) &&
-	 $_SESSION['superadmin']=='y' && 
+	 $_SESSION['superadmin']=='1' && 
 	 isset($_SESSION['email']))
 {
-	$sql=sprintf("SELECT cpasswd FROM adm_users WHERE username='%s' AND access='y'",
+	$sql=sprintf("SELECT cpasswd FROM adm_users WHERE username='%s' AND access='1'",
 		$db->escapeSimple($_SESSION['email']));
 	$result=&$db->query($sql);
 	if ($result->numRows() ==1)
@@ -57,7 +57,7 @@ if (isset($_SESSION['superadmin']) &&
 }
 else if (isset($_SESSION['email']) && isset($_SESSION['cpasswd']))
 {
-	$sql=sprintf("SELECT cpasswd FROM users WHERE email='%s' AND access='y'",
+	$sql=sprintf("SELECT cpasswd FROM users WHERE email='%s' AND access='1'",
 		$db->escapeSimple($_SESSION['email']));
 
 	$result=&$db->query($sql);
@@ -113,7 +113,7 @@ if (isset($_GET['user']) && $_GET['user']== 'n')
 }
 
 // wenn nicht superadmin check autoresponder status und zeige ihn in der infobox an!
-if ($_SESSION['superadmin'] != 'y' ) 
+if ($_SESSION['superadmin'] != '1' ) 
 {
 	$sql=sprintf("SELECT active FROM autoresponder WHERE email='%d'",
 		$db->escapeSimple($_SESSION['uid']));

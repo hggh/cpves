@@ -1,7 +1,7 @@
 <?php
 //Enable or Disable Domain BEGIN
 if (isset($_SESSION['superadmin']) && 
-	$_SESSION['superadmin']=='y'&& 
+	$_SESSION['superadmin']=='1'&& 
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
 	isset($_GET['state']) )
@@ -25,10 +25,10 @@ if (isset($_SESSION['superadmin']) &&
 //ENABLE or DISABLE DOMAIN
 
 
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' || isset($_SESSION['admin']) && $_SESSION['admin']=='y' && $_SESSION['ad_user']!='y')
+if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' || isset($_SESSION['admin']) && $_SESSION['admin']=='y' && $_SESSION['ad_user']!='y')
 {
 
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' )
+if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']==1 )
 {
 	$sql="SELECT * FROM domains WHERE enew!=0 ORDER BY dnsname";
 }
@@ -100,7 +100,7 @@ $smarty->assign('table_spam', $table_spam);
 
 
 //email user part:
-if ($_SESSION['superadmin']=='n' && $_SESSION['admin']=='n' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='n')
+if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='n' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='0')
 {
 	$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']), 1);
 	if ($folders== false ) {

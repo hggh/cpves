@@ -1,6 +1,3 @@
-
-
-{if $if_superadmin eq 'y' and $if_manager eq 'y' }
 <br/>
 {if $if_username_empty eq 'y' }
 <div style="text-align:center;color:red;">
@@ -35,11 +32,11 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 <tr>
  <td>Zugriff:</td>
  <td><select name="access">
-     <option value="enable">Ja</option>
-     {if $access eq 'n'}
-     <option value="disable" selected="selected">Nein</option>
+     <option value="1">Ja</option>
+     {if $access eq '0'}
+     <option value="0" selected="selected">Nein</option>
      {else}
-     <option value="disable">Nein</option>
+     <option value="0">Nein</option>
      {/if}
      </select></td>
      
@@ -47,11 +44,11 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 <tr>
  <td>Manager:</td>
  <td><select name="manager">
-     <option value="enable">Ja</option>
-     {if $manager eq 'n'}
-     <option value="disable" selected="selected">Nein</option>
+     <option value="1">Ja</option>
+     {if $manager eq '0'}
+     <option value="0" selected="selected">Nein</option>
      {else}
-     <option value="disable">Nein</option>
+     <option value="0">Nein</option>
      {/if}
      </select></td>
      
@@ -62,8 +59,3 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 </tr>
 </table>
 </form>
-{else}
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if}
-
-

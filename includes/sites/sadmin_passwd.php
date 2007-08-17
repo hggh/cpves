@@ -16,8 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y')
-{
 	$smarty->assign('username',$_SESSION['email']);
 	if (isset($_POST['s_submit']))
 	{
@@ -64,6 +62,4 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y')
 			
 		}
 	}
-
-}
 ?>

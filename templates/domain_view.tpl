@@ -1,4 +1,4 @@
-{if $if_superadmin eq 'y' or $if_admin eq 'y' and $access_domain eq 'true' }
+{if $if_superadmin == 1 or $if_admin eq 'y' and $access_domain eq 'true' }
 {literal}
 <script type="text/javascript">
  function fade(name) {
@@ -125,7 +125,7 @@
   {/if}
 </tr>
 
-{if $if_superadmin eq 'y' }
+{if $if_superadmin == 1 }
 <tr>
  <td colspan="4" class="domain_view"><h3>{$labels.dv_settings} {$dnsname}</h3></td>
 </tr>
@@ -255,7 +255,7 @@
 
 
 {/if}
-{if $if_superadmin eq 'y' or $if_admin eq 'y' }
+{if $if_superadmin == '1' or $if_admin eq 'y' }
 
 <tr>
  <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">Adressenanzahl</h3>

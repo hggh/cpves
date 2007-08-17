@@ -1,4 +1,3 @@
-{if $if_superadmin eq 'y' }
 {if $if_dns_added eq 'y' } 
 <br />
 	{if $if_dns_not_found eq 'y' } <span style="color:red;">{$labels.da_new_domain} ({$new_dnsname}) {$labels.da_not_found}
@@ -131,6 +130,4 @@
 	</tr>
 </table>
 </form>
-{/if} {else} 
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if}
+{/if} 

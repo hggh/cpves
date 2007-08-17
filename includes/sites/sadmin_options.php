@@ -16,13 +16,10 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y')
-{
 	if (isset($_POST['mf_rebuild']) && $_POST['mf_rebuild']==1) {
 		$result=&$db->query("UPDATE mailfilter SET active='1' WHERE active!='0' ");
 		$smarty->assign('success_msg', 'y');
 		$smarty->assign('if_mf_rebuild', 'y');
 		
 	}
-}
 ?>

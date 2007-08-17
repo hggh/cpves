@@ -1,5 +1,3 @@
-{if $if_superadmin eq 'y' }
- 
 <form action="?module=sadmin_passwd" method="post">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
@@ -25,6 +23,3 @@
 		</tr>
 	</table>
 </form>
-{else} 
-<meta http-equiv="refresh" content="1; URL=./index.php">
-{/if}

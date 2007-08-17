@@ -16,10 +16,10 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-$no_login=0;
-$_SESSION['superadmin']='n';
-$_SESSION['admin']='n';
-$_SESSION['manager']='n';
+$login=0;
+$_SESSION['superadmin']='0';
+$_SESSION['admin']='0';
+$_SESSION['manager']='0';
 $_SESSION['ad_user']='n';
 $_SESSION['spamassassin']='0';
 $_SESSION['forwarding']='0';
@@ -33,14 +33,14 @@ $_SESSION['p_fetchmail']='0';
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
 {
 
-if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzername
+if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 {
-	$sql=sprintf("SELECT * FROM users WHERE email='%s' AND access='y'",
+	$sql=sprintf("SELECT * FROM users WHERE email='%s' AND access='1'",
 		$db->escapeSimple($_POST['email']) );
 	$result=&$db->query($sql);
 	if (!$result)
 	{
-		$no_login=1;
+		$login=0;
 	}
 	else if ($result->numRows() ==1)
 	{
@@ -48,6 +48,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 		$daten=$result->fetchrow(DB_FETCHMODE_ASSOC);
 		if (check_password($daten['cpasswd'],$_POST['password']) == 1) 
 		{
+			$login=1;
 			$_SESSION['uid']=$daten['id'];
 			$_SESSION['email']=$daten['email'];
 			$_SESSION['cpasswd']=encrypt_passwd($_POST['password']);
@@ -58,7 +59,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			$res=&$db->query($sql);
 			if ($res->numRows() > 0 )
 			{
-				$_SESSION['admin']='y';
+				$_SESSION['admin']='1';
 			}
 			// checke ob domain aktiv ist:
 			$sql=sprintf("SELECT access,p_spamassassin,p_mailarchive,p_bogofilter,p_mailfilter,p_fetchmail FROM domains where id=%s",
@@ -68,7 +69,7 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 			$data_domain=$res_domain->fetchrow(DB_FETCHMODE_ASSOC);
 			if ($data_domain['access']=='n')
 			{
-				$no_login=1;
+				$login=0;
 			}
 			else
 			{
@@ -86,23 +87,14 @@ if ( (strpos($_POST['email'], '@')) !== false) // check admin or user benutzerna
 				
 			}
 		}
-		else
-		{
-			$no_login=1;
-		}
 		
 		
 
 	}
-	else
-	{
-		$no_login=1;
-	}
-
 }
 else // wird ein admin username sein, also checke adm_users table
 {
-	$sql=sprintf("SELECT * FROM adm_users WHERE username='%s' AND access='y'",
+	$sql=sprintf("SELECT * FROM adm_users WHERE username='%s' AND access='1'",
 		$db->escapeSimple($_POST['email']));
 	$result = &$db->query($sql);
 	if ($result->numRows() ==1)
@@ -110,39 +102,27 @@ else // wird ein admin username sein, also checke adm_users table
 		$daten=$result->fetchrow(DB_FETCHMODE_ASSOC);
 		if (check_password($daten['cpasswd'],$_POST['password']) == 1)
 		{
+			$login=1;
 			$_SESSION['email']=$daten['username'];
 			$_SESSION['cpasswd']=encrypt_passwd($_POST['password']);
-			$_SESSION['superadmin']='y';
+			$_SESSION['superadmin']='1';
 			$_SESSION['manager']=$daten['manager'];
 			
 			$smarty->assign('if_login_ok', 'yes');
 			logging($_SESSION['email']);
 		}
-		else
-		{
-			$no_login=1;
-		}
-
 	}
-	else
-	{
-		$no_login=1;
-	}
-
 }
 
 
 }
-else
-{
-	//$no_login=1;
-}
-if ($no_login !=0)
+
+if ($login == 0)
 {
 	$smarty->assign('error_msg','y');
 	$smarty->assign('if_error_login_failed', 'y');
 }
-if ($no_login==0)
+else if ($login==1)
 {
 	header("Location: index.php");
 }

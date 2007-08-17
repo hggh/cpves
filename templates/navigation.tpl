@@ -10,14 +10,14 @@
 	<a class="nav sub" href="?module=list_add&#038;did={$did}">{$labels.new_ml}</a>
 	{/if}
 {/if}
-{if $if_superadmin eq 'y' }
+{if $if_superadmin == 1 }
     <a class="nav" href="?module=sadmin_passwd">{$labels.password_change}</a>
     <a class="nav" href="?module=sadmin_options">{$labels.options}</a>
 {/if}
 {if $if_admin eq 'y'  }
 	<a class="nav" href="index.php?user=y">{$labels.personal_settings}</a>
 {/if}
-{if $if_superadmin != 'y' && $menu_user_open == 'y' }
+{if $if_superadmin != '1' && $menu_user_open == 'y' }
 	<a class="nav sub" href="?module=user_password">{$labels.password_change}</a>
 	<a class="nav sub" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
@@ -40,7 +40,7 @@
 	<a class="nav sub" href="?module=user_fetchmail">Fetchmail</a>
 	{/if}
 {/if}
-{if $if_superadmin != 'y' && $if_admin !='y' && $if_login != 'y'}
+{if $if_superadmin != '1' && $if_admin !='y' && $if_login != 'y'}
 	<a class="nav" href="?module=user_password">{$labels.password_change}</a>
 	<a class="nav" href="?module=user_autores">{$labels.autoresponder}</a>
 	{if $if_spamassassin == '1'}
@@ -63,17 +63,17 @@
 	<a class="nav" href="?module=user_fetchmail">Fetchmail</a>
 	{/if}
 {/if}
-{if $if_superadmin == 'y' }
+{if $if_superadmin == '1' }
 	<a class="nav" href="?module=domain_add">{$labels.new_domain}</a>
 {/if}
-{if $if_manager == 'y' }
+{if $if_manager == '1' }
 	<a class="nav" href="?module=sadmin_view">{$labels.sadmin_manager}</a>
 	<a class="nav" href="?module=sadmin_add">{$labels.create_new_sadmin}</a>
 {/if}
 {if $webmail_link != false }
 	<a class="nav" href="{$webmail_link}">Webmail</a>
 {/if}
-{if $mailgraph_link != false && ($if_superadmin == 'y' || $if_admin =='y') }
+{if $mailgraph_link != false && ($if_superadmin == '1' || $if_admin =='y') }
 	<a class="nav" href="{$mailgraph_link}">Mailstatistik</a>
 {/if}
 <a class="nav" href="?module=logout">{$labels.logout}</a>

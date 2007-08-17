@@ -16,10 +16,7 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
-    && isset($_SESSION['manager'])
-    && $_SESSION['manager'] =='y'
-    && isset($_POST['submit']))
+if (isset($_POST['submit']))
 {
 	$wrong=0;
 	if (empty($_POST['username']) || !isset($_POST['username']))
@@ -50,14 +47,14 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 	}
 	else
 	{
-		if ($_POST['access']=="enable") {
-			$access='y'; }
+		if ($_POST['access']=="1") {
+			$access='1'; }
 		else {
-			$access='n'; }
-		if ($_POST['manager']=="enable") {
-			$manager='y'; }
+			$access='0'; }
+		if ($_POST['manager']=="1") {
+			$manager='1'; }
 		else {
-			$manager='n'; }
+			$manager='0'; }
 		
 			
 		if ($config['cleartext_passwd']==1) {
@@ -69,7 +66,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
 		}
 		
 		
-		$sql=sprintf("INSERT INTO adm_users SET username='%s', passwd='%s', full_name='%s', access='%s', manager='%s',cpasswd='%s'",
+		$sql=sprintf("INSERT INTO adm_users SET username='%s', passwd='%s', full_name='%s', access='%d', manager='%d',cpasswd='%s'",
 			$db->escapeSimple($_POST['username']),
 			$db->escapeSimple($cleartext),
 			$db->escapeSimple($_POST['full_name']),

@@ -19,7 +19,7 @@
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['id']) &&
 	isset($_GET['did']) &&
-	$_SESSION['superadmin']=='y'||
+	$_SESSION['superadmin']=='1'||
 	$_SESSION['admin']=='y' &&
 	isset($_GET['id']) &&
 	isset($_GET['did']) &&
@@ -315,7 +315,7 @@ if (isset($_SESSION['superadmin']) &&
 
 	
 	//adde domainadmin:
-	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'
+	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1'
 		&& isset($_POST['adddns']) && is_numeric($_POST['add_domain']) )
 	{
 		$sql=sprintf("SELECT id FROM admin_access WHERE email='%d' AND domain='%d'",
@@ -332,7 +332,7 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	
 	//remove domainadmin: 
-	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' 
+	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' 
 		&& isset($_GET['del']) && is_numeric($_GET['del']))
 	{
 		$sql=sprintf("DELETE FROM admin_access WHERE id='%d'",
@@ -342,7 +342,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	
 	// Liste AdminDomains
-	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y' )
+	if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' )
 	{
 		$sql=sprintf("SELECT b.dnsname,a.id FROM admin_access AS a LEFT JOIN domains as b ON b.id=a.domain WHERE a.email='%s'",
 			$db->escapeSimple($_GET['id']));
@@ -449,7 +449,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$sa_learn=0;
 			}
-			if (isset($_POST['fetchmail']) && $_POST['fetchmail'] && check_domain_feature($_GET['did'], 'p_fetchmail')) {
+			if (isset($_POST['fetchmail']) && $_POST['fetchmail'] == "enable" && check_domain_feature($_GET['did'], 'p_fetchmail')) {
 				$fetchmail=1;
 			}
 			else {
