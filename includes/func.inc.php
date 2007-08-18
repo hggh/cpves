@@ -450,7 +450,7 @@ function check_multi_forward($forward)
 function check_access_to_domain($domainid,$db)
 {
 	if (! isset($_SESSION['uid'])) return false;
-	$sql=sprintf("SELECT id FROM admin_access WHERE email='%s' AND domain='%s'",
+	$sql=sprintf("SELECT a.id FROM admin_access AS a LEFT JOIN domains AS b ON b.id=a.domain WHERE a.email='%s' AND a.domain='%s' AND b.access='1'",
 		$db->escapeSimple($_SESSION['uid']),
 		$db->escapeSimple($domainid));
 	$result=&$db->query($sql);

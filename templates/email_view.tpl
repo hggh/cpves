@@ -1,4 +1,4 @@
-{if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
+{if $if_superadmin == '1' or $if_admin == '1'and $access_domain }
 <form action="?module=email_view&#038;id={$id}&#038;did={$domainid}"  method="post">
 <table>
 <tr>
@@ -147,7 +147,7 @@
 </tr>
 </form>
 
-{if $if_superadmin eq 'y' }
+{if $if_superadmin == '1' }
 <tr><td colspan="2" style="height:10px;"></td></tr>
 {if $ava_ad_domains ge 1 }
 <tr>

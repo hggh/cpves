@@ -20,7 +20,7 @@ if (isset($_SESSION['superadmin']) &&
 	isset($_GET['id']) &&
 	isset($_GET['did']) &&
 	$_SESSION['superadmin']=='1'||
-	$_SESSION['admin']=='y' &&
+	$_SESSION['admin']=='1' &&
 	isset($_GET['id']) &&
 	isset($_GET['did']) &&
 	$access_domain )

@@ -25,7 +25,7 @@ if (isset($_SESSION['superadmin']) &&
 //ENABLE or DISABLE DOMAIN
 
 
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' || isset($_SESSION['admin']) && $_SESSION['admin']=='y' && $_SESSION['ad_user']!='y')
+if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' || isset($_SESSION['admin']) && $_SESSION['admin']=='1' && $_SESSION['ad_user']!='y')
 {
 
 if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']==1 )
@@ -100,7 +100,7 @@ $smarty->assign('table_spam', $table_spam);
 
 
 //email user part:
-if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='n' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='0')
+if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='0')
 {
 	$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']), 1);
 	if ($folders== false ) {

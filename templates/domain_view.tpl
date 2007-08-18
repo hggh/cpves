@@ -1,4 +1,4 @@
-{if $if_superadmin == 1 or $if_admin eq 'y' and $access_domain eq 'true' }
+{if $if_superadmin == 1 or $if_admin == '1' and $access_domain eq 'true' }
 {literal}
 <script type="text/javascript">
  function fade(name) {
@@ -25,7 +25,7 @@
  <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></td>
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
- {if $row.access eq 'y' }
+ {if $row.access == '1' }
  <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="E-Mailadresse deaktivieren."/></a>
  {else}
  <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="E-Mailadresse aktivieren."/></a>
@@ -55,7 +55,7 @@
  <td style="width:300px;"><a href="?module=forward_view&#038;id={$row.id}&amp;did={$did}">{$row.from}</a></td>
  <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
- {if $row.access eq 'y'}
+ {if $row.access == '1'}
   <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
  
  {else}
@@ -82,7 +82,7 @@
  <td style="width:200px;">Empf&auml;nger: {$row.recps}</td>
  <td style="width:100px;">{if $row.public eq 'y'}&Ouml;ffentlich{else}Privat{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
- {if $row.access eq 'y' }
+ {if $row.access == 'y' }
  <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
  {else}
  <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
@@ -113,7 +113,7 @@
   <td style="width:300px;">{$catchall_to}</td>
   <td style="text-align:right;vertical-align:middle;">
   
-  {if $catchall_access eq 'y'}
+  {if $catchall_access == '1'}
   <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="CatchAll Eintrag deaktivieren." style="border:0px;" /></a>  
   
   {else}

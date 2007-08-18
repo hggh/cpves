@@ -20,7 +20,7 @@ if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
 	$_SESSION['superadmin']=='1'||
-	$_SESSION['admin']=='y' &&
+	$_SESSION['admin']=='1' &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
 	$access_domain )
@@ -64,13 +64,13 @@ if (isset($_GET['eid']) && is_numeric($_GET['eid']) && isset($_GET['state']) && 
 
 	if ($_GET['state']=='disable')
 	{
-		$sql=sprintf("UPDATE %s SET ACCESS='n' WHERE id='%s'",
+		$sql=sprintf("UPDATE %s SET ACCESS='0' WHERE id='%s'",
 			$table,
 			$db->escapeSimple($_GET['eid']));
 	}
 	else if ($_GET['state']=='enable')
 	{
-		$sql=sprintf("UPDATE %s SET ACCESS='y' WHERE id='%s'",
+		$sql=sprintf("UPDATE %s SET ACCESS='1' WHERE id='%s'",
 			$table,
 			$db->escapeSimple($_GET['eid']));
 	}
@@ -156,7 +156,7 @@ if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dno
 }
 
 //Domain features veraendern ANFANG
-if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_GET['fstate'])&& isset($_GET['f']))
+if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='1' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
 	if ($_GET['f']=='spamassassin' && $_GET['f']==0) {
 		change_domain_feature($_GET['did'],'bogofilter','0');

@@ -129,6 +129,10 @@ switch($_GET['module']) {
 		$_SESSION = array();
 		session_destroy();
 		$smarty->assign('if_login' , 'y');
+		$smarty->assign('if_superadmin', '0');
+		$smarty->assign('if_admin', '0');
+		$smarty->assign('if_manager', '0');
+		$smarty->assign('username', '');
 		$site="login";
 		break;
 	default:
