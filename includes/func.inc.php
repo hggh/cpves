@@ -853,6 +853,30 @@ function check_access_to_site($site) {
 	return 1;
 }
 
+function delete_emailaddress($id,$emailaddress) {
+	global $config;
+	global $db;
+	$sql=sprintf("UPDATE users SET enew='0' WHERE id='%d'",
+			$db->escapeSimple($id));
+	$db->query($sql);
+		
+	foreach ($config['user_tables']  as $table) {
+		if ($table == "spamassassin" ) {
+			$email=$emailaddress;
+			$where="username";
+		}
+		else {
+			$email=$id;
+			$where="email";
+		}
+		$sql=sprintf("DELETE FROM `%s` WHERE %s='%s'",
+			$table,
+			$where,
+			$db->escapeSimple($email));
+		$db->query($sql);
+	}
+} 
+
 $smarty->assign('autores_sendback_times_selects', 
 		array( '1' => 'Nur bei der ersten Mail',
 		'2' => 'Bis zur zweiten Mail',

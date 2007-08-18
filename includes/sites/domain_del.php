@@ -55,41 +55,7 @@ else if (isset($_POST['del_ok']) && $_POST['del_ok']== 'y' )
 	$result=&$db->query($sql);
 	while($row=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	{
-		$sql=sprintf("DELETE FROM admin_access WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM autoresponder WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM autoresponder_disable WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM autoresponder_recipient WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM mailarchive WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM mailfilter WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM email_options WHERE email='%d'",
-			$db->escapeSimple($row['id']));
-		$res=&$db->query($sql);
-
-		$sql=sprintf("DELETE FROM spamassassin WHERE username='%s'",
-			$db->escapeSimple($row['email']));
-		$res=&$db->query($sql);
+		delete_emailaddress($row['id'],$row['email']);
 	}
 	
 	$sql=sprintf("SELECT dnsname,id FROM domains WHERE id='%s'",

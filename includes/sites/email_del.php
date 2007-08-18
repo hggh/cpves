@@ -37,32 +37,7 @@ if (isset($_SESSION['superadmin']) &&
 		$smarty->assign('if_del_ok', 'y');
 
 		
-		$sql=sprintf("UPDATE users SET enew='0' WHERE id='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		
-		$sql=sprintf("DELETE FROM admin_access WHERE email='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		$sql=sprintf("DELETE FROM mailfilter WHERE email='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		
-		$sql=sprintf("DELETE FROM autoresponder WHERE email='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		
-		$sql=sprintf("DELETE FROM autoresponder_send WHERE email='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		
-		$sql=sprintf("DELETE FROM email_options WHERE email='%d'",
-			$db->escapeSimple($_GET['id']));
-		$db->query($sql);
-		
-		$sql=sprintf("DELETE FROM spamassassin WHERE username='%s'",
-			$db->escapeSimple($edata['email']));
-		$db->query($sql);
+		delete_emailaddress($_GET['id'],$edata['email']);
 		
 		header("Location: ?module=domain_view&did=".$_GET['did'] );
 		

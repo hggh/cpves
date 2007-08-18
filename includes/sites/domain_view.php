@@ -16,14 +16,15 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-if (isset($_SESSION['superadmin']) &&
+if ( (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
-	$_SESSION['superadmin']=='1'||
+	$_SESSION['superadmin']=='1') || (
+	isset($_SESSION['admin']) &&
 	$_SESSION['admin']=='1' &&
 	isset($_GET['did']) &&
 	is_numeric($_GET['did']) &&
-	$access_domain )
+	$access_domain ) )
 {
 //Enable or Disable EMAIL BEGIN
 if (isset($_GET['eid']) && is_numeric($_GET['eid']) && isset($_GET['state']) && isset($_GET['type']) )
@@ -91,7 +92,7 @@ if (isset($_GET['eid']) && is_numeric($_GET['eid']) && isset($_GET['state']) && 
 //ENABLE or DISABLE EMAIL
 
 //Whitelist add:
-if (isset($_POST['sa_whitelist_data_add_submit']) && ($_SESSION['spamassassin']==1||$_SESSION['superadmin']== 'y') ) {
+if (isset($_POST['sa_whitelist_data_add_submit']) && ($_SESSION['spamassassin']==1||$_SESSION['superadmin']== '1') ) {
 	if (!isset($_POST['sa_whitelist_data_add']) || empty($_POST['sa_whitelist_data_add'])) {
 		$smarty->assign('error_msg', 'y');
 		$smarty->assign('sa_whitelist_data_add_empty', 'y');
@@ -125,38 +126,34 @@ if (isset($_POST['sa_whitelist_data_del']) && !empty($_POST['sa_whitelist_data']
 }
 //Whitelist del (END)
 
+if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1') {
+	//change MAX_forwards in database:
+	if (isset($_POST['max_forwards']) && is_numeric($_POST['max_forwards']) ) {
+		$sql=sprintf("UPDATE domains SET max_forward='%d' WHERE id='%d'",
+			$db->escapeSimple($_POST['max_forwards']),
+			$db->escapeSimple($_GET['did']));
+		$db->query($sql);
+	}
 
-//change MAX_forwards in database:
-if (isset($_POST['max_forwards']) && is_numeric($_POST['max_forwards']) && $_SESSION['superadmin'] && $_SESSION['superadmin']=='y')
-{
-	$sql=sprintf("UPDATE domains SET max_forward='%d' WHERE id='%d'",
-		$db->escapeSimple($_POST['max_forwards']),
-		$db->escapeSimple($_GET['did']));
-	$db->query($sql);
-}
-
-//change MAX_emailss in database:
-if (isset($_POST['max_emails']) && is_numeric($_POST['max_emails']) && $_SESSION['superadmin'] && $_SESSION['superadmin']=='y')
-{
-	$sql=sprintf("UPDATE domains SET max_email='%d' WHERE id='%d'",
-		$db->escapeSimple($_POST['max_emails']),
-		$db->escapeSimple($_GET['did']));
-	$db->query($sql);
-}
-
-
-//Domain Notiz aendern:
-if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='y' && isset($_POST['dnote']))
-{
-	$sql=sprintf("UPDATE domains SET dnote='%s' WHERE id='%d'",
-		$db->escapeSimple($_POST['dnote']),
-		$db->escapeSimple($_GET['did']));
-	$db->query($sql);
-
-}
+	//change MAX_emailss in database:
+	if (isset($_POST['max_emails']) && is_numeric($_POST['max_emails']) ) {
+		$sql=sprintf("UPDATE domains SET max_email='%d' WHERE id='%d'",
+			$db->escapeSimple($_POST['max_emails']),
+			$db->escapeSimple($_GET['did']));
+		$db->query($sql);
+	}
+	
+	//Domain Notiz aendern:
+	if (isset($_POST['dnote'])) {
+		$sql=sprintf("UPDATE domains SET dnote='%s' WHERE id='%d'",
+			$db->escapeSimple($_POST['dnote']),
+			$db->escapeSimple($_GET['did']));
+		$db->query($sql);
+	}
+} // superadmin END
 
 //Domain features veraendern ANFANG
-if ($_SESSION['superadmin'] && $_SESSION['superadmin']=='1' && isset($_GET['fstate'])&& isset($_GET['f']))
+if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
 	if ($_GET['f']=='spamassassin' && $_GET['f']==0) {
 		change_domain_feature($_GET['did'],'bogofilter','0');
@@ -237,13 +234,10 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	'did' => $_GET['did'],
 	'email' =>$data['email'],
 	'access' =>$data['access'],
-	'autoresponder' => $autoresponder)
-	);
-
-
+	'autoresponder' => $autoresponder) );
 } //ENDE WHILE eMails
 
-$sql=sprintf("SELECT * FROM forwardings WHERE domainid=%s ORDER BY efrom",
+$sql=sprintf("SELECT * FROM forwardings WHERE domainid='%s' ORDER BY efrom",
 	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
 echo mysql_error();
@@ -258,8 +252,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	'from' =>$data['efrom'],
 	'to' => get_first_forward($data['eto']),
 	'if_multif' => check_multi_forward($data['eto']),
-	'access' =>$data['access'])
-	);
+	'access' =>$data['access']));
 	}
 } //ENDE WHILE forward
 
@@ -297,23 +290,20 @@ while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
 $sql=sprintf("SELECT eto,id,access FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",
 	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
-if ($result->numRows()==1)
-{
+if ($result->numRows()==1) {
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	$smarty->assign('if_catchall' , 'y');
 	$smarty->assign('catchall_to',$data['eto'] );
 	$smarty->assign('catchall_id',$data['id'] );
 	$smarty->assign('catchall_access',$data['access'] );
-	
 }
-else
-{
+else {
 	$smarty->assign('if_catchall' , 'n');
 }
 
 
 //get Spamfilter whitelist
-if ($_SESSION['spamassassin']==1 ||$_SESSION['superadmin'] == 'y') {
+if ($_SESSION['spamassassin']==1 ||$_SESSION['superadmin'] == '1') {
 	$sql=sprintf("SELECT id,sa_from FROM sa_wb_listing WHERE domainid='%s' ORDER BY sa_from",
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);

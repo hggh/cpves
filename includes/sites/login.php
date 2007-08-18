@@ -119,7 +119,7 @@ if ($login == 0)
 }
 else if ($login==1)
 {
-	header("Location: index.php");
+	header("Location: index.php?module=main");
 }
 $smarty->assign('if_login' , 'y');
 ?>

@@ -255,23 +255,23 @@
 
 
 {/if}
-{if $if_superadmin == '1' or $if_admin eq 'y' }
+{if $if_superadmin == '1' or $if_admin == '1' }
 
 <tr>
  <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">Adressenanzahl</h3>
  <span style="float:right;">
 Verbraucht/M&ouml;glich
- {if $if_superadmin eq 'y' }
+ {if $if_superadmin == '1' }
  &Auml;ndern
  {/if}</span></td>
 </tr>
 <tr>
  <td>{$labels.email_addresses}:</td>
- {if $if_superadmin != 'y' }
+ {if $if_superadmin != '1' }
  <td></td>
  {/if}
  <td style="text-align:right;"  colspan="2">{$emails}/{if $max_emails eq "0" }unbegrenzt{else}{$max_emails}{/if}</td>
-{if $if_superadmin eq 'y' }
+{if $if_superadmin == '1' }
  <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_emails" style="width:40px;" /></form></td>
 {else}
  <td></td>
@@ -279,11 +279,11 @@ Verbraucht/M&ouml;glich
 </tr>
 <tr>
  <td>{$labels.email_forwardings}:</td>
- {if $if_superadmin != 'y' }
+ {if $if_superadmin != '1' }
  <td></td>
  {/if}
  <td style="text-align:right;"  colspan="2">{$forwardings}/{if $max_fwd eq "0"}unbegrenzt{else}{$max_fwd}{/if}</td>
-{if $if_superadmin eq 'y' }
+{if $if_superadmin == '1' }
  <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_forwards" style="width:40px;" /></form></td>
 {else}
  <td></td>
@@ -291,7 +291,7 @@ Verbraucht/M&ouml;glich
 </tr>
 {/if}
 
- {if $if_superadmin == 'y' }
+ {if $if_superadmin == '1' }
 <tr>
 <td colspan="4" class="domain_view"><h3>Notiz zu {$dnsname}</h3></td>
 </tr>
@@ -303,7 +303,7 @@ Verbraucht/M&ouml;glich
 </tr>
 {/if}
 
-{if ($if_spamassassin == 1 || ( $if_superadmin == 'y' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
+{if ($if_spamassassin == 1 || ( $if_superadmin == '1' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
 <tr>
 	<td colspan="4" class="domain_view"><h3>Spamfilter - Whitelist</h3></td>
 </tr>

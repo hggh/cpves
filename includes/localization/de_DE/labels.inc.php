@@ -29,6 +29,7 @@
 	$labels['hide']="Ausblenden";
 	$labels['add']="Hinzuf&uuml;gen";
 	$labels['del']="l&ouml;schen";
+	$labels['Del']="L&ouml;schen";
 	$labels['activate']="Aktivieren";
 	$labels['deactivate']="Deaktivieren";
 	$labels['settings']="Einstellungen";

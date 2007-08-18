@@ -23,7 +23,7 @@ include( ROOT . "/includes/localization/de_DE/labels.inc.php");
 include( ROOT . "/includes/localization/de_DE/headline.inc.php");
 $smarty->assign('labels', $labels);
 $smarty->assign('headline', $headline);
-if (!isset($_POST['login'])  ) {
+if (!isset($_POST['login']) && $_GET['module'] != "login"  ) {
 	include(ROOT . "/includes/check_access.php");
 }
 
