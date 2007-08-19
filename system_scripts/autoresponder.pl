@@ -26,7 +26,7 @@ my @formated_email;
 my $mail_from;
 my @mail_to;
 
-my $conf = new Config::General("/etc/cpvesmail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 
 

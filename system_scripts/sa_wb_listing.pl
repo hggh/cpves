@@ -31,12 +31,13 @@ if (! -f "/etc/cpves/mail_config.conf") {
 	exit (0);
 }
 
-my $conf = new Config::General("/etc/mail-admin/mail_config.conf");
+my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
 $config{'db_host'} = "localhost" unless defined $config{'db_host'};
 $config{'db_username'} = "mail" unless defined $config{'db_username'};
 $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
+$config{'whitelist_local_domains'} = "1" unless defined $config{'whitelist_local_domains'};
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
 
 $did         = shift;
@@ -66,9 +67,21 @@ else {
 (my $mail_addr, my $mail_host) = split(/@/, $mail_from);
 my $state=1;
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'})or exit(0) ;
+my $sth;
+#check if sender domain is local
+if ($config{'whitelist_local_domains'} == 1 ) {
+	$sth=$dbh->prepare("SELECT id FROM domains WHERE dnsname=?");
+	$sth->execute($mail_host);
+	if ($sth->rows == 1) {
+		$sth->finish;
+		$dbh->disconnect();
+		print "0\n";
+		exit(0);
+	}
+}
 
 #Check Domain:
-my $sth=$dbh->prepare("SELECT id FROM sa_wb_listing WHERE type='1' AND email='0' AND sa_from=? AND domainid=?");
+$sth=$dbh->prepare("SELECT id FROM sa_wb_listing WHERE type='1' AND email='0' AND sa_from=? AND domainid=?");
 $sth->execute('@'.$mail_host, $did);
 if ($sth->rows== 1) {
 	$state=0;

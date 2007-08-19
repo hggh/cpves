@@ -36,9 +36,9 @@
 	{$email}: {$labels.autoresponder}
 {elseif $template == "main.tpl" && $if_superadmin == '1'}
 	{$headline.sadmin_domain_overview}
-{elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index != 'y' }
+{elseif $template == "main.tpl" && $if_admin == '1' && $if_user_index != 'y' }
 	{$headline.domain_overview}
-{elseif $template == "main.tpl" && $if_admin == 'y' && $if_user_index == 'y' }
+{elseif $template == "main.tpl" && $if_admin == '1' && $if_user_index == 'y' }
 	{$labels.personal_settings}
 {elseif $template == "forward_view.tpl"}
 	{$forward}: {$labels.edit}
