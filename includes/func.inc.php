@@ -295,23 +295,25 @@ function update_email_options($uid,$conf,$options,$extra) {
 
 }
 
-function update_spamassassin_value($email,$preference,$value) {
+function update_spamassassin_value($email,$preference,$value,$uid) {
 	global $db;
 	$sql=sprintf("SELECT prefid FROM spamassassin WHERE username='%s' AND preference='%s'",
 		$db->escapeSimple($email),
 		$db->escapeSimple($preference));
 	$result=&$db->query($sql);
 	if ($result->numRows() == 1) {
-		$sql=sprintf("UPDATE spamassassin SET value='%s' WHERE username='%s' AND preference='%s'",
+		$sql=sprintf("UPDATE spamassassin SET value='%s',email='%d' WHERE username='%s' AND preference='%s'",
 			$db->escapeSimple($value),
+			$db->escapeSimple($uid),
 			$db->escapeSimple($email),
 			$db->escapeSimple($preference));
 	}
 	else {
-		$sql=sprintf("INSERT INTO spamassassin SET value='%s',username='%s',preference='%s'",
+		$sql=sprintf("INSERT INTO spamassassin SET value='%s',username='%s',preference='%s',email='%d'",
 			$db->escapeSimple($value),
 			$db->escapeSimple($email),
-			$db->escapeSimple($preference));
+			$db->escapeSimple($preference),
+			$db->escapeSimple($uid));
 	}
 	$result=&$db->query($sql);
 	return true;

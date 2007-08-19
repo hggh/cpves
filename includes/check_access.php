@@ -111,34 +111,4 @@ if (isset($_GET['user']) && $_GET['user']== 'n')
 	$smarty->assign('menu_user_open', 'n');
 	$_SESSION['menu_user_open']='n';
 }
-
-// wenn nicht superadmin check autoresponder status und zeige ihn in der infobox an!
-if ($_SESSION['superadmin'] != '1' ) 
-{
-	$sql=sprintf("SELECT active FROM autoresponder WHERE email='%d'",
-		$db->escapeSimple($_SESSION['uid']));
-	$result=&$db->query($sql);
-	if ($result->numRows() ==1)
-	{
-		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-		$smarty->assign('if_autoresponder',$data['active']);
-	}
-	else
-	{
-		$smarty->assign('if_autoresponder','n');
-	}
-	$sql=sprintf("SELECT type,filter FROM mailfilter WHERE email='%d' AND active!=0 AND type LIKE 'forward%%'",
-		$db->escapeSimple($_SESSION['uid']));
-	$result=&$db->query($sql);
-	if ($result->numRows()==1)
-	{
-		$smarty->assign('if_weiterleitung','y');
-	}
-	else
-	{
-		$smarty->assign('if_weiterleitung','n');
-	}
-
-}
-
 ?>

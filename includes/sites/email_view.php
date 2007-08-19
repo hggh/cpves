@@ -94,7 +94,7 @@ if (isset($_SESSION['superadmin']) &&
 				$rewrite_subject=$_POST['rewrite_subject_header'];
 			
 			}
-			update_spamassassin_value($edata['email'],"rewrite_header subject",$rewrite_subject );
+			update_spamassassin_value($edata['email'],"rewrite_header subject",$rewrite_subject,$_GET['id'] );
 			
 		}
 	}
@@ -107,7 +107,7 @@ if (isset($_SESSION['superadmin']) &&
 		}
 		else
 		{
-			update_spamassassin_value($edata['email'],"required_score",$_POST['threshold']);
+			update_spamassassin_value($edata['email'],"required_score",$_POST['threshold'],$_GET['id']);
 		}
 	}
 	//save the del_known_spam option

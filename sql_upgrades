@@ -115,3 +115,4 @@ ALTER TABLE `forwardings` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT
 update forwardings SET access='1' WHERE access='y';
 update forwardings SET access='0' WHERE access='n';
 ALTER TABLE `forwardings` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
+ALTER TABLE `spamassassin` ADD `email` INT NOT NULL FIRST 

@@ -1,4 +1,4 @@
-{if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
+{if $if_superadmin == '1' or $if_admin == '1'and $access_domain }
 <form action="?module=email_add&#038;did={$did}" method="post">
 <table>
 <tr>

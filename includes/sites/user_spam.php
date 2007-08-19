@@ -61,7 +61,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 				$rewrite_subject=$_POST['rewrite_subject_header'];
 			
 			}
-			update_spamassassin_value($_SESSION['email'],"rewrite_header subject",$rewrite_subject );
+			update_spamassassin_value($_SESSION['email'],"rewrite_header subject",$rewrite_subject,$_SESSION['uid'] );
 			
 		}
 	}
@@ -74,7 +74,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 		}
 		else
 		{
-			update_spamassassin_value($_SESSION['email'],"required_score",$_POST['threshold']);
+			update_spamassassin_value($_SESSION['email'],"required_score",$_POST['threshold'],$_SESSION['uid']);
 		}
 	}
 	//save move_spam 

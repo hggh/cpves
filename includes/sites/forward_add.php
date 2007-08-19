@@ -84,7 +84,7 @@ if (isset($_SESSION['superadmin']) &&
 			else
 			{
 				$eto=preg_replace("(\n|\r)",'',$_POST['to']);
-				$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', domainid='%s', access='y'",
+				$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', domainid='%s', access='1'",
 				$db->escapeSimple(strtolower($full_email)),
 				$db->escapeSimple($eto),
 				$db->escapeSimple($_GET['did']));

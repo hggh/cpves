@@ -55,7 +55,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			else
 			{
-			$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', access='y',domainid='%d'",
+			$sql=sprintf("INSERT INTO forwardings SET efrom='%s', eto='%s', access='1',domainid='%d'",
 				$db->escapeSimple('@'.$data['dnsname']),
 				$db->escapeSimple($_POST['eto']),
 				$db->escapeSimple($_GET['did']));
