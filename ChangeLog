@@ -14,6 +14,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: extra site for users password change
 	o Added: fetchmail mailfrontend + backendscript
 	o Added: whitelist localdomains (#22)
+	o Added: spam/ham learning frontend and backend (#9)
 	o Fixed: typo in delete duplicate mails create_mailfilters.pl
 	o Fixed: autoresponder_disable bug, overrides complete table (#3)
 	o Fixed: autoresponder encoding with utf8 (#2)
