@@ -44,6 +44,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spam_del', $data['p_spam_del']);
 	$smarty->assign('if_sa_learn', $data['p_sa_learn']);
 	$smarty->assign('if_fetchmail', $data['p_fetchmail']);
+	$smarty->assign('if_webinterface', $data['p_webinterface']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -455,6 +456,12 @@ if (isset($_SESSION['superadmin']) &&
 			else {
 				$fetchmail=0;
 			}
+			if (isset($_POST['webinterface']) && $_POST['webinterface'] == "enable" && check_domain_feature($_GET['did'], 'p_webinterface')) {
+				$webinterface=1;
+			}
+			else {
+				$webinterface=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -492,7 +499,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -506,6 +513,7 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($spam_del),
 					$db->escapeSimple($sa_learn),
 					$db->escapeSimple($fetchmail),
+					$db->escapeSimple($webinterface),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -526,6 +534,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_imap_value', $edata['p_imap']);
 	$smarty->assign('if_pop3_value', $edata['p_pop3']);
 	$smarty->assign('if_webmail_value', $edata['p_webmail']);
+	$smarty->assign('if_webinterface_value',$edata['p_webinterface']);
 	$smarty->assign('if_forwarding_value', $edata['p_forwarding']);
 	$smarty->assign('if_spamassassin_value', $edata['p_spamassassin']);
 	$smarty->assign('if_mailarchive_value', $edata['p_mailarchive']);

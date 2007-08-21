@@ -4,7 +4,7 @@
 		<td>{$labels.email_addresses}</td>
 		<td>{$labels.email_forwardings}</td>
 		<td>{$labels.activate}/{$labels.deactivate}</td>
-		<td>{$labels.del}</td>
+		<td>{$labels.Del}</td>
 		<td>Notiz</td>
 	</tr>
 	{foreach from=$table_data item=row} 

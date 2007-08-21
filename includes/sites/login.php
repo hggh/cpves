@@ -35,7 +35,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']
 
 if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 {
-	$sql=sprintf("SELECT a.* FROM users AS a LEFT JOIN domains AS b ON b.id = a.domainid WHERE a.email='%s' AND a.access='1' AND b.access='1'",
+	$sql=sprintf("SELECT a.* FROM users AS a LEFT JOIN domains AS b ON b.id = a.domainid WHERE a.email='%s' AND a.access='1' AND b.access='1' AND a.p_webinterface='1' AND b.p_webinterface='1'",
 		$db->escapeSimple($_POST['email']) );
 	$result=&$db->query($sql);
 	if (!$result)

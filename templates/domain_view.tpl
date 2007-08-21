@@ -166,6 +166,18 @@
  {/if}</td>
 </tr>
 <tr>
+ <td>Zugriff zum CpVES-Webinterface:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_webinterface == 0  }
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webinterface">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="Webinterface aktivieren." /></a>
+ {else}
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webinterface">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="Webinterface deaktivieren." /></a>
+ {/if}</td>
+</tr>
+<tr>
  <td>Fetchmail:</td>
  <td></td>
  <td style="text-align:right;">

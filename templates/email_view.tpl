@@ -52,6 +52,19 @@
      </select></td>
 </tr>
 {/if}
+{if $if_webinterface == 1 }
+<tr>
+ <td>Zugriff zum CpVES-Webinterface:</td>
+ <td><select name="webinterface">
+     <option value="enable">{$labels.opt_yes}</option>
+     {if $if_webinterface_value == 0 }
+     <option value="disable" selected="selected" >{$labels.opt_no}</option>
+     {else}
+     <option value="disable" >{$labels.opt_no}</option>
+     {/if}
+     </select></td>
+</tr>
+{/if}
 {if $if_fetchmail == 1 }
 <tr>
  <td>Fetchmail:</td>

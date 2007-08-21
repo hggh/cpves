@@ -175,6 +175,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'sa_learn':
 			$do='p_sa_learn';
 			break;
+		case 'webinterface':
+			$do='p_webinterface';
+			break;
 		case 'fetchmail':
 			$do="p_fetchmail";
 			break;
