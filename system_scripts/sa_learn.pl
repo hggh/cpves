@@ -40,6 +40,8 @@ $config{'bogofilter_database'} = "/home/vmail/.bogofilter/" unless defined $conf
 $config{'sa_learn_days_older'} = "3" unless defined $config{'sa_learn_days_older'};
 $config{'sa_learn_days_newer'} = "5" unless defined $config{'sa_learn_days_newer'};
 $config{'bogofilter'} = "/usr/bin/bogofilter" unless defined $config{'bogofilter'};
+$config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
+$config{'spamassassin_user'} = "spammer" unless defined $config{'spamassassin_user'};
 
 
 die("Error: Spamassassin and Bogofilter learning is disabled.") if ($config{'sa_learn_spamassassin'} == 0 && $config{'sa_learn_bogofilter'} == 0);
@@ -47,6 +49,10 @@ die("Error: Spamassassin and Bogofilter learning is disabled.") if ($config{'sa_
 die("Error: sa-learn not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -x $config{'sa_learn'} );
 
 die("Error: sa-learn not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -x $config{'sa_learn'} );
+
+die("Error: spamassassin_database dir not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -d $config{'spamassassin_database'});
+
+die("Error: bogofilter_database dir not found") if ($config{'sa_learn_bogofilter'} == 1 && ! -d $config{'bogofilter_database'});
 
 die("Error: run this script as user root!") unless (`id -u` == 0);
 
@@ -90,18 +96,19 @@ while ($row=$sth->fetchrow_hashref) {
 		$sa_type = " --ham ";
 		$bo_type = " --register-ham ";
 	}
-	print "$path\n";
 	if ($config{'sa_learn_spamassassin'} == 1 ) {
 		$sa_cmd = $find . " $path " . $find_opts .
 			"| xargs " . $spamassassin . $sa_type;
 		print $sa_cmd . "\n\n";
 		system($sa_cmd);
+		system("chown -R ". $config{'spamassassin_user'} . " " . $config{'spamassassin_database'} );
 	}
 	if ($config{'sa_learn_bogofilter'} == 1 ) {
 		$bo_cmd = $find . " $path " . $find_opts .
 			" | " . $bogofilter . $bo_type;
 		print $bo_cmd . "\n\n";
 		system($bo_cmd);
+		system("chown -R ". $config{'vmail_user'} . " " . $config{'bogofilter_database'} );
 	}
 	undef $sa_cmd;
 	undef $bo_cmd;
