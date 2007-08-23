@@ -91,15 +91,14 @@ function insert_sa_learn($uid,$options) {
 	$result=&$db->query($sql);
 	if ($result->numRows() == 1) {
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-		if ($options['folder']== 0) {
+		if ($options['satype']== "0") {
 			$sql=sprintf("DELETE FROM spamassassin_learn WHERE email='%d' AND id='%d'",
 				$db->escapeSimple($uid),
 				$db->escapeSimple($data['id']));
 		}
 		else {		
-			$sql=sprintf("UPDATE spamassassin_learn SET folder='%s',active='%d',type='%s' WHERE email='%d' AND id='%d'",
+			$sql=sprintf("UPDATE spamassassin_learn SET folder='%s',active='1',type='%s' WHERE email='%d' AND id='%d'",
 				$db->escapeSimple($options['folder']),
-				$db->escapeSimple($options['active']),
 				$db->escapeSimple($options['satype']),
 				$db->escapeSimple($uid),
 				$db->escapeSimple($data['id']));
@@ -107,10 +106,9 @@ function insert_sa_learn($uid,$options) {
 		$res=&$db->query($sql);
 	}
 	else {
-		$sql=sprintf("INSERT INTO spamassassin_learn SET email='%d', folder='%s',active='%d',type='%s'",
+		$sql=sprintf("INSERT INTO spamassassin_learn SET email='%d', folder='%s',active='1',type='%s'",
 			$db->escapeSimple($uid),
 			$db->escapeSimple($options['folder']),
-			$db->escapeSimple($options['active']),
 			$db->escapeSimple($options['satype']));
 		$res=&$db->query($sql);
 	}

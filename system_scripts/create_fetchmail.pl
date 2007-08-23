@@ -34,8 +34,7 @@ $config{'vmail_home'} = "/home/vmail" unless defined $config{'vmail_home'};
 $config{'fetchmail'} = "/usr/bin/fetchmail" unless defined $config{'fetchmail'};
 $config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
 
-my $user = `id -un`;
-chomp($user);
+chomp (my $user = `id -un`);
 die ("Error: " .$config{'vmail_home'} . " does not exists!\n" )
 	unless ( -d $config{'vmail_home'});
 die ("Error: " .$config{'fetchmail'} . " does not exists!\n" )
@@ -45,7 +44,7 @@ die ("Error: Please run $0 as mailbox owner!") unless ($user eq $config{'vmail_u
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
-my $sth = $dbh->prepare("SELECT a.server,a.proto,a.conn_type,a.username,a.password,a.keep_mails,b.email FROM fetchmail AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active=1");
+my $sth = $dbh->prepare("SELECT a.server,a.proto,a.conn_type,a.username,a.password,a.keep_mails,b.email FROM fetchmail AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active=1 AND b.access=1");
 $sth->execute;
 my $row;
 my $fetchmail="";
