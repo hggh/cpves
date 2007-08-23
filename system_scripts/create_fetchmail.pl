@@ -32,13 +32,16 @@ $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 $config{'vmail_home'} = "/home/vmail" unless defined $config{'vmail_home'};
 $config{'fetchmail'} = "/usr/bin/fetchmail" unless defined $config{'fetchmail'};
+$config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
 
-
+my $user = `id -un`;
+chomp($user);
 die ("Error: " .$config{'vmail_home'} . " does not exists!\n" )
 	unless ( -d $config{'vmail_home'});
 die ("Error: " .$config{'fetchmail'} . " does not exists!\n" )
 	unless ( -x $config{'fetchmail'});
 die "Already running!" if Proc::PID::File->running('dir' => '/tmp/' );
+die ("Error: Please run $0 as mailbox owner!") unless ($user eq $config{'vmail_user'});  
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});

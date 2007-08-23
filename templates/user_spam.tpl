@@ -177,9 +177,9 @@
 <span style="color:red;font-weight:bold;font-size:15pt;">- ACHTUNG -</span><br/>
 <br/>
 <span style="font-weight:bold;">Diese Option ist gef&auml;hrlich, ein falscher Wert l&ouml;scht nicht nur Spam sondern auch Ham!</span><br/><br/>
-Der Wert f&uuml;rs l&ouml;schen von Spam sollte deutlich h&ouml;her liegen als der Wert, womit nur Spam als Spam markiert wird!
+Der Wert f&uuml;r das L&ouml;schen von Spam sollte deutlich h&ouml;her liegen als der Wert, der benutzt wird, um Spam als Spam zu markieren!
 <br/><br/>
-Spam wird marktiert ab: <span id="sa_thresshold_value"></span><br/>
+Spam wird markiert ab: <span id="sa_thresshold_value"></span><br/>
 Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
 <br/>
 <p style="text-align:center">
