@@ -1,11 +1,11 @@
  
 <table border="0">
 <tr>
-	<td style="font-weight:bold;padding-right:20px;">Server</td>
-	<td style="font-weight:bold;padding-right:20px;">Protokoll</td>
-	<td style="font-weight:bold;padding-right:20px;">Benutzer</td>
-	<td style="font-weight:bold;padding-right:20px;">Aktiv</td>
-	<td style="font-weight:bold;">L&ouml;schen</td>
+	<td style="font-weight:bold;padding-right:20px;">{t}server{/t}</td>
+	<td style="font-weight:bold;padding-right:20px;">{t}protocol{/t}</td>
+	<td style="font-weight:bold;padding-right:20px;">{t}username{/t}</td>
+	<td style="font-weight:bold;padding-right:20px;">{t}active{/t}</td>
+	<td style="font-weight:bold;">{t}delete{/t}</td>
 </tr>
 {foreach key=fid from=$table_fetchmail item=row}
 <tr>
@@ -22,50 +22,50 @@
 </tr>
 {foreachelse}
 <tr>
-	<td colspan="5">Kein Fetchmail konfiguriert!</td>
+	<td colspan="5">{t}not fetchmail exists.{/t}</td>
 </tr>
 {/foreach}
 </table>
 <br/>
-<h3>Neuen POP/IMAP Server hinzuf&uuml;gen:</h3>
+<h3>{t}add new server:{/t}</h3>
 <form action="?module=user_fetchmail" method="post">
 <table style="border:0x;">
 <tr>
-	<td>Server:</td>
+	<td>{t}server:{/t}</td>
 	<td><input type="text" name="fm_server" /></td>
 </tr>
 <tr>
-	<td>Protokoll:</td>
+	<td>{t}protocol:{/t}</td>
 	<td><select name="fm_proto" style="width:90px;">
 		<option value="1">POP3</option>
 		<option value="2">IMAP</option>
 	</select></td>
 </tr>
 <tr>
-	<td>Verbindung:</td>
+	<td>{t}connection type:{/t}</td>
 	<td><select name="fm_conn_type" style="width:90px;">
-		<option value="1">Kein SSL</option>
-		<option value="2">Mit SSL</option>
+		<option value="1">{t}no SSL{/t}</option>
+		<option value="2">{t}with SSL{/t}</option>
 	</select></td>
 </tr>
 <tr>
-	<td>Benutzer:</td>
+	<td>{t}username:{/t}</td>
 	<td><input type="text" name="fm_username" /></td>
 </tr>
 <tr>
-	<td>Passwort:</td>
+	<td>{t}password:{/t}</td>
 	<td><input type="password" name="fm_password" /></td>
 </tr>
 <tr>
-	<td>Mails auf dem Server belassen:</td>
+	<td>{t}keep mails on the server:{/t}</td>
 	<td><select name="fm_keep_mails" style="width:90px;">
-		<option value="1">Nein</option>
-		<option value="2">Ja</option>
+		<option value="1">{t}no{/t}</option>
+		<option value="2">{t}yes{/t}</option>
 	</select></td>
 </tr>
 <tr>
 	<td></td>
-	<td><input type="submit" name="fm_submit" value="Speichern" /></td>
+	<td><input type="submit" name="fm_submit" value="{t}save{/t}" /></td>
 </tr>
 
 </table></form>

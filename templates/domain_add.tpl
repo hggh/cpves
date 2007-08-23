@@ -1,15 +1,14 @@
 {if $if_dns_added eq 'y' } 
 <br />
-	{if $if_dns_not_found eq 'y' } <span style="color:red;">{$labels.da_new_domain} ({$new_dnsname}) {$labels.da_not_found}
-		<br />{$labels.da_mails_not_work}</span>
+	{if $if_dns_not_found eq 'y' }
+	<span style="color:red;">{t 1=$new_dnsname}the new domainname (%1) was not found in the DNS system!{/t}<br/>
+	{t}mailtraffic for this domain will not work!{/t}</span>
 	<br />
 	<br />
 	{/if} {if $if_mx eq 'y'} 
 	<table style="border:0px;">
 		<tr>
-			<td colspan="4" class="header" style="text-align:left;">
-				{$labels.da_domain} {$new_dnsname} {$labels.da_mx_entries}:
-			</td>
+			<td colspan="4" class="header" style="text-align:left;">{t 1=$new_dnsname}the new domain %1 has got the following MX entries:{/t}</td>
 		</tr>
 		<tr>
 			<td>{$labels.prio}</td>
@@ -33,16 +32,13 @@
 	<br />
 	<br />
 	{/if} {if $points eq 'n' } 
-	<div style="color:red;">
-		{$labels.da_no_mx_entry_to_mailsys}
-		<br />
-		{$labels.da_no_mail_revc}
+	<div style="color:red;">{t}no MX entry points to our server.<br>You will not receive mail for this domain!{/t}
 	</div>
 	<br />
 	<br />
 	{/if} 
 	<br/>
-	<a href="?module=domain_view&#038;did={$did}">{$label.da_to_domain_view}</a>
+	<a href="?module=domain_view&#038;did={$did}">{t}go to domain summary...{/t}</a>
 
 {/if}
 
@@ -50,82 +46,83 @@
 <form action="?module=domain_add" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>{$labels.domainname}:</td>
+		<td>{t}domainname:{/t}</td>
 		<td><input type="text" value="{$dnsname}" name="dnsname" />
 		</td>
 	</tr>
 	<tr>
-		<td>{$labels.note}:</td>
+		<td>{t}note{/t}:</td>
 		<td>
 		<input type="text" value="" name="dnote" maxlength="30" />
 		</td>
 	</tr>
 	<tr>
-		<td>{$labels.imap_connection}:</td>
+		<td>{t}imap connection:{/t}</td>
 		<td>
 			<select name="p_imap"> 
-				<option value="1">{$labels.opt_yes}</option>
-				<option value="0">{$labels.opt_no}</option>
+				<option value="1">{t}yes{/t}</option>
+				<option value="0">{t}no{/t}</option>
 			</select> 
 		</td>
 	</tr>
 	<tr>
-		<td>{$labels.pop3_connection}:</td>
+		<td>{t}pop3 connection:{/t}</td>
 		<td>
 			<select name="p_pop3"> 
-				<option value="1">{$labels.opt_yes}</option>
-				<option value="0">{$labels.opt_no}</option>
+				<option value="1">{t}yes{/t}</option>
+				<option value="0">{t}no{/t}</option>
 			</select> 
 		</td>
 	</tr>
 	<tr>
-		<td>{$labels.p_webmail}:</td>
+		<td>{t}webmail available:{/t}</td>
 		<td><select name="p_webmail">
-			<option value="1">{$labels.opt_yes}</option>
-			<option value="0">{$labels.opt_no}</option>
+			<option value="1">{t}yes{/t}</option>
+			<option value="0">{t}no{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{$labels.p_sa}:</td>
+		<td>{t}spamassassin available:{/t}</td>
 		<td><select name="p_spamassassin">
-			<option value="1">{$labels.opt_yes}</option>
-			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{$labels.opt_no}</option>
+			<option value="1">{t}yes{/t}</option>
+			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{t}no{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{$labels.p_bogofilter}:</td>
+		<td>{t}bogofilter available:{/t}</td>
 		<td><select id="p_bogofilter" name="p_bogofilter">
-			<option value="0">{$labels.opt_no}</option>
-			<option value="1">{$labels.opt_yes}</option>
+			<option value="0">{t}no{/t}</option>
+			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{$labels.p_mailarchive}:</td>
+		<td>{t}mailarchive available:{/t}</td>
 		<td><select name="p_mailarchive">
-			<option value="0">{$labels.opt_no}</option>
-			<option value="1">{$labels.opt_yes}</option>
+			<option value="0">{t}no{/t}</option>
+			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{$labels.p_sa_whitelist}:</td>
+		<td>{t}spamfilter whitelist available:{/t}</td>
 		<td><select name="p_sa_wb_listing" id="p_sa_wb_listing">
-			<option value="0">{$labels.opt_no}</option>
-			<option value="1">{$labels.opt_yes}</option>
+			<option value="0">{t}no{/t}</option>
+			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{$labels.da_max_mailaddrs}:</td>
-		<td><input value="0" name="max_email"/>&#160; 0 = {$labels.da_open_end}</td>
+		<td>{t}max emailaddresses:{/t}</td>
+		<td><input value="0" name="max_email"/>&#160; 0 = {t}no limit{/t}</td>
 	</tr>
 	<tr>
-		<td>{$labels.da_max_forwards}:</td>
-		<td><input value="0" name="max_forward" />&#160; 0 = {$labels.da_open_end}</td>
+		<td>{t}max forwardings:{/t}</td>
+		<td><input value="0" name="max_forward" />&#160; 0 = {t}no limit{/t}</td>
 	</tr>
 	<tr>
 		<td>
 		</td>
 		<td>
-		<input type="submit" name="submit" value="{$labels.create}" />
+		<input type="submit" name="submit" value="
+		{t}create domain{/t}" />
 		</td>
 	</tr>
 </table>

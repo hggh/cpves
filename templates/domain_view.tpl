@@ -14,30 +14,30 @@
 {/literal}
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3" ><h3>{$labels.email_addresses}</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">{$labels.hide}</a>]</td>
+ <td style="width:580px;" colspan="3" ><h3>{t}emailaddresses:{/t}</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
 <table id="mailst" border="0">
 {foreach from=$table_email item=row }
 <tr bgcolor="{cycle values="$color1,$color2"}">
- <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png"   title="Autoresponder aktiv." />{/if}
+ <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" title="{t}vacation active!{/t}" />{/if}
  <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></td>
  <td style="width:300px;"> </td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1' }
- <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="E-Mailadresse deaktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate emailaddress{/t}"/></a>
  {else}
- <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="E-Mailadresse aktivieren."/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate emailaddress{/t}"/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="eMailadresse l&ouml;schen" />
+  <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="{t}delete emailaddress{/t}" />
   </a>
 </td>
 </tr>
 {foreachelse}
 <tr>
- <td colspan="4">{$labels.no_mailadresses_exists}</td>
+ <td colspan="4">{t}no emailaddress exists!{/t}</td>
 </tr>
 {/foreach}
 
@@ -45,24 +45,24 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>{$labels.email_forwardings}</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">{$labels.hide}</a>]</td>
+ <td style="width:580px;" colspan="3"><h3>{t}forwardings:{/t}</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
 <table id="forwardt" border="0">
 {foreach from=$table_forward item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="?module=forward_view&#038;id={$row.id}&amp;did={$did}">{$row.from}</a></td>
- <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="Weiterleitung an mehrere Adressen." /> {/if }{$row.to}</td>
+ <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="{t}forwarding to more addresses.{/t}" /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1'}
-  <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Weiterleitung deaktivieren."/></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate forwarding.{/t}"/></a>
  
  {else}
- <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Weiterleitung aktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate forwarding.{/t}"/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Weiterleitung l&ouml;schen"/></a>
+  <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete forwarding.{/t}"/></a>
   </td>
 </tr>
 {/foreach}
@@ -71,29 +71,29 @@
 {if $if_listings == 'y' }
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>{$labels.email_mailinglists}</h3></td>
- <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">{$labels.hide}</a>]</td>
+ <td style="width:580px;" colspan="3"><h3>{t}mailinglists:{/t}</h3></td>
+ <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
 <table id="listst" border="0">
 {foreach from=$table_list item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="?module=list_view&#038;id={$row.id}&amp;did={$did}">{$row.address}</a></td>
- <td style="width:200px;">Empf&auml;nger: {$row.recps}</td>
- <td style="width:100px;">{if $row.public eq 'y'}&Ouml;ffentlich{else}Privat{/if}</td>
+ <td style="width:200px;">{t}recipients:{/t} {$row.recps}</td>
+ <td style="width:100px;">{if $row.public eq 'y'}{t}public{/t}{else}{t}private{/t}{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == 'y' }
- <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="Mailingliste deaktivieren."/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglist.{/t}"/></a>
  {else}
- <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="Mailingliste aktivieren."/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglist.{/t}"/></a>
  {/if}</td>
  <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=list_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="Mailingliste l&ouml;schen"/></a>
+  <a href="?module=list_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete mailinglist.{/t}"/></a>
  </td>
 </tr> 
 {foreachelse}
 <tr>
- <td colspan="4">{$labels.no_mailinglists_exists}</td>
+ <td colspan="4">{t}no mailinglists exists.{/t}</td>
 </tr>
 {/foreach}
 </table>
@@ -101,167 +101,167 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:670px;" colspan="4"><h3>{$labels.catchall}</h3></td>
+ <td style="width:670px;" colspan="4"><h3>{t}catchall:{/t}</h3></td>
 </tr>
 </table>
 <table id="catcht" border="0">
 <tr>
   {if $if_catchall eq 'n' }
-  <td colspan="4"  style="width:670px;">{$labels.catchall_no} {$dnsname} {$labels.catchall_configure}<br/><a href="?module=forward_catchall&#038;did={$did}&#038;new=yes">{$labels.catchall_make_configure}</a></td>
+  <td colspan="4"  style="width:670px;">{t 1=$dnsname}no catchall for %1 configured.{/t}<br/><a href="?module=forward_catchall&#038;did={$did}&#038;new=yes">{t}click here to configure an catchall.{/t}</a></td>
   {else}
   <td style="width:300px;"><a href="?module=forward_catchall&#038;did={$did}">@{$dnsname}</a></td>
   <td style="width:300px;">{$catchall_to}</td>
   <td style="text-align:right;vertical-align:middle;">
   
   {if $catchall_access == '1'}
-  <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="CatchAll Eintrag deaktivieren." style="border:0px;" /></a>  
+  <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="{t}deactivate catchall entry.{/t}" style="border:0px;" /></a>  
   
   {else}
-  <a href="?module=domain_view&#038;did={$did}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="CatchAll Eintrag aktivieren." style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="{t}activate catchall entry.{/t}" style="border:0px;" /></a>
   {/if}</form></td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=domain_view&#038;did={$did}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="Catchall Eintrag l&ouml;schen."><img src="img/icons/delete.png" style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="{t}delete catchall entry.{/t}"><img src="img/icons/delete.png" style="border:0px;" /></a>
  </td>
   {/if}
 </tr>
 
 {if $if_superadmin == 1 }
 <tr>
- <td colspan="4" class="domain_view"><h3>{$labels.dv_settings} {$dnsname}</h3></td>
+ <td colspan="4" class="domain_view"><h3>{t 1=$dnsname}properties  of %1:{/t}</h3></td>
 </tr>
 <tr>
- <td>IMAP:</td>
+ <td>{t}IMAP:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_imap == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=imap">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="IMAP aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate IMAP.{/t}" /></a>
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=imap">
- <img src="img/icons/button_ok.png" style="border:0px;" title="IMAP deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate IMAP.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>POP3:</td>
+ <td>{t}POP3:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_pop3 == 0 }
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=pop3">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="POP3 aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate POP3.{/t}" /></a>
  {else}
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=pop3">
- <img src="img/icons/button_ok.png" style="border:0px;" title="POP3 deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate POP3.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>WebMail:</td>
+ <td>{t}Webmail:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_webmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webmail">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Webmail aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate webmail.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webmail">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Webmail deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate webmail.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>Zugriff zum CpVES-Webinterface:</td>
+ <td>{t}access to CpVES webinterface:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_webinterface == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webinterface">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Webinterface aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate CpVES webinterface.{/t}" /></a>
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webinterface">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Webinterface deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate CpVES webinterface.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>Fetchmail:</td>
+ <td>{t}fetchmail:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_fetchmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=fetchmail">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Fetchmail aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail:{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=fetchmail">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Fetchmail deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate fetchmail.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>Spamassassin:</td>
+ <td>{t}spamassassin:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spamassassin == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spamassassin">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamassassin aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate spamassassin.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spamassassin">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Spamassassin deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate spamassassin.{/t}" /></a>
  {/if}</td> 
 </tr>
 <tr>
- <td>{$labels.ham_spam_learn}:</td>
+ <td>{t}ham/spam learning:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_sa_learn == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_learn">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Spam/Ham lernbar aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate ham/spam learning.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_learn">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Spam/Ham lernbar deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate ham/spam learning.{/t}" /></a>
  {/if}</td> 
 </tr>
 
 <tr>
- <td>{$labels.del_spam}:</td>
+ <td>{t}delete spam:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spam_del == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spam_del">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Spam löschen aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate delete spam.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spam_del">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Spam löschen deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate delete spam.{/t}" /></a>
  {/if}</td> 
 </tr>
 
 <tr>
- <td>Bogofilter:</td>
+ <td>{t}bogofilter:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_bogofilter == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=bogofilter">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Bogofilter aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate bogofilter.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=bogofilter">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Bogofilter deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate bogofilter.{/t}" /></a>
  {/if}</td> 
 </tr>
 
 <tr>
- <td>Mailarchiv:</td>
+ <td>{t}archivemail:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_mailarchive == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mailarchive">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Mailarchiv aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate archivemail.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=mailarchive">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Mailarchiv deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate archivemail.{/t}" /></a>
  {/if}</td> 
 </tr>
 <tr>
- <td>Spamfilter Whitelisting:</td>
+ <td>{t}spamfilter - whitelisting:{/t}</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_sa_wb_listing == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_wb_listing">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="Spamfilter Whitelisting aktivieren." /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate whitelisting.{/t}" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_wb_listing">
- <img src="img/icons/button_ok.png" style="border:0px;" title="Spamfilter Whitelisting deaktivieren." /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate whitelisting.{/t}" /></a>
  {/if}</td> 
 </tr>
 
@@ -270,33 +270,33 @@
 {if $if_superadmin == '1' or $if_admin == '1' }
 
 <tr>
- <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">Adressenanzahl</h3>
+ <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">{t}number of addresses:{/t}</h3>
  <span style="float:right;">
-Verbraucht/M&ouml;glich
+{t}used/available{/t}
  {if $if_superadmin == '1' }
- &Auml;ndern
+{t}change{/t}
  {/if}</span></td>
 </tr>
 <tr>
- <td>{$labels.email_addresses}:</td>
+ <td>{t}emailaddresses:{/t}</td>
  {if $if_superadmin != '1' }
  <td></td>
  {/if}
- <td style="text-align:right;"  colspan="2">{$emails}/{if $max_emails eq "0" }unbegrenzt{else}{$max_emails}{/if}</td>
+ <td style="text-align:right;"  colspan="2">{$emails}/{if $max_emails eq "0" }{t}no limit{/t}{else}{$max_emails}{/if}</td>
 {if $if_superadmin == '1' }
- <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_emails" style="width:40px;" /></form></td>
+ <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = {t}no limit{/t}" name="max_emails" style="width:40px;" /></form></td>
 {else}
  <td></td>
 {/if} 
 </tr>
 <tr>
- <td>{$labels.email_forwardings}:</td>
+ <td>{t}forwardings:{/t}</td>
  {if $if_superadmin != '1' }
  <td></td>
  {/if}
- <td style="text-align:right;"  colspan="2">{$forwardings}/{if $max_fwd eq "0"}unbegrenzt{else}{$max_fwd}{/if}</td>
+ <td style="text-align:right;"  colspan="2">{$forwardings}/{if $max_fwd eq "0"}{t}no limit{/t}{else}{$max_fwd}{/if}</td>
 {if $if_superadmin == '1' }
- <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = Unbegrenzt" name="max_forwards" style="width:40px;" /></form></td>
+ <td style="text-align:right;"><form action="?module=domain_view&#038;did={$did}" method="post"><input type="text" title="0 = {t}no limit{/t}" name="max_forwards" style="width:40px;" /></form></td>
 {else}
  <td></td>
 {/if} 
@@ -305,7 +305,7 @@ Verbraucht/M&ouml;glich
 
  {if $if_superadmin == '1' }
 <tr>
-<td colspan="4" class="domain_view"><h3>Notiz zu {$dnsname}</h3></td>
+<td colspan="4" class="domain_view"><h3>{t 1=$dnsname}note %1{/t}</h3></td>
 </tr>
 <tr>
  <td colspan="4">
@@ -317,27 +317,27 @@ Verbraucht/M&ouml;glich
 
 {if ($if_spamassassin == 1 || ( $if_superadmin == '1' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
 <tr>
-	<td colspan="4" class="domain_view"><h3>Spamfilter - Whitelist</h3></td>
+	<td colspan="4" class="domain_view"><h3>{t}spamfilter - whitelisting:{/t}</h3></td>
 </tr>
 <tr>
-	<td valign="top">Whitelist:</td>
+	<td valign="top">{t}whitelist:{/t}</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
 	<select style="min-width:250px;" name="sa_whitelist_data[]" size="10" multiple="true">
 	{foreach from=$table_sa_whitelist item=row}
 	<option value="{$row.id}">{$row.sa_from}</option>
 	{/foreach}
 	</select><br/>
-	<input type="submit" name="sa_whitelist_data_del" value="Markierte L&ouml;schen"/>
+	<input type="submit" name="sa_whitelist_data_del" value="{t}delete selected{/t}"/>
 	</form></td>
 </tr>
 <tr>
 	<td colspan="4" style="height:10px;"></td>
 </tr>
 <tr>
-	<td>{$labels.add}:</td>
+	<td>{t}add to whitelist:{/t}</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
 	<input type="text" size="30" name="sa_whitelist_data_add"/><br/>
-	<input type="submit" name="sa_whitelist_data_add_submit" value="Speichern"/></form></td>
+	<input type="submit" name="sa_whitelist_data_add_submit" value="{t}add{/t}"/></form></td>
 </tr>
 {/if}
 

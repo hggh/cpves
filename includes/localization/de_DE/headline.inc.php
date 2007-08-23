@@ -1,5 +1,5 @@
 <?php
-	$headline['sadmin_user_overview']="Superadmin: Benutzer &Uuml;bersicht";
+	$headline['sadmin_user_overview']="";
 	$headline['sadmin_user_add']="Superadmin: Benutzer hinzuf&uuml;gen";
 	$headline['sadmin_options']="Superadmin: Optionen";
 	$headline['sadmin_overview']="Superadmin: Uebersicht";

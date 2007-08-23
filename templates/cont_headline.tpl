@@ -1,67 +1,67 @@
 {if $template == "sadmin_view.tpl"}
-	{$headline.sadmin_user_overview}
+	{t}Superadmin: user summary{/t}
 {elseif $template == "sadmin_add.tpl"}
-	{$headline.sadmin_user_add}
+	{t}Superadmin: add user{/t}
 {elseif $template == "sadmin_options.tpl"}
-	{$headline.sadmin_options}
+	{t}Superadmin: stettings{/t}
 {elseif $template == "index_admin.tpl"}
-	{$headline.sadmin_overview}
+	{t}Superadmin: summary{/t}
 {elseif $template == "sadmin_edit.tpl" }
-	{$headline.sadmin_user_overview}
+	{t}Superadmin: user summary{/t}
 {elseif $template == "domain_add.tpl" }
-	{$headline.sadmin_domain_add}
+	{t}Superadmin: add new domain{/t}
 {elseif $template == "domain_view.tpl"}
-	{$dnsname}: {$headline.sadmin_domain_overview}
+	{$dnsname}: {t}summary{/t}
 {elseif $template == "email_add.tpl"}
-	{$dnsname}: {$labels.new_mailaddress_add}
+	{$dnsname}: {t}create new emailaddress{/t}
 {elseif $template == "email_view.tpl"}
-	{$full_email}: {$labels.edit}
+	{$full_email}: {t}edit{/t}
 {elseif $template == "forward_add.tpl"}
-	{$dnsname}: {$labels.new_forwarding_add}
+	{$dnsname}: {t}create new forwarding{/t}
 {elseif $template == "forward_catchall.tpl"}
 	{$dnsname}: {$headline.catchall}
 {elseif $template == "sadmin_passwd.tpl"}
-	{$labels.password_change}
+	{t}change password{/t}
 {elseif $template == "user_spam.tpl"}
-	{$email}: {$labels.spamfilter}
+	{$email}: {t}spamfilter{/t}
 {elseif $template == "user_password.tpl" }
-	{$email}: {$labels.password}
+	{$email}: {t}password{/t}
 {elseif $template == "user_fetchmail.tpl" }
-	{$email}: Fetchmail
+	{$email}: {t}fetchmail{/t}
 {elseif $template == "user_salearn.tpl"}
-	{$email}: {$labels.sa_learn_title}
+	{$email}: {t}learn spam/ham{/t}
 {elseif $template == "user_forward.tpl"}
-	{$email}: {$labels.forwarding}
+	{$email}: {t}forwarding{/t}
 {elseif $template == "user_autores.tpl"}
-	{$email}: {$labels.autoresponder}
+	{$email}: {t}vacation{/t}
 {elseif $template == "main.tpl" && $if_superadmin == '1'}
-	{$headline.sadmin_domain_overview}
+	{t}Superadmin: domain summary{/t}
 {elseif $template == "main.tpl" && $if_admin == '1' && $if_user_index != 'y' }
-	{$headline.domain_overview}
+	{t}domain summary{/t}
 {elseif $template == "main.tpl" && $if_admin == '1' && $if_user_index == 'y' }
-	{$labels.personal_settings}
+	{t}personal settings{/t}
 {elseif $template == "forward_view.tpl"}
-	{$forward}: {$labels.edit}
+	{$forward}: {t}edit{/t}
 {elseif $template == "email_del.tpl"}
-	{$email}: {$labels.email_address} {$labels.del} 
+	{$email}: {$labels.email_address} {t}delete{/t}
 {elseif $template == "forward_del.tpl"}
-	{$dnsname}: {$labels.forwarding} {$labels.del}
+	{$dnsname}: {$labels.forwarding} {t}delete{/t}
 {elseif $template == "domain_del.tpl" && $if_del_ok == 'n'}
-	{$domain}: {$labels.del}
+	{$domain}: {t}delete{/t}
 {elseif $template == "domain_del.tpl" && $if_del_ok != 'n' }
-	{$labels.domain_del}
+	{t}delete domain{/t}
 {elseif $template == "user_options.tpl" }
-	{$email}: {$labels.settings}
+	{$email}: {t}settings{/t}
 {elseif $template == "user_archivemail.tpl" }
-	{$email}: {$labels.mailarchive}
+	{$email}: {t}archive mails{/t}
 {elseif $template == "user_mailfilter.tpl" }
-	{$email}: {$labels.mailfilter}
+	{$email}: {t}mailfilters{/t}
 {elseif $template == "login.tpl" }
-	{$labels.login}
+	{t}login{/t}
 {elseif $template == "list_add.tpl" }
-	{$dnsname}: {$labels.mailing_create}
+	{$dnsname}: {t}create new mailinglist{/t}
 {elseif $template == "list_del.tpl" }
-	{$dnsname}: {$labels.mailing_del}
+	{$dnsname}: {t}delete mailinglist{/t}
 {elseif $template == "list_view.tpl" }
-	{$address}: {$labels.mailing_edit}
+	{$address}: {t}edit mailinglist{/t}
 {/if}

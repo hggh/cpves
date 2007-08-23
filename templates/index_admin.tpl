@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <td>{$labels.domain}</td>
-    <td>{$labels.email_addresses}</td>
-    <td>{$labels.email_forwardings}</td>
+    <td>{t}domainname{/t}</td>
+    <td>{t}emailaddresses{/t}</td>
+    <td>{t}forwardings{/t}</td>
 
   </tr>
   {section name=row loop=$table_data}

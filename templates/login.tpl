@@ -2,15 +2,15 @@
 <form action="index.php?module=login" method="post">
 <table>
 <tr>
- <td>{$labels.username}:</td>
+ <td>{t}username:{/t}</td>
  <td style="text-align: right;"><input value="" name="email" type="text" /></td>
 </tr>
 <tr>
- <td>{$labels.password}:</td>
+ <td>{t}password:{/t}</td>
  <td style="text-align: right;"><input name="password" type="password" /></td>
 </tr>
 <tr>
- <td colspan="2" style="text-align:center"><input type="submit" name="login" value="{$labels.login}" /></td>
+ <td colspan="2" style="text-align:center"><input type="submit" name="login" value="{t}login{/t}" /></td>
 </tr>
 </table>
 </form>

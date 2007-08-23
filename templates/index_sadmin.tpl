@@ -1,11 +1,11 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>{$labels.domain}</td>
-		<td>{$labels.email_addresses}</td>
-		<td>{$labels.email_forwardings}</td>
-		<td>{$labels.activate}/{$labels.deactivate}</td>
-		<td>{$labels.Del}</td>
-		<td>Notiz</td>
+		<td>{t}domainname{/t}</td>
+		<td>{t}emailaddresses{/t}</td>
+		<td>{t}fowardings{/t}</td>
+		<td>{t}activate/deactivate{/t}</td>
+		<td>{t}delete{/t}</td>
+		<td>{t}note{/t}</td>
 	</tr>
 	{foreach from=$table_data item=row} 
 	<tr  bgcolor="{cycle values="$color1,$color2"}">
@@ -16,15 +16,15 @@
 		<td>
 			{if $row.access == "1" }
 				<a href="?module=main&#038;state=disable&#038;did={$row.id}">
-				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="{$labels.deactivate}" /></a>
+				<img src="img/icons/button_ok.png" style="vertical-align:middle;" title="{t}deactivate this domain.{/t}" /></a>
 			{else}
 				<a href="?module=main&#038;state=enable&#038;did={$row.id}" >
-				<img src="img/icons/button_cancel.png" style="vertical-align:middle;" title="{$labels.activate}" /></a>
+				<img src="img/icons/button_cancel.png" style="vertical-align:middle;" title="{t}activate this domain.{/t}" /></a>
 			{/if} 
 		</td>
 		<td>
 			<a href="?module=domain_del&#038;did={$row.id}">
-			<img src="img/icons/delete.png" style="border:0px;" title="Domain loeschen" />
+			<img src="img/icons/delete.png" style="border:0px;" title="{t}delete this domain.{/t}" />
 			</a>
 		</td>
 		<td>{$row.dnote}</td>

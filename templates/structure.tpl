@@ -41,16 +41,16 @@
 </div>
 
 <div id="mainmenu">| 
-<span class="text">Benutzer: {$username}</span> | 
+<span class="text">{t}username:{/t} {$username}</span> | 
 {if $if_superadmin != '1' && $if_login != 'y'}
-	<span class="text">Autoresponder: {if $if_autoresponder == 'y'}aktiv{else}nicht aktiv{/if}</span>  | 
+	<span class="text">{t}vacation:{/t} {if $if_autoresponder == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span>  | 
 	{if $if_forwarding == 1}
-	<span class="text">Weiterleitung: {if $if_weiterleitung == 'y'}aktiv{else}nicht aktiv{/if}</span> |{/if}
+	<span class="text">{t}forwarding:{/t} {if $if_weiterleitung == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span> |{/if}
 	{/if}
 {if $if_superadmin == '1' && $if_manager == '1'}
-<span class="text"> Rechte: Superadmin Manager</span> |
+<span class="text"> {t}permissions: superadmin manager{/t}</span> |
 {elseif $if_superadmin == '1'&& $if_manager != '1'} 
-<span class="text"> Rechte: Superadmin</span> |{/if}
+<span class="text"> {t}permissions: superadmin{/t}</span> |{/if}
 </div>
 
 <div id="wrap">

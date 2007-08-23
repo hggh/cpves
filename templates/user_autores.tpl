@@ -2,35 +2,35 @@
 <table>
 <form action="?module=user_autores" method="post">
 	<tr>
-		<td>Autoresponder aktiv:</td>
+		<td>{t}vacation active:{/t}</td>
 		<td><select name="autores_active">
-			<option value="y" onclick="cpves_autores_field('');">Ja</option>
+			<option value="y" onclick="cpves_autores_field('');">{t}yes{/t}</option>
 			{if $autores_active eq 'n' }
-			<option value="n" onclick="cpves_autores_field('true');" selected="selected">Nein</option>
+			<option value="n" onclick="cpves_autores_field('true');" selected="selected">{t}no{/t}</option>
 			{else}
-			<option value="n"  onclick="cpves_autores_field('true');">Nein</option>
+			<option value="n"  onclick="cpves_autores_field('true');">{t}no{/t}</option>
 			{/if}
 		</select></td>
 	</tr>
 	<tr>
-		<td>Sende Autoresonder an den Absender:</td>
+		<td>{t}send vacation back to sender:{/t}</td>
 		<td>
 			{html_options name="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
 		</td>
 	</tr>
 	<tr>
-		<td>Autoresponder Betreff:</td>
+		<td>{t}vacation subject:{/t}</td>
 		<td><input type="text" id="autores_subject" name="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 	</tr>
 	<tr>
-		<td valign="top">Nachricht:</td>
+		<td valign="top">{t}message:{/t}</td>
 		<td>
 		<textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea>
 		</td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" value="Speichern" name="autores_submit" /></td>
+		<td><input type="submit" value="{t}save vacation{/t}" name="autores_submit" /></td>
 	</tr>
 	
 	<tr>
@@ -42,27 +42,27 @@
 
 	<form action="?module=user_autores" method="post">
 	<tr>
-		<td valign="top">Deaktiviere Autoresponder:</td>
+		<td valign="top">{t}automatic deactivation:{/t}</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
-		<option value="1" onclick="cpves_autores_datedisable('')">Ja</option>
+		<option value="1" onclick="cpves_autores_datedisable('')">{t}yes{/t}</option>
 		{if $autores_disable.active == 0 }
-		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">Nein</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">{t}no{/t}</option>
 		{else}
-		<option value="0" onclick="cpves_autores_datedisable('true')">Nein</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')">{t}no{/t}</option>
 		{/if}
 		</select></td>
 	</tr>
 	<tr>
-		<td>Ab Datum:</td>
+		<td>{t}date of deactivation:{/t}</td>
 		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
 	</tr>
 	<tr>
-		<td>Ab Uhrzeit:</td>
+		<td>{t}time of deactivation:{/t}</td>
 		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="Speichern" /></td>
+		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="{t}save{/t}" /></td>
 	</tr>
 	</form>
 
