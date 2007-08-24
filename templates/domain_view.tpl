@@ -1,17 +1,18 @@
 {if $if_superadmin == 1 or $if_admin == '1' and $access_domain eq 'true' }
-{literal}
+
+
 <script type="text/javascript">
- function fade(name) {
-  if( document.getElementById(name + 't').style.display == "none" ) {
+ function fade(name) {ldelim}
+  if( document.getElementById(name + 't').style.display == "none" ) {ldelim}
    document.getElementById(name + 't').style.display = "block";
-   document.getElementById(name + 'l').innerHTML = "Ausblenden";
-  } else {
+   document.getElementById(name + 'l').innerHTML = "{t}hide{/t}";
+  {rdelim} else {ldelim}
    document.getElementById(name + 't').style.display = "none";
-   document.getElementById(name + 'l').innerHTML = "Einblenden";
-  }
- }
+   document.getElementById(name + 'l').innerHTML = "{t}show{/t}";
+  {rdelim}
+ {rdelim}
 </script>
-{/literal}
+
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3" ><h3>{t}emailaddresses:{/t}</h3></td>

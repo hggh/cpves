@@ -17,45 +17,45 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 <form accept-charset="?module=sadmin&#038;id={$id}" method="post">
 <table>
 <tr>
- <td>Benutzername: </td>
+ <td>{t}username:{/t}</td>
  <td>{$username}</td>
 </tr>
 <tr>
- <td>Name: </td>
+ <td>{t}full name:{/t}</td>
  <td><input name="full_name" value="{$full_name}" type="text"/></td>
 </tr>
 <tr>
- <td>Passwort:</td>
+ <td>{t}password:{/t}</td>
  <td><input name="passwd" value="" type="password" maxlength="{$max_passwd_len}" /></td>
 </tr>
 
 <tr>
- <td>Zugriff:</td>
+ <td>{t}access:{/t}</td>
  <td><select name="access">
-     <option value="1">Ja</option>
+     <option value="1">{t}yes{/t}</option>
      {if $access eq '0'}
-     <option value="0" selected="selected">Nein</option>
+     <option value="0" selected="selected">{t}no{/t}</option>
      {else}
-     <option value="0">Nein</option>
+     <option value="0">{t}no{/t}</option>
      {/if}
      </select></td>
      
 </tr>
 <tr>
- <td>Manager:</td>
+ <td>{t}superadmin manager:{/t}</td>
  <td><select name="manager">
-     <option value="1">Ja</option>
+     <option value="1">{t}yes{/t}</option>
      {if $manager eq '0'}
-     <option value="0" selected="selected">Nein</option>
+     <option value="0" selected="selected">{t}no{/t}</option>
      {else}
-     <option value="0">Nein</option>
+     <option value="0">{t}no{/t}</option>
      {/if}
      </select></td>
      
 </tr>
 
 <tr>
- <td colspan="2" style="text-align:center;"><input type="submit" name="submit" value="Speichern" /></td>
+ <td colspan="2" style="text-align:right;"><input type="submit" name="submit" value="{t}save{/t}" /></td>
 </tr>
 </table>
 </form>

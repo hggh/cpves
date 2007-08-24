@@ -1,9 +1,9 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td><h3>Benutzername</h3></td>
-		<td><h3>Name</h3></td>
-		<td><h3>Aktivieren/Deaktivieren</h3></td>
-		<td><h3>L&ouml;schen</h3></td>
+		<td><h3>{t}username{/t}</h3></td>
+		<td><h3>{t}full name{/t}</h3></td>
+		<td><h3>{t}activate/deactivate{/t}</h3></td>
+		<td><h3>{t}delete{/t}</h3></td>
 	</tr>
 	{section name=row loop=$table_data} 
 	<tr>
