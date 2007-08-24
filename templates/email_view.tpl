@@ -145,7 +145,7 @@
 	<td><select name="mailachrive">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_mailarchive_value == 0}
-	<option value="disbale" selected="selected">{$labels.opt_no}</option>
+	<option value="disbale" selected="selected">{t}no{/t}</option>
 	{else}
 	<option value="disbale">{t}no{/t}</option>
 	{/if}
@@ -464,7 +464,7 @@
 
 </form>
 <div id="myOnPageContent" style="display:none">
-<span style="color:red;font-weight:bold;font-size:15pt;">{t}- Warning .{/t}</span><br/>
+<span style="color:red;font-weight:bold;font-size:15pt;">{t}- Warning -{/t}</span><br/>
 <br/>
 <span style="font-weight:bold;">{t}This option is dangerous, an wrong value will delete spam and Ham!{/t}</span><br/><br/>
 {t}The threshold value for the delete spam option should be twice as high as the threshold for mark spam only!{/t}

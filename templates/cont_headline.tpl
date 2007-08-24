@@ -19,7 +19,7 @@
 {elseif $template == "forward_add.tpl"}
 	{$dnsname}: {t}create new forwarding{/t}
 {elseif $template == "forward_catchall.tpl"}
-	{$dnsname}: {$headline.catchall}
+	{$dnsname}: {t}catchall address{/t}
 {elseif $template == "sadmin_passwd.tpl"}
 	{t}change password{/t}
 {elseif $template == "user_spam.tpl"}
@@ -43,7 +43,7 @@
 {elseif $template == "forward_view.tpl"}
 	{$forward}: {t}edit{/t}
 {elseif $template == "email_del.tpl"}
-	{$email}: {$labels.email_address} {t}delete{/t}
+	{$email}: {t}delete emailaddress{/t}
 {elseif $template == "forward_del.tpl"}
 	{$dnsname}: {t}delete forwarding{/t}
 {elseif $template == "domain_del.tpl" && $if_del_ok == 'n'}

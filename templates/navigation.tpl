@@ -34,7 +34,8 @@
 	 <a class="nav sub" href="?module=user_mailfilter">{t}mailfilter{/t}</a>
 	{/if}
 	{if $p_mailarchive == 1}
-	<a class="nav sub" href="?module=user_archivemail">{t}archivemail{/t}</a>
+	<!--
+	<a class="nav sub" href="?module=user_archivemail">{t}archivemail{/t}</a> -->
 	{/if}
 	{if $p_fetchmail == 1}
 	<a class="nav sub" href="?module=user_fetchmail">{t}fetchmail{/t}</a>
@@ -57,7 +58,8 @@
 	<a class="nav" href="?module=user_mailfilter">{t}mailfilter{/t}</a>
 	{/if}
 	{if $p_mailarchive == 1}
-	<a class="nav" href="?module=user_archivemail">{t}archivemail{/t}</a>
+	<!--
+	<a class="nav" href="?module=user_archivemail">{t}archivemail{/t}</a> -->
 	{/if}
 	{if $p_fetchmail == 1}
 	<a class="nav" href="?module=user_fetchmail">{t}fetchmail{/t}</a>

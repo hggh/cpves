@@ -1,82 +1,85 @@
 {if $if_error_postmaster == 'y' }
-Postmaster-Weiterleitung kann nicht gel&ouml;scht oder deaktiviert werden!
+{t}you can not delete or deactivate the postmaster forward!{/t}
 {elseif $if_error_domain_exits == 'y' }
-Domain im Mailsystem schon vorhanden!
+{t}domain already exists!{/t}
 {elseif $if_error_email_exits == 'y' }
-E-Mailadresse schon vorhanden!
+{t}emailaddress already exists!{/t}
 {elseif $if_error_email_max_reached == 'y' }
-Maximale Anzahl an E-Mailadressen erreicht, es k&ouml;nnen keine weiteren E-Mailadressen angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -
+{t}You have reached the max emailaddresses.{/t}<br/>
+{t}Please contact your admin!{/t}
 {elseif $if_error_missing_input == 'y' }
 {t}missing input{/t}
 {elseif $if_error_password_long == 'y' }
-Passwort muss zwischen 3 und {$max_passwd_len} Zeichen lang sein! 
+{t}password to short.{/t}<br/>
+{t 1=$max_passwd_len}password should contain three between %1 characters{/t}
 {elseif $if_error_password_empty == 'y'}
-Passwort darf nicht leer sein!
+{t}password is empty!{/t}
 {elseif $if_error_password_old_wrong == 'y'}
-Altes Passwort falsch!
+{t}old password is wrong!{/t}
 {elseif $if_error_sadmim_exits == 'y'}
-Superadmin mit diesem Benutzernamen schon vorhanden!
+{t}superadmin already exists!{/t}
 {elseif $if_error_autores_subject_empty == 'y'}
-Betreff des Autoresponders darf nicht leer sein!
+{t}vacation subject ist empty!{/t}
 {elseif $if_error_autores_msg_empty == 'y'}
-Nachricht des Autoresponders darf nicht leer sein! 
+{t}vacation message is empty!{/t}
 {elseif $if_error_autores_subject_to_long == 'y'}
-Betreff des Autoresponders ist zu lang!
+{t}vacaction subject is to long!{/t}
 {elseif $if_error_autores_send_times == 'y'}
-Fehler: Sende Autoresponder bis! INTERNAL ERROR!
+{t}Internal vacaction ERROR!{/t}
 {elseif $if_email_valid == 'y'}
-E-Mailadresse ist nicht konform.
+{t}emailaddress is not valid!{/t}
 {elseif $if_error_forwds_max_reached == 'y'}
-Maximale Anzahl an Weiterleitungen erreicht, es k&ouml;nnen keine weiteren Weiterleitungen angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -
+{t}You have reached the max forwardings.{/t}<br/>
+{t}Please contact your admin!{/t}
 {elseif $if_error_login_failed == 'y' }
-Benutzername oder Passwort falsch
+{t}username or password wrong!{/t}
 {elseif $if_sadmin_wrong_char == 'y' }
-Benutzername enthaelt ung&uuml;ltige Zeichen!<br/>
-Benutzername darf nur Buchstaben und Zahlen enthalten!<br/>
-Benutzername darf nicht l&auml;nger als 8 Zeichen umfassen!
+{t}username not valid.{/t}<br/>
+{t}username should contain only chars and numbers.{/t}<br/>
+{t}username should only contain 8 chars!{/t}
 {elseif $if_new_passwd_not_same == 'y'}
-Neue Passw&ouml;rter stimmen nicht &uuml;berein!
+{t}new passwords does not match!{/t}
 {elseif $if_submit_email_wrong == 'y' }
-E-Mailadresse ist ung&uuml;ltig
+{t}emailaddress is not valid!{/t}
 {elseif $if_forward_all_del == 'y' }
-Es wurden alle Adressen der Weiterleitung<br/> zum L&ouml;schen markiert.<br/>
-Bitte <a href="?module=forward_del&#038;did={$domainid}&#038;id={$id}">hier klicken</a> um die Weiterleitung zu l&ouml;schen!
+{t escape='off'}all addresses of this forwarding</br>selected to delete.<br/>{/t}
+{t escape='off' 1=$id 2=$domainid}Please <a href="?module=forward_del&#038;did=%2&#038;id=%1">click here</a> to delete the forwarding!{/t}
 {elseif $if_wrong_sa_threshold == 'y'}
-Falsches Format f&uuml;r den Spamassassin-threshold!
+{t}wrong input value for spamassassin threshold!{/t}
 {elseif $if_wrong_sa_subjecttag == 'y' }
-Die Betreffszeile darf nicht l&auml;nger als 15 Zeichen sein!
+{t}subject should only be 15 chars long!{/t}
 {elseif $if_error_autores_date_wrong == 'y'}
-Das Datum hat das falsche Format! (DD.MM.JJJJ)
+{t}wrong date format! (DD.MM.JJJJ){/t}
 {elseif $if_error_autores_time_wrong == 'y'}
-Die Uhrzeit hat das falsche Format! (HH:MM:SS)
+{t}wrong time format! (HH:MM:SS){/t}
 {elseif $if_error_autores_disable_in_past == 'y' }
-Das angegebene Datum + Uhrzeit liegt in der Vergangenheit!
+{t}date and time are in the past!{/t}
 {elseif $if_error_sa_disabled_enable_bogofilter == 'y' }
-Bogofilter ben&ouml;tigt Spamassassin!<br/>
-Bitte erst Spamassassin freischalten.
+{t}bogofilter needs spamassassin!{/t}<br/>
+{t}Please enable spamassassin first!{/t}
 {elseif $if_error_sa_disable_enable_sa_learn == 'y' }
-Spam/Ham lernbar ben&ouml;tigt Spamassassin!<br/>
-Bitte erst Spamassassin freischalten.
+{t}ham/spam learning needs spamassassin!{/t}<br/>
+{t}Please enable spamassassin first!{/t}
 {elseif $if_error_sa_disable_enable_sa_wb_listing == 'y' }
-Whitelisting ben&ouml;tigt Spamassassin!<br/>
-Bitte erst Spamassassin freischalten.
+{t}whitelisting needs spamasassin!{/t}<br/>
+{t}Please enable spamassassin first!{/t}
 {elseif $sa_whitelist_data_add_empty == 'y' }
-Whitelistfeld darf nicht leer sein!
+{t}whitelistfild is empty!{/t}
 {elseif $sa_whitelist_data_add_wrong == 'y'}
-Whitelistfeld enth&auml;lt ung&uuml;ltige Zeichen!
+{t}wrong input value for the whitelist!{/t}
 {elseif $if_wrong_del_known_spam_value == 'y'}
-Falsches Format f&uuml;r die Option "L&ouml;sche erkannten Spam"!<br/>
-Format: XX.Y (z.B. 12.3)
+{t}wrong format for the delete spam option!{/t}<br/>
+{t}correct: XX.Y (e.x. 12.3){/t}
 {elseif $if_wrong_del_known_spam_value_lower == 'y'}
-Option "L&ouml;sche erkannten Spam"<br/> ist niedriger als "Markiere Nachricht" als Spam!
+{t}the value "delete spam" is to low!{/t}
 {elseif $if_error_forwardaddr_valid == 'y' }
-Weiterleitungsadresse ist nicht konform!
-{elseif $if_error_sa_disable_enable_spam_del == 'y' } 
-Diese Option ben&ouml;tigt Spamassassin.<br/>
-Bitte erst Spamassassin aktivieren, danach diese Option!
+{t}forwarding address is not valid!{/t}
+{elseif $if_error_sa_disable_enable_spam_del == 'y' }
+{t}del know spam needs spamassassin!{/t}<br/>
+{t}Please enable spamassassin first!{/t}
 {elseif $if_error_artime == 'y'}
-Archivieren nach n Tagen ist entweder leer oder ung&uuml;ltig!<br/>
-Bitte nur Zahlen verwenden.
+{t}the archive after n days is wrong. Please check!{/t}
 {elseif $fm_missing_error == 'y'}
+{t}Please check all input fields!{/t}
 Bitte alle Felder ausf&uuml;llen!
 {/if}

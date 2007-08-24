@@ -42,6 +42,7 @@ CpVES 0.04 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: list_imap_folders: non-spam /spam folder
 	o Improved: make Spam folder bold in "move known spam to"
 	o Improved: check for correct permissions for every user_ site
+	o Improved: CpVES webinterface is english (#24)
 CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: create forward;copy addresses to form
 	o Improved: autoresponder - now send only to valid to addresses an responder

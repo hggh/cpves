@@ -11,10 +11,10 @@
 			<td colspan="4" class="header" style="text-align:left;">{t 1=$new_dnsname}the new domain %1 has got the following MX entries:{/t}</td>
 		</tr>
 		<tr>
-			<td>{$labels.prio}</td>
-			<td>{$labels.mx_address}</td>
-			<td style="width:230px;">{$labels.da_ip_type}</td>
-			<td>{$labels.da_goes_to_mailsys}</td>
+			<td>{t}prio{/t}</td>
+			<td>{t}MX address{/t}</td>
+			<td style="width:230px;">{t}ip type{/t}</td>
+			<td>{t}MX points to our server{/t}</td>
 		</tr>
 		{section name=row loop=$mx_entry} 
 		<tr style="background-color:{cycle values=#rcolor#}">
