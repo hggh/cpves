@@ -1,30 +1,30 @@
 {if $if_email_saved == 'y'}
-E-Mailadresse angelegt.
+{t}emailaddress created.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_catchall_saved == 'y' }
-Catchall wurde gespeichert.
+{t}Catchall entry saved.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_forward_saved == 'y'}
-Weiterleitung angelegt.
+{t}forwarding created.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_sadmin_created == 'y'}
-Superadmin wurde angelegt.
+{t}superadmin created.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=sadmin_view">
 {elseif $if_password_changed == 'y'}
-Passwort erfolgreich ge&auml;ndert.
+{t}password changed.{/t}
 {elseif $if_email_data_saved == 'y'}
-Daten der E-Mailadresse erfolgreich gespeichert.
+{t}saved emailaddress.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_list_created == 'y'}
 Mailingliste wurde erfolgreich angelegt.
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_sadmin_saved == 'y'}
-Superadmin erfolgreich ge&auml;ndert.
+{t}superadmin changed.{/t}
 <meta http-equiv="refresh" content="1; URL=?module=sadmin_view">
 {elseif $if_mf_rebuild == 'y' }
-Die Mailfilter werden neu gebaut.
+{t}rebuild all mailfilters.{/t}
 {elseif $if_mailarchive_saved == 'y'}
-Die &Auml;nderungen wurden gespeichert.
+{t}changes are saved.{/t}
 {elseif $if_salearn_saved == 'y'}
-Die &Auml;nderungen wurden gespeichert.
+{t}changes are saved.{/t}
 {/if}

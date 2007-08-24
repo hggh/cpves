@@ -74,7 +74,7 @@
 	
 	<form action="?module=user_autores" method="post">
 	<tr>
-		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
+		<td>{t}activate valid recipient lists:{/t}</td>
 		<td>{if $val_tos_active == 1 }
 		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
@@ -82,14 +82,14 @@
 	</tr>
 	
 	<tr>
-		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
+		<td valign="top">{t}valid recipients:{/t}</td>
 		<td>
 		<select style="min-width:250px;" name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
 		<option value="{$row.id}">{$row.recip}</option>
 		{/foreach}
 		</select><br/>
-		<input type="submit" id="autores_valtos_del" name="val_tos_del" value="Markierte L&ouml;schen" />
+		<input type="submit" id="autores_valtos_del" name="val_tos_del" value="{t}delete selected{/t}" />
 		</td>
 		
 	</tr>

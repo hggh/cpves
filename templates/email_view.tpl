@@ -260,7 +260,7 @@
 	
 	<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 	<tr>
-		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
+		<td>{t}activate valid recipient lists:{/t}</td>
 		<td>{if $val_tos_active == 1 }
 		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
@@ -268,14 +268,14 @@
 	</tr>
 	
 	<tr>
-		<td valign="top">Validierte Empf&auml;ngeradressen:</td>
+		<td valign="top">{t}valid recipients:{/t}</td>
 		<td>
 		<select style="min-width:250px;" name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
 		<option value="{$row.id}">{$row.recip}</option>
 		{/foreach}
 		</select><br/>
-		<input type="submit" id="autores_valtos_del" name="val_tos_del" value="Markierte L&ouml;schen" />
+		<input type="submit" id="autores_valtos_del" name="val_tos_del" value="{t}delete selected{/t}" />
 		</td>
 		
 	</tr>
@@ -464,13 +464,13 @@
 
 </form>
 <div id="myOnPageContent" style="display:none">
-<span style="color:red;font-weight:bold;font-size:15pt;">- ACHTUNG -</span><br/>
+<span style="color:red;font-weight:bold;font-size:15pt;">{t}- Warning .{/t}</span><br/>
 <br/>
-<span style="font-weight:bold;">Diese Option ist gef&auml;hrlich, ein falscher Wert l&ouml;scht nicht nur Spam sondern auch Ham!</span><br/><br/>
-Der Wert f&uuml;rs l&ouml;schen von Spam sollte deutlich h&ouml;her liegen als der Wert, womit nur Spam als Spam markiert wird!
+<span style="font-weight:bold;">{t}This option is dangerous, an wrong value will delete spam and Ham!{/t}</span><br/><br/>
+{t}The threshold value for the delete spam option should be twice as high as the threshold for mark spam only!{/t}
 <br/><br/>
-Spam wird marktiert ab: <span id="sa_thresshold_value"></span><br/>
-Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
+{t}spam mark threshold:{/t} <span id="sa_thresshold_value"></span><br/>
+{t}spam delete threshold:{/t} <span id="sa_del_known_spam"></span><br/>
 <br/>
 <p style="text-align:center">
 <a href="#" onClick="tb_remove();">Abbrechen</a> |

@@ -7,7 +7,7 @@ E-Mailadresse schon vorhanden!
 {elseif $if_error_email_max_reached == 'y' }
 Maximale Anzahl an E-Mailadressen erreicht, es k&ouml;nnen keine weiteren E-Mailadressen angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -
 {elseif $if_error_missing_input == 'y' }
-Fehlerhafte Eingabe!
+{t}missing input{/t}
 {elseif $if_error_password_long == 'y' }
 Passwort muss zwischen 3 und {$max_passwd_len} Zeichen lang sein! 
 {elseif $if_error_password_empty == 'y'}

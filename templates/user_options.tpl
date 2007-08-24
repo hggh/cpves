@@ -3,6 +3,13 @@
 <tr>
 </tr>
 <tr>
+	<td>{t}webinterface language:{/t}</td>
+	<td style="width:10px;"></td>
+	<td><select name="web_lang">
+		<option value="en_US">en_US</option>
+	</select></td>
+</tr>
+<tr>
 	<td>{t}delete virus notifactions:{/t}</td>
 	<td style="width:10px;"></td>
 	<td>

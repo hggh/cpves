@@ -112,16 +112,16 @@
 </table>
 </form>
 <div id="myOnPageContent" style="display:none">
-<span style="color:red;font-weight:bold;font-size:15pt;">- ACHTUNG -</span><br/>
+<span style="color:red;font-weight:bold;font-size:15pt;">{t}- Warning .{/t}</span><br/>
 <br/>
-<span style="font-weight:bold;">Diese Option ist gef&auml;hrlich, ein falscher Wert l&ouml;scht nicht nur Spam sondern auch Ham!</span><br/><br/>
-Der Wert f&uuml;r das L&ouml;schen von Spam sollte deutlich h&ouml;her liegen als der Wert, der benutzt wird, um Spam als Spam zu markieren!
+<span style="font-weight:bold;">{t}This option is dangerous, an wrong value will delete spam and Ham!{/t}</span><br/><br/>
+{t}The threshold value for the delete spam option should be twice as high as the threshold for mark spam only!{/t}
 <br/><br/>
-Spam wird markiert ab: <span id="sa_thresshold_value"></span><br/>
-Spam wird gel&ouml;scht ab: <span id="sa_del_known_spam"></span><br/>
+{t}spam mark threshold:{/t} <span id="sa_thresshold_value"></span><br/>
+{t}spam delete threshold:{/t} <span id="sa_del_known_spam"></span><br/>
 <br/>
 <p style="text-align:center">
-<a href="#" onClick="tb_remove();">Abbrechen</a> |
-<a href="#" onclick="cpves_sa_warning_ok();">Ja, Spam soll gel&ouml;scht werden</a>
+<a href="#" onClick="tb_remove();">{t}abort{/t}</a> |
+<a href="#" onclick="cpves_sa_warning_ok();">{t}Yes, I will delete spam{/t}</a>
 </p>
 </div>
