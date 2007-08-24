@@ -39,5 +39,5 @@
 	{/foreach}
 </table>
 {else}
-Keinen IMAP-Ordner gefunden. Daher ist kein Spam/Hamlernbar!
+{t}no IMAP folder was found. You can't learn messages as ham/spam!{/t}
 {/if}

@@ -3,13 +3,13 @@
 <form action="?module=forward_add&#038;did={$did}" method="post">
 <table>
 <tr>
- <td>E-Mailadresse:</td>
+ <td>{t}emailaddress:{/t}</td>
  <td style="width:10px;"></td>
  <td><input type="text" name="from" value="{$from}"/>@{$domain}</td>
 </tr>
 
 <tr>
- <td valign="top">Leiten nach:</td>
+ <td valign="top">{t}forward to:{/t}</td>
  <td style="width:10px;"></td>
  <td><textarea cols="40" rows="10" name="to" value="{$to}"></textarea>
 
@@ -25,7 +25,7 @@
 <tr>
 <td></td>
 <td style="width:10px;"></td>
-<td><input type="submit" name="submit" value="{$labels.create}" /> <input type="reset" value="Zur&uuml;cksetzen"</td>
+<td><input type="submit" name="submit" value="{t}create new forward{/t}" /> <input type="reset" value="{t}reset form{/t}"</td>
 </tr>
 </table>
 </form>

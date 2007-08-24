@@ -45,7 +45,7 @@
 {elseif $template == "email_del.tpl"}
 	{$email}: {$labels.email_address} {t}delete{/t}
 {elseif $template == "forward_del.tpl"}
-	{$dnsname}: {$labels.forwarding} {t}delete{/t}
+	{$dnsname}: {t}delete forwarding{/t}
 {elseif $template == "domain_del.tpl" && $if_del_ok == 'n'}
 	{$domain}: {t}delete{/t}
 {elseif $template == "domain_del.tpl" && $if_del_ok != 'n' }

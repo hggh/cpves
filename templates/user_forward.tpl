@@ -2,7 +2,7 @@
 <table>
 <tr>
 </tr>
-	<td>Alle E-Mails weiterleiten:</td>
+	<td>{t}forward all mails to:{/t}</td>
 	<td style="width:10px;"></td>
 	
 	<td>
@@ -10,23 +10,23 @@
 	</td>
 </form>
 <tr>
-	<td>Kopie im Postfach belassen:</td>
+	<td>{t}save copy:{/t}</td>
 	<td style="width:10px;"></td>
 	<td>
 		<select name="save_local">
 		{if $if_forward_cc == 1 }
-		<option value="1">Ja</option>
-		<option value="0">Nein</option>
+		<option value="1">{t}yes{/t}</option>
+		<option value="0">{t}no{/t}</option>
 		{else}
-		<option value="0">Nein</option>
-		<option value="1">Ja</option>
+		<option value="0">{t}no{/t}</option>
+		<option value="1">{t}yes{/t}</option>
 		{/if}
 		</select>
 	</td>
 	
 </tr>
 <tr>
-	<td>Weiterleitung l&ouml;schen:</td>
+	<td>{t}delete forwarding:{/t}</td>
 	<td style="width:10px;"></td>
 	<td>
 		<input type="checkbox" name="delete_forward"/>
@@ -35,7 +35,7 @@
 <tr>
 	<td></td>
 	<td style="width:10px;"></td>
-	<td><input type="submit" name="submit" value="Speichern" /></td>
+	<td><input type="submit" name="submit" value="{t}save{/t}" /></td>
 
 </tr>
 

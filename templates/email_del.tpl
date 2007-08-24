@@ -2,16 +2,16 @@
 
 {if $if_del_ok != "y" }
 <div style="color:red;">
-{$labels.de_email_del1} {$email} {$labels.de_email_del2}<br/><br/>
+{t 1=$email}Should the emailaddress %1 really deleted?{/t}<br/><br/>
 </div>
 <form action="?module=email_del&#038;id={$id}&#038;did={$did}" method="post">
 <input type="hidden" name="del_ok" value="true"/>
-<input type="submit" name="submit" value="{$labels.Del}" />
+<input type="submit" name="submit" value="{t}delete{/t}" />
 </form>
 <br/>
 {else}
-<div style="color:blue;">{$labels.ed_email_deleted}<br/><br/></div>
-<!-- <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}"> -->
+<div style="color:blue;">{t}emailaddress is deleted!{/t}<br/><br/></div>
+<meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 <br/>
 {/if}
 

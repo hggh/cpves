@@ -2,152 +2,152 @@
 <form action="?module=email_view&#038;id={$id}&#038;did={$domainid}"  method="post">
 <table>
 <tr>
- <td style="width:190px;">{$labels.email_address}:</td>
+ <td style="width:190px;">{t}emailaddress:{/t}</td>
  <td style="width:300px;">{$full_email}</td>
 </tr>
 <tr>
- <td>{$labels.full_name}:</td>
+ <td>{t}full name:{/t}</td>
  <td><input type="text" name="full_name" value="{$full_name}"/></td>
 </tr>
 <tr>
- <td>{$labels.password}:</td>
+ <td>{t}password:{/t}</td>
  <td><input type="password"  maxlength="{$max_passwd_len}" name="npassword" value=""/></td>
 </tr>
 {if $if_imap == '1' }
 <tr>
- <td>{$labels.imap_connection}:</td>
+ <td>{t}imap connection:{/t}</td>
  <td><select name="imap">
-     <option value="enable">{$labels.opt_yes}</option>
+     <option value="enable">{t}yes{/t}</option>
      {if $if_imap_value == 0}
-     <option value="disable" selected="selected">{$labels.opt_no}</option>
+     <option value="disable" selected="selected">{t}no{/t}</option>
      {else}
-     <option value="disable">{$labels.opt_no}</option>
+     <option value="disable">{t}no{/t}</option>
      {/if}
      </select></td>
 </tr>
 {/if}
 {if $if_pop3 == '1' }
 <tr>
- <td>{$labels.pop3_connection}:</td>
+ <td>{t}pop3 connection:{/t}</td>
  <td><select name="pop3">
-     <option value="enable">{$labels.opt_yes}</option>
+     <option value="enable">{t}yes{/t}</option>
      {if $if_pop3_value == 0}
-     <option value="disable" selected="selected" >{$labels.opt_no}</option>
+     <option value="disable" selected="selected" >{t}no{/t}</option>
      {else}
-     <option value="disable" >{$labels.opt_no}</option>
+     <option value="disable" >{t}no{/t}</option>
      {/if}
      </select></td>
 </tr>
 {/if}
 {if $if_webmail == 1 }
 <tr>
- <td>{$labels.p_webmail}:</td>
+ <td>{t}webmail available:{/t}</td>
  <td><select name="webmail">
-     <option value="enable">{$labels.opt_yes}</option>
+     <option value="enable">{t}yes{/t}</option>
      {if $if_webmail_value == 0 }
-     <option value="disable" selected="selected" >{$labels.opt_no}</option>
+     <option value="disable" selected="selected" >{t}no{/t}</option>
      {else}
-     <option value="disable" >{$labels.opt_no}</option>
+     <option value="disable" >{t}no{/t}</option>
      {/if}
      </select></td>
 </tr>
 {/if}
 {if $if_webinterface == 1 }
 <tr>
- <td>Zugriff zum CpVES-Webinterface:</td>
+ <td>{t}access to CpVES webinterface:{/t}</td>
  <td><select name="webinterface">
-     <option value="enable">{$labels.opt_yes}</option>
+     <option value="enable">{t}yes{/t}</option>
      {if $if_webinterface_value == 0 }
-     <option value="disable" selected="selected" >{$labels.opt_no}</option>
+     <option value="disable" selected="selected" >{t}no{/t}</option>
      {else}
-     <option value="disable" >{$labels.opt_no}</option>
+     <option value="disable" >{t}no{/t}</option>
      {/if}
      </select></td>
 </tr>
 {/if}
 {if $if_fetchmail == 1 }
 <tr>
- <td>Fetchmail:</td>
+ <td>{t}fetchmail:{/t}</td>
  <td><select name="fetchmail">
-     <option value="enable">{$labels.opt_yes}</option>
+     <option value="enable">{t}yes{/t}</option>
      {if $if_fetchmail_value == 0 }
-     <option value="disable" selected="selected" >{$labels.opt_no}</option>
+     <option value="disable" selected="selected" >{t}no{/t}</option>
      {else}
-     <option value="disable" >{$labels.opt_no}</option>
+     <option value="disable" >{t}no{/t}</option>
      {/if}
      </select></td>
 </tr>
 {/if}
 <tr>
-	<td>{$labels.p_forwarding}:</td>
+	<td>{t}forwarding available:{/t}</td>
 	<td><select name="forwarding">
-	    <option value="enable">{$labels.opt_yes}</option>
+	    <option value="enable">{t}yes{/t}</option>
 	    {if $if_forwarding_value == 0 }
-	    <option value="disable" selected="selected">{$labels.opt_no}</option>
+	    <option value="disable" selected="selected">{t}no{/t}</option>
 	    {else}
-	    <option value="disable">{$labels.opt_no}</option>
+	    <option value="disable">{t}no{/t}</option>
 	    {/if}
 	    </select></td>
 	    
 </tr>
 {if $if_spamassassin == '1' }
 <tr>
-	<td>{$labels.p_sa}:</td>
+	<td>{t}spamassassin:{/t}</td>
 	<td><select name="spamassassin">
-	<option value="enable">{$labels.opt_yes}</option>
+	<option value="enable">{t}yes{/t}</option>
 	{if $if_spamassassin_value == 0 }
-	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	<option value="disable" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="disable">{$labels.opt_no}</option>
+	<option value="disable">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 {/if}
 {if $if_sa_learn == 1 }
-	<td>Spam/Ham-lernbar:</td>
+	<td>{t}ham/spam learning:{/t}</td>
 	<td><select name="sa_learn">
-	<option value="enable">{$labels.opt_yes}</option>
+	<option value="enable">{t}yes{/t}</option>
 	{if $if_sa_learn_value == 0}
-	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	<option value="disable" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="disable">{$labels.opt_no}</option>
+	<option value="disable">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 {/if}
 {if $if_spam_del == 1 }
-	<td>Spam l&ouml;schen m&ouml;glich:</td>
+	<td>{t}delete spam:{/t}</td>
 	<td><select name="spam_del">
-	<option value="enable">{$labels.opt_yes}</option>
+	<option value="enable">{t}yes{/t}</option>
 	{if $if_spam_del_value == 0}
-	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	<option value="disable" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="disable">{$labels.opt_no}</option>
+	<option value="disable">{t}no{/t}</option>
 	{/if}
 	</select></td>
 {/if}
 {if $if_bogofilter == '1' }
 <tr>
-	<td>{$labels.p_bogofilter}:</td>
+	<td>{t}bogofilter:{/t}</td>
 	<td><select name="bogofilter">
-	<option value="enable">{$labels.opt_yes}</option>
+	<option value="enable">{t}yes{/t}</option>
 	{if $if_bogofilter_value == 0 }
-	<option value="disable" selected="selected">{$labels.opt_no}</option>
+	<option value="disable" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="disable">{$labels.opt_no}</option>
+	<option value="disable">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 {/if}
 {if $if_mailarchive == 1 }
 <tr>
-	<td>{$labels.p_mailarchive}:</td>
+	<td>{t}archivemail:{/t}</td>
 	<td><select name="mailachrive">
-	<option value="enable">{$labels.opt_yes}</option>
+	<option value="enable">{t}yes{/t}</option>
 	{if $if_mailarchive_value == 0}
 	<option value="disbale" selected="selected">{$labels.opt_no}</option>
 	{else}
-	<option value="disbale">{$labels.opt_no}</option>
+	<option value="disbale">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
@@ -156,7 +156,7 @@
 
 <tr>
 <td></td>
-<td><input type="submit" name="submit" value="{$labels.opt_save}"/></td>
+<td><input type="submit" name="submit" value="{t}save{/t}"/></td>
 </tr>
 </form>
 
@@ -164,7 +164,7 @@
 <tr><td colspan="2" style="height:10px;"></td></tr>
 {if $ava_ad_domains ge 1 }
 <tr>
- <td colspan="2" class="domain_view"><h3>User ist Admin der Domain(s):</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}user is admin for the following domains:{/t}</h3></td>
 </tr>
 {section name=row loop=$table_admins}
 <tr>
@@ -175,7 +175,7 @@
 {/section}
 <tr>
 {/if}
-<td colspan="2" class="domain_view"><h3>Neue Admin-Domain hinzuf&uuml;gen:</h3></td>
+<td colspan="2" class="domain_view"><h3>{t}add new admin domain:{/t}</h3></td>
 </tr>
 <tr>
 {if $if_nodomains_found != "y"}
@@ -184,9 +184,9 @@
  <option value="{$table_adddns[row].dnsid}">{$table_adddns[row].dnsname}</option>
  {/section}
  </select></td>
- <td style="text-align:right;"><input type="submit" name="adddns" value="{$labels.add}" /></form></td>
+ <td style="text-align:right;"><input type="submit" name="adddns" value="{t}add{/t}" /></form></td>
  {else}
- <td colspan="2">Keine weiteren Domains gefunden!</td>
+ <td colspan="2">{t}no more domains exists!{/t}</td>
  {/if}
 </tr>
 {/if}
@@ -194,60 +194,60 @@
 <!-- Autoresponder feature begin -->
 <form name="autoresp" action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
-<td colspan="2" class="domain_view"><h3>Autoresponder</h3></td>
+<td colspan="2" class="domain_view"><h3>{t}vacation{/t}</h3></td>
 </tr>
 <tr>
- <td>Autoresponder aktiv:</td>
+ <td>{t}vacation active:{/t}</td>
  <td><select name="autores_active">
-  <option value="y" onclick="cpves_autores_field('');">{$labels.opt_yes}</option>
+  <option value="y" onclick="cpves_autores_field('');">{t}yes{/t}</option>
   {if $autores_active eq 'n' }
-  	<option value="n" onclick="cpves_autores_field('true');" selected="selected">{$labels.opt_no}</option>
+  	<option value="n" onclick="cpves_autores_field('true');" selected="selected">{t}no{/t}</option>
   {else}
-  	<option value="n" onclick="cpves_autores_field('true');">{$labels.opt_no}</option>
+  	<option value="n" onclick="cpves_autores_field('true');">{t}no{/t}</option>
   {/if}
   </select></td>
 </tr>
 <tr>
-	<td>Sende Autoresonder an den Absender:</td>
+	<td>{t}send vacation back to sender:{/t}</td>
 	<td>
 		{html_options name="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
 	</td>
 </tr>
 <tr>
- <td>Autoresponder Betreff:</td>
+ <td>{t}vacation subject:{/t}</td>
  <td><input type="text" name="autores_subject" id="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 </tr>
 <tr>
- <td valign="top">Nachricht:</td>
+ <td valign="top">{t}message:{/t}</td>
  <td><textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea></td>
 </tr>
 <tr>
  <td></td>
- <td><input type="submit" value="{$labels.opt_save}" name="autores_submit" /></td>
+ <td><input type="submit" value="{t}save vacation{/t}" name="autores_submit" /></td>
 </tr>
 	<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 	<tr>
-		<td valign="top">Dekativiere Autoresponder:</td>
+		<td valign="top">{t}automatic deactivation:{/t}</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
-		<option value="1" onclick="cpves_autores_datedisable('')">{$labels.opt_yes}</option>
+		<option value="1" onclick="cpves_autores_datedisable('')">{t}yes{/t}</option>
 		{if $autores_disable.active == 0 }
-		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">{$labels.opt_no}</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')" selected="selected">{t}no{/t}</option>
 		{else}
-		<option value="0" onclick="cpves_autores_datedisable('true')">{$labels.opt_no}</option>
+		<option value="0" onclick="cpves_autores_datedisable('true')">{t}no{/t}</option>
 		{/if}
 		</select></td>
 	</tr>
 	<tr>
-		<td>Ab Datum:</td>
+		<td>{t}date of deactivation:{/t}</td>
 		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
 	</tr>
 	<tr>
-		<td>Ab Uhrzeit:</td>
+		<td>{t}time of deactivation:{/t}</td>
 		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="{$labels.opt_save}" /></td>
+		<td><input type="submit" id="autores_datedisable_submit" name="autores_datedisable_submit" value="{t}save{/t}" /></td>
 	</tr>
 	</form>
 	<tr>
@@ -262,9 +262,9 @@
 	<tr>
 		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
 		<td>{if $val_tos_active == 1 }
-		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {$labels.opt_yes} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {$labels.opt_no}
+		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
-		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> {$labels.opt_no}{/if}</td>
+		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> {t}no{/t}{/if}</td>
 	</tr>
 	
 	<tr>
@@ -280,8 +280,8 @@
 		
 	</tr>
 	<tr>
-		<td>Hinzuf&uuml;gen:</td>
-		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{$labels.add}" /></td>
+		<td>{t}add new address:{/t}</td>
+		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{t}add{/t}" /></td>
 	</tr>
 </form>
 {if $autores_active eq 'n' }
@@ -304,37 +304,37 @@
 <!-- Options feature begin -->
 <form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
- <td colspan="2" class="domain_view"><h3>Optionen</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}settings{/t}</h3></td>
 </tr>
 <tr>
-<td>L&ouml;sche Virenbenachrichtigungen:</td>
+<td>{t}delete virus notifactions:{/t}</td>
   <td><select name="del_virus_notifi">
 		{if $del_virus_notifi eq 1}
-			<option value="1" selected="selected">Ja</option>
-			<option value="0">Nein</option>
+			<option value="1" selected="selected">{t}yes{/t}</option>
+			<option value="0">{t}no{/t}</option>
 		{else}
-			<option value="1">Ja</option>
-			<option value="0" selected="selected">Nein</option>
+			<option value="1">{t}yes{/t}</option>
+			<option value="0" selected="selected">{t}no{/t}</option>
 		{/if}
   </select></td>  
 </tr>
 <tr>
-	<td>Filtere doppelte Mails:</td>
+	<td>{t}filter doubled mails:{/t}</td>
 	<td>
 		<select name="del_dups_mails">
 		{if $del_dups_mails == 1}
-			<option value="1" selected="selected">Ja</option>
-			<option value="0">Nein</option>
+			<option value="1" selected="selected">{t}yes{/t}</option>
+			<option value="0">{t}no{/t}</option>
 		{else}
-			<option value="1">Ja</option>
-			<option value="0" selected="selected">Nein</option>
+			<option value="1">{t}yes{/t}</option>
+			<option value="0" selected="selected">{t}no{/t}</option>
 		{/if}
 		</select>
 	</td>
 </tr>
 <tr>
 	<td></td>
-	<td><input type="submit" name="submit_mailoptions" value="Speichern" /></td>
+	<td><input type="submit" name="submit_mailoptions" value="{t}save{/t}" /></td>
 </tr>
 </form>
 <!-- Options feature end -->
@@ -342,33 +342,33 @@
 <!-- Forward feature begin -->
 <form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 <tr>
- <td colspan="2" class="domain_view"><h3>Weiterleitung</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}forwarding{/t}</h3></td>
 </tr>
 <tr>
-	<td>Alle E-Mails weiterleiten:</td>
+	<td>{t}forward all mails to:{/t}</td>
 	<td><input name="forwardaddress" value="{$forwardaddress}" type="text"/></td>
 </tr>
 
 <tr>
-	<td>Kopie im Postfach belassen:</td>
+	<td>{t}save copy:{/t}</td>
 	<td><select name="save_local">
 	{if $if_forward_cc == 1 }
-		<option value="1">Ja</option>
-		<option value="0">Nein</option>
+		<option value="1">{t}yes{/t}</option>
+		<option value="0">{t}no{/t}</option>
 	{else}
-		<option value="0">Nein</option>
-		<option value="1">Ja</option>
+		<option value="0">{t}no{/t}</option>
+		<option value="1">{t}yes{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 
 <tr>
-	<td>Weiterleitung l&ouml;schen:</td>
+	<td>{t}delete forwarding:{/t}</td>
 	<td><input type="checkbox" name="delete_forward"/></td>
 </tr>
 <tr>
 	<td></td>
-	<td><input type="submit" name="fwdmail_submit" value="Speichern" /></td>
+	<td><input type="submit" name="fwdmail_submit" value="{t}save{/t}" /></td>
 </tr>
 </form>
 <!-- Forward feature end -->
@@ -377,60 +377,60 @@
 {if $if_spamassassin == 1 }
 <form action="?module=email_view&#038;id={$id}&#038;did={$did}" name="sa_form" id="sa_form" method="post">
 <tr>
- <td colspan="2" class="domain_view"><h3>Spamfilter</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}spamfilter{/t}</h3></td>
 </tr>
 <tr>
-	<td>Spamfilter aktiv:</td>
+	<td>{t}spamfilter active:{/t}</td>
 	<td><select id="spamassassin_active" name="spamassasin_active">
-	<option value="1" onclick="cpves_sa_active('1');">Ja</option>
+	<option value="1" onclick="cpves_sa_active('1');">{t}yes{/t}</option>
 	{if $spamassassin_active eq '0' }
-	<option value="0" onclick="cpves_sa_active('0');" selected="selected">Nein</option>
+	<option value="0" onclick="cpves_sa_active('0');" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="0" onclick="cpves_sa_active('0');">Nein</option>
+	<option value="0" onclick="cpves_sa_active('0');">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 
 {if $if_bogofilter == 1}
 <tr>
-	<td>Bogofilter aktiv:</td>
+	<td>{t}bogofilter active:{/t}</td>
 	<td><select id="bogofilter_active" name="bogofilter_active">
-	<option value="1">Ja</option>
+	<option value="1">{t}yes{/t}</option>
 	{if $bogofilter_active == 0}
-	<option value="0" selected="selected">Nein</option>
+	<option value="0" selected="selected">{t}no{/t}</option>
 	{else}
-	<option value="0">Nein</option>
+	<option value="0">{t}no{/t}</option>
 	{/if}
 	</select></td>
 </tr>
 {/if}
 	
 <tr>
-	<td valign="top">Schreibe Betreffszeile um:</td>
+	<td valign="top">{t}change subject:{/t}</td>
 	<td>{if $rewrite_subject == '1' } 
-	<input type="radio" name="rewrite_subject"  value="0" /> Nein 
-	<input type="radio" name="rewrite_subject" checked="checked" value="1" /> Ja<br />
+	<input type="radio" name="rewrite_subject"  value="0" /> {t}no{/t} 
+	<input type="radio" name="rewrite_subject" checked="checked" value="1" /> {t}yes{/t}<br />
 	{else} 
-	<input type="radio" checked="checked" name="rewrite_subject"  value="0" /> Nein 
-	<input type="radio" name="rewrite_subject" value="1" /> Ja<br />
+	<input type="radio" checked="checked" name="rewrite_subject"  value="0" /> {t}no{/t} 
+	<input type="radio" name="rewrite_subject" value="1" /> {t}yes{/t}<br />
 	{/if}
 	<input id="spamassassin_subject_header"  maxlength="15" name="rewrite_subject_header" value="{$rewrite_subject_header}" type="text" />
 	</td>
 </tr>
 	
 <tr>
-	<td>Markiere Nachricht als Spam ab:</td>
+	<td>{t}mark message as spam:{/t}</td>
 	<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" />
 </td>
 <tr>
-	<td valign="top">{$labels.del_known_spam}:</td>
+	<td valign="top">{t}delete known spam:{/t}</td>
 	<td>
 	<select name="del_known_spam" id="del_known_spam">
-		<option value="0" onClick="cpves_sa_del_knowndisable('0')">{$labels.opt_no}</option>
+		<option value="0" onClick="cpves_sa_del_knowndisable('0')">{t}no{/t}</option>
 		{if $del_known_spam == 1 }
-		<option value="1" selected="selected" onClick="cpves_sa_del_knowndisable('1')" >{$labels.opt_yes}</option>
+		<option value="1" selected="selected" onClick="cpves_sa_del_knowndisable('1')" >{t}yes{/t}</option>
 		{else}
-		<option value="1" onClick="cpves_sa_del_knowndisable('1')">{$labels.opt_yes}</option>
+		<option value="1" onClick="cpves_sa_del_knowndisable('1')">{t}yes{/t}</option>
 		{/if}
 		
 	</select><br/>
@@ -448,15 +448,15 @@
 	</script>
 	{/if}
 	<input type="hidden" name="save_option" value="OK" />
-	<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="Erkannten Spam l&ouml;schen?" class="thickbox" name="save" value="{$labels.opt_save}" onclick="cpves_sa_check_warning();" />
+	<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="{t}delete known spam?{/t}" class="thickbox" name="save" value="{t}save{/t}" onclick="cpves_sa_check_warning();" />
 {literal}
 
 {/literal}
 	</td>
 </tr>
 <tr>
-	<td>Verschiebe erkannten Spam:</td>
-	<td>{if $sa_move_spam == '0'}Nicht aktiviert{else}
+	<td>{t}move known spam:{/t}</td>
+	<td>{if $sa_move_spam == '0'}{t}not active{/t}{else}
 	INBOX/{$sa_move_spam}
 	{/if}
 	</td>

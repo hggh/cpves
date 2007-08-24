@@ -76,9 +76,9 @@
 	<tr>
 		<td>Aktiviere validierte Empf&auml;ngeradressen:</td>
 		<td>{if $val_tos_active == 1 }
-		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> Ja <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> Nein
+		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
-		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> Ja <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> Nein{/if}</td>
+		<input type="radio" onclick="submit();"  id="autores_valtos_active_on"  name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" checked="checked" onclick="submit();"  id="autores_valtos_active_off" name="val_tos_active"  value="0"> {t}no{/t}{/if}</td>
 	</tr>
 	
 	<tr>
@@ -94,8 +94,8 @@
 		
 	</tr>
 	<tr>
-		<td>Hinzuf&uuml;gen:</td>
-		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="Hinzuf&uuml;gen" /></td>
+		<td>{t}add new address:{/t}</td>
+		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{t}add{/t}" /></td>
 	</tr></form>
 </table>
 {if $autores_active eq 'n' }

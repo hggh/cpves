@@ -6,16 +6,16 @@
 {/if}
 <table>
 <tr>
- <td>Domain: </td>
+ <td>{t}domain:{/t} </td>
  <td>@{$dnsname}</td>
 </tr>
 <tr>
- <td>Weiterleiten:</td>
+ <td>{t}forward to:{/t}</td>
  <td><input name="eto" value="{$eto}" /></td>
 </tr>
 <tr>
  <td colspan="2" style="text-align:center;">
- <input type="submit" name="add" value="Speichern" /></td>
+ <input type="submit" name="add" value="{t}save{/t}" /></td>
 </tr> 
 </table>
 </form>

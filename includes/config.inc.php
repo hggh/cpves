@@ -53,7 +53,7 @@ $config['company_title'] = "Some Company";
 $ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
 
 //Mailinglistenfeature: 
-$config['mailinglisten'] = 'y'; //Development, please don't use!
+$config['mailinglisten'] = 'n'; //Development, please don't use!
 //Run Systemscript via xinetd Service 
 $config['service_enabled'] = 'n'; // Development, please don't use!
 $config['service_port'] = 7928; // Development, please don't use!
