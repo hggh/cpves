@@ -119,3 +119,4 @@ ALTER TABLE `spamassassin` ADD `email` INT NOT NULL FIRST;
 ALTER TABLE `domains` ADD `p_webinterface` TINYINT( 1 ) DEFAULT '1' NOT NULL;
 ALTER TABLE `users` ADD `p_webinterface` TINYINT( 1 ) DEFAULT '1' NOT NULL;
 
+ALTER TABLE `lists` modify column `access` TINYINT( 1 ) DEFAULT '1' NOT NULL;
