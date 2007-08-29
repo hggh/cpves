@@ -15,8 +15,8 @@ $smarty->template_dir = $root . '/templates';
 $smarty->compile_dir = "/tmp/";
 $smarty->config_overwrite = false;
 
-//Server IP
-$config['server_ip'] = "127.0.0.1";
+//Server IP: add more ips: array("127.0.0.1", "123.123.123.123")
+$config['server_ip'] = array("127.0.0.1");
 
 
 //Postmaster and Serveradmin:

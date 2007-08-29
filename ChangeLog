@@ -2,6 +2,7 @@ CpVES 0.05 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: repaired listmailer.pl for access tinyint(1) column (T. Genannt)
 	o Fixed: domain_add: default postmaster forwarding (#26)
 	o Fixed: default paths in runScipts.sh and installService.sh
+	o Improved: server_ip: you can configure more than one
 	o Improved: Default config now in extra file (copy to config.inc.php / mail_config.conf) (T. Genannt)
 CpVES 0.04 2007-08-25 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: Webmail to config.inc.php and navigation for direct webmail link
