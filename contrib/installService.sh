@@ -7,6 +7,6 @@ echo "service mailcontrol
         protocol        = tcp
         wait            = no
         user            = vmail
-        server          = /etc/cpves/runScripts.sh
+        server          = /usr/local/cpves/runScripts.sh
         only_from       = 127.0.0.1
 }" >> /etc/xinetd.d/mailcontrol
