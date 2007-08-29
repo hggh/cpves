@@ -78,7 +78,7 @@ if (isset($_POST['submit']))
 			$res=&$db->query($sql);
 			$data=$res->fetchrow(DB_FETCHMODE_ASSOC);
 			$to='postmaster@'.$dnsname;
-			$sql=sprintf("INSERT INTO forwardings SET domainid='%s', efrom='%s', eto='%s', access='y'",
+			$sql=sprintf("INSERT INTO forwardings SET domainid='%s', efrom='%s', eto='%s', access='1'",
 				$db->escapeSimple($data['id']),
 				$db->escapeSimple($to),
 				$db->escapeSimple($config['postmaster']));

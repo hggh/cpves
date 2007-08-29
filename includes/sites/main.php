@@ -72,8 +72,8 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
       //$i++; 
 } 
 }
+/*
 //check for spam:
-$test='n';
 if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'&& $test=='y')
 {
 
@@ -97,7 +97,7 @@ $smarty->assign('ipaddr',$config['server_ip'] );
 $smarty->assign('table_spam', $table_spam);
 
 } // SPAM CHECK ENDE
-
+*/
 
 //email user part:
 if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='0')
@@ -113,51 +113,6 @@ if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user']
 	$smarty->assign('if_user_index','y');
 	$smarty->assign('full_name', $_SESSION['full_name']);
 	$smarty->assign('email', $_SESSION['email']);
-	if (isset($_POST['u_submit']))
-	{
-		if (!isset($_POST['new_passwd1']) || empty($_POST['new_passwd1']) ||
-		    !isset($_POST['new_passwd2']) || empty($_POST['new_passwd2']))
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_empty','y');
-		}
-		else if (check_passwd_length($_POST['new_passwd2']) ==false)
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_long', 'y');
-
-		}
-		else if($_POST['new_passwd1'] !=$_POST['new_passwd2'] )
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_new_passwd_not_same', 'y');
-		}
-		else if(decrypt_passwd($_SESSION['cpasswd']) != $_POST['old_passwd'])
-		{
-			$smarty->assign('error_msg','y');
-			$smarty->assign('if_error_password_old_wrong','y');
-		}
-		else
-		{
-			if ($config['cleartext_passwd']==1) {
-				$cleartext=$_POST['new_passwd1'];
-			}
-			else
-			{
-				$cleartext="";
-			}
-			$sql=sprintf("UPDATE users SET passwd='%s',cpasswd='%s' WHERE id='%d'",
-				$db->escapeSimple($cleartext),
-				$db->escapeSimple(crypt($_POST['new_passwd1'])),
-				$db->escapeSimple($_SESSION['uid']));
-			$res=&$db->query($sql);
-			
-			$smarty->assign('passwd_changed', 'y');
-			$smarty->assign('success_msg','y');
-			$smarty->assign('if_password_changed', 'y');
-			$_SESSION['cpasswd']=encrypt_passwd($_POST['new_passwd1']);
-		}
-	}
 }
 $smarty->assign('table_data', $table_data);
 ?>
