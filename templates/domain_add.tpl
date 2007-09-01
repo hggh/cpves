@@ -32,7 +32,7 @@
 	<br />
 	<br />
 	{/if} {if $points eq 'n' } 
-	<div style="color:red;">{t}no MX entry points to our server.<br>You will not receive mail for this domain!{/t}
+	<div style="color:red;">{t escape='off'}no MX entry points to our server.<br>You will not receive mail for this domain!{/t}
 	</div>
 	<br />
 	<br />

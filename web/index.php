@@ -18,6 +18,9 @@
 ******************************************************************************/
 session_start();
 require_once("../root.php");
+if (!is_file(ROOT . "/includes/config.inc.php")) {
+	die("<h3>missing ". ROOT . "/includes/config.inc.php!</h3>");
+}
 require_once( ROOT . "/includes/config.inc.php");
 if (!isset($_POST['login']) && $_GET['module'] != "login"  ) {
 	include(ROOT . "/includes/check_access.php");

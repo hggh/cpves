@@ -1,3 +1,6 @@
+CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: autoresponder.pl: special X-Header vacation disable
+	o Added: special X-Header vacation to email user/admin frontend
 CpVES 0.05 2007-08-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: repaired listmailer.pl for access tinyint(1) column (T. Genannt)
 	o Fixed: domain_add: default postmaster forwarding (#26)

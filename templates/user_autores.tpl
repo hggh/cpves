@@ -15,7 +15,7 @@
 	<tr>
 		<td>{t}send vacation back to sender:{/t}</td>
 		<td>
-			{html_options name="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
+			{html_options name="autores_sendback_times" id="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
 		</td>
 	</tr>
 	<tr>
@@ -97,6 +97,57 @@
 		<td>{t}add new address:{/t}</td>
 		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{t}add{/t}" /></td>
 	</tr></form>
+{if $p_autores_xheader == 1}
+	<tr style="height:25px;">
+		<td></td>
+	</tr>
+	<tr>
+		<td valign="top">{t}vacation X-Header disable feature:{/t}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<table border="0">
+			<tr>
+				<td style="font-weight:bold;padding-right:30px;">{t}X-Header{/t}</td>
+				<td style="font-weight:bold;padding-right:20px;">{t}Value{/t}</td>
+				<td></td>
+			</tr>
+			{foreach item=row from=$table_xheader}
+				<td>{$row.xheader}</td>
+				<td>{$row.value}</td>
+				<td><a href="?module=user_autores&#038;xheader={$row.id}&#038;do=del"><img src="img/icons/delete.png" style="border:0px;"/></a></td>
+			{/foreach}
+			</table>
+		</td>
+
+	</tr>
+	<tr style="height:25px;">
+		<td></td>
+	</tr>
+	<tr>
+		<td valign="top">{t}add new X-Header:{/t}</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<form action="?module=user_autores" method="post">
+			<table border="0">
+			<tr>
+				<td style="padding-right:10px;">{t}X-Header:{/t}</td>
+				<td><input type="text" name="xheader_name" /></td>
+			</tr>
+			<tr>
+				<td style="padding-right:10px;">{t}Value:{/t}</td>
+				<td><input type="text" name="xheader_value" /></td>
+			</tr>
+			</table>
+			<input name="xheader_submit" type="submit" value="{t}save{/t}"/>
+			</form>
+		</td>
+	</tr>
+{/if}
 </table>
 {if $autores_active eq 'n' }
 	<script type="text/javascript">cpves_autores_field('true');

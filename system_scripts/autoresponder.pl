@@ -99,6 +99,27 @@ if (scalar(@formated_email) le 0 ) {
 
 #Now check if autoresponder is enabled
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
+
+sub check_du_feature($$) {
+	my $uid = $_[0];
+	my $type = $_[1];
+	my $sql = sprintf("SELECT 1 FROM users AS a LEFT JOIN domains AS b ON b.id=a.domainid WHERE a.id=%s AND a.%s=1 AND a.%s=1",
+		$dbh->quote($uid),
+		$type,
+		$type);
+	my $access = $dbh->prepare($sql);
+	undef $sql;
+	$access->execute();
+	if ($access->rows == 1) {
+		$access->finish;
+		return 1;
+	}
+	$access->finish;
+	undef $access;
+	return 0;
+
+}
+
 my $sql=sprintf("SELECT email,times FROM autoresponder WHERE email=%s AND active='y'",
 	$dbh->quote($ARGV[0]));
 my $sth = $dbh->prepare($sql);
@@ -115,6 +136,22 @@ my $row_autores = $sth->fetchrow_hashref;
 my $autores_times = $row_autores->{'times'};
 $sth->finish();
 
+#xheader check:
+if (check_du_feature($ARGV[0], 'p_autores_xheader')== 1) {
+$sth = $dbh->prepare("SELECT id,xheader,value FROM autoresponder_xheader WHERE email=?");
+$sth->execute($ARGV[0]);
+my $xheader_row;
+while ($xheader_row=$sth->fetchrow_hashref) {
+	if ( $mail->header($xheader_row->{'xheader'}) eq  $xheader_row->{'value'}) {
+		#exits because of user defined xheader
+		$sth->finish();
+		$dbh->disconnect();
+		exit(0);
+	}
+}
+$sth->finish();
+}
+
 #Now check if allready send an autoresponder to the email address:
 $sql=sprintf("SELECT id FROM autoresponder_send WHERE email=%s AND efromto=%s",
 	$dbh->quote($ARGV[0]),
@@ -122,7 +159,7 @@ $sql=sprintf("SELECT id FROM autoresponder_send WHERE email=%s AND efromto=%s",
 $sth = $dbh->prepare($sql);
 undef($sql);
 $sth->execute;
-print "->> $autores_times  - ROws: ",$sth->rows, "\n";
+#print "->> $autores_times  - ROws: ",$sth->rows, "\n";
 if ($sth->rows < $autores_times || $autores_times eq "n")
 {
 	#Now collect data for autpresponder:

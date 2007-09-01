@@ -179,6 +179,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'fetchmail':
 			$do="p_fetchmail";
 			break;
+		case 'autores_xheader':
+			$do="p_autores_xheader";
+			break;
 		default:
 			return false;
 	}

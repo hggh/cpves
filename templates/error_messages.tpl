@@ -82,4 +82,6 @@
 {elseif $fm_missing_error == 'y'}
 {t}Please check all input fields!{/t}
 Bitte alle Felder ausf&uuml;llen!
+{elseif $if_xheader_empty == 'y' }
+{t}Both X-Header fields are required!{/t}
 {/if}

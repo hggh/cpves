@@ -45,6 +45,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_sa_learn', $data['p_sa_learn']);
 	$smarty->assign('if_fetchmail', $data['p_fetchmail']);
 	$smarty->assign('if_webinterface', $data['p_webinterface']);
+	$smarty->assign('if_autores_xheader', $data['p_autores_xheader']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -133,7 +134,28 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	}
 	/* save spamassassin end */
-	
+
+	//xheader disable feature
+	if (isset($_GET['xheader']) && is_numeric($_GET['xheader']) && isset($_GET['do']) && $_GET['do']=='del') {
+		$sql=sprintf("DELETE FROM autoresponder_xheader WHERE email='%d' AND id='%d'",
+			$db->escapeSimple($_GET['id']),
+			$db->escapeSimple($_GET['xheader']));
+		$db->query($sql);
+	}
+	if (isset($_POST['xheader_submit'])) {
+		if (!empty($_POST['xheader_name']) && !empty($_POST['xheader_value'])) {
+			$sql=sprintf("INSERT INTO autoresponder_xheader SET email='%d',xheader='%s',value='%s'",
+				$db->escapeSimple($_GET['id']),
+				$db->escapeSimple($_POST['xheader_name']),
+				$db->escapeSimple($_POST['xheader_value']));
+			$db->query($sql);
+		}
+		else {
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_xheader_empty', 'y');
+		}
+	}
+
 	/* Save autoresponder begin */
 	if (isset($_POST['autores_submit'])) {
 		$error=false;
@@ -462,6 +484,12 @@ if (isset($_SESSION['superadmin']) &&
 			else {
 				$webinterface=0;
 			}
+			if (isset($_POST['autores_xheader']) && $_POST['autores_xheader'] == "enable" && check_domain_feature($_GET['did'], 'p_autores_xheader')) {
+				$autores_xheader=1;
+			}
+			else {
+				$autores_xheader=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -499,7 +527,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d',p_autores_xheader='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -514,6 +542,7 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($sa_learn),
 					$db->escapeSimple($fetchmail),
 					$db->escapeSimple($webinterface),
+					$db->escapeSimple($autores_xheader),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -542,6 +571,7 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_spam_del_value', $edata['p_spam_del']);
 	$smarty->assign('if_sa_learn_value', $edata['p_sa_learn']);
 	$smarty->assign('if_fetchmail_value',$edata['p_fetchmail']);
+	$smarty->assign('if_autores_xheader_value',$edata['p_autores_xheader']);
 	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
 		$smarty->assign('sa_move_spam',$edata['move_spam'] );
 	}
@@ -588,6 +618,20 @@ if (isset($_SESSION['superadmin']) &&
 	$sa_threshold = get_spamassassin_value($full_email, "required_score", "5.0");
 	$smarty->assign('threshold', $sa_threshold);
 	
+	//output xheader feature
+	if ($edata['p_autores_xheader'] == 1) {
+	$sql=sprintf("SELECT * FROM autoresponder_xheader WHERE email='%d' ORDER BY xheader",
+		$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	$table_xheader=array();
+	while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		array_push($table_xheader,array(
+			'id' => $data['id'],
+			'xheader' => $data['xheader'],
+			'value' => $data['value']));
+	}
+	$smarty->assign('table_xheader',$table_xheader);
+	}
 
 
 } // ENDE ACCESS OK

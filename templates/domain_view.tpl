@@ -179,6 +179,18 @@
  {/if}</td>
 </tr>
 <tr>
+ <td>{t}vacation X-Header disable feature:{/t}</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_autores_xheader == 0  }
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=autores_xheader">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate vacation X-Header feature.{/t}" /></a>
+ {else}
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=autores_xheader">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate vacation X-Header feature.{/t}" /></a>
+ {/if}</td>
+</tr>
+<tr>
  <td>{t}fetchmail:{/t}</td>
  <td></td>
  <td style="text-align:right;">

@@ -69,7 +69,7 @@
 			{/if}
 		{/foreach}</select>
 		
-		{else}<p>{t}no IMAP folder exists.<br/>please create an folder first, to use this option.{/t}</p>
+		{else}<p>{t escape='off'}no IMAP folder exists.<br/>please create an folder first, to use this option.{/t}</p>
 		{/if}
 		</td>
 	<tr>

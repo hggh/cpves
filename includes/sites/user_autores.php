@@ -73,6 +73,29 @@ if(isset($_POST['val_tos_add'])) {
 	}
 }
 
+//xheader disable feature
+if ($_SESSION['p_autores_xheader'] == 1) {
+	if (isset($_GET['xheader']) && is_numeric($_GET['xheader']) && isset($_GET['do']) && $_GET['do']=='del') {
+		$sql=sprintf("DELETE FROM autoresponder_xheader WHERE email='%d' AND id='%d'",
+			$db->escapeSimple($_SESSION['uid']),
+			$db->escapeSimple($_GET['xheader']));
+		$db->query($sql);
+	}
+	if (isset($_POST['xheader_submit'])) {
+		if (!empty($_POST['xheader_name']) && !empty($_POST['xheader_value'])) {
+			$sql=sprintf("INSERT INTO autoresponder_xheader SET email='%d',xheader='%s',value='%s'",
+				$db->escapeSimple($_SESSION['uid']),
+				$db->escapeSimple($_POST['xheader_name']),
+				$db->escapeSimple($_POST['xheader_value']));
+			$db->query($sql);
+		}
+		else {
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_xheader_empty', 'y');
+		}
+	}
+}
+
 //save automatic autoresponder disable feaure
 if (isset($_POST['autores_datedisable_submit'])) {
 	if ($_POST['autores_datedisable_active'] == 0) {
@@ -155,6 +178,22 @@ $smarty->assign('val_tos_active', $val_tos_active);
 
 //output autoresponder disabled feature
 $autores_disable=get_autores_disable($_SESSION['uid']);
+
+//output xheader feature
+if ($_SESSION['p_autores_xheader'] == 1) {
+	$sql=sprintf("SELECT * FROM autoresponder_xheader WHERE email='%d' ORDER BY xheader",
+		$db->escapeSimple($_SESSION['uid']));
+	$result=&$db->query($sql);
+	$table_xheader=array();
+	while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		array_push($table_xheader,array(
+			'id' => $data['id'],
+			'xheader' => $data['xheader'],
+			'value' => $data['value']));
+	}
+	$smarty->assign('table_xheader',$table_xheader);
+}
+
 
 $smarty->assign('autores_disable', $autores_disable);
 $smarty->assign('table_val_tos', $table_val_tos);

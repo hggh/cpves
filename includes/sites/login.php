@@ -29,6 +29,7 @@ $_SESSION['p_mailfilter']='0';
 $_SESSION['p_spam_del']='0';
 $_SESSION['p_sa_learn']='0';
 $_SESSION['p_fetchmail']='0';
+$_SESSION['p_autores_xheader']='0';
 
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login']) )
 {
@@ -76,6 +77,7 @@ if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 			$_SESSION['p_spam_del']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_spam_del');
 			$_SESSION['p_sa_learn']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_sa_learn');
 			$_SESSION['p_fetchmail']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_fetchmail');
+			$_SESSION['p_autores_xheader']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_autores_xheader');
 			$_SESSION['forwarding']=$daten['p_forwarding'];
 			$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
 			
