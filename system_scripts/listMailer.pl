@@ -116,24 +116,24 @@ sub getAllAddresses {
  my $sql = sprintf("SELECT recp FROM list_recp WHERE id = %d", $id);
  my $sth = $dbh->prepare($sql);
  $sth->execute;
- my @row;
+ my $row;
  my @result;
- while( @row = $sth->fetchrow_array) {
-  push(@result, $row[0]);
+ while( $row = $sth->fetchrow_hashref) {
+  push(@result, $row->{recp});
  }
  $sth->finish;
- undef(@row);
+ undef($row);
  undef($id);
  undef($sql);
  undef($sth);
  return @result;
 }
 
-my @row = $sth->fetchrow_array;
-$mail->header_set("Reply-To", "$list");
+my $row = $sth->fetchrow_hashref;
+#$mail->header_set("Reply-To", "$list");
 $sth->finish();
-if( $row[3] eq 'n' ) {
- if( 0 == isSenderAllowed($row[0], $sender) ) {
+if( $row->{public} eq 'n' ) {
+ if( 0 == isSenderAllowed($row->{id}, $sender) ) {
   # Not subscribed to list, so he can't post
   my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
@@ -149,11 +149,11 @@ if( $row[3] eq 'n' ) {
   $e_send_to->stringify;
  } else {
   # Send Mail to all subscribed
-  @addresses = getAllAddresses($row[0]);
+  @addresses = getAllAddresses($row->{id});
   sendto($mail->as_string , $sender);
  }
 } else {
  # Send Mail to all subscribed
- @addresses = getAllAddresses($row[0]);
+ @addresses = getAllAddresses($row->{id});
  sendto($mail->as_string , $sender);
 }
