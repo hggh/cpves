@@ -99,6 +99,7 @@ if (scalar(@formated_email) le 0 ) {
 
 #Now check if autoresponder is enabled
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
+$dbh->do("SET NAMES utf8");
 
 sub check_du_feature($$) {
 	my $uid = $_[0];
@@ -212,14 +213,6 @@ if ($sth->rows < $autores_times || $autores_times eq "n")
 		exit(0);
 	}
 	
-	##UTF-8 fix:
-	if (! utf8::is_utf8($mail_text)) {
-		utf8::decode($mail_text);
-	}
-	if (! utf8::is_utf8($subject)) {
-		utf8::decode($subject);
-	}
-
 	my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
 		Charset => "UTF-8",
