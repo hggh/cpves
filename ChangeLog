@@ -1,6 +1,12 @@
 CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: autoresponder.pl: special X-Header vacation disable
 	o Added: special X-Header vacation to email user/admin frontend
+	o Added: pidfile for create_mailboxes.pl
+	o Added: pidfile for create_mailfilters.pl
+	o Added: script for calculate the mailbox size
+	o Added: new config value for "display mailbox size"
+	o Added: domain_view.tpl mailbox size
+	o Improved: removed reload to domain show on save emailaddress
 	o Fixed: autoresponder.pl. UTF-8 problems in body
 CpVES 0.05 2007-08-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: repaired listmailer.pl for access tinyint(1) column (T. Genannt)

@@ -16,3 +16,7 @@
 {else}
 <br/><br/>
 {/if}
+{if  $display_mb_size == 1}
+{t 1=$mb_size}Your current mailbox size is %1 M.{/t}
+{/if}
+

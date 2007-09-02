@@ -19,6 +19,7 @@
 use DBI;
 use Fcntl;
 use Config::General;
+use Proc::PID::File;
 
 my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
@@ -34,6 +35,7 @@ $config{'spamassassin'} = "/usr/bin/spamc" unless defined $config{'spamassassin'
 $config{'bogofilter'} = "/usr/bin/bogofilter" unless defined $config{'bogofilter'};
 $config{'sa_wb_listing'} = "/etc/mail-admin/sa_wb_listing.pl" unless defined $config{'sa_wb_listing'};
 $config{'reformail'} = "/usr/bin/reformail" unless defined $config{'reformail'};
+$config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
 
 my $sa_wblist = sprintf("exception {\nif ( /^From:\\s*(.*)/ )\n{\nADDR=getaddr(\$MATCH1)\nWHITELIST=`%s DID EMAILID \$ADDR`\nif (\$WHITELIST eq 0)\n{\nxfilter \"%s -A'X-CpVES: Whitelist'\"\n}\n}\n}\n", $config{'sa_wb_listing'}, $config{'reformail'} );
 
@@ -42,7 +44,9 @@ if (! -d $config{'vmail_home'})
 	print "Error: ".$config{'vmail_home'}. " does not exists!\n";
 	exit(1);
 }
-
+chomp (my $user = `id -un`);
+die "Already running!" if Proc::PID::File->running('dir' => '/tmp/' );
+die ("Error: Please run $0 as mailbox owner!") unless ($user eq $config{'vmail_user'});
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});

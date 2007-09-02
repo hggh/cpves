@@ -19,6 +19,7 @@
 use strict;
 use DBI;
 use Config::General;
+use Proc::PID::File;
 
 my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
@@ -30,13 +31,16 @@ $config{'db_password'} = "" unless defined $config{'db_password'};
 $config{'db_name'} = "mail_system" unless defined $config{'db_name'};
 $config{'vmail_home'} = "/home/vmail" unless defined $config{'vmail_home'};
 $config{'vmail_safe'} = "/home/vmail_backup" unless defined $config{'vmail_safe'};
+$config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
 
 if (! -d $config{'vmail_home'})
 {
 	print "Error: ".$config{'vmail_home'}. " does not exists!\n";
 	exit(1);
 }
-
+chomp (my $user = `id -un`);
+die "Already running!" if Proc::PID::File->running('dir' => '/tmp/' );
+die ("Error: Please run $0 as mailbox owner!") unless ($user eq $config{'vmail_user'});
 
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=". $config{'db_host'};
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});

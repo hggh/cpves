@@ -24,7 +24,13 @@
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" title="{t}vacation active!{/t}" />{/if}
  <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></td>
+
+{if $display_mb_size == 1}
+<td style="width:250px;"> </td>
+<td style="text-align:left;width:50px;">{$row.mb_size} M</td>
+{else}
  <td style="width:300px;"> </td>
+{/if}
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1' }
  <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate emailaddress{/t}"/></a>

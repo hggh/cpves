@@ -44,6 +44,9 @@ $config['cleartext_passwd']="0";
 //set max password lenth:
 $config['max_passwd_len']=15;
 
+//display the size of the mailboxes
+$config['display_mb_size']=1;
+
 //IMAP Server:
 $config['imap_server'] = "swetlana.brachium-system.net";
 

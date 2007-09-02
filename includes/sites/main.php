@@ -113,6 +113,15 @@ if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user']
 	$smarty->assign('if_user_index','y');
 	$smarty->assign('full_name', $_SESSION['full_name']);
 	$smarty->assign('email', $_SESSION['email']);
+	
+	if ($config['display_mb_size'] == 1) {
+	$sql=sprintf("SELECT mb_size FROM users WHERE id='%d'",
+		$db->escapeSimple($_SESSION['uid']));
+	$result=& $db->query($sql);
+	$row = $result->fetchrow(DB_FETCHMODE_ASSOC);
+	$smarty->assign('mb_size', $row['mb_size']);
+	}
+	
 }
 $smarty->assign('table_data', $table_data);
 ?>

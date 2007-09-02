@@ -134,4 +134,4 @@ CREATE TABLE `autoresponder_xheader` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ALTER TABLE `domains` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
 ALTER TABLE `users` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
-
+ALTER TABLE `users` ADD `mb_size` INT NOT NULL DEFAULT '0';

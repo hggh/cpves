@@ -217,7 +217,7 @@ $smarty->assign('forwardings', get_forem_domain($_GET['did'],'forwardings', $db)
 
 
 //FIXME: deleted email addresses!!!
-$sql=sprintf("SELECT email,id,access FROM users WHERE domainid='%s' AND enew!='0' ORDER BY email",
+$sql=sprintf("SELECT email,id,access,mb_size FROM users WHERE domainid='%s' AND enew!='0' ORDER BY email",
 	$db->escapeSimple($_GET['did']));
 $result=&$db->query($sql);
 $table_email = array();
@@ -236,6 +236,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	'did' => $_GET['did'],
 	'email' =>$data['email'],
 	'access' =>$data['access'],
+	'mb_size' =>$data['mb_size'],
 	'autoresponder' => $autoresponder) );
 } //ENDE WHILE eMails
 

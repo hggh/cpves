@@ -14,7 +14,6 @@
 {t}password changed.{/t}
 {elseif $if_email_data_saved == 'y'}
 {t}saved emailaddress.{/t}
-<meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {elseif $if_list_created == 'y'}
 Mailingliste wurde erfolgreich angelegt.
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
