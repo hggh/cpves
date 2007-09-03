@@ -216,6 +216,9 @@ function check_du_fetaure($uid,$did,$typ) {
 }
 
 function list_imap_folders($imap_server, $email,$password, $stati) {
+	if (!function_exists('imap_open')) {
+		die("CpVES needs PHP IMAP Support. Please install php-imap!");
+	}
 	$mbox=@imap_open("{".$imap_server.":143/imap/notls}",$email,$password);
 	if (! $mbox) {
 		return false;

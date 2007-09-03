@@ -37,6 +37,13 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$smarty->assign('if_ad_user','n');
 	$_SESSION['ad_user']='n';
 }
+$_SESSION['lang']="de_DE";
+if (is_file(ROOT ."/includes/localization/". $_SESSION['lang'] . "/LC_MESSAGES/cpves.mo" )) {
+	setlocale(LC_MESSAGES, $_SESSION['lang']);
+}
+$lc_path= ROOT ."/includes/localization/";
+bindtextdomain("cpves", $lc_path);
+textdomain("cpves");
 
 $site="";
 switch($_GET['module']) {

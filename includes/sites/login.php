@@ -80,6 +80,7 @@ if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 			$_SESSION['p_autores_xheader']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_autores_xheader');
 			$_SESSION['forwarding']=$daten['p_forwarding'];
 			$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
+			$_SESSION['lang']=get_email_options($_SESSION['uid'],'lang', 'en_US');
 			
 				
 		
