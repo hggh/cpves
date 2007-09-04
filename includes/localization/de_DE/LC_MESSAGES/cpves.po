@@ -1,749 +1,758 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# German translations for PACKAGE package
+# German messages for PACKAGE.
+# Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Jonas Genannt <jonas@valentina.brachium-system.net>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-03 22:15+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2007-09-04 21:21+0200\n"
+"Last-Translator: Jonas Genannt <jonas@valentina.brachium-system.net>\n"
+"Language-Team: German\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "spamfilter active:"
-msgstr ""
+msgstr "Spamfilter aktiv:"
 
 msgid "yes"
-msgstr ""
+msgstr "Ja"
 
 msgid "no"
-msgstr ""
+msgstr "Nein"
 
 msgid "bogofilter active:"
-msgstr ""
+msgstr "Bogofilter aktiv:"
 
 msgid "change subject:"
-msgstr ""
+msgstr "Ändere das Subject:"
 
 msgid "mark message as spam:"
-msgstr ""
+msgstr "Markiere Nachricht als Spam:"
 
 msgid "move known spam:"
-msgstr ""
+msgstr "Verschiebe erkannten Spam:"
 
 msgid ""
 "no IMAP folder exists.<br/>please create an folder first, to use this option."
 msgstr ""
+"Es ist kein IMAP Ordner vorhanden<br>Sie müssen zuerst einen Ordner anlegen."
 
 msgid "delete known spam:"
-msgstr ""
+msgstr "Lösche erkannten Spam:"
 
 msgid "delete known spam?"
-msgstr ""
+msgstr "Erkannten Spam l&oumlschen?"
 
 msgid "save"
-msgstr ""
+msgstr "Speichern"
 
 msgid "- Warning -"
-msgstr ""
+msgstr "- Achtung -"
 
 msgid "This option is dangerous, an wrong value will delete spam and Ham!"
-msgstr ""
+msgstr "Diese Einstallung ist gefährlich. Ein falscher Wert löscht nicht nur Spam sondern auch Ham!"
 
 msgid ""
 "The threshold value for the delete spam option should be twice as high as "
 "the threshold for mark spam only!"
 msgstr ""
+"Der Schwellwert für das Löschen von Spam sollte doppelt so hoch sein "
+"wie der Schwellwert fü das makieren von Spam!"
 
 msgid "spam mark threshold:"
-msgstr ""
+msgstr "Markiere Spam ab:"
 
 msgid "spam delete threshold:"
-msgstr ""
+msgstr "Lösche Spam ab:"
 
 msgid "abort"
-msgstr ""
+msgstr "Abbrechen"
 
 msgid "Yes, I will delete spam"
-msgstr ""
+msgstr "Ja, ich will den Spam löschen"
 
 msgid "forward:"
-msgstr ""
+msgstr "Weiterleiten:"
 
 msgid "to:"
-msgstr ""
+msgstr "An:"
 
 msgid "delete selected addresses:"
-msgstr ""
+msgstr "Markierte Adressen l&oeschen:"
 
 msgid "delete"
-msgstr ""
+msgstr "löschen"
 
 msgid "add new address:"
-msgstr ""
+msgstr "Neue Adresse hinzufügen:"
 
 msgid "emailaddress:"
-msgstr ""
+msgstr "E-Mailadresse:"
 
 msgid "add"
-msgstr ""
+msgstr "Hinzufügen:"
 
 msgid "server"
-msgstr ""
+msgstr "Server"
 
 msgid "protocol"
-msgstr ""
+msgstr "Protokoll"
 
 msgid "username"
-msgstr ""
+msgstr "Benutzername"
 
 msgid "active"
-msgstr ""
+msgstr "Aktiv"
 
 msgid "no fetchmail exists."
-msgstr ""
+msgstr "Kein Fetchmail angelegt."
 
 msgid "add new server:"
-msgstr ""
+msgstr "Server hinzufügen:"
 
 msgid "server:"
-msgstr ""
+msgstr "Server:"
 
 msgid "protocol:"
-msgstr ""
+msgstr "Protokoll:"
 
 msgid "connection type:"
-msgstr ""
+msgstr "Verbindungstyp:"
 
 msgid "no SSL"
-msgstr ""
+msgstr "kein SSL"
 
 msgid "with SSL"
-msgstr ""
+msgstr "mit SSL"
 
 msgid "username:"
-msgstr ""
+msgstr "Benutzername:"
 
 msgid "password:"
-msgstr ""
+msgstr "Passwort:"
 
 msgid "keep mails on the server:"
-msgstr ""
+msgstr "Behalte Nachrichten auf dem Server:"
 
 msgid "full name:"
-msgstr ""
+msgstr "Vollerständiger Name"
 
 msgid "access:"
-msgstr ""
+msgstr "Zugriff:"
 
 msgid "superadmin manager:"
-msgstr ""
+msgstr "Superadmin Manager:"
 
 msgid "create"
-msgstr ""
+msgstr "Anlegen"
 
 msgid "mailfilter:"
-msgstr ""
+msgstr "Mailfilter:"
 
 msgid "rebuild all mailfilters"
-msgstr ""
+msgstr "Baue alle Mailfilter neu"
 
 msgid ""
 "This function rebuilds all mailfilters!<br>If you changed some filters by "
 "hand, it will be deleted!"
 msgstr ""
+"Diese Option wird alle Mailfilter im System neubauen!<br>Falls Filter per Hand editiert wurden, werden diese Änderungen nun gel&oumlscht!"
 
 msgid "Yes, rebuild all filters"
-msgstr ""
+msgstr "Ja, baue die Mailfilter neu"
 
 msgid "IMAP folder:"
-msgstr ""
+msgstr "IMAP-Ordner:"
 
 msgid "learn folder:"
-msgstr ""
+msgstr "Ordner lernen:"
 
 msgid "not learning"
-msgstr ""
+msgstr "nicht lernen"
 
 msgid "ham"
-msgstr ""
+msgstr "Ham"
 
 msgid "spam"
-msgstr ""
+msgstr "Spam"
 
 msgid "no IMAP folder was found. You can't learn messages as ham/spam!"
-msgstr ""
+msgstr "keine IMAP-Ordner gefunden. Sie können keine Nachrichten als Spam oder Ham lernen lassen!"
 
 msgid "emailaddress created."
-msgstr ""
+msgstr "E-Mailadresse angelegt."
 
 msgid "Catchall entry saved."
-msgstr ""
+msgstr "Catchalleintrag gespeichert."
 
 msgid "forwarding created."
-msgstr ""
+msgstr "Weiterleitung angelegt."
 
 msgid "superadmin created."
-msgstr ""
+msgstr "Supderadmin angelegt."
 
 msgid "password changed."
-msgstr ""
+msgstr "Passwort wurde geändert."
 
 msgid "saved emailaddress."
-msgstr ""
+msgstr "E-Mailadresse gespeichert."
 
 msgid "superadmin changed."
-msgstr ""
+msgstr "Superadmin erfolgreich geändert."
 
 msgid "rebuild all mailfilters."
-msgstr ""
+msgstr "Alle Mailfilter neu gebaut."
 
 msgid "changes are saved."
-msgstr ""
+msgstr "Änderungen gespeichert."
 
 msgid "Superadmin: user summary"
-msgstr ""
+msgstr "Supadmin: Benutzer&uml;berisucht"
 
 msgid "Superadmin: add user"
-msgstr ""
+msgstr "Supadmin: Neuen Benutzer anlegen"
 
 msgid "Superadmin: stettings"
-msgstr ""
+msgstr "Supadmin: Optionen"
 
 msgid "Superadmin: summary"
-msgstr ""
+msgstr "Supadmin: Übersicht"
 
 msgid "Superadmin: add new domain"
-msgstr ""
+msgstr "Superadmin: Neue Domain anlegen"
 
 msgid "summary"
-msgstr ""
+msgstr "Übersicht"
 
 msgid "create new emailaddress"
-msgstr ""
+msgstr "Neue Adresse anlegen"
 
 msgid "edit"
-msgstr ""
+msgstr "editieren"
 
 msgid "create new forwarding"
-msgstr ""
+msgstr "Neue Weiterleitung anlegen"
 
 msgid "catchall address"
-msgstr ""
+msgstr "Catchalleintrag"
 
 msgid "change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 msgid "spamfilter"
-msgstr ""
+msgstr "Spamfilter"
 
 msgid "password"
-msgstr ""
+msgstr "Passwort"
 
 msgid "fetchmail"
-msgstr ""
+msgstr "Fetchmail"
 
 msgid "learn spam/ham"
-msgstr ""
+msgstr "Spam/Ham lernen"
 
 msgid "forwarding"
-msgstr ""
+msgstr "Weiterleitung"
 
 msgid "vacation"
-msgstr ""
+msgstr "Autoresponder"
 
 msgid "Superadmin: domain summary"
-msgstr ""
+msgstr "Supadmin: Domainübersicht"
 
 msgid "domain summary"
-msgstr ""
+msgstr "Domainübersicht"
 
 msgid "personal settings"
-msgstr ""
+msgstr "Persönliche Einstellungen"
 
 msgid "delete emailaddress"
-msgstr ""
+msgstr "E-Mailadresse löschen"
 
 msgid "delete forwarding"
-msgstr ""
+msgstr "Weiterleitung löschen"
 
 msgid "delete domain"
-msgstr ""
+msgstr "Domain löschen"
 
 msgid "settings"
-msgstr ""
+msgstr "Optionen"
 
 msgid "archive mails"
-msgstr ""
+msgstr "Mailarchiv"
 
 msgid "mailfilters"
-msgstr ""
+msgstr "Mailfiters"
 
 msgid "login"
-msgstr ""
+msgstr "Login"
 
 msgid "create new mailinglist"
-msgstr ""
+msgstr "Neue Mailingliste anlegen"
 
 msgid "delete mailinglist"
-msgstr ""
+msgstr "Mailingliste löschen"
 
 msgid "edit mailinglist"
-msgstr ""
+msgstr "Mailingliste bearbeiten"
 
 msgid "you can not delete or deactivate the postmaster forward!"
-msgstr ""
+msgstr "Die Postmaster-Weiterleitung kann nicht gelöscht oder deaktiviert werden!"
 
 msgid "domain already exists!"
-msgstr ""
+msgstr "Domain schon vorhanden!"
 
 msgid "emailaddress already exists!"
-msgstr ""
+msgstr "E-Mailadresse schon vorhanden!"
 
 msgid "You have reached the max emailaddresses."
-msgstr ""
+msgstr "Maximale Anzahl an E-Mailadressen erreicht."
 
 msgid "Please contact your admin!"
-msgstr ""
+msgstr "Bitte wenden Sie sich an Ihrem Administrator!"
 
 msgid "missing input"
-msgstr ""
+msgstr "Fehlerhafte Eingabe"
 
 msgid "password to short."
-msgstr ""
+msgstr "Passwort zu kurz."
 
 msgid "password should contain three between %1 characters"
-msgstr ""
+msgstr "Das Passwort sollte zwischen drei und %1 Zeichen lang sein"
 
 msgid "password is empty!"
-msgstr ""
+msgstr "Passwortfeld ist leer!"
 
 msgid "old password is wrong!"
-msgstr ""
+msgstr "Ihr altes Passwort ist falsch"
 
 msgid "superadmin already exists!"
-msgstr ""
+msgstr "Supadmin schon vorhanden!"
 
 msgid "vacation subject ist empty!"
-msgstr ""
+msgstr "Autoresponderbetreff ist leer!"
 
 msgid "vacation message is empty!"
-msgstr ""
+msgstr "Autorespondernachricht ist leer!"
 
 msgid "vacaction subject is to long!"
-msgstr ""
+msgstr "Autoresponderbetreff ist zu lang!"
 
 msgid "Internal vacaction ERROR!"
 msgstr ""
 
 msgid "emailaddress is not valid!"
-msgstr ""
+msgstr "E-Mailadresse ist nicht konform!"
 
 msgid "You have reached the max forwardings."
-msgstr ""
+msgstr "Maximale Anzahl an Weiterleitungen erreicht."
 
 msgid "username or password wrong!"
-msgstr ""
+msgstr "Benutzer oder Passwort falsch!"
 
 msgid "username not valid."
-msgstr ""
+msgstr "Benutzername nicht gültig."
 
 msgid "username should contain only chars and numbers."
-msgstr ""
+msgstr "Benutzername sollte nur Buchstaben und Zahlen enthalten."
 
 msgid "username should only contain 8 chars!"
-msgstr ""
+msgstr "benutzername darf nicht länger als 8 Zeichen sein!"
 
 msgid "new passwords does not match!"
-msgstr ""
+msgstr "Die neuen Passwöter stimmen nicht überein!"
 
 msgid "all addresses of this forwarding</br>selected to delete.<br/>"
-msgstr ""
+msgstr "Alle Adressen zum Löschen markiert."
 
 msgid ""
 "Please <a href=\"?module=forward_del&#038;did=%2&#038;id=%1\">click here</a> "
 "to delete the forwarding!"
 msgstr ""
+"Bitter klicken Sie  <a href=\"?module=forward_del&#038;did=%2&#038;id=%1\">hier</a> "
+"um die Weiterleitung zu löschen"
 
 msgid "wrong input value for spamassassin threshold!"
-msgstr ""
+msgstr "Falscher Wert für den Spamassassin threshold!"
 
 msgid "subject should only be 15 chars long!"
-msgstr ""
+msgstr "Betreff sollte nicht länger als 15 zeichen sein!"
 
 msgid "wrong date format! (DD.MM.JJJJ)"
-msgstr ""
+msgstr "Falsches Format! (DD.MM.JJJJ)"
 
 msgid "wrong time format! (HH:MM:SS)"
-msgstr ""
+msgstr "Falsches Format! (HH:MM:SS)"
 
 msgid "date and time are in the past!"
-msgstr ""
+msgstr "Datum und Uhrzeit in der Vergangenheit!"
 
 msgid "bogofilter needs spamassassin!"
-msgstr ""
+msgstr "Bogofilter benötigt Spamassassin!"
 
 msgid "Please enable spamassassin first!"
-msgstr ""
+msgstr "Bitte erst Spamassassn aktivieren!"
 
 msgid "ham/spam learning needs spamassassin!"
-msgstr ""
+msgstr "Ham/Spamlernen benötigt Spamassassin!"
 
 msgid "whitelisting needs spamasassin!"
-msgstr ""
+msgstr "Whitelisting benötigt Spamassassin!"
 
 msgid "whitelistfild is empty!"
-msgstr ""
+msgstr "Whitelistingfeld leet!"
 
 msgid "wrong input value for the whitelist!"
-msgstr ""
+msgstr "Falsche Eingabe!"
 
 msgid "wrong format for the delete spam option!"
-msgstr ""
+msgstr "Falsches Format zum löschen von Spam!"
 
 msgid "correct: XX.Y (e.x. 12.3)"
-msgstr ""
+msgstr "Richtig: XX.Y (z.b. 12.3)"
 
 msgid "the value \"delete spam\" is to low!"
-msgstr ""
+msgstr "der Löschwert ist zu gering!"
 
 msgid "forwarding address is not valid!"
-msgstr ""
+msgstr "Adresse ist nicht konform!"
 
 msgid "del know spam needs spamassassin!"
-msgstr ""
+msgstr "Lösche erkannten Spam benötigt Spamassassin!"
 
 msgid "the archive after n days is wrong. Please check!"
-msgstr ""
+msgstr "Tagesangabe vom der Mailarchivierung ist falsch!"
 
 msgid "Please check all input fields!"
-msgstr ""
+msgstr "Bitte alle Felder ausfüllen"
 
 msgid "Both X-Header fields are required!"
-msgstr ""
+msgstr "Beide X-Headerfelder werden benötigt!"
 
 msgid "imap connection:"
-msgstr ""
+msgstr "IMAP Verbindung:"
 
 msgid "pop3 connection:"
-msgstr ""
+msgstr "POP Verbindung:"
 
 msgid "webmail available:"
-msgstr ""
+msgstr "Webmail verfügbar:"
 
 msgid "access to CpVES webinterface:"
-msgstr ""
+msgstr "Zugriff zum CpVES Webinterface:"
 
 msgid "vacation X-Header disable feature:"
-msgstr ""
+msgstr "Autoresponder X-Headerfunktion:"
 
 msgid "fetchmail:"
-msgstr ""
+msgstr "Fetchmail:"
 
 msgid "forwarding available:"
-msgstr ""
+msgstr "Weiterleitung verfögbar:"
 
 msgid "spamassassin:"
-msgstr ""
+msgstr "Spamassassin:"
 
 msgid "ham/spam learning:"
-msgstr ""
+msgstr "Ham/Spamlernbar"
 
 msgid "delete spam:"
-msgstr ""
+msgstr "Lösche Spam:"
 
 msgid "bogofilter:"
-msgstr ""
+msgstr "Bogofilter:"
 
 msgid "archivemail:"
-msgstr ""
+msgstr "Mailarchiv:"
 
 msgid "user is admin for the following domains:"
-msgstr ""
+msgstr "Benutzer ist Administrator folgender Domains:"
 
 msgid "add new admin domain:"
-msgstr ""
+msgstr "Neue Domain zum Verwalten:"
 
 msgid "no more domains exists!"
-msgstr ""
+msgstr "Es gibt keine weiteren Domains!"
 
 msgid "vacation active:"
-msgstr ""
+msgstr "Autoresponder aktiv:"
 
 msgid "send vacation back to sender:"
-msgstr ""
+msgstr "Sende Autoresponder zum Absender:"
 
 msgid "vacation subject:"
-msgstr ""
+msgstr "Autoresponderbetreff:"
 
 msgid "message:"
-msgstr ""
+msgstr "Nachricht:"
 
 msgid "save vacation"
-msgstr ""
+msgstr "Speicher den Autoresponder"
 
 msgid "automatic deactivation:"
-msgstr ""
+msgstr "Autoresponder automatisch deaktivieren:"
 
 msgid "date of deactivation:"
-msgstr ""
+msgstr "Datum:"
 
 msgid "time of deactivation:"
-msgstr ""
+msgstr "Uhrzeit:"
 
 msgid "activate valid recipient lists:"
-msgstr ""
+msgstr "Akitviere geprüfte Empfängerliste:"
 
 msgid "valid recipients:"
-msgstr ""
+msgstr "Geprüfte Empfänger:"
 
 msgid "delete selected"
-msgstr ""
+msgstr "Selktierte löschen"
 
 msgid "X-Header"
-msgstr ""
+msgstr "X-Header"
 
 msgid "Value"
-msgstr ""
+msgstr "Wert"
 
 msgid "add new X-Header:"
-msgstr ""
+msgstr "Neuen X-Header anlegen:"
 
 msgid "X-Header:"
-msgstr ""
+msgstr "X-Header:"
 
 msgid "Value:"
-msgstr ""
+msgstr "Wert:"
 
 msgid "delete virus notifactions:"
-msgstr ""
+msgstr "Lösche Virusbenachrichtigungen:"
 
 msgid "filter doubled mails:"
-msgstr ""
+msgstr "Filtere doppelte Mails:"
 
 msgid "forward all mails to:"
-msgstr ""
+msgstr "Alle Mails Weiterleiten an:"
 
 msgid "save copy:"
-msgstr ""
+msgstr "Speicher Kopie:"
 
 msgid "delete forwarding:"
-msgstr ""
+msgstr "Lösche die Weiterleitung:"
 
 msgid "not active"
-msgstr ""
+msgstr "Nicht aktiv"
 
 msgid "menu"
-msgstr ""
+msgstr "Menü"
 
 msgid "new emailaddress"
-msgstr ""
+msgstr "Neue E-Mailadresse"
 
 msgid "new forward"
-msgstr ""
+msgstr "Neue Weiterleitung"
 
 msgid "new mailinglist"
-msgstr ""
+msgstr "Neue Mailingliste"
 
 msgid "ham/spam learning"
-msgstr ""
+msgstr "Ham/Spamlernen"
 
 msgid "mailfilter"
-msgstr ""
+msgstr "Mailfiter"
 
 msgid "archivemail"
-msgstr ""
+msgstr "Mailarchiv"
 
 msgid "ham/spam learing"
-msgstr ""
+msgstr "Ham/Spamlernen"
 
 msgid "add new domain"
-msgstr ""
+msgstr "Neue Domain anlegen"
 
 msgid "supadmin manager"
-msgstr ""
+msgstr "Superadmin Manager"
 
 msgid "create new superadmin"
-msgstr ""
+msgstr "Neuen Superadmin anlegen"
 
 msgid "webmail"
-msgstr ""
+msgstr "Webmail"
 
 msgid "mailstats"
-msgstr ""
+msgstr "Mailstatistik"
 
 msgid "logout"
-msgstr ""
+msgstr "Ausloggen"
 
 msgid "emailaddress"
-msgstr ""
+msgstr "E-Mailadresse"
 
 msgid "old password:"
-msgstr ""
+msgstr "Altes Passwort:"
 
 msgid "new password:"
-msgstr ""
+msgstr "Neues Passwort:"
 
 msgid "repeat new password:"
-msgstr ""
+msgstr "Wiederholen:"
 
 msgid "webinterface language:"
-msgstr ""
+msgstr "Sprache:"
 
 msgid "the new domainname (%1) was not found in the DNS system!"
-msgstr ""
+msgstr "Die neue Domain (%1) wurde nicht im DNS gefunden!"
 
 msgid "mailtraffic for this domain will not work!"
-msgstr ""
+msgstr "Mailverkehr über diese Domain wird nicht funktionieren!"
 
 msgid "the new domain %1 has got the following MX entries:"
-msgstr ""
+msgstr "Die neue Domain (%1) hat folgende"
 
 msgid "prio"
-msgstr ""
+msgstr "Priorität"
 
 msgid "MX address"
-msgstr ""
+msgstr "MX Adresse"
 
 msgid "ip type"
-msgstr ""
+msgstr "IP"
 
 msgid "MX points to our server"
-msgstr ""
+msgstr "MX-Eintrag zeigt auf unseren Server"
 
 msgid ""
 "no MX entry points to our server.<br>You will not receive mail for this "
 "domain!"
 msgstr ""
+"Kein MX-Eintrag zeigt auf unseren Server<br>Der E-Mailempfang wird für diese"
+"Domain nicht funktionieren!"
 
 msgid "go to domain summary..."
-msgstr ""
+msgstr "Zur Domainansicht..."
 
 msgid "domainname:"
-msgstr ""
+msgstr "Domainname:"
 
 msgid "note"
-msgstr ""
+msgstr "Notiz"
 
 msgid "spamassassin available:"
-msgstr ""
+msgstr "Spamassasin verfügbar:"
 
 msgid "bogofilter available:"
-msgstr ""
+msgstr "Bogofilter verfügbar:"
 
 msgid "mailarchive available:"
-msgstr ""
+msgstr "Mailarchiv verfügbar:"
 
 msgid "spamfilter whitelist available:"
-msgstr ""
+msgstr "Spamfilter Whitelisting verfügbar:"
 
 msgid "max emailaddresses:"
-msgstr ""
+msgstr "Maximale E-Mailadressen:"
 
 msgid "no limit"
-msgstr ""
+msgstr "kein Limit"
 
 msgid "max forwardings:"
-msgstr ""
+msgstr "Maximale Weiterleitungen:"
 
 msgid "create domain"
-msgstr ""
+msgstr "Domain anlegen:"
 
 msgid "from:"
-msgstr ""
+msgstr "Von:"
 
 msgid "forward to:"
-msgstr ""
+msgstr "Weiterleiten an:"
 
 msgid "Do you want to delete this forwarding?"
-msgstr ""
+msgstr "Wollen Sie diese Weiterleitung wirklich löschen?"
 
 msgid "back to summary"
-msgstr ""
+msgstr "Zurück zur Übersicht"
 
 msgid "forwarding was deleted"
-msgstr ""
+msgstr "Weiterleitung wurde gelöscht."
 
 msgid "create new forward"
-msgstr ""
+msgstr "Neue Weiterleitung anlegen"
 
 msgid "reset form"
-msgstr ""
+msgstr "Zurücksetzen"
 
 msgid "full name"
-msgstr ""
+msgstr "Vollständiger Name:"
 
 msgid "activate/deactivate"
-msgstr ""
+msgstr "Aktivieren/Deaktivieren"
 
 msgid "Welcome to CpVES %1"
-msgstr ""
+msgstr "Willkommen zu CpVES, %1"
 
 msgid "IMAP folders:"
-msgstr ""
+msgstr "IMAP Ordner:"
 
 msgid "folder"
-msgstr ""
+msgstr "Ordner"
 
 msgid "messages"
-msgstr ""
+msgstr "Nachrichten"
 
 msgid "Your current mailbox size is %1 M."
-msgstr ""
+msgstr "Postfach ist derzeit %1 Megabyte groß."
 
 msgid "vacation:"
-msgstr ""
+msgstr "Autoresponder:"
 
 msgid "forwarding:"
-msgstr ""
+msgstr "Weiterleitung:"
 
 msgid "permissions: superadmin manager"
-msgstr ""
+msgstr "Rechte: Superadmin Manager"
 
 msgid "permissions: superadmin"
-msgstr ""
+msgstr "Rechte: Superadmin"
 
 msgid "domainname"
-msgstr ""
+msgstr "Domainname"
 
 msgid "emailaddresses"
-msgstr ""
+msgstr "E-Mailadressen"
 
 msgid "forwardings"
-msgstr ""
+msgstr "Weiterleitungen"
 
 msgid "domain:"
-msgstr ""
+msgstr "Domain:"
 
 msgid "hide"
-msgstr ""
+msgstr "Ausblenden"
 
 msgid "show"
-msgstr ""
+msgstr "Einblenden"
 
 msgid "emailaddresses:"
-msgstr ""
+msgstr "E-Mailadressen:"
 
 msgid "vacation active!"
-msgstr ""
+msgstr "Autoresponder aktiv!"
 
 msgid "deactivate emailaddress"
-msgstr ""
+msgstr "E-Mailadresse deaktivieren"
 
 msgid "activate emailaddress"
-msgstr ""
+msgstr "deactivate aktivieren"
 
 msgid "no emailaddress exists!"
-msgstr ""
+msgstr "Keine E-Mailadressen vorhanden!"
 
 msgid "forwardings:"
-msgstr ""
+msgstr "Weiterleitungen:"
 
 msgid "forwarding to more addresses."
 msgstr ""

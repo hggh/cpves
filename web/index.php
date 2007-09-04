@@ -37,12 +37,13 @@ if (isset($_GET['user']) && $_GET['user']=='n')
 	$smarty->assign('if_ad_user','n');
 	$_SESSION['ad_user']='n';
 }
-$_SESSION['lang']="de_DE";
+$_SESSION['lang']="en_US";
 if (is_file(ROOT ."/includes/localization/". $_SESSION['lang'] . "/LC_MESSAGES/cpves.mo" )) {
 	setlocale(LC_MESSAGES, $_SESSION['lang']);
 }
 $lc_path= ROOT ."/includes/localization/";
 bindtextdomain("cpves", $lc_path);
+bind_textdomain_codeset("cpves", "UTF-8");
 textdomain("cpves");
 
 $site="";

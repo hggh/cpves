@@ -22,7 +22,7 @@
 </tr>
 {foreachelse}
 <tr>
-	<td colspan="5">{t}not fetchmail exists.{/t}</td>
+	<td colspan="5">{t}no fetchmail exists.{/t}</td>
 </tr>
 {/foreach}
 </table>
