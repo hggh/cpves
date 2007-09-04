@@ -80,7 +80,7 @@ if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 			$_SESSION['p_autores_xheader']=check_du_fetaure($_SESSION['uid'],$daten['domainid'],'p_autores_xheader');
 			$_SESSION['forwarding']=$daten['p_forwarding'];
 			$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
-			$_SESSION['lang']=get_email_options($_SESSION['uid'],'lang', 'en_US');
+			$_SESSION['lang']=get_email_options($_SESSION['uid'],'web_lang', 'en_US');
 			
 				
 		
@@ -101,6 +101,8 @@ else // wird ein admin username sein, also checke adm_users table
 		if (check_password($daten['cpasswd'],$_POST['password']) == 1)
 		{
 			$login=1;
+			$_SESSION['lang']=$daten['web_lang'];
+			$_SESSION['s_uid']=$daten['id'];
 			$_SESSION['email']=$daten['username'];
 			$_SESSION['cpasswd']=encrypt_passwd($_POST['password']);
 			$_SESSION['superadmin']='1';

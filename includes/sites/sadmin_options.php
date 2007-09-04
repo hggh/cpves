@@ -16,10 +16,22 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-	if (isset($_POST['mf_rebuild']) && $_POST['mf_rebuild']==1) {
+if (isset($_POST['mf_rebuild']) && $_POST['mf_rebuild']==1) {
 		$result=&$db->query("UPDATE mailfilter SET active='1' WHERE active!='0' ");
 		$smarty->assign('success_msg', 'y');
 		$smarty->assign('if_mf_rebuild', 'y');
 		
+}
+if (isset($_POST['web_lang_submit'])) {
+	if (is_dir(ROOT . "/includes/localization/" .$_POST['web_lang'] ) || $_POST['web_lang']="en_US") {
+		$sql=sprintf("UPDATE adm_users SET web_lang='%s' WHERE id='%d'",
+			$db->escapeSimple($_POST['web_lang']),
+			$db->escapeSimple($_SESSION['s_uid']));
+		$db->query($sql);
+		$_SESSION['lang']=$_POST['web_lang'];
 	}
+}
+
+$smarty->assign('table_lang', get_all_langs());
+$smarty->assign('web_lang' , $_SESSION['lang']);
 ?>

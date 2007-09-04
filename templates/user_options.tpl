@@ -5,8 +5,16 @@
 <tr>
 	<td>{t}webinterface language:{/t}</td>
 	<td style="width:10px;"></td>
-	<td><select name="web_lang">
+	<td>
+	<select name="web_lang">
 		<option value="en_US">en_US</option>
+		{foreach item=row from=$table_lang}
+			{if $row.name == $web_lang  }
+			<option value="{$row.name}" selected="selected" >{$row.name}</option>
+			{else}
+			<option value="{$row.name}"  >{$row.name}</option>
+			{/if}
+		{/foreach}
 	</select></td>
 </tr>
 <tr>

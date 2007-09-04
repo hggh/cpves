@@ -27,15 +27,19 @@ if (isset($_POST['save_option']))
 	update_mailfilter('del_dups_mails',$_SESSION['uid'], $_POST['del_dups_mails'],0,0);
 	// activate System-Script
 	run_systemscripts();
+	if (is_dir(ROOT . "/includes/localization/" .$_POST['web_lang'] ) || $_POST['web_lang']="en_US") {
+		update_email_options($_SESSION['uid'], 'web_lang', $_POST['web_lang'],0);
+		$_SESSION['lang']=$_POST['web_lang'];
+	}
 }
-
 
 $del_virus_notifi = get_email_options($_SESSION['uid'],"del_virus_notifi", 0);
 $smarty->assign('del_virus_notifi',$del_virus_notifi );
 
 $del_dups_mails = get_email_options($_SESSION['uid'],"del_dups_mails", 0);
 $smarty->assign('del_dups_mails',$del_dups_mails );
-
+$smarty->assign('table_lang', get_all_langs());
+$smarty->assign('web_lang', $_SESSION['lang']);
 
 $smarty->assign('email', $_SESSION['email']);
 ?>

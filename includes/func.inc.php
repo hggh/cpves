@@ -52,6 +52,21 @@ function check_whitelist_addr($addr) {
 	return 0;
 }
 
+function get_all_langs() {
+$table_lang = array();
+if (is_dir(ROOT . "/includes/localization/")) {
+	$lc_dir = opendir(ROOT . "/includes/localization/");
+	while (($lc_file = readdir($lc_dir)) !== false) {
+		if (filetype(ROOT . "/includes/localization/" . $lc_file)== "dir" &&
+			  $lc_file!="." && $lc_file!=".." && $lc_file!= ".svn") {
+				array_push($table_lang, array(
+					'name' => $lc_file));
+		}
+	}
+}
+	return $table_lang;
+}
+
 function insert_mailarchive($uid,$options) {
 	global $db;
 	$sql=sprintf("SELECT id FROM mailarchive WHERE email='%s' AND folder='%s'",

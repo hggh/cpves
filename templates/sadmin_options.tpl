@@ -5,6 +5,20 @@
 		<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="{t}rebuild all mailfilters{/t}" class="thickbox" name="mf_rebuild_save" value="{t}rebuild all mailfilters{/t}"  />
 		</form></td>
 	</tr>
+<tr>
+	<td>{t}webinterface language:{/t}</td>
+	<td><form action="" method="post"><select name="web_lang">
+		<option value="en_US">en_US</option>
+		{foreach item=row from=$table_lang}
+			{if $row.name == $web_lang }
+			<option value="{$row.name}" selected="selected" >{$row.name}</option>
+			{else}
+			<option value="{$row.name}"  >{$row.name}</option>
+			{/if}
+		{/foreach}
+	</select> <input type="submit" name="web_lang_submit" value="{t}save{/t}"/>
+	</form></td>
+</tr>
 </table>
 
 
