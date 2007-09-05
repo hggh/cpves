@@ -1,4 +1,4 @@
-{if $if_superadmin eq 'y' or $if_admin eq 'y'and $access_domain }
+{if $if_superadmin == 1 or $if_admin == '1' and $access_domain eq 'true'}
 
 {if $if_max_list eq 'y'}
 <div style="text-align:center;color:red;">Maximale Anzahl an Mailinglisten erreicht, es k&ouml;nnen keine weiteren MAilinglisten angelegt werden!<br/> - Bitte wenden sie sich an Ihren Administrator! -<br/><br/></div>

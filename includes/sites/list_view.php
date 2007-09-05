@@ -96,6 +96,8 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('recps',$recps);
 	
 } // ENDE ACCESS OK
+$smarty->assign('access_domain', $access_domain);
 $smarty->assign('id',$_GET['id']);
 $smarty->assign('domainid',$_GET['did']);
+$smarty->assign('template','list_view.tpl');
 ?>
