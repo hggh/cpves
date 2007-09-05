@@ -59,8 +59,10 @@ if (is_dir(ROOT . "/includes/localization/")) {
 	while (($lc_file = readdir($lc_dir)) !== false) {
 		if (filetype(ROOT . "/includes/localization/" . $lc_file)== "dir" &&
 			  $lc_file!="." && $lc_file!=".." && $lc_file!= ".svn") {
-				array_push($table_lang, array(
-					'name' => $lc_file));
+				if (is_file(ROOT . "/includes/localization/".$lc_file. "/LC_MESSAGES/cpves.mo")) {
+					array_push($table_lang, array(
+						'name' => $lc_file));
+				}
 		}
 	}
 }

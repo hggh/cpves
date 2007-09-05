@@ -755,193 +755,193 @@ msgid "forwardings:"
 msgstr "Weiterleitungen:"
 
 msgid "forwarding to more addresses."
-msgstr ""
+msgstr "Weiterleitung an mehrere Adressen."
 
 msgid "deactivate forwarding."
-msgstr ""
+msgstr "Weiterleitung deaktivieren."
 
 msgid "activate forwarding."
-msgstr ""
+msgstr "Weiterleitung aktivieren."
 
 msgid "delete forwarding."
-msgstr ""
+msgstr "Weiterleitung löschen."
 
 msgid "mailinglists:"
-msgstr ""
+msgstr "Mailinglisten:"
 
 msgid "recipients:"
-msgstr ""
+msgstr "Empfäanger:"
 
 msgid "public"
-msgstr ""
+msgstr "Öffentlich"
 
 msgid "private"
-msgstr ""
+msgstr "Privat"
 
 msgid "deactivate mailinglist."
-msgstr ""
+msgstr "Mailingliste deaktivieren."
 
 msgid "activate mailinglist."
-msgstr ""
+msgstr "Mailingliste aktivieren."
 
 msgid "delete mailinglist."
-msgstr ""
+msgstr "Mailingliste löschen."
 
 msgid "no mailinglists exists."
-msgstr ""
+msgstr "Es existiert keine weitere Mailingliste."
 
 msgid "catchall:"
-msgstr ""
+msgstr "Catchall:"
 
 msgid "no catchall for %1 configured."
-msgstr ""
+msgstr "Kein Catchalleintrag für %1 eingetragen."
 
 msgid "click here to configure an catchall."
-msgstr ""
+msgstr "Klicken Sie Ihr um einen Catchalleintrag anzulegen."
 
 msgid "deactivate catchall entry."
-msgstr ""
+msgstr "Catchalleintrag deaktivieren."
 
 msgid "activate catchall entry."
-msgstr ""
+msgstr "Catchalleintrag aktivieren."
 
 msgid "delete catchall entry."
-msgstr ""
+msgstr "Catchalleintrag löschen."
 
 msgid "properties  of %1:"
-msgstr ""
+msgstr "Einstellungen von %1:"
 
 msgid "IMAP:"
-msgstr ""
+msgstr "IMAP:"
 
 msgid "activate IMAP."
-msgstr ""
+msgstr "IMAP aktivieren."
 
 msgid "deactivate IMAP."
-msgstr ""
+msgstr "IMAP deaktivieren."
 
 msgid "POP3:"
-msgstr ""
+msgstr "POP3:"
 
 msgid "activate POP3."
-msgstr ""
+msgstr "POP3 aktivieren."
 
 msgid "deactivate POP3."
-msgstr ""
+msgstr "POP3 deaktiveren"
 
 msgid "Webmail:"
-msgstr ""
+msgstr "Webmail:"
 
 msgid "activate webmail."
-msgstr ""
+msgstr "Webmail aktivieren."
 
 msgid "deactivate webmail."
-msgstr ""
+msgstr "Webmail deaktivieren."
 
 msgid "activate CpVES webinterface."
-msgstr ""
+msgstr "CpVES Webinterface aktivieren."
 
 msgid "deactivate CpVES webinterface."
-msgstr ""
+msgstr "CpVES Webinterface deaktivieren."
 
 msgid "activate vacation X-Header feature."
-msgstr ""
+msgstr "Autoresponder X-Header aktivieren."
 
 msgid "deactivate vacation X-Header feature."
-msgstr ""
+msgstr "Autoresponder X-Header deaktivieren."
 
 msgid "activate fetchmail:"
-msgstr ""
+msgstr "Fetchmail aktivieren."
 
 msgid "deactivate fetchmail."
-msgstr ""
+msgstr "Fetchmail deaktivieren."
 
 msgid "activate spamassassin."
-msgstr ""
+msgstr "Spamassassin aktivieren."
 
 msgid "deactivate spamassassin."
-msgstr ""
+msgstr "Spamassassin deaktivieren."
 
 msgid "activate ham/spam learning."
-msgstr ""
+msgstr "Ham/Spamlernen aktivieren."
 
 msgid "deactivate ham/spam learning."
-msgstr ""
+msgstr "Ham/Spamlernen deaktivieren."
 
 msgid "activate delete spam."
-msgstr ""
+msgstr "Lösche Spam aktivieren."
 
 msgid "deactivate delete spam."
-msgstr ""
+msgstr "Lösche Spam deaktivieren."
 
 msgid "activate bogofilter."
-msgstr ""
+msgstr "Bogofilter aktivieren."
 
 msgid "deactivate bogofilter."
-msgstr ""
+msgstr "Bogofilter deaktivieren."
 
 msgid "activate archivemail."
-msgstr ""
+msgstr "Mailarchiv aktivieren."
 
 msgid "deactivate archivemail."
-msgstr ""
+msgstr "Mailarchiv deaktivieren."
 
 msgid "spamfilter - whitelisting:"
-msgstr ""
+msgstr "Spamfilter - Whitelist:"
 
 msgid "activate whitelisting."
-msgstr ""
+msgstr "Whitelisting aktivieren."
 
 msgid "deactivate whitelisting."
-msgstr ""
+msgstr "Whitelisting deaktivieren."
 
 msgid "number of addresses:"
-msgstr ""
+msgstr "Anzhal der Adressen:"
 
 msgid "used/available"
-msgstr ""
+msgstr "verbraucht/verfügbar"
 
 msgid "change"
-msgstr ""
+msgstr "Ändern"
 
 msgid "note %1"
-msgstr ""
+msgstr "Noitz zu %1"
 
 msgid "whitelist:"
-msgstr ""
+msgstr "Whitelist:"
 
 msgid "add to whitelist:"
-msgstr ""
+msgstr "Zur Whitelist hinzufügen:"
 
 msgid "Should the emailaddress %1 really deleted?"
-msgstr ""
+msgstr "Soll die E-Mailadresse %1 wirklich gelöscht werden?"
 
 msgid "emailaddress is deleted!"
-msgstr ""
+msgstr "E-Mailadresse wurde gelöscht."
 
 msgid "fowardings"
-msgstr ""
+msgstr "Weiterleitungen"
 
 msgid "deactivate this domain."
-msgstr ""
+msgstr "Domain deaktivieren."
 
 msgid "activate this domain."
-msgstr ""
+msgstr "Domain aktivieren."
 
 msgid "delete this domain."
-msgstr ""
+msgstr "Domain löschen."
 
 msgid "create emailaddress"
-msgstr ""
+msgstr "E-Mailadresse anlegen"
 
 msgid "no emailaddresses exits within this domain"
-msgstr ""
+msgstr "Keine E-Mailadresse zu dieser Domain gefunden"
 
 msgid "Should this domain really deleted?"
-msgstr ""
+msgstr "Soll die Domain wirklich gelöscht werden?"
 
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 msgid "delete domain..."
-msgstr ""
+msgstr "Domain wird gelöscht..."
