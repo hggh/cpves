@@ -20,6 +20,7 @@ use DBI;
 use Fcntl;
 use Config::General;
 use Proc::PID::File;
+use Digest::MD5;
 
 my $conf = new Config::General("/etc/cpves/mail_config.conf");
 my %config = $conf->getall;
@@ -121,6 +122,29 @@ sub get_email_option($$$) {
 	else {
 		return $default;
 	}
+}
+
+sub update_email_option($$$) {
+	my $uid = $_[0];
+	my $conf = $_[1];
+	my $value = $_[2];
+	my $eo_sth = $dbh->prepare("SELECT id FROM email_options WHERE email=? AND conf=?");
+	$eo_sth->execute($uid,$conf);
+	if ($eo_sth->rows==1) {
+		my @row_eo=$eo_sth->fetchrow_array;
+		my $sql=sprintf("UPDATE email_options SET options=%s WHERE email=%d AND conf=%s",
+			$dbh->quote($value),
+			$dbh->quote($uid),
+			$dbh->quote($conf));
+		$dbh->do($sql);
+		undef($sql);
+	}
+	else {
+		my $eou_sth = $dbh->prepare("INSERT INTO email_options SET email=?,conf=?,options=?");
+		$eou_sth->execute($uid,$conf,$value);
+	}
+	return 0;
+
 }
 
 my $sql=sprintf("SELECT CONCAT(%s ,'/',SUBSTRING_INDEX(b.email,'@\',-1),'/',SUBSTRING_INDEX(b.email,'@\',1)) AS epath, b.id AS emailid, b.domainid AS domainid FROM mailfilter AS a LEFT JOIN users AS b ON b.id=a.email WHERE a.active='0' OR a.active='1' GROUP BY a.email",
@@ -237,6 +261,14 @@ while(@data = $sth->fetchrow_array)
 			close($handle);
 			undef $handle;
 			`chmod 600 $path/.mailfilter`;
+
+			open(FILE ,  $path ."/.mailfilter");
+			binmode(FILE);
+			my $md5sum =Digest::MD5->new->addfile(*FILE)->hexdigest;
+			close(FILE);
+			update_email_option($id,"mailfilter_md5",$md5sum);
+			undef($md5sum);
+			
 		}
 		undef $mailfilter;
 		$sql=sprintf("UPDATE mailfilter SET active='2' WHERE email=%s",

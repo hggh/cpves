@@ -8,6 +8,7 @@ CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: domain_view.tpl mailbox size
 	o Added: check if php-imap is enabled
 	o Added: lang selection per user/sadmin
+	o Added: md5sum of .mailfiter will be saved to database
 	o Improved: removed reload to domain show on save emailaddress
 	o Fixed: autoresponder.pl. UTF-8 problems in body
 CpVES 0.05 2007-08-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
