@@ -22,6 +22,7 @@ $smarty->assign('max_passwd_len', $config['max_passwd_len']);
 $smarty->assign('webmail_link',$config['webmail_link']);
 $smarty->assign('mailgraph_link',$config['mailgraph_link']);
 $smarty->assign('display_mb_size',$config['display_mb_size']);
+$smarty->assign('cpves_version', $config['cpves_version']);
 /*
 mailfilter prios:
 del_dups_mails		- 2
@@ -799,6 +800,11 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 	$sql=sprintf("SELECT id FROM autoresponder WHERE email='%d'",
 		$db->escapeSimple($uid));
 	$result=&$db->query($sql);
+	// strip fucking magic quotes if enabled
+	if (get_magic_quotes_gpc()) {
+		$esubject=stripslashes($esubject);
+		$msg=stripslashes($msg);
+	}
 	if ($result->numRows()==1) 
 	{
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
@@ -811,7 +817,7 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 		else {
 			$sql=sprintf("UPDATE autoresponder SET esubject='%s',msg='%s',active='%s',times='%s' WHERE id='%d' AND email='%d'",
 				$db->escapeSimple($esubject),
-				$msg,
+				$db->escapeSimple($msg),
 				$db->escapeSimple($active),
 				$db->escapeSimple($send_times),
 				$db->escapeSimple($data['id']),
@@ -822,7 +828,7 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 	{
 		$sql=sprintf("INSERT INTO autoresponder SET esubject='%s',msg='%s',active='%s',email='%d',times='%s'",
 				$db->escapeSimple($esubject),
-				$msg,
+				$db->escapeSimple($msg),
 				$db->escapeSimple($active),
 				$db->escapeSimple($uid),
 				$db->escapeSimple($send_times) );

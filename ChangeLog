@@ -9,7 +9,9 @@ CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: check if php-imap is enabled
 	o Added: lang selection per user/sadmin
 	o Added: md5sum of .mailfiter will be saved to database
+	o Added: cpves version string to structure.tpl
 	o Improved: removed reload to domain show on save emailaddress
+	o Improved: vacation magic quotes
 	o Fixed: autoresponder.pl. UTF-8 problems in body
 CpVES 0.05 2007-08-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: repaired listmailer.pl for access tinyint(1) column (T. Genannt)
