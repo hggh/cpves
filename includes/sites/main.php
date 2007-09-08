@@ -59,6 +59,20 @@ $table_data = array();
 $result = $db->query($sql);
 while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 {
+	$sql=sprintf("SELECT a.email FROM users AS a LEFT JOIN autoresponder AS b ON b.email = a.id WHERE a.domainid='%d' AND b.active = 'y'",
+		$db->escapeSimple($row['id']));
+	$res_vacation = $db->query($sql);
+	if ($res_vacation->numRows() > 0 ) {
+		echo "drn";
+		$vaction=1;
+		$vaction_infos="";
+		while($row_vac = $res_vacation->fetchrow(DB_FETCHMODE_ASSOC)) {
+			$vaction_infos .= $row_vac['email'] . " ";
+		}
+	}
+	else {
+		$vaction=0;
+	}
 	array_push($table_data, array(
          'dnsname' => $row['dnsname'],
          'access' => $row['access'],
@@ -66,7 +80,9 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 	 'count_email' => get_forem_domain($row['id'],'users',$db),
 	 'id' => $row['id'],
 	 'access' => $row['access'],
-	 'dnote' => $row['dnote']
+	 'dnote' => $row['dnote'],
+	 'vacation' => $vaction,
+	 'vacation_infos' => $vaction_infos
          )
       );
       //$i++; 

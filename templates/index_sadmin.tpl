@@ -10,7 +10,14 @@
 	{foreach from=$table_data item=row} 
 	<tr  bgcolor="{cycle values="$color1,$color2"}">
 		<td style="padding-left:3px;">
-		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></td>
+		<div style="float:left;">
+		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></div>
+		{if $row.vacation == 1}
+		<div style="float:right;padding:0px;">
+		<img src="img/icons/autoresponder.png" title="{$row.vacation_infos}" align="middle"/>
+		</div>
+		{/if}
+		</td>
 		<td>{$row.count_email}</td>
 		<td>{$row.count_forward}</td>
 		<td>

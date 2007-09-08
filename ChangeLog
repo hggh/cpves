@@ -10,6 +10,7 @@ CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: lang selection per user/sadmin
 	o Added: md5sum of .mailfiter will be saved to database
 	o Added: cpves version string to structure.tpl
+	o Added: index_sadmin vacaction overview per domain and user
 	o Improved: removed reload to domain show on save emailaddress
 	o Improved: vacation magic quotes
 	o Fixed: autoresponder.pl. UTF-8 problems in body
