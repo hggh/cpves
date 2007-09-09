@@ -85,7 +85,7 @@ sub get_bogofilter($$) {
 	$b_sth->execute($uid);
 	if ($b_sth->rows == 1) {
 		my @row_b = $b_sth->fetchrow_array;
-		if ($row_b[0]== 1) {
+		if ($row_b[0] eq "1") {
 			my $b_s_sth=$dbh->prepare("SELECT value FROM spamassassin WHERE preference='rewrite_header subject' AND username=?");
 			$b_s_sth->execute($email);
 			my $bogo_subject;
@@ -132,7 +132,7 @@ sub update_email_option($$$) {
 	$eo_sth->execute($uid,$conf);
 	if ($eo_sth->rows==1) {
 		my @row_eo=$eo_sth->fetchrow_array;
-		my $sql=sprintf("UPDATE email_options SET options=%s WHERE email=%d AND conf=%s",
+		my $sql=sprintf("UPDATE email_options SET options=%s WHERE email=%s AND conf=%s",
 			$dbh->quote($value),
 			$dbh->quote($uid),
 			$dbh->quote($conf));
