@@ -63,7 +63,6 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 		$db->escapeSimple($row['id']));
 	$res_vacation = $db->query($sql);
 	if ($res_vacation->numRows() > 0 ) {
-		echo "drn";
 		$vaction=1;
 		$vaction_infos="";
 		while($row_vac = $res_vacation->fetchrow(DB_FETCHMODE_ASSOC)) {
