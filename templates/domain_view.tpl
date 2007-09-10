@@ -15,7 +15,7 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3" ><h3>{t}emailaddresses:{/t}</h3></td>
+ <td style="width:580px;" colspan="3" ><h3>{t}emailaddresses{/t}:</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;" >[<a id="mailsl" href="javascript:fade('mails');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
@@ -52,7 +52,7 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>{t}forwardings:{/t}</h3></td>
+ <td style="width:580px;" colspan="3"><h3>{t}forwardings{/t}:</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="forwardl" href="javascript:fade('forward');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
@@ -78,7 +78,7 @@
 {if $if_listings == 'y' }
 <table border="0" class="domain_view">
 <tr>
- <td style="width:580px;" colspan="3"><h3>{t}mailinglists:{/t}</h3></td>
+ <td style="width:580px;" colspan="3"><h3>{t}mailinglists{/t}:</h3></td>
  <td style="width:090px;vertical-align:bottom;font-size:9px;">[<a id="listsl" href="javascript:fade('lists');">{t}hide{/t}</a>]</td>
 </tr>
 </table>
@@ -86,7 +86,7 @@
 {foreach from=$table_list item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="?module=list_view&#038;id={$row.id}&amp;did={$did}">{$row.address}</a></td>
- <td style="width:200px;">{t}recipients:{/t} {$row.recps}</td>
+ <td style="width:200px;">{t}recipients{/t}: {$row.recps}</td>
  <td style="width:100px;">{if $row.public eq 'y'}{t}public{/t}{else}{t}private{/t}{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == 'y' }
@@ -108,7 +108,7 @@
 
 <table border="0" class="domain_view">
 <tr>
- <td style="width:670px;" colspan="4"><h3>{t}catchall:{/t}</h3></td>
+ <td style="width:670px;" colspan="4"><h3>{t}catchall{/t}:</h3></td>
 </tr>
 </table>
 <table id="catcht" border="0">
@@ -134,10 +134,10 @@
 
 {if $if_superadmin == 1 }
 <tr>
- <td colspan="4" class="domain_view"><h3>{t 1=$dnsname}properties  of %1:{/t}</h3></td>
+ <td colspan="4" class="domain_view"><h3>{t 1=$dnsname}properties  of %1{/t}:</h3></td>
 </tr>
 <tr>
- <td>{t}IMAP:{/t}</td>
+ <td>{t}IMAP{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_imap == 0  }
@@ -149,7 +149,7 @@
  {/if}</td>
 </tr>
 <tr>
- <td>{t}POP3:{/t}</td>
+ <td>{t}POP3{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_pop3 == 0 }
@@ -161,7 +161,7 @@
  {/if}</td>
 </tr>
 <tr>
- <td>{t}Webmail:{/t}</td>
+ <td>{t}Webmail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_webmail ==  0 }
@@ -173,7 +173,7 @@
  {/if}</td>
 </tr>
 <tr>
- <td>{t}access to CpVES webinterface:{/t}</td>
+ <td>{t}access to CpVES webinterface{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_webinterface == 0  }
@@ -185,7 +185,7 @@
  {/if}</td>
 </tr>
 <tr>
- <td>{t}vacation X-Header disable feature:{/t}</td>
+ <td>{t}vacation X-Header disable feature{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_autores_xheader == 0  }
@@ -197,19 +197,19 @@
  {/if}</td>
 </tr>
 <tr>
- <td>{t}fetchmail:{/t}</td>
+ <td>{t}fetchmail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_fetchmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=fetchmail">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail:{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail{/t}:" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=fetchmail">
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate fetchmail.{/t}" /></a>
  {/if}</td>
 </tr>
 <tr>
- <td>{t}spamassassin:{/t}</td>
+ <td>{t}spamassassin{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spamassassin == 0 }
@@ -221,7 +221,7 @@
  {/if}</td> 
 </tr>
 <tr>
- <td>{t}ham/spam learning:{/t}</td>
+ <td>{t}ham/spam learning{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_sa_learn == 0 }
@@ -234,7 +234,7 @@
 </tr>
 
 <tr>
- <td>{t}delete spam:{/t}</td>
+ <td>{t}delete spam{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_spam_del == 0 }
@@ -247,7 +247,7 @@
 </tr>
 
 <tr>
- <td>{t}bogofilter:{/t}</td>
+ <td>{t}bogofilter{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_bogofilter == 0 }
@@ -260,7 +260,7 @@
 </tr>
 
 <tr>
- <td>{t}archivemail:{/t}</td>
+ <td>{t}archivemail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_mailarchive == 0 }
@@ -272,7 +272,7 @@
  {/if}</td> 
 </tr>
 <tr>
- <td>{t}spamfilter - whitelisting:{/t}</td>
+ <td>{t}spamfilter - whitelisting{/t}:</td>
  <td></td>
  <td style="text-align:right;">
  {if $p_sa_wb_listing == 0 }
@@ -289,7 +289,7 @@
 {if $if_superadmin == '1' or $if_admin == '1' }
 
 <tr>
- <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">{t}number of addresses:{/t}</h3>
+ <td class="domain_view" colspan="4"><h3 style="margin-bottom:0px;">{t}number of addresses{/t}:</h3>
  <span style="float:right;">
 {t}used/available{/t}
  {if $if_superadmin == '1' }
@@ -297,7 +297,7 @@
  {/if}</span></td>
 </tr>
 <tr>
- <td>{t}emailaddresses:{/t}</td>
+ <td>{t}emailaddresses{/t}:</td>
  {if $if_superadmin != '1' }
  <td></td>
  {/if}
@@ -309,7 +309,7 @@
 {/if} 
 </tr>
 <tr>
- <td>{t}forwardings:{/t}</td>
+ <td>{t}forwardings{/t}:</td>
  {if $if_superadmin != '1' }
  <td></td>
  {/if}
@@ -336,10 +336,10 @@
 
 {if ($if_spamassassin == 1 || ( $if_superadmin == '1' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
 <tr>
-	<td colspan="4" class="domain_view"><h3>{t}spamfilter - whitelisting:{/t}</h3></td>
+	<td colspan="4" class="domain_view"><h3>{t}spamfilter - whitelisting{/t}:</h3></td>
 </tr>
 <tr>
-	<td valign="top">{t}whitelist:{/t}</td>
+	<td valign="top">{t}whitelist{/t}:</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
 	<select style="min-width:250px;" name="sa_whitelist_data[]" size="10" multiple="true">
 	{foreach from=$table_sa_whitelist item=row}
@@ -353,7 +353,7 @@
 	<td colspan="4" style="height:10px;"></td>
 </tr>
 <tr>
-	<td>{t}add to whitelist:{/t}</td>
+	<td>{t}add to whitelist{/t}:</td>
 	<td colspan="3"><form action="?module=domain_view&#038;did={$did}" method="post">
 	<input type="text" size="30" name="sa_whitelist_data_add"/><br/>
 	<input type="submit" name="sa_whitelist_data_add_submit" value="{t}add{/t}"/></form></td>

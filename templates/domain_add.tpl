@@ -8,7 +8,7 @@
 	{/if} {if $if_mx eq 'y'} 
 	<table style="border:0px;">
 		<tr>
-			<td colspan="4" class="header" style="text-align:left;">{t 1=$new_dnsname}the new domain %1 has got the following MX entries:{/t}</td>
+			<td colspan="4" class="header" style="text-align:left;">{t 1=$new_dnsname}the new domain %1 has got the following MX entries{/t}:</td>
 		</tr>
 		<tr>
 			<td>{t}prio{/t}</td>
@@ -46,7 +46,7 @@
 <form action="?module=domain_add" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td>{t}domainname:{/t}</td>
+		<td>{t}domainname{/t}:</td>
 		<td><input type="text" value="{$dnsname}" name="dnsname" />
 		</td>
 	</tr>
@@ -57,7 +57,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>{t}imap connection:{/t}</td>
+		<td>{t}imap connection{/t}:</td>
 		<td>
 			<select name="p_imap"> 
 				<option value="1">{t}yes{/t}</option>
@@ -66,7 +66,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>{t}pop3 connection:{/t}</td>
+		<td>{t}pop3 connection{/t}:</td>
 		<td>
 			<select name="p_pop3"> 
 				<option value="1">{t}yes{/t}</option>
@@ -75,46 +75,46 @@
 		</td>
 	</tr>
 	<tr>
-		<td>{t}webmail available:{/t}</td>
+		<td>{t}webmail available{/t}:</td>
 		<td><select name="p_webmail">
 			<option value="1">{t}yes{/t}</option>
 			<option value="0">{t}no{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}spamassassin available:{/t}</td>
+		<td>{t}spamassassin available{/t}:</td>
 		<td><select name="p_spamassassin">
 			<option value="1">{t}yes{/t}</option>
 			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{t}no{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}bogofilter available:{/t}</td>
+		<td>{t}bogofilter available{/t}:</td>
 		<td><select id="p_bogofilter" name="p_bogofilter">
 			<option value="0">{t}no{/t}</option>
 			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}mailarchive available:{/t}</td>
+		<td>{t}mailarchive available{/t}:</td>
 		<td><select name="p_mailarchive">
 			<option value="0">{t}no{/t}</option>
 			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}spamfilter whitelist available:{/t}</td>
+		<td>{t}spamfilter whitelist available{/t}:</td>
 		<td><select name="p_sa_wb_listing" id="p_sa_wb_listing">
 			<option value="0">{t}no{/t}</option>
 			<option value="1">{t}yes{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}max emailaddresses:{/t}</td>
+		<td>{t}max emailaddresses{/t}:</td>
 		<td><input value="0" name="max_email"/>&#160; 0 = {t}no limit{/t}</td>
 	</tr>
 	<tr>
-		<td>{t}max forwardings:{/t}</td>
+		<td>{t}max forwardings{/t}:</td>
 		<td><input value="0" name="max_forward" />&#160; 0 = {t}no limit{/t}</td>
 	</tr>
 	<tr>

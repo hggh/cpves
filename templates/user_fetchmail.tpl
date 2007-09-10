@@ -27,37 +27,37 @@
 {/foreach}
 </table>
 <br/>
-<h3>{t}add new server:{/t}</h3>
+<h3>{t}add new server{/t}:</h3>
 <form action="?module=user_fetchmail" method="post">
 <table style="border:0x;">
 <tr>
-	<td>{t}server:{/t}</td>
+	<td>{t}server{/t}:</td>
 	<td><input type="text" name="fm_server" /></td>
 </tr>
 <tr>
-	<td>{t}protocol:{/t}</td>
+	<td>{t}protocol{/t}:</td>
 	<td><select name="fm_proto" style="width:90px;">
 		<option value="1">POP3</option>
 		<option value="2">IMAP</option>
 	</select></td>
 </tr>
 <tr>
-	<td>{t}connection type:{/t}</td>
+	<td>{t}connection type{/t}:</td>
 	<td><select name="fm_conn_type" style="width:90px;">
 		<option value="1">{t}no SSL{/t}</option>
 		<option value="2">{t}with SSL{/t}</option>
 	</select></td>
 </tr>
 <tr>
-	<td>{t}username:{/t}</td>
+	<td>{t}username{/t}:</td>
 	<td><input type="text" name="fm_username" /></td>
 </tr>
 <tr>
-	<td>{t}password:{/t}</td>
+	<td>{t}password{/t}:</td>
 	<td><input type="password" name="fm_password" /></td>
 </tr>
 <tr>
-	<td>{t}keep mails on the server:{/t}</td>
+	<td>{t}keep mails on the server{/t}:</td>
 	<td><select name="fm_keep_mails" style="width:90px;">
 		<option value="1">{t}no{/t}</option>
 		<option value="2">{t}yes{/t}</option>

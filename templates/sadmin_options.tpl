@@ -1,12 +1,12 @@
 <table border="0">
 	<tr>
-		<td style="width:140px;">{t}mailfilter:{/t}</td>
+		<td style="width:140px;">{t}mailfilter{/t}:</td>
 		<td><form id="sadmin_mf_rebuild" method="post"><input type="hidden" id="mf_rebuild" name="mf_rebuild" value="0"/>
 		<input type="submit"  alt="#TB_inline?height=300&width=400&inlineId=myOnPageContent" title="{t}rebuild all mailfilters{/t}" class="thickbox" name="mf_rebuild_save" value="{t}rebuild all mailfilters{/t}"  />
 		</form></td>
 	</tr>
 <tr>
-	<td>{t}webinterface language:{/t}</td>
+	<td>{t}webinterface language{/t}:</td>
 	<td><form action="" method="post"><select name="web_lang">
 		<option value="en_US">en_US</option>
 		{foreach item=row from=$table_lang}

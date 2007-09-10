@@ -64,11 +64,11 @@
 </div>
 
 <div id="mainmenu">| 
-<span class="text">{t}username:{/t} {$username}</span> | 
+<span class="text">{t}username{/t}: {$username}</span> | 
 {if $if_superadmin != '1' && $if_login != 'y'}
-	<span class="text">{t}vacation:{/t} {if $if_autoresponder == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span>  | 
+	<span class="text">{t}vacation{/t}: {if $if_autoresponder == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span>  | 
 	{if $if_forwarding == 1}
-	<span class="text">{t}forwarding:{/t} {if $if_weiterleitung == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span> |{/if}
+	<span class="text">{t}forwarding{/t}: {if $if_weiterleitung == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span> |{/if}
 	{/if}
 {if $if_superadmin == '1' && $if_manager == '1'}
 <span class="text"> {t}permissions: superadmin manager{/t}</span> |

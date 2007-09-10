@@ -3,11 +3,11 @@
 {if $if_del_ok != "y" }
 <table>
 <tr>
- <td>{t}from:{/t}</td>
+ <td>{t}from{/t}:</td>
  <td style="text-align:right;">{$efrom}</td>
 </tr>
 <tr>
- <td valign="top">{t}forward to:{/t}</td>
+ <td valign="top">{t}forward to{/t}:</td>
  <td style="text-align:right;">
  {section name=row loop=$forwards}
  {$forwards[row].etosingle}<br/>

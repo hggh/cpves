@@ -5,7 +5,7 @@
 {if $if_no_data != 'y' }
 <table >
 <tr>
- <td style="width:110px;font-weight:bold;">{t}emailaddresses:{/t}</td>
+ <td style="width:110px;font-weight:bold;">{t}emailaddresses{/t}:</td>
 </tr>
 {section name=row loop=$table_data}
 <tr style="background-color:{cycle values=#rcolor#}" >

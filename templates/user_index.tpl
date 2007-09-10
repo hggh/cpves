@@ -1,6 +1,6 @@
 <h2>{t 1=$full_name}Welcome to CpVES %1{/t}</h2>
 {if $imap_folder_exits == 1 }
-<h3>{t}IMAP folders:{/t}</h3><br/>
+<h3>{t}IMAP folders{/t}:</h3><br/>
 <table border="0">
 <tr>
 	<td valign="top" style="font-weight:bold;padding-right:20px;" >{t}folder{/t}</td>

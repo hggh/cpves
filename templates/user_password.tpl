@@ -6,15 +6,15 @@
  <td>{$email}</td>
 </tr>
 <tr>
- <td>{t}old password:{/t}</td>
+ <td>{t}old password{/t}:</td>
  <td><input type="password" name="old_passwd" /></td>
 </tr>
 <tr>
- <td>{t}new password:{/t}</td>
+ <td>{t}new password{/t}:</td>
  <td><input name="new_passwd1" maxlength="{$max_passwd_len}" type="password" /></td>
 </tr>
 <tr>
- <td>{t}repeat new password:{/t}</td>
+ <td>{t}repeat new password{/t}:</td>
  <td><input name="new_passwd2" maxlength="{$max_passwd_len}" type="password" /></td>
 </tr>
 <tr>

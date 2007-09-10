@@ -2,20 +2,20 @@
 <form action="?module=email_view&#038;id={$id}&#038;did={$domainid}"  method="post">
 <table>
 <tr>
- <td style="width:190px;">{t}emailaddress:{/t}</td>
+ <td style="width:190px;">{t}emailaddress{/t}:</td>
  <td style="width:300px;">{$full_email}</td>
 </tr>
 <tr>
- <td>{t}full name:{/t}</td>
+ <td>{t}full name{/t}:</td>
  <td><input type="text" name="full_name" value="{$full_name}"/></td>
 </tr>
 <tr>
- <td>{t}password:{/t}</td>
+ <td>{t}password{/t}:</td>
  <td><input type="password"  maxlength="{$max_passwd_len}" name="npassword" value=""/></td>
 </tr>
 {if $if_imap == '1' }
 <tr>
- <td>{t}imap connection:{/t}</td>
+ <td>{t}imap connection{/t}:</td>
  <td><select name="imap">
      <option value="enable">{t}yes{/t}</option>
      {if $if_imap_value == 0}
@@ -28,7 +28,7 @@
 {/if}
 {if $if_pop3 == '1' }
 <tr>
- <td>{t}pop3 connection:{/t}</td>
+ <td>{t}pop3 connection{/t}:</td>
  <td><select name="pop3">
      <option value="enable">{t}yes{/t}</option>
      {if $if_pop3_value == 0}
@@ -41,7 +41,7 @@
 {/if}
 {if $if_webmail == 1 }
 <tr>
- <td>{t}webmail available:{/t}</td>
+ <td>{t}webmail available{/t}:</td>
  <td><select name="webmail">
      <option value="enable">{t}yes{/t}</option>
      {if $if_webmail_value == 0 }
@@ -54,7 +54,7 @@
 {/if}
 {if $if_webinterface == 1 }
 <tr>
- <td>{t}access to CpVES webinterface:{/t}</td>
+ <td>{t}access to CpVES webinterface{/t}:</td>
  <td><select name="webinterface">
      <option value="enable">{t}yes{/t}</option>
      {if $if_webinterface_value == 0 }
@@ -67,7 +67,7 @@
 {/if}
 {if $if_autores_xheader == 1 }
 <tr>
- <td>{t}vacation X-Header disable feature:{/t}</td>
+ <td>{t}vacation X-Header disable feature{/t}:</td>
  <td><select name="autores_xheader">
      <option value="enable">{t}yes{/t}</option>
      {if $if_autores_xheader_value == 0 }
@@ -80,7 +80,7 @@
 {/if}
 {if $if_fetchmail == 1 }
 <tr>
- <td>{t}fetchmail:{/t}</td>
+ <td>{t}fetchmail{/t}:</td>
  <td><select name="fetchmail">
      <option value="enable">{t}yes{/t}</option>
      {if $if_fetchmail_value == 0 }
@@ -92,7 +92,7 @@
 </tr>
 {/if}
 <tr>
-	<td>{t}forwarding available:{/t}</td>
+	<td>{t}forwarding available{/t}:</td>
 	<td><select name="forwarding">
 	    <option value="enable">{t}yes{/t}</option>
 	    {if $if_forwarding_value == 0 }
@@ -105,7 +105,7 @@
 </tr>
 {if $if_spamassassin == '1' }
 <tr>
-	<td>{t}spamassassin:{/t}</td>
+	<td>{t}spamassassin{/t}:</td>
 	<td><select name="spamassassin">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_spamassassin_value == 0 }
@@ -117,7 +117,7 @@
 </tr>
 {/if}
 {if $if_sa_learn == 1 }
-	<td>{t}ham/spam learning:{/t}</td>
+	<td>{t}ham/spam learning{/t}:</td>
 	<td><select name="sa_learn">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_sa_learn_value == 0}
@@ -129,7 +129,7 @@
 </tr>
 {/if}
 {if $if_spam_del == 1 }
-	<td>{t}delete spam:{/t}</td>
+	<td>{t}delete spam{/t}:</td>
 	<td><select name="spam_del">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_spam_del_value == 0}
@@ -141,7 +141,7 @@
 {/if}
 {if $if_bogofilter == '1' }
 <tr>
-	<td>{t}bogofilter:{/t}</td>
+	<td>{t}bogofilter{/t}:</td>
 	<td><select name="bogofilter">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_bogofilter_value == 0 }
@@ -154,7 +154,7 @@
 {/if}
 {if $if_mailarchive == 1 }
 <tr>
-	<td>{t}archivemail:{/t}</td>
+	<td>{t}archivemail{/t}:</td>
 	<td><select name="mailachrive">
 	<option value="enable">{t}yes{/t}</option>
 	{if $if_mailarchive_value == 0}
@@ -177,7 +177,7 @@
 <tr><td colspan="2" style="height:10px;"></td></tr>
 {if $ava_ad_domains ge 1 }
 <tr>
- <td colspan="2" class="domain_view"><h3>{t}user is admin for the following domains:{/t}</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}user is admin for the following domains{/t}:</h3></td>
 </tr>
 {section name=row loop=$table_admins}
 <tr>
@@ -188,7 +188,7 @@
 {/section}
 <tr>
 {/if}
-<td colspan="2" class="domain_view"><h3>{t}add new admin domain:{/t}</h3></td>
+<td colspan="2" class="domain_view"><h3>{t}add new admin domain{/t}:</h3></td>
 </tr>
 <tr>
 {if $if_nodomains_found != "y"}
@@ -210,7 +210,7 @@
 <td colspan="2" class="domain_view"><h3>{t}vacation{/t}</h3></td>
 </tr>
 <tr>
- <td>{t}vacation active:{/t}</td>
+ <td>{t}vacation active{/t}:</td>
  <td><select name="autores_active">
   <option value="y" onclick="cpves_autores_field('');">{t}yes{/t}</option>
   {if $autores_active eq 'n' }
@@ -221,17 +221,17 @@
   </select></td>
 </tr>
 <tr>
-	<td>{t}send vacation back to sender:{/t}</td>
+	<td>{t}send vacation back to sender{/t}:</td>
 	<td>
 		{html_options name="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
 	</td>
 </tr>
 <tr>
- <td>{t}vacation subject:{/t}</td>
+ <td>{t}vacation subject{/t}:</td>
  <td><input type="text" name="autores_subject" id="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 </tr>
 <tr>
- <td valign="top">{t}message:{/t}</td>
+ <td valign="top">{t}message{/t}:</td>
  <td><textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea></td>
 </tr>
 <tr>
@@ -240,7 +240,7 @@
 </tr>
 	<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 	<tr>
-		<td valign="top">{t}automatic deactivation:{/t}</td>
+		<td valign="top">{t}automatic deactivation{/t}:</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
 		<option value="1" onclick="cpves_autores_datedisable('')">{t}yes{/t}</option>
 		{if $autores_disable.active == 0 }
@@ -251,11 +251,11 @@
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}date of deactivation:{/t}</td>
+		<td>{t}date of deactivation{/t}:</td>
 		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
 	</tr>
 	<tr>
-		<td>{t}time of deactivation:{/t}</td>
+		<td>{t}time of deactivation{/t}:</td>
 		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
 	</tr>
 	<tr>
@@ -273,7 +273,7 @@
 	
 	<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 	<tr>
-		<td>{t}activate valid recipient lists:{/t}</td>
+		<td>{t}activate valid recipient lists{/t}:</td>
 		<td>{if $val_tos_active == 1 }
 		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
@@ -281,7 +281,7 @@
 	</tr>
 	
 	<tr>
-		<td valign="top">{t}valid recipients:{/t}</td>
+		<td valign="top">{t}valid recipients{/t}:</td>
 		<td>
 		<select style="min-width:250px;" name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
@@ -293,7 +293,7 @@
 		
 	</tr>
 	<tr>
-		<td>{t}add new address:{/t}</td>
+		<td>{t}add new address{/t}:</td>
 		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{t}add{/t}" /></td>
 	</tr>
 {if $if_autores_xheader_value == 1}
@@ -301,7 +301,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td valign="top">{t}vacation X-Header disable feature:{/t}</td>
+		<td valign="top">{t}vacation X-Header disable feature{/t}:</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -325,7 +325,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td valign="top">{t}add new X-Header:{/t}</td>
+		<td valign="top">{t}add new X-Header{/t}:</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -334,11 +334,11 @@
 			<form action="?module=email_view&#038;id={$id}&#038;did={$did}" method="post">
 			<table border="0">
 			<tr>
-				<td style="padding-right:10px;">{t}X-Header:{/t}</td>
+				<td style="padding-right:10px;">{t}X-Header{/t}:</td>
 				<td><input type="text" name="xheader_name" /></td>
 			</tr>
 			<tr>
-				<td style="padding-right:10px;">{t}Value:{/t}</td>
+				<td style="padding-right:10px;">{t}Value{/t}:</td>
 				<td><input type="text" name="xheader_value" /></td>
 			</tr>
 			</table>
@@ -371,7 +371,7 @@
  <td colspan="2" class="domain_view"><h3>{t}settings{/t}</h3></td>
 </tr>
 <tr>
-<td>{t}delete virus notifactions:{/t}</td>
+<td>{t}delete virus notifactions{/t}:</td>
   <td><select name="del_virus_notifi">
 		{if $del_virus_notifi eq 1}
 			<option value="1" selected="selected">{t}yes{/t}</option>
@@ -383,7 +383,7 @@
   </select></td>  
 </tr>
 <tr>
-	<td>{t}filter doubled mails:{/t}</td>
+	<td>{t}filter doubled mails{/t}:</td>
 	<td>
 		<select name="del_dups_mails">
 		{if $del_dups_mails == 1}
@@ -409,12 +409,12 @@
  <td colspan="2" class="domain_view"><h3>{t}forwarding{/t}</h3></td>
 </tr>
 <tr>
-	<td>{t}forward all mails to:{/t}</td>
+	<td>{t}forward all mails to{/t}:</td>
 	<td><input name="forwardaddress" value="{$forwardaddress}" type="text"/></td>
 </tr>
 
 <tr>
-	<td>{t}save copy:{/t}</td>
+	<td>{t}save copy{/t}:</td>
 	<td><select name="save_local">
 	{if $if_forward_cc == 1 }
 		<option value="1">{t}yes{/t}</option>
@@ -427,7 +427,7 @@
 </tr>
 
 <tr>
-	<td>{t}delete forwarding:{/t}</td>
+	<td>{t}delete forwarding{/t}:</td>
 	<td><input type="checkbox" name="delete_forward"/></td>
 </tr>
 <tr>
@@ -444,7 +444,7 @@
  <td colspan="2" class="domain_view"><h3>{t}spamfilter{/t}</h3></td>
 </tr>
 <tr>
-	<td>{t}spamfilter active:{/t}</td>
+	<td>{t}spamfilter active{/t}:</td>
 	<td><select id="spamassassin_active" name="spamassasin_active">
 	<option value="1" onclick="cpves_sa_active('1');">{t}yes{/t}</option>
 	{if $spamassassin_active eq '0' }
@@ -457,7 +457,7 @@
 
 {if $if_bogofilter == 1}
 <tr>
-	<td>{t}bogofilter active:{/t}</td>
+	<td>{t}bogofilter active{/t}:</td>
 	<td><select id="bogofilter_active" name="bogofilter_active">
 	<option value="1">{t}yes{/t}</option>
 	{if $bogofilter_active == 0}
@@ -470,7 +470,7 @@
 {/if}
 	
 <tr>
-	<td valign="top">{t}change subject:{/t}</td>
+	<td valign="top">{t}change subject{/t}:</td>
 	<td>{if $rewrite_subject == '1' } 
 	<input type="radio" name="rewrite_subject"  value="0" /> {t}no{/t} 
 	<input type="radio" name="rewrite_subject" checked="checked" value="1" /> {t}yes{/t}<br />
@@ -483,11 +483,11 @@
 </tr>
 	
 <tr>
-	<td>{t}mark message as spam:{/t}</td>
+	<td>{t}mark message as spam{/t}:</td>
 	<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" />
 </td>
 <tr>
-	<td valign="top">{t}delete known spam:{/t}</td>
+	<td valign="top">{t}delete known spam{/t}:</td>
 	<td>
 	<select name="del_known_spam" id="del_known_spam">
 		<option value="0" onClick="cpves_sa_del_knowndisable('0')">{t}no{/t}</option>
@@ -519,7 +519,7 @@
 	</td>
 </tr>
 <tr>
-	<td>{t}move known spam:{/t}</td>
+	<td>{t}move known spam{/t}:</td>
 	<td>{if $sa_move_spam == '0'}{t}not active{/t}{else}
 	INBOX/{$sa_move_spam}
 	{/if}
@@ -533,8 +533,8 @@
 <span style="font-weight:bold;">{t}This option is dangerous, an wrong value will delete spam and Ham!{/t}</span><br/><br/>
 {t}The threshold value for the delete spam option should be twice as high as the threshold for mark spam only!{/t}
 <br/><br/>
-{t}spam mark threshold:{/t} <span id="sa_thresshold_value"></span><br/>
-{t}spam delete threshold:{/t} <span id="sa_del_known_spam"></span><br/>
+{t}spam mark threshold{/t}: <span id="sa_thresshold_value"></span><br/>
+{t}spam delete threshold{/t}: <span id="sa_del_known_spam"></span><br/>
 <br/>
 <p style="text-align:center">
 <a href="#" onClick="tb_remove();">Abbrechen</a> |

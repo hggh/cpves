@@ -3,13 +3,13 @@
 <form action="?module=forward_add&#038;did={$did}" method="post">
 <table>
 <tr>
- <td>{t}emailaddress:{/t}</td>
+ <td>{t}emailaddress{/t}:</td>
  <td style="width:10px;"></td>
  <td><input type="text" name="from" value="{$from}"/>@{$domain}</td>
 </tr>
 
 <tr>
- <td valign="top">{t}forward to:{/t}</td>
+ <td valign="top">{t}forward to{/t}:</td>
  <td style="width:10px;"></td>
  <td><textarea cols="40" rows="10" name="to" value="{$to}"></textarea>
 

@@ -2,7 +2,7 @@
 <table>
 <form action="?module=user_autores" method="post">
 	<tr>
-		<td>{t}vacation active:{/t}</td>
+		<td>{t}vacation active{/t}:</td>
 		<td><select name="autores_active">
 			<option value="y" onclick="cpves_autores_field('');">{t}yes{/t}</option>
 			{if $autores_active eq 'n' }
@@ -13,17 +13,17 @@
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}send vacation back to sender:{/t}</td>
+		<td>{t}send vacation back to sender{/t}:</td>
 		<td>
 			{html_options name="autores_sendback_times" id="autores_sendback_times" options="$autores_sendback_times_selects" selected=$autores_sendback_times_value  style="width:200px;"}
 		</td>
 	</tr>
 	<tr>
-		<td>{t}vacation subject:{/t}</td>
+		<td>{t}vacation subject{/t}:</td>
 		<td><input type="text" id="autores_subject" name="autores_subject" maxlength="50" value="{$autores_subject}" /></td>
 	</tr>
 	<tr>
-		<td valign="top">{t}message:{/t}</td>
+		<td valign="top">{t}message{/t}:</td>
 		<td>
 		<textarea name="autores_msg" id="autores_msg" cols="50" rows="15">{$autores_msg}</textarea>
 		</td>
@@ -42,7 +42,7 @@
 
 	<form action="?module=user_autores" method="post">
 	<tr>
-		<td valign="top">{t}automatic deactivation:{/t}</td>
+		<td valign="top">{t}automatic deactivation{/t}:</td>
 		<td><select name="autores_datedisable_active" id="autores_datedisable_active">
 		<option value="1" onclick="cpves_autores_datedisable('')">{t}yes{/t}</option>
 		{if $autores_disable.active == 0 }
@@ -53,11 +53,11 @@
 		</select></td>
 	</tr>
 	<tr>
-		<td>{t}date of deactivation:{/t}</td>
+		<td>{t}date of deactivation{/t}:</td>
 		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
 	</tr>
 	<tr>
-		<td>{t}time of deactivation:{/t}</td>
+		<td>{t}time of deactivation{/t}:</td>
 		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
 	</tr>
 	<tr>
@@ -74,7 +74,7 @@
 	
 	<form action="?module=user_autores" method="post">
 	<tr>
-		<td>{t}activate valid recipient lists:{/t}</td>
+		<td>{t}activate valid recipient lists{/t}:</td>
 		<td>{if $val_tos_active == 1 }
 		<input type="radio" id="autores_valtos_active_on" onclick="submit();" checked="checked" name="val_tos_active" value="1"> {t}yes{/t} <input type="radio" onclick="submit();" name="val_tos_active" id="autores_valtos_active_off"  value="0"> {t}no{/t}
 		{else}
@@ -82,7 +82,7 @@
 	</tr>
 	
 	<tr>
-		<td valign="top">{t}valid recipients:{/t}</td>
+		<td valign="top">{t}valid recipients{/t}:</td>
 		<td>
 		<select style="min-width:250px;" name="val_tos[]" id="autores_valtos_data" size="8" multiple="true">
 		{foreach from=$table_val_tos item=row }
@@ -94,7 +94,7 @@
 		
 	</tr>
 	<tr>
-		<td>{t}add new address:{/t}</td>
+		<td>{t}add new address{/t}:</td>
 		<td><input type="text" id="autores_valtos_add_data" name="val_tos_da" /><input type="submit" id="autores_valtos_add_submit" name="val_tos_add" value="{t}add{/t}" /></td>
 	</tr></form>
 {if $p_autores_xheader == 1}
@@ -102,7 +102,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td valign="top">{t}vacation X-Header disable feature:{/t}</td>
+		<td valign="top">{t}vacation X-Header disable feature{/t}:</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -126,7 +126,7 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td valign="top">{t}add new X-Header:{/t}</td>
+		<td valign="top">{t}add new X-Header{/t}:</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -135,11 +135,11 @@
 			<form action="?module=user_autores" method="post">
 			<table border="0">
 			<tr>
-				<td style="padding-right:10px;">{t}X-Header:{/t}</td>
+				<td style="padding-right:10px;">{t}X-Header{/t}:</td>
 				<td><input type="text" name="xheader_name" /></td>
 			</tr>
 			<tr>
-				<td style="padding-right:10px;">{t}Value:{/t}</td>
+				<td style="padding-right:10px;">{t}Value{/t}:</td>
 				<td><input type="text" name="xheader_value" /></td>
 			</tr>
 			</table>

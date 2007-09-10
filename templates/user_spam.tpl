@@ -1,7 +1,7 @@
 <form action="?module=user_spam" name="spam" id="sa_form" method="post">
 <table>
 	<tr>
-		<td>{t}spamfilter active:{/t}</td>
+		<td>{t}spamfilter active{/t}:</td>
 		<td><select id="spamassassin_active" name="spamassassin_active">
 		<option value="1" onclick="cpves_sa_active('1');">{t}yes{/t}</option>
 		{if $spamassassin_active eq '0' }
@@ -14,7 +14,7 @@
 	
 	{if $p_bogofilter == 1}
 	<tr>
-		<td>{t}bogofilter active:{/t}</td>
+		<td>{t}bogofilter active{/t}:</td>
 		<td><select id="bogofilter_active" name="bogofilter_active">
 		<option value="1">{t}yes{/t}</option>
 		{if $bogofilter_active == 0}
@@ -27,7 +27,7 @@
 	{/if}
 	
 	<tr>
-		<td valign="top">{t}change subject:{/t}</td>
+		<td valign="top">{t}change subject{/t}:</td>
 		<td>{if $rewrite_subject == '1' } 
 		<input type="radio" name="rewrite_subject"  value="0" /> {t}no{/t} 
 		<input type="radio" name="rewrite_subject" checked="checked" value="1" /> {t}yes{/t}<br />
@@ -40,12 +40,12 @@
 	</tr>
 	
 	<tr>
-		<td>{t}mark message as spam:{/t}</td>
+		<td>{t}mark message as spam{/t}:</td>
 		<td><input type="text" id="spamassassin_threshold" name="threshold" value="{$threshold}" /></td>
 	</tr>
 
 	<tr>
-		<td valign="top">{t}move known spam:{/t}</td>
+		<td valign="top">{t}move known spam{/t}:</td>
 		<td>{if $move_spam eq '0' } <input type="radio" name="move_spam" checked="checked" value="0" /> {t}no{/t} 
 		<input type="radio" name="move_spam"  value="1" /> {t}yes{/t}<br />
 		{else} <input type="radio" name="move_spam"  value="0" /> {t}no{/t} 
@@ -75,7 +75,7 @@
 	<tr>
 	{if $p_spam_del == 1}
 	<tr>
-		<td valign="top">{t}delete known spam:{/t}</td>
+		<td valign="top">{t}delete known spam{/t}:</td>
 		<td>
 		<select name="del_known_spam" id="del_known_spam">
 			<option value="0" onClick="cpves_sa_del_knowndisable('0')">{t}no{/t}</option>
@@ -117,8 +117,8 @@
 <span style="font-weight:bold;">{t}This option is dangerous, an wrong value will delete spam and Ham!{/t}</span><br/><br/>
 {t}The threshold value for the delete spam option should be twice as high as the threshold for mark spam only!{/t}
 <br/><br/>
-{t}spam mark threshold:{/t} <span id="sa_thresshold_value"></span><br/>
-{t}spam delete threshold:{/t} <span id="sa_del_known_spam"></span><br/>
+{t}spam mark threshold{/t}: <span id="sa_thresshold_value"></span><br/>
+{t}spam delete threshold{/t}: <span id="sa_del_known_spam"></span><br/>
 <br/>
 <p style="text-align:center">
 <a href="#" onClick="tb_remove();">{t}abort{/t}</a> |

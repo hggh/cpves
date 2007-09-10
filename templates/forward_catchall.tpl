@@ -6,11 +6,11 @@
 {/if}
 <table>
 <tr>
- <td>{t}domain:{/t} </td>
+ <td>{t}domain{/t}: </td>
  <td>@{$dnsname}</td>
 </tr>
 <tr>
- <td>{t}forward to:{/t}</td>
+ <td>{t}forward to{/t}:</td>
  <td><input name="eto" value="{$eto}" /></td>
 </tr>
 <tr>

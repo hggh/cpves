@@ -3,12 +3,12 @@
 	{foreach key=fid from=$available_folders item=row}
 	{if $row.type != 'inbox' }
 	<tr>
-	<td valign="top" style="padding-right:10px;"><b>{t}IMAP folder:{/t}</b> <i>{$row.name_display}</i></td>
+	<td valign="top" style="padding-right:10px;"><b>{t}IMAP folder{/t}:</b> <i>{$row.name_display}</i></td>
 	<td valign="top" style="padding-bottom:19px;">
 	<form action="?module=user_salearn" method="post">
 	<table border="0">
 	<tr>
-		<td>{t}learn folder:{/t}</td>
+		<td>{t}learn folder{/t}:</td>
 		<td><select name="sa_learn_type">
 		{if $row.satype == 'spam'}
 		<option value="0">{t}not learning{/t}</option>

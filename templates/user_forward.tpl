@@ -2,7 +2,7 @@
 <table>
 <tr>
 </tr>
-	<td>{t}forward all mails to:{/t}</td>
+	<td>{t}forward all mails to{/t}:</td>
 	<td style="width:10px;"></td>
 	
 	<td>
@@ -10,7 +10,7 @@
 	</td>
 </form>
 <tr>
-	<td>{t}save copy:{/t}</td>
+	<td>{t}save copy{/t}:</td>
 	<td style="width:10px;"></td>
 	<td>
 		<select name="save_local">
@@ -26,7 +26,7 @@
 	
 </tr>
 <tr>
-	<td>{t}delete forwarding:{/t}</td>
+	<td>{t}delete forwarding{/t}:</td>
 	<td style="width:10px;"></td>
 	<td>
 		<input type="checkbox" name="delete_forward"/>

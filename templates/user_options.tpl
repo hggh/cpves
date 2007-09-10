@@ -3,7 +3,7 @@
 <tr>
 </tr>
 <tr>
-	<td>{t}webinterface language:{/t}</td>
+	<td>{t}webinterface language{/t}:</td>
 	<td style="width:10px;"></td>
 	<td>
 	<select name="web_lang">
@@ -18,7 +18,7 @@
 	</select></td>
 </tr>
 <tr>
-	<td>{t}delete virus notifactions:{/t}</td>
+	<td>{t}delete virus notifactions{/t}:</td>
 	<td style="width:10px;"></td>
 	<td>
 		<select name="del_virus_notifi">
@@ -33,7 +33,7 @@
 	</td>
 </tr>
 <tr>
-	<td>{t}filter doubled mails:{/t}</td>
+	<td>{t}filter doubled mails{/t}:</td>
 	<td style="width:10px;"></td>
 	<td>
 		<select name="del_dups_mails">

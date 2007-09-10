@@ -2,11 +2,11 @@
 <form action="index.php?module=login" method="post">
 <table>
 <tr>
- <td>{t}username:{/t}</td>
+ <td>{t}username{/t}:</td>
  <td style="text-align: right;"><input value="" name="email" type="text" /></td>
 </tr>
 <tr>
- <td>{t}password:{/t}</td>
+ <td>{t}password{/t}:</td>
  <td style="text-align: right;"><input name="password" type="password" /></td>
 </tr>
 <tr>
