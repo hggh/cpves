@@ -1,4 +1,4 @@
-CpVES 0.06 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+CpVES 0.06 2007-09-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: autoresponder.pl: special X-Header vacation disable
 	o Added: special X-Header vacation to email user/admin frontend
 	o Added: pidfile for create_mailboxes.pl
