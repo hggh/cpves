@@ -1,3 +1,5 @@
+CpVES 0.07 2007-09-13 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Fixed: mail_system.sql
 CpVES 0.06 2007-09-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: autoresponder.pl: special X-Header vacation disable
 	o Added: special X-Header vacation to email user/admin frontend

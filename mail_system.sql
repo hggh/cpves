@@ -417,6 +417,16 @@ CREATE TABLE `users` (
 
 -- 
 -- Dumping data for table `users`
--- 
-
-        
+--
+CREATE TABLE `autoresponder_xheader` (
+  `id` int(11) NOT NULL auto_increment,
+  `email` int(11) NOT NULL,
+  `xheader` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `email` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+ALTER TABLE `domains` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `mb_size` INT NOT NULL DEFAULT '0';
+ALTER TABLE `adm_users` ADD `web_lang` VARCHAR( 8 ) NOT NULL ;
