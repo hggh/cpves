@@ -23,6 +23,7 @@ $smarty->assign('webmail_link',$config['webmail_link']);
 $smarty->assign('mailgraph_link',$config['mailgraph_link']);
 $smarty->assign('display_mb_size',$config['display_mb_size']);
 $smarty->assign('cpves_version', $config['cpves_version']);
+$smarty->assign('config', $config);
 /*
 mailfilter prios:
 del_dups_mails		- 2

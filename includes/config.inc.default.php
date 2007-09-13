@@ -53,6 +53,12 @@ $config['imap_server'] = "swetlana.brachium-system.net";
 //Company Name:
 $config['company_title'] = "Some Company";
 
+// use the postfix per recipient classes with policyd-weight
+$config['recipient_classes_polw']=1;
+
+// use the postfix per recipient classes with greylisting
+$config['recipient_classes_grey']=0;
+
 $ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
 
 //Mailinglistenfeature: 

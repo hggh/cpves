@@ -172,6 +172,7 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate webmail.{/t}" /></a>
  {/if}</td>
 </tr>
+{if $config.recipient_classes_polw == 1}
 <tr>
  <td>{t}Policyd-Weight{/t}:</td>
  <td></td>
@@ -184,6 +185,8 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate policyd-weight.{/t}" /></a>
  {/if}</td>
 </tr>
+{/if}
+{if $config.recipient_classes_grey == 1}
 <tr>
  <td>{t}Greylisting{/t}:</td>
  <td></td>
@@ -196,6 +199,7 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate greylisting.{/t}" /></a>
  {/if}</td>
 </tr>
+{/if}
 <tr>
  <td>{t}access to CpVES webinterface{/t}:</td>
  <td></td>

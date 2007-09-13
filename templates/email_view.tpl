@@ -52,7 +52,7 @@
      </select></td>
 </tr>
 {/if}
-{if $if_check_polw == 1 }
+{if $if_check_polw == 1 && $config.recipient_classes_polw == 1}
 <tr>
  <td>{t}policyd-weight available{/t}:</td>
  <td><select name="check_polw">
@@ -65,7 +65,7 @@
      </select></td>
 </tr>
 {/if}
-{if $if_check_grey == 1 }
+{if $if_check_grey == 1 && $config.recipient_classes_grey }
 <tr>
  <td>{t}greylisting available{/t}:</td>
  <td><select name="check_grey">

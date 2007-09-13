@@ -182,7 +182,13 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GE
 		$smarty->assign('if_error_sa_disable_enable_sa_learn', 'y');
 	}
 	else {
+		if ($_GET['f'] == 'check_polw' && $config['recipient_classes_polw']==0) {
+		}
+		elseif($_GET['f'] == 'check_grey' && $config['recipient_classes_grey']==0) {
+		}
+		else {
 		change_domain_feature($_GET['did'],$_GET['f'],$_GET['fstate']);
+		}
 	}
 
 }

@@ -492,13 +492,13 @@ if (isset($_SESSION['superadmin']) &&
 			else {
 				$autores_xheader=0;
 			}
-			if (isset($_POST['check_polw']) && $_POST['check_polw'] == "enable" && check_domain_feature($_GET['did'], 'p_check_polw')) {
+			if (isset($_POST['check_polw']) && $_POST['check_polw'] == "enable" && check_domain_feature($_GET['did'], 'p_check_polw') && $config['recipient_classes_polw']) {
 				$check_polw=1;
 			}
 			else {
 				$check_polw=0;
 			}
-			if (isset($_POST['check_grey']) && $_POST['check_grey'] == "enable" && check_domain_feature($_GET['did'], 'p_check_grey')) {
+			if (isset($_POST['check_grey']) && $_POST['check_grey'] == "enable" && check_domain_feature($_GET['did'], 'p_check_grey') && $config['recipient_classes_grey']) {
 				$check_grey=1;
 			}
 			else {
