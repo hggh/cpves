@@ -201,6 +201,12 @@ function change_domain_feature($did,$feature,$state) {
 		case 'autores_xheader':
 			$do="p_autores_xheader";
 			break;
+		case 'check_polw':
+			$do="p_check_polw";
+			break;
+		case 'check_grey':
+			$do="p_check_grey";
+			break;
 		default:
 			return false;
 	}
@@ -210,6 +216,19 @@ function change_domain_feature($did,$feature,$state) {
 		$db->escapeSimple($did));
 	$result=&$db->query($sql);
 	if ($result) {
+		
+		if (preg_match("/p_check_/", $do) ==1) {
+			$sql=sprintf("UPDATE users SET %s='%s' WHERE domainid='%s'",
+				$do,
+				$db->escapeSimple($state),
+				$db->escapeSimple($did));
+			$result=&$db->query($sql);
+			$sql=sprintf("UPDATE forwardings SET %s='%s' WHERE domainid='%s'",
+				$do,
+				$db->escapeSimple($state),
+				$db->escapeSimple($did));
+			$result=&$db->query($sql);
+		}
 		return true;
 	}
 	return false;

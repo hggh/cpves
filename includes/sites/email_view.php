@@ -46,6 +46,8 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_fetchmail', $data['p_fetchmail']);
 	$smarty->assign('if_webinterface', $data['p_webinterface']);
 	$smarty->assign('if_autores_xheader', $data['p_autores_xheader']);
+	$smarty->assign('if_check_polw', $data['p_check_polw']);
+	$smarty->assign('if_check_grey', $data['p_check_grey']);
 	$sql=sprintf("SELECT passwd,cpasswd,email FROM users WHERE id='%s'",
 		$db->escapeSimple($_GET['id']));
 	$result=&$db->query($sql);
@@ -490,6 +492,18 @@ if (isset($_SESSION['superadmin']) &&
 			else {
 				$autores_xheader=0;
 			}
+			if (isset($_POST['check_polw']) && $_POST['check_polw'] == "enable" && check_domain_feature($_GET['did'], 'p_check_polw')) {
+				$check_polw=1;
+			}
+			else {
+				$check_polw=0;
+			}
+			if (isset($_POST['check_grey']) && $_POST['check_grey'] == "enable" && check_domain_feature($_GET['did'], 'p_check_grey')) {
+				$check_grey=1;
+			}
+			else {
+				$check_grey=0;
+			}
 			if (isset($_POST['forwarding']) && $_POST['forwarding'] == "enable" ) {
 				$forward_vis=1;
 			}
@@ -527,7 +541,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			if (!$error)
 			{
-				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d',p_autores_xheader='%d' WHERE id='%d' ",
+				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d',p_autores_xheader='%d',p_check_polw='%d',p_check_grey='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
 					$db->escapeSimple($_POST['full_name']),
 					$db->escapeSimple($imap),
@@ -543,6 +557,8 @@ if (isset($_SESSION['superadmin']) &&
 					$db->escapeSimple($fetchmail),
 					$db->escapeSimple($webinterface),
 					$db->escapeSimple($autores_xheader),
+					$db->escapeSimple($check_polw),
+					$db->escapeSimple($check_grey),
 					$db->escapeSimple($_GET['id'])) ;
 				$result=&$db->query($sql);
 				$smarty->assign('success_msg', 'y');
@@ -572,6 +588,8 @@ if (isset($_SESSION['superadmin']) &&
 	$smarty->assign('if_sa_learn_value', $edata['p_sa_learn']);
 	$smarty->assign('if_fetchmail_value',$edata['p_fetchmail']);
 	$smarty->assign('if_autores_xheader_value',$edata['p_autores_xheader']);
+	$smarty->assign('if_check_polw_value',$edata['p_check_polw']);
+	$smarty->assign('if_check_grey_value',$edata['p_check_grey']);
 	if ( !empty($edata['move_spam']) && $edata['move_spam']!=NULL) {
 		$smarty->assign('sa_move_spam',$edata['move_spam'] );
 	}

@@ -1,5 +1,6 @@
 CpVES 0.08 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
-
+	o Added: policyd-weight per user/domain configuration
+	o Added: greylisting per user/domain configuration
 CpVES 0.07 2007-09-13 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: mail_system.sql
 CpVES 0.06 2007-09-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>

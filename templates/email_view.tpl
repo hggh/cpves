@@ -52,6 +52,32 @@
      </select></td>
 </tr>
 {/if}
+{if $if_check_polw == 1 }
+<tr>
+ <td>{t}policyd-weight available{/t}:</td>
+ <td><select name="check_polw">
+     <option value="enable">{t}yes{/t}</option>
+     {if $if_check_polw_value == 0 }
+     <option value="disable" selected="selected" >{t}no{/t}</option>
+     {else}
+     <option value="disable" >{t}no{/t}</option>
+     {/if}
+     </select></td>
+</tr>
+{/if}
+{if $if_check_grey == 1 }
+<tr>
+ <td>{t}greylisting available{/t}:</td>
+ <td><select name="check_grey">
+     <option value="enable">{t}yes{/t}</option>
+     {if $if_check_grey_value == 0 }
+     <option value="disable" selected="selected" >{t}no{/t}</option>
+     {else}
+     <option value="disable" >{t}no{/t}</option>
+     {/if}
+     </select></td>
+</tr>
+{/if}
 {if $if_webinterface == 1 }
 <tr>
  <td>{t}access to CpVES webinterface{/t}:</td>

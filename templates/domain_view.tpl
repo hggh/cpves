@@ -173,6 +173,30 @@
  {/if}</td>
 </tr>
 <tr>
+ <td>{t}Policyd-Weight{/t}:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_check_polw ==  0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_polw">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate policyd-weight.{/t}" /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=check_polw">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate policyd-weight.{/t}" /></a>
+ {/if}</td>
+</tr>
+<tr>
+ <td>{t}Greylisting{/t}:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_check_grey ==  0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_grey">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate greylisting.{/t}" /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=check_grey">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate greylisting.{/t}" /></a>
+ {/if}</td>
+</tr>
+<tr>
  <td>{t}access to CpVES webinterface{/t}:</td>
  <td></td>
  <td style="text-align:right;">
