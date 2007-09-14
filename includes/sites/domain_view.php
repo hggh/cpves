@@ -215,6 +215,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GE
 	$smarty->assign('p_autores_xheader', $data['p_autores_xheader']);
 	$smarty->assign('p_check_polw', $data['p_check_polw']);
 	$smarty->assign('p_check_grey', $data['p_check_grey']);
+	$smarty->assign('p_mlists', $data['p_mlists']);
 
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);

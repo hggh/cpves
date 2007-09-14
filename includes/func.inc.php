@@ -207,6 +207,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'check_grey':
 			$do="p_check_grey";
 			break;
+		case 'mlists':
+			$do="p_mlists";
+			break;
 		default:
 			return false;
 	}

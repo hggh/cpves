@@ -156,9 +156,15 @@ if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	    //Build up Menu
 	    $smarty->assign('if_domain_view', 'y');
 	    $smarty->assign('did',$_GET['did']);
-	    
+	
 	    $access_domain=check_access_to_domain($_GET['did'], $db);
 	    $smarty->assign('access_domain', $access_domain);
+		$sql=sprintf("SELECT p_mlists FROM domains WHERE id='%d'",
+			$db->escapeSimple($_GET['did']));
+		$result=&$db->query($sql);
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		$access_domain_mlists=$data['p_mlists'];
+		$smarty->assign('access_domain_mlists',$access_domain_mlists );
 	}
 }
 // Normal user fix for viewing correct menu:

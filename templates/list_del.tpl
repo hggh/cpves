@@ -1,5 +1,4 @@
-{if $if_superadmin == 1 or $if_admin == '1' and $access_domain eq 'true'}
-
+{if ($if_superadmin == 1 or $if_admin == '1' and $access_domain eq 'true') and $access_domain_mlists == 1 and $config.mailinglists == '1'}
 {if $if_del_ok != "y" }
 <table>
 <tr>

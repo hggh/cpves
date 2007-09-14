@@ -75,7 +75,7 @@
 {/foreach}
 </table>
 
-{if $config.mailinglists == '1'}
+{if $config.mailinglists == '1' && $access_domain_mlists == 1 }
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3"><h3>{t}mailinglists{/t}:</h3></td>
@@ -172,6 +172,20 @@
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate webmail.{/t}" /></a>
  {/if}</td>
 </tr>
+{if $config.mailinglists == '1'}
+<tr>
+ <td>{t}Mailinglist feature{/t}:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $p_mlists ==  0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mlists">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglists.{/t}" /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=mlists">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglists.{/t}" /></a>
+ {/if}</td>
+</tr>
+{/if}
 {if $config.recipient_classes_polw == 1}
 <tr>
  <td>{t}Policyd-Weight{/t}:</td>

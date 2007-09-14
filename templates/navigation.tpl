@@ -6,7 +6,7 @@
 	<a class="nav sub" href="?module=domain_view&#038;did={$did}">{t}domain summary{/t}</a>
 	<a class="nav sub" href="?module=email_add&#038;did={$did}">{t}new emailaddress{/t}</a>
 	<a class="nav sub" href="?module=forward_add&#038;did={$did}">{t}new forward{/t}</a>
-	{if $config.mailinglists == '1' }
+	{if $config.mailinglists == '1' && $access_domain_mlists == '1' }
 	<a class="nav sub" href="?module=list_add&#038;did={$did}">{t}new mailinglist{/t}</a>
 	{/if}
 {/if}
