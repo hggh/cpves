@@ -40,6 +40,49 @@
  {/if}
  </td>
 </tr>
+{if $if_check_polw == 1 && $config.recipient_classes_polw == 1 or $if_check_grey == 1 && $config.recipient_classes_grey == 1}
+
+{if $if_check_polw == 1 && $config.recipient_classes_polw == 1}
+<form action="?module=forward_view&#038;id={$id}&#038;did={$did}" method="post">
+<tr>
+	<td colspan="2" class="domain_view"><h3>{t 1=$forward}options of %1{/t}</h3></td>
+</tr>
+<tr>
+ <td>{t}policyd-weight available{/t}:</td>
+ <td><select name="check_polw" >
+     <option value="enable">{t}yes{/t}</option>
+     {if $if_check_polw_value == 0 }
+     <option value="disable" selected="selected" >{t}no{/t}</option>
+     {else}
+     <option value="disable" >{t}no{/t}</option>
+     {/if}
+     </select></td>
+</tr>
+{/if}
+{if $if_check_grey == 1 && $config.recipient_classes_grey }
+<tr>
+ <td>{t}greylisting available{/t}:</td>
+ <td ><select name="check_grey">
+     <option value="enable">{t}yes{/t}</option>
+     {if $if_check_grey_value == 0 }
+     <option value="disable" selected="selected" >{t}no{/t}</option>
+     {else}
+     <option value="disable" >{t}no{/t}</option>
+     {/if}
+     </select></td>
+</tr>
+{/if}
+<tr>
+	<td></td>
+	<td><input type="submit" name="forwarding_options" value="{t}save{/t}"/></td>
+</tr>
+</form>
+
+{/if}
+
+
+
+
 </table>
 
 {else}

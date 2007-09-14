@@ -25,6 +25,29 @@ if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
 	$access_domain )
 {
+	// modify the smtp postfix classes:
+	if (isset($_POST['forwarding_options']) && check_domain_feature($_GET['did'], 'p_check_grey') && $config['recipient_classes_grey']) {
+		if (isset($_POST['check_grey']) && $_POST['check_grey'] == "enable") {
+			$sql=sprintf("UPDATE forwardings SET p_check_grey=1 WHERE id='%d'",
+				$db->escapeSimple($_GET['id']));
+		}
+		else {
+			$sql=sprintf("UPDATE forwardings SET p_check_grey=0 WHERE id='%d'",
+				$db->escapeSimple($_GET['id']));
+		}
+		$db->query($sql);
+	}
+	if (isset($_POST['forwarding_options']) && check_domain_feature($_GET['did'], 'p_check_polw') && $config['recipient_classes_polw']) {
+		if (isset($_POST['check_polw']) && $_POST['check_polw'] == "enable") {
+			$sql=sprintf("UPDATE forwardings SET p_check_polw=1 WHERE id='%d'",
+				$db->escapeSimple($_GET['id']));
+		}
+		else {
+			$sql=sprintf("UPDATE forwardings SET p_check_polw=0 WHERE id='%d'",
+				$db->escapeSimple($_GET['id']));
+		}
+		$db->query($sql);
+	}
 	//del adresses:
 	if (isset($_POST['del_addr']) && isset($_POST['etos']))
 	{
@@ -80,6 +103,8 @@ if (isset($_SESSION['superadmin']) &&
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	$smarty->assign('forward', $data['efrom']);
+	$smarty->assign('if_check_polw_value', $data['p_check_polw']);
+	$smarty->assign('if_check_grey_value', $data['p_check_grey']);
 	$forwards=array();
 	if ( check_multi_forward($data['eto'])=='y') //multipli
 	{
@@ -100,12 +125,14 @@ if (isset($_SESSION['superadmin']) &&
 	}
 	sort($forwards);
 	
-	$sql=sprintf("SELECT dnsname,id FROM domains WHERE id='%s'",
+	$sql=sprintf("SELECT dnsname,id,p_check_polw,p_check_grey FROM domains WHERE id='%s'",
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	$dnsname=$data['dnsname'];
 	$domain_id=$data['id'];
+	$smarty->assign('if_check_polw', $data['p_check_polw']);
+	$smarty->assign('if_check_grey', $data['p_check_grey']);
 	
 	
 	$smarty->assign('forwards',$forwards);
