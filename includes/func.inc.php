@@ -16,7 +16,6 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-$smarty->assign('if_listings', $config['mailinglisten']);
 $smarty->assign('company_title', $config['company_title']);
 $smarty->assign('max_passwd_len', $config['max_passwd_len']);
 $smarty->assign('webmail_link',$config['webmail_link']);

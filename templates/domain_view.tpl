@@ -75,7 +75,7 @@
 {/foreach}
 </table>
 
-{if $if_listings == 'y' }
+{if $config.mailinglists == '1'}
 <table border="0" class="domain_view">
 <tr>
  <td style="width:580px;" colspan="3"><h3>{t}mailinglists{/t}:</h3></td>
@@ -89,7 +89,7 @@
  <td style="width:200px;">{t}recipients{/t}: {$row.recps}</td>
  <td style="width:100px;">{if $row.public eq 'y'}{t}public{/t}{else}{t}private{/t}{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
- {if $row.access == 'y' }
+ {if $row.access == '1' }
  <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglist.{/t}"/></a>
  {else}
  <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglist.{/t}"/></a>

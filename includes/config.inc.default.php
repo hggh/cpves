@@ -54,15 +54,16 @@ $config['imap_server'] = "swetlana.brachium-system.net";
 $config['company_title'] = "Some Company";
 
 // use the postfix per recipient classes with policyd-weight
-$config['recipient_classes_polw']=1;
+$config['recipient_classes_polw']=0;
 
 // use the postfix per recipient classes with greylisting
 $config['recipient_classes_grey']=0;
 
 $ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
 
-//Mailinglistenfeature: 
-$config['mailinglisten'] = 'n'; //Development, please don't use!
+// use CpVES mailinglist feature 
+$config['mailinglists'] = '1';
+
 //Run Systemscript via xinetd Service 
 $config['service_enabled'] = 'n'; // Development, please don't use!
 $config['service_port'] = 7928; // Development, please don't use!

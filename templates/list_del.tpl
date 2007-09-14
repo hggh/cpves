@@ -3,33 +3,33 @@
 {if $if_del_ok != "y" }
 <table>
 <tr>
- <td>Liste:</td>
+ <td>{t}list{/t}:</td>
  <td style="text-align:right;">{$address}</td>
 </tr>
 <tr>
- <td valign="top">Empf&auml;nger:</td>
+ <td valign="top">{t}recipients{/t}:</td>
  <td style="text-align:right;">
  {foreach item=row from=$recps}
  {$row}<br/>
  {foreachelse}
- Keine Empf&auml;nger
+{t}no recipients found{/t}
  {/foreach}
  </td>
 </tr>
 <tr>
- <td colspan="2" style="color:red;">Soll diese Mailingliste gel&ouml;scht werden?</td>
+ <td colspan="2" style="color:red;">{t}Do you want to delete this list?{/t}</td>
 </tr>
 <tr>
  <td colspan="2"><form action="?module=list_del&#038;did={$did}&#38;id={$id}" method="post">
 <input type="hidden" name="del_ok" value="true"/>
-<input type="submit" name="submit" value="L&ouml;schen" />
+<input type="submit" name="submit" value="{t}delete{/t}" />
 </form></td>
 </tr>
 </table>
 
 <br/>
 {else}
-<div style="color:blue;">Mailingliste wurde gel&ouml;scht!<br/><br/></div>
+<div style="color:blue;">{t}mailinglist deleted!{/t}<br/><br/></div>
 <meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {/if}
 <br/>

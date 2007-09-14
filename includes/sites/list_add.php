@@ -58,7 +58,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			else
 			{
-				$sql=sprintf("INSERT INTO lists SET address = '%s', domainid = '%s', public = '%s'",
+				$sql=sprintf("INSERT INTO lists SET address = '%s', domainid = '%s', public = '%s',access=1",
 				$db->escapeSimple(strtolower($full_list)),
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($public));

@@ -268,7 +268,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 } //ENDE WHILE forward
 
 
-if ($config['mailinglisten'] != 'n') { //Run ML-Code only ==y
+if ($config['mailinglists'] == '1') { //Run ML-Code only ==1
 
 $sql = sprintf("SELECT id,COUNT(*) as num FROM list_recp GROUP BY id",
 	$db->escapeSimple($_GET['did']));
@@ -295,7 +295,7 @@ while( $row = $res->fetchrow(DB_FETCHMODE_ASSOC) ) {
 	);
 }
 
-} //Run ML-Code only ==y
+} //Run ML-Code only == 1
 
 //look at catchall  `efrom` REGEXP '^@'
 $sql=sprintf("SELECT eto,id,access FROM forwardings WHERE domainid='%d' AND efrom REGEXP '^@'",

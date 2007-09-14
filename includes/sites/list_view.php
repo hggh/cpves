@@ -67,7 +67,8 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('email_added', 'y');
 		} else {
 			$smarty->assign('email_added', 'n');
-			$smarty->assign('email_there', 'y');
+			$smarty->assign('error_msg' ,'y');
+			$smarty->assign('ml_email_there', 'y');
 		}
 	} //END hinzufugen
 	$sql = sprintf("SELECT id,address,public FROM lists WHERE id = %d",

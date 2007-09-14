@@ -144,7 +144,7 @@ if( $row->{public} eq 'n' ) {
 		Charset => "utf-8",
 		Disposition => 'inline',
 		Data    => "The sender $sender is not allowed to post on the list $list\n\nYour original email:\n\n" . $mail->body);
-  $e_send_to->head->add("User-Agent", 'CPM/ListMailer');
+  $e_send_to->head->add("User-Agent", 'CpVES/ListMailer');
   $e_send_to->head->add("To", $sender);
   $e_send_to->head->add("Sender", $config{'ml_postmaster'});
   $e_send_to->head->add("From", $config{'ml_postmaster'});

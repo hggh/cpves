@@ -84,4 +84,6 @@
 Bitte alle Felder ausf&uuml;llen!
 {elseif $if_xheader_empty == 'y' }
 {t}Both X-Header fields are required!{/t}
+{elseif $ml_email_there == 'y'}
+{t}email address is already on the list!{/t}
 {/if}

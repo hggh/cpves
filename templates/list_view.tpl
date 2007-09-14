@@ -2,18 +2,16 @@
 
 {if $email_added eq 'y'}
 {else}
- {if $email_there eq 'y'}
-<div style="text-align:center;color:blue;">Adresse ist schon eingetragen!</div>
- {/if}
+
 {/if}
 <form action="?module=list_view&#038;id={$id}&#038;did={$did}" method="post">
 <table style="width: 400px;">
 <tr>
- <td>Liste: </td>
+ <td>{t}list{/t}: </td>
  <td>{$address}</td>
 </tr>
 <tr>
- <td valign="top">Empf&auml;nger: </td>
+ <td valign="top">{t}recipient{/t}: </td>
  <td>
  <select name="addresses[]" size="8" multiple="true" >
  {foreach item=row from=$recps}
@@ -23,24 +21,24 @@
  </td>
 </tr>
 <tr>
- <td colspan="2" class="domain_view"><h3>Selektierte Adresse l&ouml;schen:</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}delete selected addresses{/t}:</h3></td>
 </tr>
 <tr>
- <td colspan="2"  style="text-align:right"><input name="del_addr" value="L&ouml;schen" type="submit" /></td>
+ <td colspan="2"  style="text-align:right"><input name="del_addr" value="{t}delete{/t}" type="submit" /></td>
 </tr>
 </table>
 </form>
 <table style="width: 400px;">
 <tr>
- <td colspan="2" class="domain_view"><h3>Adresse hinzuf&uuml;gen:</h3></td>
+ <td colspan="2" class="domain_view"><h3>{t}add address to list{/t}:</h3></td>
 </tr>
 <tr>
- <td valign="top">eMailadresse:</td>
- <td style="text-align:right"><form action="?module=list_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_address" /><br/><input  type="submit" value="Hinzuf&uuml;gen" name="submit_add" /></form><br/>
+ <td valign="top">{t}emailaddress{/t}:</td>
+ <td style="text-align:right"><form action="?module=list_view&#038;id={$id}&#038;did={$did}" method="post"><input type="text" name="add_address" /><br/><input  type="submit" value="{t}add{/t}" name="submit_add" /></form><br/>
  </td>
 </tr>
 </table>
-<div>Die Liste ist {if $public eq 'y'}&ouml;ffentlich{else}privat{/if} - [<a href="?module=list_view&#038;id={$id}&#038;did={$did}&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">&Auml;ndern</a>]</div>
+<div>{t}list is{/t} {if $public eq 'y'}{t}public{/t}{else}{t}private{/t}{/if} - [<a href="?module=list_view&#038;id={$id}&#038;did={$did}&#038;cmd={if $public eq 'y'}priv{else}pub{/if}">{t}change{/t}</a>]</div>
 
 
 {else}

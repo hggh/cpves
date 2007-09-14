@@ -150,3 +150,19 @@ ALTER TABLE `domains` ADD `p_check_grey` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
 DROP VIEW IF EXISTS smtpd_recipient_classes;
 CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM users WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 UNION SELECT efrom,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM forwardings WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0;
 
+CREATE TABLE `lists` (
+  `id` int(11) NOT NULL auto_increment,
+  `domainid` int(11) NOT NULL,
+  `address` varchar(80) NOT NULL,
+  `access` tinyint(1) default '1',
+  `public` enum('y','n') NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `second` (`address`,`access`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `list_recp` (
+  `id` int(11) NOT NULL auto_increment,
+  `recp` varchar(100) default NULL,
+  KEY `listID` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
