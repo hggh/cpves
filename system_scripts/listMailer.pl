@@ -16,13 +16,14 @@
 #along with this program; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-use strict;
+#use strict;
 use MIME::Entity;
 use Email::Simple;
 use Email::Find;
 use DBI;
 use Config::General;
 use Net::SMTP;
+use Sys::Syslog;
 
 my $sender;
 my @addresses;
@@ -37,8 +38,9 @@ $config{'vmail_home'} = "/home/vmail/" unless defined $config{'vmail_home'};
 $config{'vmail_safe'} = "/home/vmail_backup" unless defined $config{'vmail_safe'};
 $config{'mailserver_smtp'} = "127.0.0.1" unless defined $config{'mailserver_smtp'};
 $config{'ml_postmaster'} = 'postmaster@localhost' unless defined $config{'ml_postmaster'};
-
 my $dsn = "DBI:mysql:database=".$config{'db_name'}.";host=".$config{'db_host'};
+
+openlog('listMailer', "ndelay,pid", LOG_MAIL);
 
 while (<stdin>) {
  push(@emailfrom, $_);	
@@ -56,6 +58,7 @@ my $efinder = Email::Find->new(
 );
 if( $efinder->find(\$mail->header("From")) != 1 ) {
  #end, because of invalid email!
+ syslog(LOG_ERR, 'No valid sender address given');
  exit(0);
 }
 
@@ -72,6 +75,7 @@ if( $sth->rows == 0 ) {
  # No active list found
  $sth->finish();
  $dbh->disconnect();
+ syslog(LOG_ERR, 'No valid mailinglist found ');
  exit(0);
 }
 
@@ -147,13 +151,16 @@ if( $row->{public} eq 'n' ) {
   $e_send_to->head->add("Subject", "Mailinglist error");
   $e_send_to->send;
   $e_send_to->stringify;
+  syslog(LOG_WARNING, sprintf('sender %s is not allowed for private list %s', $sender, $list));
  } else {
   # Send Mail to all subscribed
   @addresses = getAllAddresses($row->{id});
+  syslog(LOG_INFO, sprintf('sending from %s for private listid %s', $sender, $list));
   sendto($mail->as_string , $sender);
  }
 } else {
  # Send Mail to all subscribed
  @addresses = getAllAddresses($row->{id});
+ syslog(LOG_INFO, sprintf('sending from %s for public listid %s', $sender, $list));
  sendto($mail->as_string , $sender);
 }
