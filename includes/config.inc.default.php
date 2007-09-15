@@ -84,6 +84,6 @@ $config['user_tables']=array("admin_access", "autoresponder",
 	 "autoresponder_disable","autoresponder_recipient",
 	 "autoresponder_send", "email_options","fetchmail",
 	 "mailarchive","mailfilter","spamassassin","spamassassin_learn","autoresponder_xheader");
-$config['cpves_version']="0.08";
+$config['cpves_version']="0.09-SVN";
 require_once(ROOT . '/includes/func.inc.php');
 ?>
