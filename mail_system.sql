@@ -367,6 +367,6 @@ CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_po
 
 INSERT INTO `adm_users` ( `id` , `username` , `passwd` , `access` , `manager` , `full_name` , `cpasswd` , `web_lang` )
 VALUES (
-NULL , 'admin', '$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0', '1', '1', NULL , '', ''
+NULL , 'admin', '', '1', '1', NULL , '$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0', ''
 );
 

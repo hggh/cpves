@@ -2,7 +2,7 @@
 echo "mailcontrol     7928/tcp                        # Mailsystem control" >> /etc/services
 echo "service mailcontrol
 {
-        disable         = yes
+        disable         = no
         socket_type     = stream
         protocol        = tcp
         wait            = no

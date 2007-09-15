@@ -87,32 +87,6 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
       //$i++; 
 } 
 }
-/*
-//check for spam:
-if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='y'&& $test=='y')
-{
-
-require_once 'Net/DNSBL.php';
-$dnsbl = new Net_DNSBL();
-
-$table_spam=array();
-while (list($key, $value) = each($ar_spam))
-//foreach($ar_spam as $value)
-{
-	$dnsbl->setBlacklists($value);
-	if ($dnsbl->isListed($config['server_ip']))
-	{
-		$smarty->assign('if_blacklist_listet', 'y');
-		array_push($table_spam, array('spam' => $value));
-	}
-	
-}
-
-$smarty->assign('ipaddr',$config['server_ip'] ); 
-$smarty->assign('table_spam', $table_spam);
-
-} // SPAM CHECK ENDE
-*/
 
 //email user part:
 if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user'] == 'y' && $_SESSION['manager']=='0')

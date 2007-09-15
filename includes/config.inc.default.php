@@ -59,14 +59,13 @@ $config['recipient_classes_polw']=0;
 // use the postfix per recipient classes with greylisting
 $config['recipient_classes_grey']=0;
 
-$ar_spam=array("cbl.abuseat.org","multi.surbl.org","sbl-xbl.spamhaus.org");
-
 // use CpVES mailinglist feature 
 $config['mailinglists'] = '1';
 
-//Run Systemscript via xinetd Service 
-$config['service_enabled'] = 'n'; // Development, please don't use!
-$config['service_port'] = 7928; // Development, please don't use!
+//Trigger system_scripts via webinterface for faster backend:
+$config['trigger_service_enabled'] = 0;
+$config['trigger_service_host'] = "localhost";
+$config['trigger_service_port'] = 7928;
 
 $options = array(
     'debug'       => 2,
@@ -84,6 +83,6 @@ $config['user_tables']=array("admin_access", "autoresponder",
 	 "autoresponder_disable","autoresponder_recipient",
 	 "autoresponder_send", "email_options","fetchmail",
 	 "mailarchive","mailfilter","spamassassin","spamassassin_learn","autoresponder_xheader");
-$config['cpves_version']="0.09-SVN";
+$config['cpves_version']="0.09";
 require_once(ROOT . '/includes/func.inc.php');
 ?>

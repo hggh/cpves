@@ -1,5 +1,8 @@
-CpVES 0.09 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
-
+CpVES 0.09 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Improved: runScripts.sh create_fetchmail.pl should not run on trigger
+	o Improved: trigger backendscript marked as stable
+	o Removed: all rbl checking code (never used)
+	o Fixed: defect mail_system.sql again
 CpVES 0.08 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: policyd-weight per user/domain configuration
 	o Added: greylisting per user/domain configuration
