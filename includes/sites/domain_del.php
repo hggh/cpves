@@ -66,7 +66,14 @@ else if (isset($_POST['del_ok']) && $_POST['del_ok']== 'y' )
 	$sql=sprintf("DELETE FROM users WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);
-	
+	$sql=sprintf("SELECT id FROM lists WHERE domainid='%d'",
+		$db->escapeSimple($_POST['did']));
+	$result= &$db->query($sql);
+	while ($row=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		$sql=sprintf("DELETE FROM list_recp WHERE id='%d'",
+			$db->escapeSimple($row['id']));
+		$db->query($sql);
+	}
 	$sql=sprintf("DELETE FROM lists WHERE domainid='%d'",
 		$db->escapeSimple($_POST['did']));
 	$db->query($sql);

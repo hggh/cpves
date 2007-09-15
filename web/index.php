@@ -201,6 +201,7 @@ if (isset($_GET['did']) && is_numeric($_GET['did'])) {
 if (! check_access_to_site($site)) {
 	$site="main";
 }
+require_once(ROOT . '/includes/select_labels.inc.php');
 require_once(ROOT . "/includes/sites/" . $site . ".php");
 $smarty->assign('template', $site . ".tpl");
 

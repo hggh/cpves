@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 2.6.2-Debian-3sarge3
+-- version 2.9.1.1-Debian-3
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Aug 25, 2007 at 02:18 AM
--- Server version: 4.1.11
--- PHP Version: 4.3.10-22
+-- Generation Time: Sep 15, 2007 at 08:13 PM
+-- Server version: 5.0.32
+-- PHP Version: 5.2.0-8+etch7
 -- 
 -- Database: `mail_system`
 -- 
@@ -24,15 +24,10 @@ CREATE TABLE `adm_users` (
   `manager` tinyint(1) NOT NULL default '0',
   `full_name` varchar(255) collate utf8_unicode_ci default NULL,
   `cpasswd` varchar(255) character set utf8 NOT NULL default '',
+  `web_lang` varchar(8) collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- 
--- Dumping data for table `adm_users`
--- 
-
-INSERT INTO `adm_users` VALUES (1, 'admin', '', 1, 1, 'Superadmin', '$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0');
 
 -- --------------------------------------------------------
 
@@ -46,11 +41,6 @@ CREATE TABLE `admin_access` (
   `domain` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- 
--- Dumping data for table `admin_access`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -69,11 +59,6 @@ CREATE TABLE `autoresponder` (
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- 
--- Dumping data for table `autoresponder`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -89,11 +74,6 @@ CREATE TABLE `autoresponder_disable` (
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- 
--- Dumping data for table `autoresponder_disable`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -107,11 +87,6 @@ CREATE TABLE `autoresponder_recipient` (
   PRIMARY KEY  (`id`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- 
--- Dumping data for table `autoresponder_recipient`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -128,10 +103,20 @@ CREATE TABLE `autoresponder_send` (
   KEY `in2` (`email`,`efromto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 -- 
--- Dumping data for table `autoresponder_send`
+-- Table structure for table `autoresponder_xheader`
 -- 
 
+CREATE TABLE `autoresponder_xheader` (
+  `id` int(11) NOT NULL auto_increment,
+  `email` int(11) NOT NULL,
+  `xheader` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `email` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -159,14 +144,13 @@ CREATE TABLE `domains` (
   `p_sa_learn` tinyint(1) NOT NULL default '0',
   `p_fetchmail` tinyint(1) NOT NULL default '0',
   `p_webinterface` tinyint(1) NOT NULL default '1',
+  `p_autores_xheader` tinyint(1) NOT NULL default '0',
+  `p_check_polw` tinyint(1) NOT NULL default '1',
+  `p_check_grey` tinyint(1) NOT NULL default '0',
+  `p_mlists` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `dnsname_2` (`dnsname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- 
--- Dumping data for table `domains`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -183,11 +167,6 @@ CREATE TABLE `email_options` (
   PRIMARY KEY  (`id`),
   KEY `conf` (`conf`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- 
--- Dumping data for table `email_options`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -210,11 +189,6 @@ CREATE TABLE `fetchmail` (
   KEY `active` (`active`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- 
--- Dumping data for table `fetchmail`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -227,14 +201,11 @@ CREATE TABLE `forwardings` (
   `efrom` varchar(255) collate utf8_unicode_ci NOT NULL default '',
   `eto` text collate utf8_unicode_ci NOT NULL,
   `access` tinyint(1) NOT NULL default '1',
+  `p_check_polw` tinyint(1) NOT NULL default '1',
+  `p_check_grey` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `efrom` (`efrom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- 
--- Dumping data for table `forwardings`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -246,12 +217,7 @@ CREATE TABLE `list_recp` (
   `id` int(11) NOT NULL auto_increment,
   `recp` varchar(100) default NULL,
   KEY `listID` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- 
--- Dumping data for table `list_recp`
--- 
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -261,18 +227,13 @@ CREATE TABLE `list_recp` (
 
 CREATE TABLE `lists` (
   `id` int(11) NOT NULL auto_increment,
-  `domainid` int(11) NOT NULL default '0',
-  `address` varchar(80) NOT NULL default '',
-  `access` enum('y','n') NOT NULL default 'y',
-  `public` enum('y','n') NOT NULL default 'y',
+  `domainid` int(11) NOT NULL,
+  `address` varchar(80) NOT NULL,
+  `access` tinyint(1) default '1',
+  `public` enum('y','n') NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `second` (`address`,`access`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- 
--- Dumping data for table `lists`
--- 
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -293,11 +254,6 @@ CREATE TABLE `mailarchive` (
   KEY `email` (`email`,`active`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- 
--- Dumping data for table `mailarchive`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -314,11 +270,6 @@ CREATE TABLE `mailfilter` (
   PRIMARY KEY  (`id`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- 
--- Dumping data for table `mailfilter`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -337,11 +288,6 @@ CREATE TABLE `sa_wb_listing` (
   KEY `type` (`type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- 
--- Dumping data for table `sa_wb_listing`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -359,11 +305,6 @@ CREATE TABLE `spamassassin` (
   KEY `preference` (`preference`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- 
--- Dumping data for table `spamassassin`
--- 
-
-
 -- --------------------------------------------------------
 
 -- 
@@ -378,11 +319,6 @@ CREATE TABLE `spamassassin_learn` (
   `type` enum('spam','ham') NOT NULL default 'spam',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- 
--- Dumping data for table `spamassassin_learn`
--- 
-
 
 -- --------------------------------------------------------
 
@@ -411,22 +347,26 @@ CREATE TABLE `users` (
   `p_sa_learn` tinyint(1) NOT NULL default '0',
   `p_fetchmail` tinyint(1) NOT NULL default '0',
   `p_webinterface` tinyint(1) NOT NULL default '1',
+  `p_autores_xheader` tinyint(1) NOT NULL default '0',
+  `mb_size` int(11) NOT NULL default '0',
+  `p_check_polw` tinyint(1) NOT NULL default '1',
+  `p_check_grey` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 -- 
--- Dumping data for table `users`
---
-CREATE TABLE `autoresponder_xheader` (
-  `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL,
-  `xheader` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-ALTER TABLE `domains` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `mb_size` INT NOT NULL DEFAULT '0';
-ALTER TABLE `adm_users` ADD `web_lang` VARCHAR( 8 ) NOT NULL ;
+-- Table structure for table `smtpd_recipient_classes`
+-- 
+
+
+DROP VIEW IF EXISTS smtpd_recipient_classes;
+CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM users WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 UNION SELECT efrom,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM forwardings WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0;
+
+INSERT INTO `adm_users` ( `id` , `username` , `passwd` , `access` , `manager` , `full_name` , `cpasswd` , `web_lang` )
+VALUES (
+NULL , 'admin', '$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0', '1', '1', NULL , '', ''
+);
+

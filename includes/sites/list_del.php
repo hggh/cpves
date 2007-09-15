@@ -48,6 +48,9 @@ if (isset($_SESSION['superadmin']) &&
 		$sql=sprintf("DELETE FROM lists WHERE id = %d",
 			$db->escapeSimple($_GET['id']));
 		$db->query($sql);
+		$sql=sprintf("DELETE FROM list_recp WHERE id = %d",
+			$db->escapeSimple($_GET['id']));
+		$db->query($sql);
 	}
 
 } // ENDE ACCESS OK
