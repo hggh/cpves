@@ -16,12 +16,8 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ******************************************************************************/
-$smarty->assign('company_title', $config['company_title']);
 $smarty->assign('max_passwd_len', $config['max_passwd_len']);
-$smarty->assign('webmail_link',$config['webmail_link']);
-$smarty->assign('mailgraph_link',$config['mailgraph_link']);
 $smarty->assign('display_mb_size',$config['display_mb_size']);
-$smarty->assign('cpves_version', $config['cpves_version']);
 $smarty->assign('config', $config);
 /*
 mailfilter prios:
@@ -931,12 +927,4 @@ function delete_emailaddress($id,$emailaddress) {
 		$db->query($sql);
 	}
 } 
-
-$smarty->assign('autores_sendback_times_selects', 
-		array( '1' => 'Nur bei der ersten Mail',
-		'2' => 'Bis zur zweiten Mail',
-		'3' => 'Bis zur dritten Mail',
-		'4' => 'Bis zur vierten Mail',
-		'5' => 'Bis zur f&uuml;nften Mail',
-		'n' => 'Bei jeder Mail'));
 ?>

@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>:: CpVES :: {$company_title} ::</title>
+<title>:: CpVES :: {$config.company_title} ::</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="author" content="Jonas Genannt / Original design by Andreas Viklund - http://andreasviklund.com" />
 <link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
@@ -21,7 +21,7 @@
 <body {include file="focus_input.tpl"}>
 <!--
 #################################################################################
-                         CpVES Version: {$cpves_version}
+                         CpVES Version: {$config.cpves_version}
 #################################################################################
 
 #################################################################################
@@ -60,11 +60,12 @@
 <div id="container">
 <div id="sitename">
 <h1>CpVES</h1>
-<h2>{$company_title}</h2>
+<h2>{$config.company_title}</h2>
 </div>
 
-<div id="mainmenu">| 
-<span class="text">{t}username{/t}: {$username}</span> | 
+<div id="mainmenu">
+{if $username != ""}| 
+<span class="text">{t}username{/t}: {$username}</span> |{else}&nbsp;{/if}
 {if $if_superadmin != '1' && $if_login != 'y'}
 	<span class="text">{t}vacation{/t}: {if $if_autoresponder == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span>  | 
 	{if $if_forwarding == 1}
@@ -75,6 +76,7 @@
 {elseif $if_superadmin == '1'&& $if_manager != '1'} 
 <span class="text"> {t}permissions: superadmin{/t}</span> |{/if}
 </div>
+
 
 <div id="wrap">
 {include file="navigation.tpl"}

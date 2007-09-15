@@ -72,10 +72,10 @@
 	<a class="nav" href="?module=sadmin_view">{t}supadmin manager{/t}</a>
 	<a class="nav" href="?module=sadmin_add">{t}create new superadmin{/t}</a>
 {/if}
-{if $webmail_link != false }
+{if $config.webmail_link != false }
 	<a class="nav" href="{$webmail_link}">{t}webmail{/t}</a>
 {/if}
-{if $mailgraph_link != false && $if_superadmin == '1' }
+{if $config.mailgraph_link != false && $if_superadmin == '1' }
 	<a class="nav" href="{$mailgraph_link}">{t}mailstats{/t}</a>
 {/if}
 <a class="nav" href="?module=logout">{t}logout{/t}</a>

@@ -3,6 +3,8 @@ CpVES 0.08 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: greylisting per user/domain configuration
 	o Added: some logging to listMailer.pl
 	o Improved: mailinglists feature
+	o Improved: some code cleanup
+	o Improved: display username only if an user is logged in (#34)
 CpVES 0.07 2007-09-13 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: mail_system.sql
 CpVES 0.06 2007-09-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>

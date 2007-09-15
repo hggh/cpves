@@ -86,4 +86,5 @@ $config['user_tables']=array("admin_access", "autoresponder",
 	 "mailarchive","mailfilter","spamassassin","spamassassin_learn","autoresponder_xheader");
 $config['cpves_version']="0.08-SVN";
 require_once(ROOT . '/includes/func.inc.php');
+require_once(ROOT . '/includes/select_labels.inc.php');
 ?>
