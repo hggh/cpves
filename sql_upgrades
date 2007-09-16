@@ -167,3 +167,8 @@ CREATE TABLE `list_recp` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE `domains` ADD `p_mlists` TINYINT NOT NULL DEFAULT '0';
+
+
+Version 0.09 to 0.10
+ALTER TABLE `domains` ADD `p_spam_fwd` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `users` ADD `p_spam_fwd` TINYINT( 1 ) NOT NULL DEFAULT '0';

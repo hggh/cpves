@@ -140,7 +140,7 @@
  <td>{t}IMAP{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_imap == 0  }
+ {if $domain.p_imap == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=imap">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate IMAP.{/t}" /></a>
  {else}
@@ -152,7 +152,7 @@
  <td>{t}POP3{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_pop3 == 0 }
+ {if $domain.p_pop3 == 0 }
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=pop3">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate POP3.{/t}" /></a>
  {else}
@@ -164,7 +164,7 @@
  <td>{t}Webmail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_webmail ==  0 }
+ {if $domain.p_webmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webmail">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate webmail.{/t}" /></a>
  {else}
@@ -177,7 +177,7 @@
  <td>{t}Mailinglist feature{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_mlists ==  0 }
+ {if $domain.p_mlists ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mlists">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglists.{/t}" /></a>
  {else}
@@ -191,7 +191,7 @@
  <td>{t}Policyd-Weight{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_check_polw ==  0 }
+ {if $domain.p_check_polw ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_polw">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate policyd-weight.{/t}" /></a>
  {else}
@@ -205,7 +205,7 @@
  <td>{t}Greylisting{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_check_grey ==  0 }
+ {if $domain.p_check_grey ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_grey">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate greylisting.{/t}" /></a>
  {else}
@@ -218,7 +218,7 @@
  <td>{t}access to CpVES webinterface{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_webinterface == 0  }
+ {if $domain.p_webinterface == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webinterface">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate CpVES webinterface.{/t}" /></a>
  {else}
@@ -230,7 +230,7 @@
  <td>{t}vacation X-Header disable feature{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_autores_xheader == 0  }
+ {if $domain.p_autores_xheader == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=autores_xheader">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate vacation X-Header feature.{/t}" /></a>
  {else}
@@ -242,7 +242,7 @@
  <td>{t}fetchmail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_fetchmail ==  0 }
+ {if $domain.p_fetchmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=fetchmail">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail{/t}:" /></a>
  {else}
@@ -254,7 +254,7 @@
  <td>{t}spamassassin{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_spamassassin == 0 }
+ {if $domain.p_spamassassin == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spamassassin">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate spamassassin.{/t}" /></a>
  {else}
@@ -266,7 +266,7 @@
  <td>{t}ham/spam learning{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_sa_learn == 0 }
+ {if $domain.p_sa_learn == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_learn">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate ham/spam learning.{/t}" /></a>
  {else}
@@ -279,7 +279,7 @@
  <td>{t}delete spam{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_spam_del == 0 }
+ {if $domain.p_spam_del == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spam_del">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate delete spam.{/t}" /></a>
  {else}
@@ -289,10 +289,23 @@
 </tr>
 
 <tr>
+ <td>{t}foward spam to another address{/t}:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $domain.p_spam_fwd == 0 }
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spam_fwd">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate forward spam.{/t}" /></a>
+ {else}
+   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spam_fwd">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate forward spam.{/t}" /></a>
+ {/if}</td> 
+</tr>
+
+<tr>
  <td>{t}bogofilter{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_bogofilter == 0 }
+ {if $domain.p_bogofilter == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=bogofilter">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate bogofilter.{/t}" /></a>
  {else}
@@ -305,7 +318,7 @@
  <td>{t}archivemail{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_mailarchive == 0 }
+ {if $domain.p_mailarchive == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mailarchive">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate archivemail.{/t}" /></a>
  {else}
@@ -317,7 +330,7 @@
  <td>{t}spamfilter - whitelisting{/t}:</td>
  <td></td>
  <td style="text-align:right;">
- {if $p_sa_wb_listing == 0 }
+ {if $domain.p_sa_wb_listing == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_wb_listing">
  <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate whitelisting.{/t}" /></a>
  {else}
@@ -371,12 +384,12 @@
 <tr>
  <td colspan="4">
  <form action="?module=domain_view&#038;did={$did}" method="post">
- <input name="dnote" maxlength="30" value="{$dnote}" type="text"/></form>
+ <input name="dnote" maxlength="30" value="{$domain.dnote}" type="text"/></form>
  </td>
 </tr>
 {/if}
 
-{if ($if_spamassassin == 1 || ( $if_superadmin == '1' && $p_spamassassin == 1)) && $p_sa_wb_listing == 1 }
+{if ($if_spamassassin == 1 || ( $if_superadmin == '1' && $domain.p_spamassassin == 1)) && $domain.p_sa_wb_listing == 1 }
 <tr>
 	<td colspan="4" class="domain_view"><h3>{t}spamfilter - whitelisting{/t}:</h3></td>
 </tr>

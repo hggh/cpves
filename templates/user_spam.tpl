@@ -73,6 +73,14 @@
 		{/if}
 		</td>
 	<tr>
+	{if $p_spam_fwd == 1}
+	<tr>
+		<td valign="top">{t}forward known spam{/t}:</td>
+		<td>{if $spam_fwd_active == 0}<input type="radio" name="spam_fwd_active" value="0" checked="checked"/>{t}no{/t} <input type="radio" name="spam_fwd_active" value="1"/>{t}yes{/t}{else}<input type="radio" name="spam_fwd_active" value="0" />{t}no{/t} <input type="radio" name="spam_fwd_active" checked="checked" value="1"/>{t}yes{/t}{/if}<br/>
+		<input type="text" name="spam_fwd_mail" value="{$spam_fwd_mail}"/>
+		</td>
+	</tr>
+	{/if}
 	{if $p_spam_del == 1}
 	<tr>
 		<td valign="top">{t}delete known spam{/t}:</td>

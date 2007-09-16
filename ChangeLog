@@ -1,3 +1,6 @@
+CpVES 0.10 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Improved: sa_learn.pl no longer debug output
+	o Added: display mailbox size per domain
 CpVES 0.09 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: runScripts.sh create_fetchmail.pl should not run on trigger
 	o Improved: trigger backendscript marked as stable

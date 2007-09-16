@@ -199,28 +199,11 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GE
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
-	
 	$smarty->assign('dnsname', $data['dnsname']);
-	$smarty->assign('p_imap', $data['p_imap']);
-	$smarty->assign('p_pop3', $data['p_pop3']);
-	$smarty->assign('p_webmail', $data['p_webmail']);
-	$smarty->assign('p_spamassassin', $data['p_spamassassin']);
-	$smarty->assign('p_sa_learn', $data['p_sa_learn']);
-	$smarty->assign('p_spam_del', $data['p_spam_del']);
-	$smarty->assign('p_mailarchive', $data['p_mailarchive']);
-	$smarty->assign('p_bogofilter', $data['p_bogofilter']);
-	$smarty->assign('p_sa_wb_listing', $data['p_sa_wb_listing']);
-	$smarty->assign('p_fetchmail', $data['p_fetchmail']);
-	$smarty->assign('p_webinterface', $data['p_webinterface']);
-	$smarty->assign('p_autores_xheader', $data['p_autores_xheader']);
-	$smarty->assign('p_check_polw', $data['p_check_polw']);
-	$smarty->assign('p_check_grey', $data['p_check_grey']);
-	$smarty->assign('p_mlists', $data['p_mlists']);
-
+	$smarty->assign('domain', $data);
 	$smarty->assign('max_emails', $data['max_email']);
 	$smarty->assign('max_fwd', $data['max_forward']);
-	$smarty->assign('dnote', $data['dnote']);
-	
+
 $smarty->assign('emails', get_forem_domain($_GET['did'],'users', $db));
 $smarty->assign('forwardings', get_forem_domain($_GET['did'],'forwardings', $db));
 

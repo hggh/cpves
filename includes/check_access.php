@@ -29,6 +29,7 @@ if (isset($_SESSION['p_spam_del']))    $smarty->assign('p_spam_del', $_SESSION['
 if (isset($_SESSION['p_sa_learn']))    $smarty->assign('p_sa_learn', $_SESSION['p_sa_learn']);
 if (isset($_SESSION['p_fetchmail']))   $smarty->assign('p_fetchmail',$_SESSION['p_fetchmail']);
 if (isset($_SESSION['p_autores_xheader']))   $smarty->assign('p_autores_xheader',$_SESSION['p_autores_xheader']);
+if (isset($_SESSION['p_spam_fwd']))   $smarty->assign('p_spam_fwd',$_SESSION['p_spam_fwd']);
 
 
 $no_login=0;

@@ -48,7 +48,7 @@ $config['max_passwd_len']=15;
 $config['display_mb_size']=1;
 
 //IMAP Server:
-$config['imap_server'] = "swetlana.brachium-system.net";
+$config['imap_server'] = "mail.brachium-system.net";
 
 //Company Name:
 $config['company_title'] = "Some Company";
@@ -83,6 +83,6 @@ $config['user_tables']=array("admin_access", "autoresponder",
 	 "autoresponder_disable","autoresponder_recipient",
 	 "autoresponder_send", "email_options","fetchmail",
 	 "mailarchive","mailfilter","spamassassin","spamassassin_learn","autoresponder_xheader");
-$config['cpves_version']="0.09";
+$config['cpves_version']="0.10-SVN";
 require_once(ROOT . '/includes/func.inc.php');
 ?>

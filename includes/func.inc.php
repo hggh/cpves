@@ -206,6 +206,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'mlists':
 			$do="p_mlists";
 			break;
+		case 'spam_fwd':
+			$do="p_spam_fwd";
+			break;
 		default:
 			return false;
 	}

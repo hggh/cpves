@@ -155,6 +155,7 @@
 </tr>
 {/if}
 {if $if_spam_del == 1 }
+<tr>
 	<td>{t}delete spam{/t}:</td>
 	<td><select name="spam_del">
 	<option value="enable">{t}yes{/t}</option>
@@ -164,6 +165,20 @@
 	<option value="disable">{t}no{/t}</option>
 	{/if}
 	</select></td>
+</tr>
+{/if}
+{if $if_spam_fwd == 1 }
+<tr>
+	<td>{t}forward spam to another address{/t}:</td>
+	<td><select name="spam_fwd">
+	<option value="enable">{t}yes{/t}</option>
+	{if $if_spam_fwd_value == 0}
+	<option value="disable" selected="selected">{t}no{/t}</option>
+	{else}
+	<option value="disable">{t}no{/t}</option>
+	{/if}
+	</select></td>
+</tr>
 {/if}
 {if $if_bogofilter == '1' }
 <tr>

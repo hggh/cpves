@@ -3,6 +3,9 @@
 		<td>{t}domainname{/t}</td>
 		<td>{t}emailaddresses{/t}</td>
 		<td>{t}fowardings{/t}</td>
+		{if $config.display_mb_size == 1 }
+		<td>{t}size{/t}</td>
+		{/if}
 		<td>{t}activate/deactivate{/t}</td>
 		<td>{t}delete{/t}</td>
 		<td>{t}note{/t}</td>
@@ -20,6 +23,9 @@
 		</td>
 		<td>{$row.count_email}</td>
 		<td>{$row.count_forward}</td>
+		{if $config.display_mb_size == 1 }
+		<td>{$row.mb_size} MB</td>
+		{/if}
 		<td>
 			{if $row.access == "1" }
 				<a href="?module=main&#038;state=disable&#038;did={$row.id}">

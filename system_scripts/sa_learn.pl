@@ -106,7 +106,6 @@ while ($row=$sth->fetchrow_hashref) {
 	if ($config{'sa_learn_bogofilter'} == 1 ) {
 		$bo_cmd = $find . " $path " . $find_opts .
 			" | " . $bogofilter . $bo_type;
-		print $bo_cmd . "\n\n";
 		system($bo_cmd);
 		system("chown -R ". $config{'vmail_user'} . " " . $config{'bogofilter_database'} );
 	}

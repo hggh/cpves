@@ -124,6 +124,20 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 	else {
 		update_email_options($_SESSION['uid'],'del_known_spam','0',0);
 	}
+	if (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1 ) {
+		if (Validate::email($_POST['spam_fwd_mail'])) {
+			update_email_options($_SESSION['uid'],'spam_fwd_active','1',0);
+			update_email_options($_SESSION['uid'],'spam_fwd_mail',$_POST['spam_fwd_mail'],0);
+		}
+		else {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_error_forwardaddr_valid', 'y');
+			update_email_options($_SESSION['uid'],'spam_fwd_active','0',0);
+		}
+	}
+	else {
+		update_email_options($_SESSION['uid'],'spam_fwd_active','0',0);
+	}
 
 
 	// activate System-Script
@@ -172,6 +186,10 @@ $spamassassin=get_email_options($_SESSION['uid'],"spamassassin", 0);
 $bogofilter=get_email_options($_SESSION['uid'],"bogofilter",0);
 $del_known_spam=get_email_options($_SESSION['uid'],"del_known_spam",0);
 $del_known_spam_value=get_email_options($_SESSION['uid'],"del_known_spam_value",'10.0');
+$spam_fwd_active=get_email_options($_SESSION['uid'], "spam_fwd_active",0);
+$spam_fwd_mail=get_email_options($_SESSION['uid'], 'spam_fwd_mail', '');
+$smarty->assign('spam_fwd_mail', $spam_fwd_mail);
+$smarty->assign('spam_fwd_active', $spam_fwd_active);
 $smarty->assign('bogofilter_active', $bogofilter);
 $smarty->assign('spamassassin_active', $spamassassin);
 $smarty->assign('email', $_SESSION['email']);
