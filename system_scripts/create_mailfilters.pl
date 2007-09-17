@@ -205,6 +205,11 @@ while(@data = $sth->fetchrow_array)
 					$mailfilter,
 					$del_known_spam_value);
 				}
+				if (get_email_option($id,'spam_fwd_active','0') eq "1") {
+					$mailfilter = sprintf("%s\nexception {\nif (/^X-Spam-Flag: Yes/ || /^X-Bogosity: Spam, tests=bogofilter/)\n  to \"!%s\"\n}\n",
+						$mailfilter,
+						get_email_option($id,'spam_fwd_mail',''));
+				}
 			}
 			if ( $type eq "autoresponder") {
 				$mailfilter = sprintf("%s\nexception {\n cc \"|%s %s\"\n}\n ",

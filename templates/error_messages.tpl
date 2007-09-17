@@ -86,4 +86,7 @@ Bitte alle Felder ausf&uuml;llen!
 {t}Both X-Header fields are required!{/t}
 {elseif $ml_email_there == 'y'}
 {t}email address is already on the list!{/t}
+{elseif $move_spam_active_and_spam_fwd == 1}
+{t}move known spam and forward known spam is active!{/t}<br/>
+{t}You could either use move or forward option!{/t}
 {/if}

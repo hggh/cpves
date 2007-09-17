@@ -78,7 +78,11 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 		}
 	}
 	//save move_spam 
-	if ($_POST['move_spam']==0) {
+	if (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1 && $_POST['move_spam']==1) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('move_spam_active_and_spam_fwd', 1);
+	}
+	elseif ($_POST['move_spam']==0) {
 		$sql=sprintf("UPDATE users SET move_spam=NULL WHERE id='%d'",
 			$db->escapeSimple($_SESSION['uid']));
 		$result=&$db->query($sql);
@@ -124,7 +128,12 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 	else {
 		update_email_options($_SESSION['uid'],'del_known_spam','0',0);
 	}
-	if (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1 ) {
+	
+	if (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1  && $_POST['move_spam']==1) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('move_spam_active_and_spam_fwd', 1);
+	}
+	elseif (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1 ) {
 		if (Validate::email($_POST['spam_fwd_mail'])) {
 			update_email_options($_SESSION['uid'],'spam_fwd_active','1',0);
 			update_email_options($_SESSION['uid'],'spam_fwd_mail',$_POST['spam_fwd_mail'],0);

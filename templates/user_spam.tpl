@@ -60,7 +60,7 @@
 				{else}
 				<option value="{$row.name}" selected="selected">{$row.name_display}</option> 
 				{/if}
-			{else}
+			{elseif $row.type!='inbox'}
 				{if $row.type == 'spam'}
 				<option style="font-weight:bold;" value="{$row.name}">{$row.name_display}</option>
 				{else}
