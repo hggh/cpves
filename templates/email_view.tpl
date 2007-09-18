@@ -539,8 +539,20 @@
 		{/if}
 		
 	</select><br/>
-	<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/>
-	<br/>
+	<input type="text" name="del_known_spam_value" id="del_known_spam_value" value="{$del_known_spam_value}"/></td>
+</tr>
+{if $if_spam_fwd_value == 1}
+	<tr>
+		<td valign="top">{t}forward known spam{/t}:</td>
+		<td>{if $spam_fwd_active == 0}<input type="radio" name="spam_fwd_active" value="0" checked="checked"/>{t}no{/t} <input type="radio" name="spam_fwd_active" value="1"/>{t}yes{/t}{else}<input type="radio" name="spam_fwd_active" value="0" />{t}no{/t} <input type="radio" name="spam_fwd_active" checked="checked" value="1"/>{t}yes{/t}{/if}<br/>
+		<input type="text" name="spam_fwd_mail" value="{$spam_fwd_mail}"/>
+		</td>
+	</tr>
+{/if}
+
+<tr>
+	<td></td>
+	<td><br/>
 	{if $del_known_spam != 1}
 	<script type="text/javascript">
 	cpves_sa_del_knowndisable('0');
@@ -562,7 +574,7 @@
 <tr>
 	<td>{t}move known spam{/t}:</td>
 	<td>{if $sa_move_spam == '0'}{t}not active{/t}{else}
-	INBOX/{$sa_move_spam}
+	INBOX/{$sa_move_spam} <small>[ <a href="?module=email_view&#038;id={$id}&#038;did={$did}&#038;move_spam=del">{t}do not move known spam{/t}</a> ]</small>
 	{/if}
 	</td>
 </tr>

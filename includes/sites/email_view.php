@@ -54,10 +54,19 @@ if (isset($_SESSION['superadmin']) &&
 	$result=&$db->query($sql);
 	$edata=$result->fetchrow(DB_FETCHMODE_ASSOC);
 	
-	
+	//remove move spam option:
+	if (isset($_GET['move_spam']) && $_GET['move_spam']=='del') {
+		$sql=sprintf("UPDATE users SET move_spam=NULL WHERE id='%d'",
+			$db->escapeSimple($_GET['id']));
+		$result=&$db->query($sql);
+		//reset filter
+		$sql=sprintf("UPDATE mailfilter SET active='0' WHERE email='%d' AND type='move_spam'",
+			$db->escapeSimple($_GET['id']));
+		$result=&$db->query($sql);
+	}
 	/* save spamassassin begin */
 	if (isset($_POST['save_option']))
-{
+	{
 	if (isset($_POST['spamassasin_active']) && is_numeric($_POST['spamassasin_active']))
 	{
 		update_email_options($_GET['id'],"spamassassin",$_POST['spamassasin_active'],0);
@@ -135,6 +144,32 @@ if (isset($_SESSION['superadmin']) &&
 	else {
 		update_email_options($_GET['id'],'del_known_spam','0',0);
 	}
+
+	// spam forwarding option
+	$sql=sprintf("SELECT move_spam FROM users WHERE id='%s'",
+	$db->escapeSimple($_GET['id']));
+	$result=&$db->query($sql);
+	$move_spam=$result->fetchrow(DB_FETCHMODE_ASSOC);
+	if (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1  && $move_spam['move_spam']!=NULL) {
+		$smarty->assign('error_msg', 'y');
+		$smarty->assign('move_spam_active_and_spam_fwd', 1);
+	}
+	elseif (isset($_POST['spam_fwd_active']) && $_POST['spam_fwd_active']==1 ) {
+		if (Validate::email($_POST['spam_fwd_mail'])) {
+			update_email_options($_GET['id'],'spam_fwd_active','1',0);
+			update_email_options($_GET['id'],'spam_fwd_mail',$_POST['spam_fwd_mail'],0);
+		}
+		else {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_error_forwardaddr_valid', 'y');
+			update_email_options($_GET['id'],'spam_fwd_active','0',0);
+		}
+	}
+	else {
+		update_email_options($_GET['id'],'spam_fwd_active','0',0);
+	}
+
+
 	}
 	/* save spamassassin end */
 
@@ -627,7 +662,11 @@ if (isset($_SESSION['superadmin']) &&
 	$bogofilter=get_email_options($_GET['id'],"bogofilter", 0);
 	$del_known_spam=get_email_options($_GET['id'],"del_known_spam",0);
 	$del_known_spam_value=get_email_options($_GET['id'],"del_known_spam_value",'10.0');
+	$spam_fwd_active=get_email_options($_GET['id'], "spam_fwd_active",0);
+	$spam_fwd_mail=get_email_options($_GET['id'], 'spam_fwd_mail', '');
 	
+	$smarty->assign('spam_fwd_mail', $spam_fwd_mail);
+	$smarty->assign('spam_fwd_active', $spam_fwd_active);
 	$smarty->assign('spamassassin_active', $spamassassin);
 	$smarty->assign('bogofilter_active', $bogofilter);
 	$smarty->assign('del_known_spam', $del_known_spam);

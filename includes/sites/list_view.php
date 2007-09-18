@@ -52,7 +52,11 @@ if (isset($_SESSION['superadmin']) &&
 	//del adresses ENDE
 
 	//hinzufugen:
-	if (isset($_POST['submit_add']) && ! empty($_POST['add_address']))
+	if (isset($_POST['submit_add']) && !Validate::email($_POST['add_address'])) {
+		$smarty->assign('error_msg' ,'y');
+		$smarty->assign('if_email_valid','y');
+	}
+	elseif (isset($_POST['submit_add']) && ! empty($_POST['add_address']))
 	{
 		$sql = sprintf("SELECT COUNT(*) AS num FROM list_recp WHERE id = %d AND recp = '%s'",
 			$db->escapeSimple($_GET['id']),
