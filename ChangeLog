@@ -7,6 +7,8 @@ CpVES 0.10 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: admin could remove move_spam option per user
 	o Added: admin could set forward spam option
 	o Fixed: superadmin web_lang to short (#35)
+	o Fixed: webmail link is not working
+	o Fixed: sa_learn.pl bogofilter check
 CpVES 0.09 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: runScripts.sh create_fetchmail.pl should not run on trigger
 	o Improved: trigger backendscript marked as stable

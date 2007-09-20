@@ -48,7 +48,7 @@ die("Error: Spamassassin and Bogofilter learning is disabled.") if ($config{'sa_
 
 die("Error: sa-learn not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -x $config{'sa_learn'} );
 
-die("Error: sa-learn not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -x $config{'sa_learn'} );
+die("Error: bogofilter not found") if ($config{'sa_learn_bogofilter'} == 1 && ! -x $config{'bogofilter'} );
 
 die("Error: spamassassin_database dir not found") if ($config{'sa_learn_spamassassin'} == 1 && ! -d $config{'spamassassin_database'});
 
