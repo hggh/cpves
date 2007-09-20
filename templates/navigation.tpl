@@ -76,7 +76,7 @@
 	<a class="nav" href="{$config.webmail_link}">{t}webmail{/t}</a>
 {/if}
 {if $config.mailgraph_link != false && $if_superadmin == '1' }
-	<a class="nav" href="{$mailgraph_link}">{t}mailstats{/t}</a>
+	<a class="nav" href="{$config.mailgraph_link}">{t}mailstats{/t}</a>
 {/if}
 <a class="nav" href="?module=logout">{t}logout{/t}</a>
 
