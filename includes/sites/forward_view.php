@@ -136,7 +136,7 @@ if (isset($_SESSION['superadmin']) &&
 	
 	
 	$smarty->assign('forwards',$forwards);
-	$sql=sprintf("SELECT id,email FROM users WHERE domainid='%d' AND access='y' ORDER BY email",
+	$sql=sprintf("SELECT id,email FROM users WHERE domainid='%d' AND access='1' ORDER BY email",
 		$db->escapeSimple($_GET['did']));
 	$result=&$db->query($sql);
 	$emailfwd=array();

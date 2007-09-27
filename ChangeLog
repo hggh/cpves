@@ -11,6 +11,7 @@ CpVES 0.10 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Fixed: mailgraph link is not working
 	o Fixed: sa_learn.pl bogofilter check
 	o Fixed: domain size display in overview
+	o Fixed: forward_view.tpl list addresses
 CpVES 0.09 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: runScripts.sh create_fetchmail.pl should not run on trigger
 	o Improved: trigger backendscript marked as stable
