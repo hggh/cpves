@@ -924,7 +924,7 @@ msgid "deactivate whitelisting."
 msgstr "Whitelisting deaktivieren."
 
 msgid "number of addresses"
-msgstr "Anzhal der Adressen"
+msgstr "Anzahl der Adressen"
 
 msgid "used/available"
 msgstr "verbraucht/verfügbar"
@@ -933,7 +933,7 @@ msgid "change"
 msgstr "Ändern"
 
 msgid "note %1"
-msgstr "Noitz zu %1"
+msgstr "Notiz zu %1"
 
 msgid "whitelist"
 msgstr "Whitelist"
