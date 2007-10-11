@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Sep 15, 2007 at 08:13 PM
+-- Generation Time: Oct 11, 2007 at 09:17 PM
 -- Server version: 5.0.32
 -- PHP Version: 5.2.0-8+etch7
 -- 
@@ -24,7 +24,7 @@ CREATE TABLE `adm_users` (
   `manager` tinyint(1) NOT NULL default '0',
   `full_name` varchar(255) collate utf8_unicode_ci default NULL,
   `cpasswd` varchar(255) character set utf8 NOT NULL default '',
-  `web_lang` varchar(8) collate utf8_unicode_ci NOT NULL,
+  `web_lang` varchar(14) collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -148,6 +148,7 @@ CREATE TABLE `domains` (
   `p_check_polw` tinyint(1) NOT NULL default '1',
   `p_check_grey` tinyint(1) NOT NULL default '0',
   `p_mlists` tinyint(4) NOT NULL default '0',
+  `p_spam_fwd` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `dnsname_2` (`dnsname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -351,16 +352,12 @@ CREATE TABLE `users` (
   `mb_size` int(11) NOT NULL default '0',
   `p_check_polw` tinyint(1) NOT NULL default '1',
   `p_check_grey` tinyint(1) NOT NULL default '0',
+  `p_spam_fwd` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
-
--- 
--- Table structure for table `smtpd_recipient_classes`
--- 
-
 
 DROP VIEW IF EXISTS smtpd_recipient_classes;
 CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM users WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 UNION SELECT efrom,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM forwardings WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0;
@@ -369,4 +366,5 @@ INSERT INTO `adm_users` ( `id` , `username` , `passwd` , `access` , `manager` , 
 VALUES (
 NULL , 'admin', '', '1', '1', NULL , '$1$Ekjbn5PV$lTKL1k2IkDKzpneppf6Wx0', ''
 );
+
 
