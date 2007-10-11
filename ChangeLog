@@ -1,4 +1,4 @@
-CpVES 0.10 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+CpVES 0.10 2007-10-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: sa_learn.pl no longer debug output
 	o Improved: move_spam does not display INBOX
 	o Improved: list_view add new address (check if valid)
