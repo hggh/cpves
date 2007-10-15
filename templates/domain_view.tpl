@@ -27,7 +27,7 @@
 
 {if $display_mb_size == 1}
 <td style="width:250px;"> </td>
-<td style="text-align:left;width:50px;">{$row.mb_size} M</td>
+<td style="text-align:left;width:50px;">{$row.mb_size.size} {if $row.mb_size.unit == 'gb'}GB{else}MB{/if}</td>
 {else}
  <td style="width:300px;"> </td>
 {/if}

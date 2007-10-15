@@ -228,7 +228,7 @@ while($data=$result->fetchrow(DB_FETCHMODE_ASSOC))
 	'did' => $_GET['did'],
 	'email' =>$data['email'],
 	'access' =>$data['access'],
-	'mb_size' =>$data['mb_size'],
+	'mb_size' => mailbox_size_human($data['mb_size']),
 	'autoresponder' => $autoresponder) );
 } //ENDE WHILE eMails
 

@@ -66,6 +66,19 @@ if (is_dir(ROOT . "/includes/localization/")) {
 	return $table_lang;
 }
 
+function mailbox_size_human($size) {
+	if ($size > 1024) {
+		$mb_size['size']=sprintf("%01.2f",$size/1024);
+		$mb_size['unit']="gb";
+		
+	}
+	else {
+		$mb_size['size']=$size;
+		$mb_size['unit']="mb";
+	}
+	return $mb_size;
+}
+
 function insert_mailarchive($uid,$options) {
 	global $db;
 	$sql=sprintf("SELECT id FROM mailarchive WHERE email='%s' AND folder='%s'",

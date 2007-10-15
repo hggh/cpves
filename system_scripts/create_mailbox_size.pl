@@ -1,5 +1,5 @@
 #!/usr/bin/perl 
-#create_fetchmail.pl
+#create_mailbox_size.pl
 #Copyright (C) 2007 Jonas Genannt <jonas.genannt@brachium-system.net>
 #
 #This program is free software; you can redistribute it and/or
@@ -36,8 +36,6 @@ $config{'vmail_user'} = "vmail" unless defined $config{'vmail_user'};
 chomp (my $user = `id -un`);
 die ("Error: " .$config{'vmail_home'} . " does not exists!\n" )
 	unless ( -d $config{'vmail_home'});
-die ("Error: " .$config{'fetchmail'} . " does not exists!\n" )
-	unless ( -x $config{'fetchmail'});
 die "Already running!" if Proc::PID::File->running('dir' => '/tmp/' );
 die ("Error: Please run $0 as mailbox owner!") unless ($user eq $config{'vmail_user'});  
 

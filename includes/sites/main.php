@@ -76,7 +76,8 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 	$sql=sprintf("SELECT SUM( mb_size ) AS sum FROM users WHERE domainid = %d",
 		$db->escapeSimple($row['id']));
 	$res_mb_size=&$db->query($sql);
-	$data_mb_size=$res_mb_size->fetchrow(DB_FETCHMODE_ASSOC);
+	$mb_size=$res_mb_size->fetchrow(DB_FETCHMODE_ASSOC);
+	$mb_size=mailbox_size_human($mb_size['sum']);
 	if( empty($data_mb_size['sum']) ) $data_mb_size['sum'] = 0;
 	array_push($table_data, array(
          'dnsname' => $row['dnsname'],
@@ -88,7 +89,7 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 	 'dnote' => $row['dnote'],
 	 'vacation' => $vaction,
 	 'vacation_infos' => $vaction_infos,
-	 'mb_size'	  => $data_mb_size['sum']
+	 'mb_size'	  => $mb_size
          )
       );
       //$i++; 

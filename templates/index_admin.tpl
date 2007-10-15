@@ -14,7 +14,7 @@
 	<td style="text-align:right;">{$table_data[row].count_email}</td>
 	<td style="text-align:right;">{$table_data[row].count_forward}</td>
 	{if $config.display_mb_size == 1 }
-	<td>{$row.mb_size} MB</td>
+	<td>{$row.mb_size.size} {if $row.mb_size.unit == 'gb'}GB{else}MB{/if}</td>
 	{/if}
 </tr>
 {/section}
