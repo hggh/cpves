@@ -2,6 +2,8 @@
 {t}you can not delete or deactivate the postmaster forward!{/t}
 {elseif $if_error_domain_exits == 'y' }
 {t}domain already exists!{/t}
+{elseif $if_error_domain_wrong == 'y'}
+{t}domainname contains illegal characters!{/t}
 {elseif $if_error_email_exits == 'y' }
 {t}emailaddress already exists!{/t}
 {elseif $if_error_email_max_reached == 'y' }
@@ -39,6 +41,8 @@
 {t}username should only contain 8 chars!{/t}
 {elseif $if_new_passwd_not_same == 'y'}
 {t}new passwords does not match!{/t}
+{elseif $if_illegal_sa_subjecttag == 'y'}
+{t}subject contains illegal characters!{/t}
 {elseif $if_submit_email_wrong == 'y' }
 {t}emailaddress is not valid!{/t}
 {elseif $if_forward_all_del == 'y' }

@@ -50,6 +50,10 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_wrong_sa_subjecttag','y');
 		}
+		elseif (!preg_match("/^([0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])) {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_illegal_sa_subjecttag','y');
+		}
 		else
 		{
 			if ($_POST['rewrite_subject']==0)
@@ -58,7 +62,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 			}
 			elseif ($_POST['rewrite_subject']==1)
 			{
-				$rewrite_subject=$_POST['rewrite_subject_header'];
+				$rewrite_subject=clean_input(trim($_POST['rewrite_subject_header']));
 			
 			}
 			update_spamassassin_value($_SESSION['email'],"rewrite_header subject",$rewrite_subject,$_SESSION['uid'] );

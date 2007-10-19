@@ -27,6 +27,10 @@ if (isset($_POST['submit']))
 			$smarty->assign('if_error_domain_exits', 'y');
 			$smarty->assign('dnsname', $_POST['dnsname']);
 		}
+		elseif(!domain_valid($_POST['dnsname'])) {
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_domain_wrong', 'y');
+		}
 		else
 		{
 			if (isset($_POST['max_email']) && is_numeric($_POST['max_email']))
@@ -66,7 +70,7 @@ if (isset($_POST['submit']))
 				$db->escapeSimple($_POST['p_webmail']),
 				$db->escapeSimple($max_email),
 				$db->escapeSimple($max_forward),
-				$db->escapeSimple(substr($_POST['dnote'],0,30)),
+				$db->escapeSimple(clean_input(substr($_POST['dnote'],0,30)) ),
 				$db->escapeSimple($_POST['p_spamassassin']),
 				$db->escapeSimple($bogofilter),
 				$db->escapeSimple($_POST['p_mailarchive']),

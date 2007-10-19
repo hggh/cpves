@@ -49,6 +49,22 @@ function check_whitelist_addr($addr) {
 	return 0;
 }
 
+function domain_valid($domain) {
+	if (preg_match("/^([0-9a-zA-Z\._\-]+)$/", $domain)) {
+		return true;
+	}
+	return false;
+}
+
+function clean_input($string) {
+	if (get_magic_quotes_gpc()) {
+		$string=stripslashes($string);
+	}
+	$string=strip_tags($string);
+	return $string;
+	
+}
+
 function get_all_langs() {
 $table_lang = array();
 if (is_dir(ROOT . "/includes/localization/")) {
@@ -544,7 +560,7 @@ function get_forem_domain($id,$type,$db)
 
 function email_valid($mail)
 {
-	if (ereg("^([a-zA-Z0-9._-]+)$", $mail))
+	if (ereg("^([a-zA-Z0-9._\-]+)$", $mail))
 	{
 		return true;
 	}
@@ -839,6 +855,8 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 		$esubject=stripslashes($esubject);
 		$msg=stripslashes($msg);
 	}
+	$esubject=clean_input($esubject);
+	$msg=clean_input($msg);
 	if ($result->numRows()==1) 
 	{
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);

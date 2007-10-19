@@ -65,6 +65,8 @@ while(@data = $sth->fetchrow_array)
 	my $dnsname= $data[2];
 	my $id = $data[1];
 	my $emailaddr = $data[0];
+	die ("Error: emailaddress contains illegal chars!\n") unless ($emailaddr=~m/^([a-zA-Z0-9._\-]+)$/);
+	die ("Error: domainname contains illegal chars!\n") unless ($dnsname=~m/^([a-zA-Z0-9._\-]+)$/);
 	if ( ! -d "$config{'vmail_home'}/$dnsname") {
 		`mkdir -p $config{'vmail_home'}/$dnsname`;
 		`chmod 770 $config{'vmail_home'}/$dnsname`;

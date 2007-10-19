@@ -130,7 +130,7 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple(trim(strtolower($full_email))),
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($cleartext),
-				$db->escapeSimple($_POST['full_name']),
+				$db->escapeSimple(clean_input(trim($_POST['full_name']))),
 				$db->escapeSimple($imap),
 				$db->escapeSimple($pop3),
 				$db->escapeSimple($webmail),

@@ -146,7 +146,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1') {
 	//Domain Notiz aendern:
 	if (isset($_POST['dnote'])) {
 		$sql=sprintf("UPDATE domains SET dnote='%s' WHERE id='%d'",
-			$db->escapeSimple($_POST['dnote']),
+			$db->escapeSimple(clean_input(substr($_POST['dnote'],0,30))),
 			$db->escapeSimple($_GET['did']));
 		$db->query($sql);
 	}

@@ -2,6 +2,8 @@ CpVES 0.11 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Removed: fetchmail check from create_mailbox_size.pl (wrong)
 	o Fixed: recipient classes VIEW
 	o Improved: display mailbox size with units
+	o Improved: fist step to better inputchecks for XSS protection
+	  Thanks to Sven Tantau (http://beastiebytes.com)
 CpVES 0.10 2007-10-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Improved: sa_learn.pl no longer debug output
 	o Improved: move_spam does not display INBOX

@@ -97,6 +97,10 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_wrong_sa_subjecttag','y');
 		}
+		elseif (!preg_match("/^([0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])) {
+			$smarty->assign('error_msg', 'y');
+			$smarty->assign('if_illegal_sa_subjecttag','y');
+		}
 		else
 		{
 			if ($_POST['rewrite_subject']==0)
@@ -105,7 +109,7 @@ if (isset($_SESSION['superadmin']) &&
 			}
 			elseif ($_POST['rewrite_subject']==1)
 			{
-				$rewrite_subject=$_POST['rewrite_subject_header'];
+				$rewrite_subject=clean_input(trim($_POST['rewrite_subject_header']));
 			
 			}
 			update_spamassassin_value($edata['email'],"rewrite_header subject",$rewrite_subject,$_GET['id'] );
@@ -586,7 +590,7 @@ if (isset($_SESSION['superadmin']) &&
 			{
 				$sql=sprintf("UPDATE users SET passwd='%s', full_name='%s',p_imap='%d', p_pop3='%d',p_webmail='%d',	cpasswd='%s', p_forwarding='%s',p_spamassassin='%s',p_mailarchive='%d',p_bogofilter='%d',p_spam_del='%d',p_sa_learn='%d',p_fetchmail='%d',p_webinterface='%d',p_autores_xheader='%d',p_check_polw='%d',p_check_grey='%d',p_spam_fwd='%d' WHERE id='%d' ",
 					$db->escapeSimple($cleartext),
-					$db->escapeSimple($_POST['full_name']),
+					$db->escapeSimple(clean_input(trim($_POST['full_name']))),
 					$db->escapeSimple($imap),
 					$db->escapeSimple($pop3),
 					$db->escapeSimple($webmail),
