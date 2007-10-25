@@ -83,6 +83,8 @@ if (is_dir(ROOT . "/includes/localization/")) {
 }
 
 function mailbox_size_human($size) {
+	if( empty($size) )
+		$size = 0;
 	if ($size > 1024) {
 		$mb_size['size']=sprintf("%01.2f",$size/1024);
 		$mb_size['unit']="gb";
