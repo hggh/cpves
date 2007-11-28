@@ -26,4 +26,8 @@ Mailingliste wurde erfolgreich angelegt.
 {t}changes are saved.{/t}
 {elseif $if_salearn_saved == 'y'}
 {t}changes are saved.{/t}
+{elseif $domain_forward_saved =='y'}
+{t}the domain forward was saved.{/t}<br>
+{t}you will be forwarded to domain overview{/t}
+<meta http-equiv="refresh" content="1; URL=?module=domain_view&#038;did={$did}">
 {/if}

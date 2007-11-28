@@ -35,6 +35,21 @@ $db=&DB::connect($dsn, $options);
 if (PEAR::isError($db)) {
     die($db->getMessage());
 }
+
+function do_fwd_get_fwd_domain($did) {
+	global $db;
+	$sql=sprintf("SELECT a.to_domain, b.dnsname,b.id,a.id AS do_id FROM domains_forward AS a LEFT JOIN domains AS b ON b.id=a.to_domain WHERE a.fr_domain='%s'",
+		$db->escapeSimple($did));
+	$result=&$db->query($sql);
+	if ($result->numRows() == 1) {
+		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
+		return $data;
+	}
+	else {
+		return false;
+	}
+}
+
 function check_whitelist_addr($addr) {
 	if (preg_match('/^@/', $addr)) { //addr is an domain
 		if (preg_match('/^([0-9a-zA-Z_.\-@]+)$/',$addr)) {

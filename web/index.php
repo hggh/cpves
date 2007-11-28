@@ -60,6 +60,9 @@ switch($_GET['module']) {
 	case 'domain_del':
 		$site="domain_del";
 		break;
+	case 'domain_forward':
+		$site="domain_forward";
+		break;
 	case 'list_add':
 		$site="list_add";
 		break;

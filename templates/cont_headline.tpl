@@ -10,6 +10,8 @@
 	{t}Superadmin: user summary{/t}
 {elseif $template == "domain_add.tpl" }
 	{t}Superadmin: add new domain{/t}
+{elseif $template == "domain_forward.tpl"}
+	{$dnsname}: {t}create internal domainforward{/t}
 {elseif $template == "domain_view.tpl"}
 	{$dnsname}: {t}summary{/t}
 {elseif $template == "email_add.tpl"}

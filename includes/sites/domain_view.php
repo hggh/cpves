@@ -152,6 +152,15 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1') {
 	}
 } // superadmin END
 
+// del domain_forward from domains_forward
+if (isset($_GET['sub'])&& $_GET['sub']=="do_fwd" && isset($_GET['act']) && $_GET['act']=="del" &&
+	isset($_GET['do_fwd_id']) && is_numeric($_GET['do_fwd_id'])) {
+	$sql=sprintf("DELETE FROM domains_forward WHERE id='%s' AND fr_domain='%s'",
+		$db->escapeSimple($_GET['do_fwd_id']),
+		$db->escapeSimple($_GET['did']));
+	$db->query($sql);
+}
+
 //Domain features veraendern ANFANG
 if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GET['fstate'])&& isset($_GET['f']))
 {
@@ -207,6 +216,13 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1' && isset($_GE
 $smarty->assign('emails', get_forem_domain($_GET['did'],'users', $db));
 $smarty->assign('forwardings', get_forem_domain($_GET['did'],'forwardings', $db));
 
+//get forward domain
+if (do_fwd_get_fwd_domain($_GET['did'])== false) {
+	$smarty->assign('domain_fwd',0);
+}
+else {
+	$smarty->assign('domain_fwd', do_fwd_get_fwd_domain($_GET['did']));
+}
 
 //FIXME: deleted email addresses!!!
 $sql=sprintf("SELECT email,id,access,mb_size FROM users WHERE domainid='%s' AND enew!='0' ORDER BY email",

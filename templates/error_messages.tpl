@@ -16,6 +16,11 @@
 {t 1=$max_passwd_len}password should contain three between %1 characters{/t}
 {elseif $if_error_password_empty == 'y'}
 {t}password is empty!{/t}
+{elseif $if_error_to_domain_not_exists == 'y'}
+{t}the selected domains does not exists!{/t}
+{elseif $if_error_domain_forwarded_already == 'y'}
+{t}the domain is already forwarded to another domain.{/t}<br/>
+{t}please return to domain overview!{/t}
 {elseif $if_error_password_old_wrong == 'y'}
 {t}old password is wrong!{/t}
 {elseif $if_error_sadmim_exits == 'y'}

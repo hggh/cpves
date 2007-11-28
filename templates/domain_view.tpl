@@ -24,11 +24,11 @@
 <tr bgcolor="{cycle values="$color1,$color2"}">
 
  <td style="width:300px;"><div style="float:left;">
-{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" align="middle" title="{t}vacation active!{/t}" />{/if}
+{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" alt="" align="middle" title="{t}vacation active!{/t}" />{/if}
 <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></div>
 <div style="float:right;padding:0px;">
 	<a class="tooltip" href="#">
-	<img src="img/icons/help.png" title="" align="middle"/>
+	<img src="img/icons/help.png" alt="" title="" align="middle"/>
 	<span>{t}information{/t}:<br/> </span></a>
 </div></td>
 
@@ -40,12 +40,12 @@
 {/if}
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1' }
- <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate emailaddress{/t}"/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" alt="" style="border:0px;" title="{t}deactivate emailaddress{/t}"/></a>
  {else}
- <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate emailaddress{/t}"/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=email&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" alt="" style="border:0px;" title="{t}activate emailaddress{/t}"/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" title="{t}delete emailaddress{/t}" />
+  <a href="?module=email_del&#038;did={$row.did}&#038;id={$row.id}"><img src="img/icons/delete.png" style="border:0px;" alt="" title="{t}delete emailaddress{/t}" />
   </a>
 </td>
 </tr>
@@ -67,16 +67,16 @@
 {foreach from=$table_forward item=row}
 <tr bgcolor="{cycle values="$color1,$color2"}">
  <td style="width:300px;"><a href="?module=forward_view&#038;id={$row.id}&amp;did={$did}">{$row.from}</a></td>
- <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" title="{t}forwarding to more addresses.{/t}" /> {/if }{$row.to}</td>
+ <td style="width:300px;">{if $row.if_multif eq 'y' }<img src="img/icons/multi_fwd.png"  style="border:0px;" alt="" title="{t}forwarding to more addresses.{/t}" /> {/if }{$row.to}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1'}
-  <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate forwarding.{/t}"/></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" alt="" style="border:0px;" title="{t}deactivate forwarding.{/t}"/></a>
  
  {else}
- <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate forwarding.{/t}"/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=forward&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" alt="" style="border:0px;" title="{t}activate forwarding.{/t}"/></a>
  {/if}</td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete forwarding.{/t}"/></a>
+  <a href="?module=forward_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete forwarding.{/t}" alt="" /></a>
   </td>
 </tr>
 {/foreach}
@@ -97,12 +97,12 @@
  <td style="width:100px;">{if $row.public eq 'y'}{t}public{/t}{else}{t}private{/t}{/if}</td>
  <td style="text-align:right;vertical-align:middle;">
  {if $row.access == '1' }
- <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglist.{/t}"/></a>
+ <a href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=disable&#038;eid={$row.id}"><img src="img/icons/button_ok.png" alt="" style="border:0px;" title="{t}deactivate mailinglist.{/t}"/></a>
  {else}
- <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglist.{/t}"/></a>
+ <a  href="?module=domain_view&#038;did={$did}&#038;type=list&#038;state=enable&#038;eid={$row.id}"><img src="img/icons/button_cancel.png" alt="" style="border:0px;" title="{t}activate mailinglist.{/t}"/></a>
  {/if}</td>
  <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=list_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete mailinglist.{/t}"/></a>
+  <a href="?module=list_del&#038;did={$did}&#38;id={$row.id}" ><img src="img/icons/delete.png" style="border:0px;" title="{t}delete mailinglist.{/t}" alt="" /></a>
  </td>
 </tr> 
 {foreachelse}
@@ -128,13 +128,13 @@
   <td style="text-align:right;vertical-align:middle;">
   
   {if $catchall_access == '1'}
-  <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" title="{t}deactivate catchall entry.{/t}" style="border:0px;" /></a>  
+  <a href="?module=domain_view&#038;did={$did}&#038;state=disable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_ok.png" alt="" title="{t}deactivate catchall entry.{/t}" style="border:0px;" /></a>  
   
   {else}
-  <a href="?module=domain_view&#038;did={$did}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="{t}activate catchall entry.{/t}" style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;state=enable&#038;type=forward&#038;eid={$catchall_id}"><img src="img/icons/button_cancel.png" title="{t}activate catchall entry.{/t}" alt="" style="border:0px;" /></a>
   {/if}</form></td>
   <td style="text-align:right;vertical-align:middle;">
-  <a href="?module=domain_view&#038;did={$did}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="{t}delete catchall entry.{/t}"><img src="img/icons/delete.png" style="border:0px;" /></a>
+  <a href="?module=domain_view&#038;did={$did}&#038;type=catchall&#038;state=delete&#038;eid={$catchall_id}" title="{t}delete catchall entry.{/t}"><img src="img/icons/delete.png" alt="" style="border:0px;" /></a>
  </td>
   {/if}
 </tr>
@@ -144,9 +144,9 @@
  <td style="width:670px;" class="domain_view" colspan="4"><h3>{t}internal domainforward{/t}:</h3></td>
 </tr>
 <tr>
-{if $domain_forward_active==0}
+{if $domain_fwd==0}
 <td colspan="4">
-{t 1=$dnsname}no internal domainforward for %1 configured.{/t}<br/><a href="?module=domain_forward&#038;did={$did}&#038;new=yes">{t}click here to configure an domainfoward.{/t}</a>
+{t 1=$dnsname}no internal domainforward for %1 configured.{/t}<br/><a href="?module=domain_forward&#038;did={$did}">{t}click here to configure an domainfoward.{/t}</a>
 </td>
 </tr>
 {else}
@@ -156,9 +156,9 @@
 	<td style="font-weight:bold;">{t}destination domain{/t}</td>
 </tr>
 <tr>
-	<td style="padding-right:15px;">{$dnsname}</td>
-	<td><a href="?module=domain_view&#038;did={$to_domain_id}">{$to_domain_name}</a></td>
-	<td style="text-align:right;vertical-align:middle;"><img src="img/icons/delete.png" style="border:0px;" /></td>
+	<td style="padding-right:15px;">@{$dnsname}</td>
+	<td><a href="?module=domain_view&#038;did={$domain_fwd.id}">@{$domain_fwd.dnsname}</a></td>
+	<td style="text-align:right;vertical-align:middle;"><a href="?module=domain_view&#038;did={$did}&#038;sub=do_fwd&#038;act=del&#038;do_fwd_id={$domain_fwd.do_id}"><img src="img/icons/delete.png" style="border:0px;" alt="" /></a></td>
 </tr>
 
 {/if}
@@ -173,10 +173,10 @@
  <td style="text-align:right;">
  {if $domain.p_imap == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=imap">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate IMAP.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate IMAP.{/t}" alt="" /></a>
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=imap">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate IMAP.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate IMAP.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
@@ -185,10 +185,10 @@
  <td style="text-align:right;">
  {if $domain.p_pop3 == 0 }
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=pop3">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate POP3.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate POP3.{/t}" alt="" /></a>
  {else}
   <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=pop3">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate POP3.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate POP3.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
@@ -197,10 +197,10 @@
  <td style="text-align:right;">
  {if $domain.p_webmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webmail">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate webmail.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate webmail.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webmail">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate webmail.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate webmail.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 {if $config.mailinglists == '1'}
@@ -210,10 +210,10 @@
  <td style="text-align:right;">
  {if $domain.p_mlists ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mlists">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglists.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate mailinglists.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=mlists">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglists.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate mailinglists.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 {/if}
@@ -224,10 +224,10 @@
  <td style="text-align:right;">
  {if $domain.p_check_polw ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_polw">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate policyd-weight.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate policyd-weight.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=check_polw">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate policyd-weight.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate policyd-weight.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 {/if}
@@ -238,10 +238,10 @@
  <td style="text-align:right;">
  {if $domain.p_check_grey ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=check_grey">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate greylisting.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate greylisting.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=check_grey">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate greylisting.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate greylisting.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 {/if}
@@ -251,10 +251,10 @@
  <td style="text-align:right;">
  {if $domain.p_webinterface == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=webinterface">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate CpVES webinterface.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate CpVES webinterface.{/t}" alt="" /></a>
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webinterface">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate CpVES webinterface.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate CpVES webinterface.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
@@ -263,10 +263,10 @@
  <td style="text-align:right;">
  {if $domain.p_autores_xheader == 0  }
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=autores_xheader">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate vacation X-Header feature.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate vacation X-Header feature.{/t}" alt="" /></a>
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=autores_xheader">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate vacation X-Header feature.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate vacation X-Header feature.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
@@ -275,10 +275,10 @@
  <td style="text-align:right;">
  {if $domain.p_fetchmail ==  0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=fetchmail">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail{/t}:" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate fetchmail{/t}:" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=fetchmail">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate fetchmail.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate fetchmail.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
@@ -287,10 +287,10 @@
  <td style="text-align:right;">
  {if $domain.p_spamassassin == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spamassassin">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate spamassassin.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate spamassassin.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spamassassin">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate spamassassin.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate spamassassin.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 <tr>
@@ -299,10 +299,10 @@
  <td style="text-align:right;">
  {if $domain.p_sa_learn == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_learn">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate ham/spam learning.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate ham/spam learning.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_learn">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate ham/spam learning.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate ham/spam learning.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 
@@ -312,10 +312,10 @@
  <td style="text-align:right;">
  {if $domain.p_spam_del == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spam_del">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate delete spam.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate delete spam.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spam_del">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate delete spam.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate delete spam.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 
@@ -325,10 +325,10 @@
  <td style="text-align:right;">
  {if $domain.p_spam_fwd == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=spam_fwd">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate forward spam.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate forward spam.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=spam_fwd">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate forward spam.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate forward spam.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 
@@ -338,10 +338,10 @@
  <td style="text-align:right;">
  {if $domain.p_bogofilter == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=bogofilter">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate bogofilter.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate bogofilter.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=bogofilter">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate bogofilter.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate bogofilter.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 
@@ -351,10 +351,10 @@
  <td style="text-align:right;">
  {if $domain.p_mailarchive == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=mailarchive">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate archivemail.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate archivemail.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=mailarchive">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate archivemail.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate archivemail.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 <tr>
@@ -363,10 +363,10 @@
  <td style="text-align:right;">
  {if $domain.p_sa_wb_listing == 0 }
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=sa_wb_listing">
- <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate whitelisting.{/t}" /></a>
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate whitelisting.{/t}" alt="" /></a>
  {else}
    <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=sa_wb_listing">
- <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate whitelisting.{/t}" /></a>
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate whitelisting.{/t}" alt="" /></a>
  {/if}</td> 
 </tr>
 
