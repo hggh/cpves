@@ -224,6 +224,22 @@ else {
 	$smarty->assign('domain_fwd', do_fwd_get_fwd_domain($_GET['did']));
 }
 
+// get points domains
+$sql=sprintf("SELECT a.fr_domain,b.dnsname FROM domains_forward AS a LEFT JOIN domains AS b ON b.id=a.fr_domain WHERE a.to_domain='%s' ORDER BY b.dnsname",
+	$db->escapeSimple($_GET['did']));
+$result=&$db->query($sql);
+if ($result->numRows()>0) {
+	$smarty->assign('domains_points_to_me',1);
+	$table_domain_points=array();
+	while($data=$result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		array_push($table_domain_points, array(
+			'fr_domain' => $data['fr_domain'],
+			'fr_domain_name' => $data['dnsname']));
+	}
+	$smarty->assign('table_domain_points',$table_domain_points);
+}
+
+
 //FIXME: deleted email addresses!!!
 $sql=sprintf("SELECT email,id,access,mb_size FROM users WHERE domainid='%s' AND enew!='0' ORDER BY email",
 	$db->escapeSimple($_GET['did']));

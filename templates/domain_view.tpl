@@ -160,8 +160,20 @@
 	<td><a href="?module=domain_view&#038;did={$domain_fwd.id}">@{$domain_fwd.dnsname}</a></td>
 	<td style="text-align:right;vertical-align:middle;"><a href="?module=domain_view&#038;did={$did}&#038;sub=do_fwd&#038;act=del&#038;do_fwd_id={$domain_fwd.do_id}"><img src="img/icons/delete.png" style="border:0px;" alt="" /></a></td>
 </tr>
-
 {/if}
+
+{if $domains_points_to_me ==1}
+<tr>
+ <td style="width:670px;" class="domain_view" colspan="4"><h3>{t}domains that forwards to{/t} {$dnsname}:</h3></td>
+</tr>
+{foreach from=$table_domain_points item=row}
+<tr>
+	<td><a href="?module=domain_view&#038;did={$row.fr_domain}">@{$row.fr_domain_name}</a></td>
+</tr>
+{/foreach}
+{/if}
+
+
 
 {if $if_superadmin == 1 }
 <tr>
