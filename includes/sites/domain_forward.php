@@ -29,6 +29,9 @@ if (isset($_SESSION['superadmin']) &&
 		$sql=sprintf("SELECT id FROM domains_forward WHERE fr_domain='%s'",
 			$db->escapeSimple($_GET['did']));
 		$result2=&$db->query($sql);
+		$sql=sprintf("SELECT id FROM domains_forward WHERE to_domain='%s'",
+			$db->escapeSimple($_GET['did']));
+		$result3=$db->query($sql);
 		if($result->numRows()!=1) {
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_to_domain_not_exists', 'y');
@@ -36,6 +39,10 @@ if (isset($_SESSION['superadmin']) &&
 		elseif($result2->numRows()!=0) {
 			$smarty->assign('error_msg','y');
 			$smarty->assign('if_error_domain_forwarded_already','y');
+		}
+		elseif ($result3->numRows()!=0) {
+			$smarty->assign('error_msg','y');
+			$smarty->assign('if_error_other_domains_points_to_me','y');
 		}
 		else {
 			$sql=sprintf("INSERT INTO domains_forward SET fr_domain='%s', to_domain='%s'",

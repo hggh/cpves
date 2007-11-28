@@ -98,4 +98,7 @@ Bitte alle Felder ausf&uuml;llen!
 {elseif $move_spam_active_and_spam_fwd == 1}
 {t}move known spam and forward known spam is active!{/t}<br/>
 {t}You could either use move or forward option!{/t}
+{elseif $if_error_other_domains_points_to_me == 'y'}
+{t 1=$dnsname}Other domains points to %1.{/t}<br/>
+{t}It's not possible to create an forward that forwards again!{/t}
 {/if}
