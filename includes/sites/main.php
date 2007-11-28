@@ -66,7 +66,7 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 		$vaction=1;
 		$vaction_infos="";
 		while($row_vac = $res_vacation->fetchrow(DB_FETCHMODE_ASSOC)) {
-			$vaction_infos .= $row_vac['email'] . " ";
+			$vaction_infos .= $row_vac['email'] . "<br/>";
 		}
 	}
 	else {

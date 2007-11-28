@@ -50,7 +50,7 @@ if (isset($_POST['save_option']) && $_SESSION['spamassassin']==1)
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_wrong_sa_subjecttag','y');
 		}
-		elseif (!preg_match("/^([0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])) {
+		elseif (!preg_match("/^([\s0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])&&$_POST['spamassasin_active']=='1') {
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_illegal_sa_subjecttag','y');
 		}

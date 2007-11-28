@@ -97,7 +97,7 @@ if (isset($_SESSION['superadmin']) &&
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_wrong_sa_subjecttag','y');
 		}
-		elseif (!preg_match("/^([0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])) {
+		elseif (!preg_match("/^([\s0-9A-Za-z*\s\+\.\-_\]\[]+)$/",$_POST['rewrite_subject_header'])&&$_POST['spamassasin_active']=='1') {
 			$smarty->assign('error_msg', 'y');
 			$smarty->assign('if_illegal_sa_subjecttag','y');
 		}
@@ -184,6 +184,7 @@ if (isset($_SESSION['superadmin']) &&
 			$db->escapeSimple($_GET['xheader']));
 		$db->query($sql);
 	}
+	//FIXME INPUT CHECKS!!!
 	if (isset($_POST['xheader_submit'])) {
 		if (!empty($_POST['xheader_name']) && !empty($_POST['xheader_value'])) {
 			$sql=sprintf("INSERT INTO autoresponder_xheader SET email='%d',xheader='%s',value='%s'",

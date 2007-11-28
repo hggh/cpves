@@ -17,7 +17,9 @@
 		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></div>
 		{if $row.vacation == 1}
 		<div style="float:right;padding:0px;">
-		<img src="img/icons/autoresponder.png" title="{$row.vacation_infos}" align="middle"/>
+		<a class="tooltip" href="#">
+		<img src="img/icons/autoresponder.png" title="" align="middle"/>
+		<span>{t}vacation{/t}:<br/>{$row.vacation_infos}</span></a>
 		</div>
 		{/if}
 		</td>

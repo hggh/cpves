@@ -22,8 +22,15 @@
 <table id="mailst" border="0">
 {foreach from=$table_email item=row }
 <tr bgcolor="{cycle values="$color1,$color2"}">
- <td style="width:300px;">{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" title="{t}vacation active!{/t}" />{/if}
- <a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></td>
+
+ <td style="width:300px;"><div style="float:left;">
+{if $row.autoresponder eq "1"}<img src="img/icons/autoresponder.png" align="middle" title="{t}vacation active!{/t}" />{/if}
+<a href="?module=email_view&#038;id={$row.id}&amp;did={$did}">{$row.email}</a></div>
+<div style="float:right;padding:0px;">
+	<a class="tooltip" href="#">
+	<img src="img/icons/help.png" title="" align="middle"/>
+	<span>{t}information{/t}:<br/> </span></a>
+</div></td>
 
 {if $display_mb_size == 1}
 <td style="width:250px;"> </td>
@@ -131,6 +138,30 @@
  </td>
   {/if}
 </tr>
+
+
+<tr>
+ <td style="width:670px;" class="domain_view" colspan="4"><h3>{t}internal domainforward{/t}:</h3></td>
+</tr>
+<tr>
+{if $domain_forward_active==0}
+<td colspan="4">
+{t 1=$dnsname}no internal domainforward for %1 configured.{/t}<br/><a href="?module=domain_forward&#038;did={$did}&#038;new=yes">{t}click here to configure an domainfoward.{/t}</a>
+</td>
+</tr>
+{else}
+
+<tr>
+	<td style="font-weight:bold;padding-right:15px;">{t}source domain{/t}</td>
+	<td style="font-weight:bold;">{t}destination domain{/t}</td>
+</tr>
+<tr>
+	<td style="padding-right:15px;">{$dnsname}</td>
+	<td><a href="?module=domain_view&#038;did={$to_domain_id}">{$to_domain_name}</a></td>
+	<td style="text-align:right;vertical-align:middle;"><img src="img/icons/delete.png" style="border:0px;" /></td>
+</tr>
+
+{/if}
 
 {if $if_superadmin == 1 }
 <tr>

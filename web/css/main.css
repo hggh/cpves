@@ -309,4 +309,40 @@ letter-spacing:-1px;
 .center {text-align:center;}
 .right {text-align:right;}
 
+a.tooltip,
+a.tooltip:link,
+a.tooltip:visited,
+a.tooltip:active {
+position: relative;
+text-decoration: none;
+font-style: bold;
+border-bottom:0px dotted #f0f0f0;
+}
+
+a.tooltip:hover {
+background: transparent;
+z-index: 200;
+}
+
+a.tooltip span {
+display: none;
+text-decoration: none;
+}
+
+a.tooltip:hover span {
+display: block;
+position: absolute;
+top: 30px;
+left: 0;
+width: 200px;
+z-index: 200;
+color: #000000;
+border-right: 4px solid #8b8b8b;
+border-left: 4px solid #8b8b8b;
+padding: 2px 10px 2px 10px;
+background: #EEEEEE;
+font-style: Normal;
+text-align: left;
+
+
 /*** End of file ***/

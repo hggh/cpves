@@ -47,6 +47,7 @@ if (empty($_POST['fm_server']) ||
 	$smarty->assign('fm_missing_error' ,'y');
 }
 else {
+	//FIXME: INPUT CHECKS!!
 	$sql=sprintf("INSERT INTO fetchmail SET email='%d', server='%s',proto='%d',conn_type='%d',username='%s',password='%s', keep_mails='%d',active='1'",
 		$db->escapeSimple($_SESSION['uid']),
 		$db->escapeSimple($_POST['fm_server']),

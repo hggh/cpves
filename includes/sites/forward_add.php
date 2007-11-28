@@ -38,7 +38,7 @@ if (isset($_SESSION['superadmin']) &&
 		$smarty->assign('error_msg','y');
 		$smarty->assign('if_error_forwds_max_reached','y');
 	}
-	
+	//FIXME: Remove that fucking coe
 	//fetch all mailaddress:
 	$sql=sprintf("SELECT email FROM users WHERE domainid='%s'  AND enew!='0' ORDER BY email",
 		$db->escapeSimple($_GET['did']));
