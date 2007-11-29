@@ -255,6 +255,9 @@ function change_domain_feature($did,$feature,$state) {
 		case 'spam_fwd':
 			$do="p_spam_fwd";
 			break;
+		case 'autores':
+			$do="p_autores";
+			break;
 		default:
 			return false;
 	}

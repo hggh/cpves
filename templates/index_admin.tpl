@@ -7,11 +7,11 @@
 	<td>{t}size{/t}</td>
 	{/if}
 </tr>
-{section name=row loop=$table_data}
+{foreach item=row from=$table_data}
 <tr bgcolor="{cycle values="$color1,$color2"}">
-	<td style="padding-left:3px;">
+	<td style="padding-left:3px;padding-right:10px;">
 	<div style="float:left;">
-		<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></div>
+	<a href="?module=domain_view&#038;did={$row.id}">{$row.dnsname}</a></div>
 		{if $row.vacation == 1}
 		<div style="float:right;padding:0px;">
 		<a class="tooltip" href="#">
@@ -20,11 +20,11 @@
 		</div>
 		{/if}
 	</td>
-	<td style="text-align:right;">{$table_data[row].count_email}</td>
-	<td style="text-align:right;">{$table_data[row].count_forward}</td>
+	<td style="text-align:right;">{$row.count_email}</td>
+	<td style="text-align:right;">{$row.count_forward}</td>
 	{if $config.display_mb_size == 1 }
 	<td>{$row.mb_size.size} {if $row.mb_size.unit == 'gb'}GB{else}MB{/if}</td>
 	{/if}
 </tr>
-{/section}
+{/foreach}
 </table>

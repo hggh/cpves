@@ -18,10 +18,7 @@
 ******************************************************************************/
 if (isset($_SESSION['superadmin']) &&
 	isset($_GET['did']) &&
-	$_SESSION['superadmin']=='1'||
-	$_SESSION['admin']=='1' &&
-	isset($_GET['did']) &&
-	$access_domain )
+	$_SESSION['superadmin']=='1')
 {
 	if (isset($_POST['domains_forward_save'])&& isset($_POST['to_domain']) && is_numeric($_POST['to_domain'])) {
 		$sql=sprintf("SELECT id FROM domains WHERE id='%s'", $db->escapeSimple($_POST['to_domain']));

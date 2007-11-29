@@ -63,6 +63,9 @@ switch($_GET['module']) {
 	case 'domain_forward':
 		$site="domain_forward";
 		break;
+	case 'domain_fwd_copy':
+		$site="domain_fwd_copy";
+		break;
 	case 'list_add':
 		$site="list_add";
 		break;

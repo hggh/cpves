@@ -154,7 +154,7 @@ if (isset($_SESSION['superadmin']) && $_SESSION['superadmin']=='1') {
 
 // del domain_forward from domains_forward
 if (isset($_GET['sub'])&& $_GET['sub']=="do_fwd" && isset($_GET['act']) && $_GET['act']=="del" &&
-	isset($_GET['do_fwd_id']) && is_numeric($_GET['do_fwd_id'])) {
+	isset($_GET['do_fwd_id']) && is_numeric($_GET['do_fwd_id']) && $_SESSION['superadmin']== '1') {
 	$sql=sprintf("DELETE FROM domains_forward WHERE id='%s' AND fr_domain='%s'",
 		$db->escapeSimple($_GET['do_fwd_id']),
 		$db->escapeSimple($_GET['did']));

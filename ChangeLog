@@ -1,4 +1,5 @@
 CpVES 0.11 YYYY-MM-DD - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: internal domainforwarding feature
 	o Removed: fetchmail check from create_mailbox_size.pl (wrong)
 	o Fixed: recipient classes VIEW
 	o Improved: display mailbox size with units

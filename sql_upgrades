@@ -184,4 +184,5 @@ CREATE TABLE `domains_forward` (
 `to_domain` INT NOT NULL ,
 INDEX ( `fr_domain` )
 ) ENGINE = MYISAM ;
+ALTER TABLE `domains` ADD `p_autores` TINYINT( 1 ) NOT NULL DEFAULT '1';
 

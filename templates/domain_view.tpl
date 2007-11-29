@@ -146,7 +146,8 @@
 <tr>
 {if $domain_fwd==0}
 <td colspan="4">
-{t 1=$dnsname}no internal domainforward for %1 configured.{/t}<br/><a href="?module=domain_forward&#038;did={$did}">{t}click here to configure an domainfoward.{/t}</a>
+{t 1=$dnsname}no internal domainforward for %1 configured.{/t}
+{if $if_superadmin == 1}<br/><a href="?module=domain_forward&#038;did={$did}">{t}click here to configure an domainfoward.{/t}</a>{/if}
 </td>
 </tr>
 {else}
@@ -157,8 +158,18 @@
 </tr>
 <tr>
 	<td style="padding-right:15px;">@{$dnsname}</td>
-	<td><a href="?module=domain_view&#038;did={$domain_fwd.id}">@{$domain_fwd.dnsname}</a></td>
-	<td style="text-align:right;vertical-align:middle;"><a href="?module=domain_view&#038;did={$did}&#038;sub=do_fwd&#038;act=del&#038;do_fwd_id={$domain_fwd.do_id}"><img src="img/icons/delete.png" style="border:0px;" alt="" /></a></td>
+	<td>
+{if $if_superadmin == 1}
+<a href="?module=domain_view&#038;did={$domain_fwd.id}">@{$domain_fwd.dnsname}</a>
+{else}
+@{$domain_fwd.dnsname}
+{/if}
+</td>
+	<td style="text-align:right;vertical-align:middle;">
+{if $if_superadmin == 1}
+<a href="?module=domain_view&#038;did={$did}&#038;sub=do_fwd&#038;act=del&#038;do_fwd_id={$domain_fwd.do_id}"><img src="img/icons/delete.png" style="border:0px;" alt="" /></a>
+{/if}
+</td>
 </tr>
 {/if}
 
@@ -168,9 +179,22 @@
 </tr>
 {foreach from=$table_domain_points item=row}
 <tr>
-	<td><a href="?module=domain_view&#038;did={$row.fr_domain}">@{$row.fr_domain_name}</a></td>
+	<td>
+{if $if_superadmin == 1}<a href="?module=domain_view&#038;did={$row.fr_domain}">@{$row.fr_domain_name}</a>
+{else}
+@{$row.fr_domain_name}
+{/if}</td>
 </tr>
 {/foreach}
+
+{if $if_superadmin == 1 }
+{* superadmin can copy all addresses to the forwarding domains... *}
+<tr>
+	<td colspan="4" style="text-align:right;"><a href="?module=domain_fwd_copy&#038;did={$did}">{t}copy addresses to forwarding domains{/t}</a></td>
+</tr>
+{/if}
+
+
 {/if}
 
 
@@ -267,6 +291,18 @@
  {else}
  <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=webinterface">
  <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate CpVES webinterface.{/t}" alt="" /></a>
+ {/if}</td>
+</tr>
+<tr>
+ <td>{t}vacation{/t}:</td>
+ <td></td>
+ <td style="text-align:right;">
+ {if $domain.p_autores == 0  }
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=1&#038;f=autores">
+ <img src="img/icons/button_cancel.png" style="border:0px;" title="{t}activate CpVES vacation.{/t}" alt="" /></a>
+ {else}
+ <a href="?module=domain_view&#038;did={$did}&#038;fstate=0&#038;f=autores">
+ <img src="img/icons/button_ok.png" style="border:0px;" title="{t}deactivate CpVES vacation.{/t}" alt="" /></a>
  {/if}</td>
 </tr>
 <tr>
