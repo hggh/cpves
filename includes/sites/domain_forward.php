@@ -46,6 +46,8 @@ if (isset($_SESSION['superadmin']) &&
 				$db->escapeSimple($_GET['did']),
 				$db->escapeSimple($_POST['to_domain']));
 			$db->query($sql);
+			copy_domain_forwards($_POST['to_domain']);
+			
 			$smarty->assign('success_msg', 'y');
 			$smarty->assign('domain_forward_saved', 'y');
 		}

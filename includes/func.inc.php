@@ -36,6 +36,60 @@ if (PEAR::isError($db)) {
     die($db->getMessage());
 }
 
+function copy_domain_forwards($to_domain) {
+	global $db;
+	$sql =  sprintf("SELECT dnsname FROM domains WHERE id='%s'",
+		$db->escapeSimple($to_domain));
+	$res_to_domain = &$db->query($sql);
+	$data_to_domain = $res_to_domain->fetchrow(DB_FETCHMODE_ASSOC);
+	$sql = sprintf("SELECT fr_domain,to_domain FROM domains_forward WHERE to_domain='%s'",
+		$db->escapeSimple($to_domain));
+	$result=&$db->query($sql);
+	while ($domains = $result->fetchrow(DB_FETCHMODE_ASSOC)) {
+		// get infos from the fr_domain
+		$sql = sprintf("SELECT id AS domainid,dnsname FROM domains WHERE id='%s'",
+			$db->escapeSimple($domains['fr_domain']));
+		$res_fr_domain= &$db->query($sql);
+		$data_fr_domain = $res_fr_domain->fetchrow(DB_FETCHMODE_ASSOC);
+		// Delete all email adresses on fr_domain
+		$sql = sprintf("DELETE FROM users WHERE domainid='%s'",
+			$db->escapeSimple($domains['fr_domain']));
+		$db->query($sql);
+		// Delete all forwardins:
+		$sql = sprintf("DELETE FROM forwardings WHERE domainid='%s'",
+			$db->escapeSimple($domains['fr_domain']));
+		$db->query($sql);
+		
+		// insert now new emails -> forwardings
+		$sql = sprintf("SELECT email FROM users WHERE domainid='%s' AND enew!=0",
+			$db->escapeSimple($to_domain));
+		$res_emails = &$db->query($sql);
+		while ($emails = $res_emails->fetchrow(DB_FETCHMODE_ASSOC)) {
+			$new_forward=str_replace($data_to_domain['dnsname'],$data_fr_domain['dnsname'],
+				$emails['email']);
+			$sql = sprintf("INSERT INTO forwardings SET domainid='%s',efrom='%s',eto='%s'",
+				$db->escapeSimple($domains['fr_domain']),
+				$db->escapeSimple($new_forward),
+				$db->escapeSimple($emails['email']));
+			$db->query($sql);
+		}
+
+		// insert now new forwardinfs -> forwardings
+		$sql = sprintf("SELECT efrom FROM forwardings WHERE domainid='%s'",
+			$db->escapeSimple($to_domain));
+		$res_emails = &$db->query($sql);
+		while ($emails = $res_emails->fetchrow(DB_FETCHMODE_ASSOC)) {
+			$new_forward=str_replace($data_to_domain['dnsname'],$data_fr_domain['dnsname'],
+				$emails['efrom']);
+			$sql = sprintf("INSERT INTO forwardings SET domainid='%s',efrom='%s',eto='%s'",
+				$db->escapeSimple($domains['fr_domain']),
+				$db->escapeSimple($new_forward),
+				$db->escapeSimple($emails['efrom']));
+			$db->query($sql);
+		}
+	}
+}
+
 function do_fwd_get_fwd_domain($did) {
 	global $db;
 	$sql=sprintf("SELECT a.to_domain, b.dnsname,b.id,a.id AS do_id FROM domains_forward AS a LEFT JOIN domains AS b ON b.id=a.to_domain WHERE a.fr_domain='%s'",
