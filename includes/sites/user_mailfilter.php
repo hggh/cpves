@@ -22,7 +22,7 @@ if ($_SESSION['p_mailfilter'] != 1) {
 }
 
 //get IMAP Folders
-$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']));
+$folders =list_imap_folders($config['imap_server'],$_SESSION['email'],decrypt_passwd($_SESSION['cpasswd']), 0);
 if ($folders== false ) {
 	$smarty->assign('imap_folder_exits', 0);
 }
