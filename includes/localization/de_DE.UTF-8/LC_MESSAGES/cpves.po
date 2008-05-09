@@ -86,7 +86,7 @@ msgid "to"
 msgstr "An"
 
 msgid "delete selected addresses"
-msgstr "Markierte Adressen l&oeschen"
+msgstr "Markierte Adressen löschen"
 
 msgid "delete"
 msgstr "löschen"
@@ -106,11 +106,11 @@ msgstr "Einstellungen von %1"
 
 #, fuzzy
 msgid "policyd-weight available"
-msgstr "Weiterleitung verfögbar"
+msgstr "Weiterleitung verfügbar"
 
 #, fuzzy
 msgid "greylisting available"
-msgstr "Weiterleitung verfögbar"
+msgstr "Weiterleitung verfügbar"
 
 msgid "server"
 msgstr "Server"
@@ -225,7 +225,7 @@ msgid "changes are saved."
 msgstr "Änderungen gespeichert."
 
 msgid "Superadmin: user summary"
-msgstr "Supadmin: Benutzer&uml;berisucht"
+msgstr "Supadmin: Benutzerübersicht"
 
 msgid "Superadmin: add user"
 msgstr "Supadmin: Neuen Benutzer anlegen"

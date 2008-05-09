@@ -997,7 +997,7 @@ function check_access_to_site($site) {
 			'sadmin_view'      => 'manager',
 			'sadmin_add'       => 'manager',
 			'sadmin_edit'      => 'manager',
-			'sadmin_options'   => 'manager',
+			'sadmin_options'   => 'superadmin',
 			'sadmin_passwd'    => 'superadmin',
 			'domain_add'       => 'superadmin');
 		if (array_key_exists($site,$sites)) {
