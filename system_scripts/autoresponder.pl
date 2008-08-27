@@ -99,7 +99,6 @@ if (scalar(@formated_email) le 0 ) {
 
 #Now check if autoresponder is enabled
 my $dbh = DBI->connect($dsn, $config{'db_username'}, $config{'db_password'});
-$dbh->do("SET NAMES utf8");
 
 sub check_du_feature($$) {
 	my $uid = $_[0];
@@ -215,18 +214,18 @@ if ($sth->rows < $autores_times || $autores_times eq "n")
 	
 	my $e_send_to = MIME::Entity->build(
 		Type    => "text/plain",
-		Charset => "UTF-8",
+		Charset => "utf-8",
 		Disposition => 'inline',
 		Data    => $mail_text);
-			$e_send_to->head->add("User-Agent", 'CPM/Autoresponder');
-			$e_send_to->head->add("To", $mail_from);
-			$e_send_to->head->add("X-Loop", "No");
-			$e_send_to->head->add("X-No-Loop", "Yes");
-			$e_send_to->head->add("Sender",$sender );
-			$e_send_to->head->add("From", $sender);
-			$e_send_to->head->add("Subject", $subject );
-			$e_send_to->send;
-			$e_send_to->stringify;
+	$e_send_to->head->add("User-Agent", 'CPM/Autoresponder');
+	$e_send_to->head->add("To", $mail_from);
+	$e_send_to->head->add("X-Loop", "No");
+	$e_send_to->head->add("X-No-Loop", "Yes");
+	$e_send_to->head->add("Sender",$sender );
+	$e_send_to->head->add("From", $sender);
+	$e_send_to->head->add("Subject", $subject );
+	$e_send_to->send;
+	$e_send_to->stringify;
 	#OK send autoresponder to email and save email addr in DB
 	$sql=sprintf("INSERT INTO autoresponder_send SET email=%s, efromto=%s",
 		$dbh->quote($ARGV[0]), 
