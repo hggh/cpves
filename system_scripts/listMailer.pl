@@ -134,7 +134,8 @@ sub getAllAddresses {
 }
 
 my $row = $sth->fetchrow_hashref;
-#$mail->header_set("Reply-To", "$list");
+$mail->header_set("List-Post", "<mailto:$list>");
+$mail->header_set("List-Owner", "<mailto:$config{'ml_postmaster_addr'}>");
 $sth->finish();
 if( $row->{public} eq 'n' ) {
  if( 0 == isSenderAllowed($row->{id}, $sender) ) {
@@ -146,8 +147,8 @@ if( $row->{public} eq 'n' ) {
 		Data    => "The sender $sender is not allowed to post on the list $list\n\nYour original email:\n\n" . $mail->body);
   $e_send_to->head->add("User-Agent", 'CpVES/ListMailer');
   $e_send_to->head->add("To", $sender);
-  $e_send_to->head->add("Sender", $config{'ml_postmaster'});
-  $e_send_to->head->add("From", $config{'ml_postmaster'});
+  $e_send_to->head->add("Sender", sprintf("%s <%s>", $config{'ml_postmaster_name'}, $config{'ml_postmaster_addr'}));
+  $e_send_to->head->add("From", sprintf("%s <%s>", $config{'ml_postmaster_name'}, $config{'ml_postmaster_addr'}));
   $e_send_to->head->add("Subject", "Mailinglist error");
   $e_send_to->send;
   $e_send_to->stringify;
