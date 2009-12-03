@@ -23,6 +23,17 @@
   <%=h @domain.state %>
 </p>
 
+=== EMAILS === <br/>
+
+
+<% if @domain.domain_emails.count > 0 %>
+  <% @domain.domain_emails.each do |email| %>
+  <p>
+    E-Mailaddress: <%=h email.address %>
+  </p>
+  <% end %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_domain_path(@domain) %> |
 <%= link_to 'Back', domains_path %>

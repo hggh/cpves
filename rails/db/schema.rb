@@ -9,7 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203192227) do
+ActiveRecord::Schema.define(:version => 20091203221722) do
+
+  create_table "domain_email_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domain_emails", :force => true do |t|
+    t.string   "address"
+    t.integer  "state"
+    t.string   "address_fullname"
+    t.integer  "domain_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "domain_email_type_id"
+  end
 
   create_table "domains", :force => true do |t|
     t.integer  "adminid"
