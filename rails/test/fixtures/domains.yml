@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  adminid: 1
+  dnsname: MyString
+  dnsname_idn: MyString
+  comment: MyString
+  state: 1
+
+two:
+  adminid: 1
+  dnsname: MyString
+  dnsname_idn: MyString
+  comment: MyString
+  state: 1

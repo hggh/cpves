@@ -1,0 +1,28 @@
+<h1>Listing domains</h1>
+
+<table>
+  <tr>
+    <th>Adminid</th>
+    <th>Dnsname</th>
+    <th>Dnsname idn</th>
+    <th>Comment</th>
+    <th>State</th>
+  </tr>
+
+<% @domains.each do |domain| %>
+  <tr>
+    <td><%=h domain.adminid %></td>
+    <td><%=h domain.dnsname %></td>
+    <td><%=h domain.dnsname_idn %></td>
+    <td><%=h domain.comment %></td>
+    <td><%=h domain.state %></td>
+    <td><%= link_to 'Show', domain %></td>
+    <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+    <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New domain', new_domain_path %>

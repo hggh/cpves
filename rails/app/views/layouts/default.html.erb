@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>:: CpVES ::</title>
+				 <%= stylesheet_link_tag "main_app" %>
+    </head>
+    <body>
+        <div id="container">
+            <div id="sitename">
+                <h1>CpVES</h1>
+                <h2>Company</h2>
+            </div>
+            <div id="mainmenu">
+            </div>
+            <div id="wrap">
+                include file="navigation.tpl"
+                <div id="content">
+                    <h1>include file="cont_headline.tpl"</h1>
+                    <%= yield %>
+                </div>
+                <div class="clearingdiv">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </body>
+</html>
