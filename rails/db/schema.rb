@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203221722) do
+ActiveRecord::Schema.define(:version => 20091203224403) do
 
   create_table "domain_email_types", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20091203221722) do
     t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "p_active",     :limit => 1, :default => 1, :null => false
+    t.integer  "p_imap",       :limit => 1, :default => 1, :null => false
+    t.integer  "p_pop3",       :limit => 1, :default => 1, :null => false
+    t.integer  "p_webmail",    :limit => 1, :default => 1, :null => false
+    t.integer  "max_emails",                :default => 0, :null => false
+    t.integer  "max_forwards",              :default => 0, :null => false
+    t.integer  "max_mlists",                :default => 0, :null => false
   end
 
 end
