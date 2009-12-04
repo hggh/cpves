@@ -35,12 +35,13 @@
             <%=h domain.dnsname %>(<%=h domain.dnsname_idn %>)
         </td>
         <td>
-      
-            <%=h domain.domain_emails.find(:all, :joins => :domain_email_type ,:conditions => { 'domain_email_types.name' => 'forward' } ).count %>
+        	<%=h domain.domain_emails.find(:all, :joins => :domain_email_type ,:conditions => { 'domain_email_types.name' => 'email' } ).count %>
         </td>
         <td>
+        	<%=h domain.domain_emails.find(:all, :joins => :domain_email_type ,:conditions => { 'domain_email_types.name' => 'forward' } ).count %>
         </td>
         <td>
+        	<%=h domain.domain_emails.find(:all, :joins => :domain_email_type ,:conditions => { 'domain_email_types.name' => 'mlist' } ).count %>
         </td>
         <td>
             <%=h domain.state %>
