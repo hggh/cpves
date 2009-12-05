@@ -35,6 +35,7 @@
             <%=h domain.dnsname %>(<%=h domain.dnsname_idn %>)
         </td>
         <td>
+	# FIXME move to model
         	<%=h domain.domain_emails.find(:all, :joins => :domain_email_type ,:conditions => { 'domain_email_types.name' => 'email' } ).count %>
         </td>
         <td>
