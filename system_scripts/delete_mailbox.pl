@@ -71,7 +71,7 @@ while($row=$sth->fetchrow_hashref) {
 	undef $domain_path;
 }
 
-my $sql=sprintf("SELECT CONCAT(SUBSTRING_INDEX(a.email,'@\',1)) AS emailaddr,a.id, b.dnsname FROM users AS a LEFT JOIN domains AS b ON b.id=a.domainid WHERE a.enew='0'");
+my $sql=sprintf("SELECT CONCAT(SUBSTRING_INDEX(a.email,'\@',1)) AS emailaddr,a.id, b.dnsname FROM users AS a LEFT JOIN domains AS b ON b.id=a.domainid WHERE a.enew='0'");
 $sth = $dbh->prepare($sql);
 undef $sql;
 $sth->execute;
