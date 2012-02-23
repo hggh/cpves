@@ -1,3 +1,4 @@
+{assign var='if_dns_added' value=$if_dns_added|default:'n'}
 {if $if_dns_added eq 'y' } 
 <br />
 	{if $if_dns_not_found eq 'y' }
@@ -47,7 +48,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>{t}domainname{/t}:</td>
-		<td><input type="text" value="{$dnsname}" name="dnsname" />
+		<td><input type="text" value="{$dnsname|default:''}" name="dnsname" />
 		</td>
 	</tr>
 	<tr>

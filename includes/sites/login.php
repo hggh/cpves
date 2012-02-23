@@ -83,13 +83,7 @@ if ( ereg("@",$_POST['email']) ) // check admin or user benutzername
 			$_SESSION['forwarding']=$daten['p_forwarding'];
 			$_SESSION['p_mailfilter']=$data_domain['p_mailfilter'];
 			$_SESSION['lang']=get_email_options($_SESSION['uid'],'web_lang', 'en_US');
-			
-				
-		
 		}
-		
-		
-
 	}
 }
 else // wird ein admin username sein, also checke adm_users table
@@ -127,6 +121,9 @@ if ($login == 0)
 else if ($login==1)
 {
 	header("Location: index.php?module=main");
+} else {
+ $smarty->assign('if_login_ok', $false);
 }
+
 $smarty->assign('if_login' , 'y');
 ?>

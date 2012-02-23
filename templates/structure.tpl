@@ -42,14 +42,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #################################################################################
 -->
-{if $error_msg == 'y' && $if_logout != 'y'}
+{if $error_msg|default:'n' == 'y' && $if_logout != 'y'}
 <div style="background-color:#EF9398;border:1px solid#DC5757;float:right;width:450px;text-align:left;">
 <div style="float:left;margin:6px;"><img src="img/icons/stop.png" /></div>
 <div style="text-align:left;float:left;margin-top:7px;">
 {include file="error_messages.tpl"}
 </div></div>
 {/if}
-{if $success_msg == 'y'}
+{if $success_msg|default:'n' == 'y'}
 <div style="background-color:#A6EF7B;border:1px solid#76C83F;float:right;width:450px;text-align:left;">
 <div style="float:left;margin:6px;"><img src="img/icons/success.png" /></div>
 <div style="text-align:left;float:left;margin-top:7px;">
@@ -64,16 +64,16 @@
 </div>
 
 <div id="mainmenu">
-{if $username != ""}| 
+{if $username|default:"" != ""}| 
 <span class="text">{t}username{/t}: {$username}</span> |{else}&nbsp;{/if}
-{if $if_superadmin != '1' && $if_login != 'y'}
+{if $if_superadmin|default:'0' != '1' && $if_login != 'y'}
 	<span class="text">{t}vacation{/t}: {if $if_autoresponder == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span>  | 
 	{if $if_forwarding == 1}
 	<span class="text">{t}forwarding{/t}: {if $if_weiterleitung == 'y'}{t}active{/t}{else}{t}not active{/t}{/if}</span> |{/if}
 	{/if}
-{if $if_superadmin == '1' && $if_manager == '1'}
+{if $if_superadmin|default:'0' == '1' && $if_manager|default:'0' == '1'}
 <span class="text"> {t}permissions: superadmin manager{/t}</span> |
-{elseif $if_superadmin == '1'&& $if_manager != '1'} 
+{elseif $if_superadmin|default:'0' == '1' && $if_manager|default:'0' != '1'} 
 <span class="text"> {t}permissions: superadmin{/t}</span> |{/if}
 </div>
 

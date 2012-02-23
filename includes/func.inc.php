@@ -986,7 +986,7 @@ function save_autoresponder($uid,$active,$esubject,$msg,$send_times) {
 
 function check_access_to_site($site) {
 	$usersite = substr($site,0, strpos($site, '_'));
-	if (ereg("_", $site) && ($usersite == 'user' || $usersite == 'sadmin')) {
+	if (preg_match('/_/', $site) && ($usersite == 'user' || $usersite == 'sadmin')) {
 		$sites = array(
 			'user_archivemail' => 'p_mailarchive',
 			'user_mailfilter'  => 'p_mailfilter',

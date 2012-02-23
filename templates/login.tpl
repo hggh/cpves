@@ -1,3 +1,4 @@
+{assign var='if_login_ok' value=$if_login_ok|default:'no'}
 {if $if_login_ok !='yes'}
 <form action="index.php?module=login" method="post">
 <table>

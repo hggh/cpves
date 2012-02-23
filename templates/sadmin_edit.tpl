@@ -1,3 +1,5 @@
+{assign var='if_username_empty' value=$if_username_empty|default:'n'}
+{assign var='if_username_wrong' value=$if_username_wrong|default:'n'}
 <br/>
 {if $if_username_empty eq 'y' }
 <div style="text-align:center;color:red;">
@@ -14,7 +16,7 @@ Benutzername darf nicht l&auml;nger als 8 Zeichen sein!
 <br/>
 {/if}
 
-<form accept-charset="?module=sadmin&#038;id={$id}" method="post">
+<form accept-charset="UTF-8" method="post" action="?module=sadmin_edit&id={$id}">
 <table>
 <tr>
  <td>{t}username{/t}:</td>

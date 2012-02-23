@@ -22,7 +22,14 @@ if (!is_file(ROOT . "/includes/config.inc.php")) {
 	die("<h3>missing ". ROOT . "/includes/config.inc.php!</h3>");
 }
 require_once( ROOT . "/includes/config.inc.php");
-if (!isset($_POST['login']) && $_GET['module'] != "login"  ) {
+
+if( isset($_GET['module']) ) {
+ $module = $_GET['module'];
+} else {
+ $module = '';
+}
+
+if (!isset($_POST['login']) && $module != "login"  ) {
 	include(ROOT . "/includes/check_access.php");
 }
 
@@ -47,7 +54,7 @@ bind_textdomain_codeset("cpves", "UTF-8");
 textdomain("cpves");
 
 $site="";
-switch($_GET['module']) {
+switch($module) {
 	case 'login':
 		$site="login";
 		break;
@@ -155,7 +162,7 @@ switch($_GET['module']) {
 }
 
 // Build Menu Structure
-if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
+if (preg_match('/_/', $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	list($siteB, $siteA) = split("_", $site);
 	if ($siteB == "email" || $siteB == "forward" ||
 	$siteB == "domain" ||$siteB == "list") {
@@ -174,7 +181,7 @@ if (ereg("_", $site) && isset($_GET['did']) && is_numeric($_GET['did'])) {
 	}
 }
 // Normal user fix for viewing correct menu:
-if ((ereg("_", $site) && substr($site,0, strpos($site, '_'))== 'user')) {
+if ((preg_match('/_/', $site) && substr($site,0, strpos($site, '_'))== 'user')) {
 	$sql=sprintf("SELECT email FROM users WHERE id='%s'",
 		$db->escapeSimple($_SESSION['uid']));
 	$result=&$db->query($sql);

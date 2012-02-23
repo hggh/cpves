@@ -1,3 +1,8 @@
+{assign var='if_admin' value=$if_admin|default:0}
+{assign var='if_manager' value=$if_manager|default:0}
+{assign var='if_superadmin' value=$if_superadmin|default:0}
+{assign var='if_domain_view' value=$if_domain_view|default:'n'}
+{assign var='menu_user_open' value=$menu_user_open|default:'n'}
 <div id="leftside">
 <h1>{t}menu{/t}</h1>
 <p>

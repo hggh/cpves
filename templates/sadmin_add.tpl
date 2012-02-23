@@ -2,11 +2,11 @@
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td>{t}username{/t}:</td>
-			<td><input name="username" maxlength="8" value="{$sausername}"  type="text" /></td>
+			<td><input name="username" maxlength="8" value="{$sausername|default:''}"  type="text" /></td>
 		</tr>
 		<tr>
 			<td>{t}full name{/t}:</td>
-			<td><input name="full_name" value="{$full_name}"  type="text" /></td>
+			<td><input name="full_name" value="{$full_name|default:''}"  type="text" /></td>
 		</tr>
 		<tr>
 			<td>{t}password{/t}:</td>
