@@ -5,9 +5,14 @@ require_once 'Net/DNS.php';
 require_once 'Net/CheckIP.php';
 require_once 'Net/IPv6.php';
 require_once "Validate.php";
-define('SMARTY_DIR', $root .'/smarty/libs/');
+define('SMARTY_DIR', $root .'/smarty/');
 require(SMARTY_DIR .'Smarty.class.php');
-$smarty = new Smarty;
+$smarty = new Smarty();
+$smarty->plugins_dir = array(
+ "$root/smarty/plugins/",
+ "$root/smartyPlugins/"
+);
+
 $smarty->use_sub_dirs = false; 
 $smarty->compile_check = true;
 $smarty->caching = false;
