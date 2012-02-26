@@ -1,3 +1,6 @@
+CpVES 0.21 2012-02-26 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Fixed: Missing version tag
+	o Fixed: AGPLv3 at template
 CpVES 0.20 2012-02-25 - Jonas Genannt - <jonas.genannt@brachium-system.net>
 	o Added: internal domainforwarding feature
 	o Removed: fetchmail check from create_mailbox_size.pl (wrong)
