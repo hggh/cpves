@@ -85,8 +85,8 @@
 	<tr>
 		<td>{t}spamassassin available{/t}:</td>
 		<td><select name="p_spamassassin">
-			<option value="1">{t}yes{/t}</option>
-			<option value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{t}no{/t}</option>
+            <option value="1">{t}yes{/t}</option>
+			<option selected value="0" onclick="document.getElementById('p_bogofilter').value=0;document.getElementById('p_sa_wb_listing').value=0;">{t}no{/t}</option>
 		</select></td>
 	</tr>
 	<tr>
