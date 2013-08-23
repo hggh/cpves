@@ -1,6 +1,5 @@
 ALTER TABLE `domains` ADD `spamassassin` TINYINT(1) DEFAULT '1' NOT NULL;
 
-Version 0.02 to 0.03
 ALTER TABLE `domains` CHANGE `disableimap` `p_imap` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `domains` CHANGE `disablepop3` `p_pop3` TINYINT( 1 ) NULL DEFAULT '1';
 ALTER TABLE `domains` CHANGE `disablewebmail` `p_webmail` TINYINT( 1 ) NULL DEFAULT '1';

@@ -413,3 +413,45 @@ service mailcontrol
 
 cp /var/www/virtual/cpves/html/system_scripts/runScripts.sh /usr/local/cpves/
 chmod +x /usr/local/cpves/runScripts.sh
+
+Spamstuff (INCOMPLETE!)
+---
+** IN WORK **
+
+apt-get install spamassassin spamc
+apt-get install bogofilter
+apt-get install amavisd-new
+apt-get install clamav-freshclam clamav-daemon
+freshclam
+/etc/init.d/clamav-daemon start
+
+adduser --disabled-login --gecos 'spammer' spammer
+sudo -u spammer mkdir /home/spammer/.spamassassin/
+
+crontab -e
+00 00 * * *     perl /usr/local/cpves/sa_learn.pl
+
+vi /etc/default/spamassassin
+ENABLED=1
+OPTIONS="--create-prefs --max-children 5 --helper-home-dir -q -x -u spammer"
+
+vi /etc/spamassassin/local.cf
+
+report_safe 0
+use_bayes 1
+bayes_auto_learn 0
+use_razor2              0
+use_dcc                 0
+use_pyzor               0
+score SPF_PASS          0
+score SPF_NEUTRAL       0
+score SPF_FAIL          0
+score SPF_SOFTFAIL      0
+score SPF_HELO_PASS     0
+score SPF_HELO_NEUTRAL  0
+score SPF_HELO_FAIL     0
+score SPF_HELO_SOFTFAIL 0
+user_scores_dsn         DBI:mysql:cpves:localhost
+user_scores_sql_username        cpves
+user_scores_sql_password        <PASSWORD>
+user_scores_sql_custom_query    SELECT preference, value FROM spamassassin WHERE username CONCAT ORDER BY username ASC
