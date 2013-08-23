@@ -1,0 +1,1 @@
+ALTER TABLE `lists` modify column `access` TINYINT( 1 ) DEFAULT '1' NOT NULL;

@@ -1,188 +1,18 @@
 Version 0.01 to 0.02:
-ALTER TABLE `domains` ADD `spamassassin` TINYINT(1) DEFAULT '1' NOT NULL;
 
-Version 0.02 to 0.03
-ALTER TABLE `domains` CHANGE `disableimap` `p_imap` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `domains` CHANGE `disablepop3` `p_pop3` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `domains` CHANGE `disablewebmail` `p_webmail` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `domains` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '1';
-
-ALTER TABLE `users` CHANGE `disableimap` `p_imap` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `users` CHANGE `disablepop3` `p_pop3` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `users` CHANGE `disablewebmail` `p_webmail` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `users` CHANGE `spamassassin` `p_spamassassin` TINYINT( 1 ) NULL DEFAULT '1';
-ALTER TABLE `users` ADD `p_forwarding` TINYINT( 1 ) NULL DEFAULT '1';
-
-CREATE TABLE `autoresponder_recipient` (
-  `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL default '0',
-  `recip` varchar(250) NOT NULL default '',
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-ALTER TABLE `domains` ADD `p_mailarchive` TINYINT( 1 ) DEFAULT '0';
-ALTER TABLE `users` ADD `p_mailarchive` TINYINT( 1 ) DEFAULT '0'; 
-
-ALTER TABLE `domains` ADD `p_bogofilter` TINYINT( 1 ) DEFAULT '0' NOT NULL ; 
-ALTER TABLE `users` ADD `p_bogofilter` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
-
-CREATE TABLE `autoresponder_disable` (
-  `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL default '0',
-  `active` tinyint(1) NOT NULL default '1',
-  `a_date` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `sa_wb_listing` (
-  `id` int(11) NOT NULL auto_increment,
-  `domainid` int(11) NOT NULL default '0',
-  `email` int(11) NOT NULL default '0',
-  `sa_from` varchar(250) NOT NULL default '',
-  `type` tinyint(1) NOT NULL default '1',
-  PRIMARY KEY  (`id`),
-  KEY `domainid` (`domainid`),
-  KEY `type` (`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-ALTER TABLE `domains` ADD `p_sa_wb_listing` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
 
 
 Version 0.03 to 0.04
-ALTER TABLE `domains` ADD `p_mailfilter` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `domains` ADD `p_spam_del` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_spam_del` TINYINT( 1 ) NOT NULL DEFAULT '0';
-CREATE TABLE `mailarchive` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`email` INT NOT NULL ,
-`folder` VARCHAR( 250 ) NOT NULL ,
-`adays` INT NOT NULL ,
-`fname_month` TINYINT( 1 ) NOT NULL ,
-`fname_year` TINYINT( 1 ) NOT NULL ,
-`active` TINYINT( 1 ) NOT NULL ,
-INDEX ( `email` , `active` )
-) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `mailarchive` ADD `mailsread` TINYINT( 1 ) NOT NULL ;
-ALTER TABLE `autoresponder` ADD `times` CHAR( 1 ) NOT NULL DEFAULT '1';
-ALTER TABLE `domains` ADD `enew` TINYINT( 1 ) NOT NULL DEFAULT '1';
 
-ALTER TABLE `domains` ADD `p_sa_learn` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_sa_learn` TINYINT( 1 ) NOT NULL DEFAULT '0';
-
-CREATE TABLE `spamassassin_learn` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`email` INT NOT NULL ,
-`folder` VARCHAR( 255 ) NOT NULL ,
-`active` TINYINT( 1 ) NOT NULL DEFAULT '0',
-`type` ENUM( 'spam', 'ham' ) NOT NULL
-) ENGINE = MYISAM ;
-ALTER TABLE `domains` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_fetchmail` TINYINT( 1 ) NOT NULL DEFAULT '0';
-CREATE TABLE `fetchmail` (
-  `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL default '0',
-  `server` varchar(255) NOT NULL default '',
-  `proto` tinyint(1) NOT NULL default '0',
-  `conn_type` tinyint(1) NOT NULL default '0',
-  `username` varchar(255) NOT NULL default '',
-  `password` varchar(255) NOT NULL default '',
-  `keep_mails` tinyint(1) NOT NULL default '0',
-  `active` tinyint(1) NOT NULL default '1',
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`),
-  KEY `active` (`active`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-ALTER TABLE `adm_users` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
-update adm_users SET access='1' WHERE access='y';
-update adm_users SET access='0' WHERE access='n';
-ALTER TABLE `adm_users` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
-ALTER TABLE `adm_users` CHANGE `manager` `manager` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
-update adm_users SET manager='1' WHERE manager='y';
-update adm_users SET manager='0' WHERE manager='n';
-ALTER TABLE `adm_users` CHANGE `manager` `manager` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` DROP `admin` ;
-ALTER TABLE `users` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
-update users SET access='1' WHERE access='y';
-update users SET access='0' WHERE access='n';
-ALTER TABLE `users` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
-ALTER TABLE `domains` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
-update domains SET access='1' WHERE access='y';
-update domains SET access='0' WHERE access='n';
-ALTER TABLE `domains` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
-ALTER TABLE `forwardings` CHANGE `access` `access` VARCHAR( 2 ) NOT NULL DEFAULT 'y';
-update forwardings SET access='1' WHERE access='y';
-update forwardings SET access='0' WHERE access='n';
-ALTER TABLE `forwardings` CHANGE `access` `access` TINYINT( 1 ) NOT NULL DEFAULT '1';
-ALTER TABLE `spamassassin` ADD `email` INT NOT NULL FIRST;
-ALTER TABLE `domains` ADD `p_webinterface` TINYINT( 1 ) DEFAULT '1' NOT NULL;
-ALTER TABLE `users` ADD `p_webinterface` TINYINT( 1 ) DEFAULT '1' NOT NULL;
 
 
 Version 0.04 to 0.05
-ALTER TABLE `lists` modify column `access` TINYINT( 1 ) DEFAULT '1' NOT NULL;
+
 
 Version 0.05 to 0.06
-CREATE TABLE `autoresponder_xheader` (
-  `id` int(11) NOT NULL auto_increment,
-  `email` int(11) NOT NULL,
-  `xheader` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-ALTER TABLE `domains` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_autores_xheader` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `mb_size` INT NOT NULL DEFAULT '0';
-ALTER TABLE `adm_users` ADD `web_lang` VARCHAR( 8 ) NOT NULL ;
 
-Version 0.07 to 0.08
-ALTER TABLE `users` ADD `p_check_polw` TINYINT( 1 ) DEFAULT '1' NOT NULL ;
-ALTER TABLE `users` ADD `p_check_grey` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
-
-ALTER TABLE `forwardings` ADD `p_check_polw` TINYINT( 1 ) DEFAULT '1' NOT NULL ;
-ALTER TABLE `forwardings` ADD `p_check_grey` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
-
-ALTER TABLE `domains` ADD `p_check_polw` TINYINT( 1 ) DEFAULT '1' NOT NULL ;
-ALTER TABLE `domains` ADD `p_check_grey` TINYINT( 1 ) DEFAULT '0' NOT NULL ;
-
-DROP VIEW IF EXISTS smtpd_recipient_classes;
-CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM users WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 UNION SELECT efrom,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM forwardings WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0;
-
-CREATE TABLE `lists` (
-  `id` int(11) NOT NULL auto_increment,
-  `domainid` int(11) NOT NULL,
-  `address` varchar(80) NOT NULL,
-  `access` tinyint(1) default '1',
-  `public` enum('y','n') NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `second` (`address`,`access`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `list_recp` (
-  `id` int(11) NOT NULL auto_increment,
-  `recp` varchar(100) default NULL,
-  KEY `listID` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-ALTER TABLE `domains` ADD `p_mlists` TINYINT NOT NULL DEFAULT '0';
 
 
 Version 0.09 to 0.10
-ALTER TABLE `domains` ADD `p_spam_fwd` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `users` ADD `p_spam_fwd` TINYINT( 1 ) NOT NULL DEFAULT '0';
-ALTER TABLE `adm_users` CHANGE `web_lang` `web_lang` VARCHAR( 14 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 
-Version 0.10 to 0.11
-DROP VIEW IF EXISTS smtpd_recipient_classes;
-CREATE VIEW smtpd_recipient_classes AS  SELECT email,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM users WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 UNION SELECT efrom,if(p_check_polw=1,'check_polw','') AS polw,if(p_check_grey=1,'check_grey','') AS grey FROM forwardings WHERE access=1 AND p_check_polw!=0 AND p_check_polw!=0 AND efrom NOT REGEXP '^@';
-
-CREATE TABLE `domains_forward` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`fr_domain` INT NOT NULL ,
-`to_domain` INT NOT NULL ,
-INDEX ( `fr_domain` )
-) ENGINE = MYISAM ;
-ALTER TABLE `domains` ADD `p_autores` TINYINT( 1 ) NOT NULL DEFAULT '1';
 
