@@ -77,7 +77,10 @@ if (isset($_SESSION['superadmin']) &&
 		$data=$result->fetchrow(DB_FETCHMODE_ASSOC);
 		$smarty->assign('eto', $data['eto']);
 		$smarty->assign('eid', $data['id']);
-	}
+	}else {
+        $smarty->assign('if_edit','n');
+        $smarty->assign('eto',false);
+    }
 
 
 

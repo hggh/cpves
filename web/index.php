@@ -52,7 +52,7 @@ $lc_path= ROOT ."/includes/localization/";
 bindtextdomain("cpves", $lc_path);
 bind_textdomain_codeset("cpves", "UTF-8");
 textdomain("cpves");
-
+$smarty->assign('if_logout' ,'n');
 $site="";
 switch($module) {
 	case 'login':

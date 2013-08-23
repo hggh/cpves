@@ -36,7 +36,10 @@ if (isset($_SESSION['superadmin']) &&
 	
 	$smarty->assign('domain',$data['dnsname']);
 	$smarty->assign('dnsname',$data['dnsname']);
-	
+
+    $smarty->assign('full_name',false);
+    $smarty->assign('eMail',false);
+
 	if (get_forem_domain($domain_id,'users', $db)>=$max_email && $max_email!=0 )
 	{
 		$smarty->assign('error_msg','y');
