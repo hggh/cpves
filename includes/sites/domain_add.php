@@ -20,7 +20,8 @@ if (isset($_POST['submit']))
 {
 	if (!empty($_POST['dnsname']))
 	{
-		if (domain_exist($_POST['dnsname'],$db))
+        $smarty->assign('if_error_postmaster',false);
+        if (domain_exist($_POST['dnsname'],$db))
 		{
 			
 			$smarty->assign('error_msg','y');

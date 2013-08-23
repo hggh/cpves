@@ -534,10 +534,10 @@ function val_tos_add($uid, $val_tos_add) {
 function run_systemscripts() {
 	global $config;
 	if( $config['trigger_service_enabled'] == 1 ) {
-		$socket = @socket_create (AF_INET, SOCK_STREAM, 0);
-		$result = @socket_connect ($socket, $config['trigger_service_host'],
+		$socket = socket_create (AF_INET, SOCK_STREAM, 0);
+		$result = socket_connect ($socket, $config['trigger_service_host'],
 			$config['trigger_service_port']);
-		@socket_close ($socket);
+		socket_close ($socket);
 	}
 }
 
@@ -763,7 +763,8 @@ function get_ip_for_a($arecord)
 	{
 		foreach($response->answer as $rr)
 		{
-			return $rr->address;
+			if (isset($rr->address)) return $rr->address;
+            return;
 		}
 	}
 	
