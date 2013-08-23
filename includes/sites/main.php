@@ -62,9 +62,9 @@ while($row = $result->fetchrow(DB_FETCHMODE_ASSOC))
 	$sql=sprintf("SELECT a.email FROM users AS a LEFT JOIN autoresponder AS b ON b.email = a.id WHERE a.domainid='%d' AND b.active = 'y'",
 		$db->escapeSimple($row['id']));
 	$res_vacation = $db->query($sql);
-	if ($res_vacation->numRows() > 0 ) {
+    $vaction_infos="";
+    if ($res_vacation->numRows() > 0 ) {
 		$vaction=1;
-		$vaction_infos="";
 		while($row_vac = $res_vacation->fetchrow(DB_FETCHMODE_ASSOC)) {
 			$vaction_infos .= $row_vac['email'] . "<br/>";
 		}
