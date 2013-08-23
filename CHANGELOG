@@ -1,0 +1,160 @@
+CpVES 0.21 2012-02-26 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Fixed: Missing version tag
+	o Fixed: AGPLv3 at template
+CpVES 0.20 2012-02-25 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: internal domainforwarding feature
+	o Removed: fetchmail check from create_mailbox_size.pl (wrong)
+	o Fixed: recipient classes VIEW
+	o Fixed: de_DE language
+	o Fixed: superadmin could not view settings
+	o Improved: display mailbox size with units
+	o Improved: vaction view in index with CSS tooltips
+	o Improved: fist step to better inputchecks for XSS protection
+	  Thanks to Sven Tantau (http://beastiebytes.com)
+	o PHP 5.3 fixes (T. Genannt)
+	o Smarty Upgrade (T. Genannt)
+CpVES 0.10 2007-10-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Improved: sa_learn.pl no longer debug output
+	o Improved: move_spam does not display INBOX
+	o Improved: list_view add new address (check if valid)
+	o Added: display mailbox size per domain
+	o Added: forward spam to another mailbox (frontend + backend) (#29)
+	o Added: admin could remove move_spam option per user
+	o Added: admin could set forward spam option
+	o Fixed: superadmin web_lang to short (#35)
+	o Fixed: webmail link is not working
+	o Fixed: mailgraph link is not working
+	o Fixed: sa_learn.pl bogofilter check
+	o Fixed: domain size display in overview
+	o Fixed: forward_view.tpl list addresses
+	o Fixed: typos in german translation
+CpVES 0.09 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Improved: runScripts.sh create_fetchmail.pl should not run on trigger
+	o Improved: trigger backendscript marked as stable
+	o Removed: all rbl checking code (never used)
+	o Fixed: defect mail_system.sql again
+CpVES 0.08 2007-09-15 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: policyd-weight per user/domain configuration
+	o Added: greylisting per user/domain configuration
+	o Added: some logging to listMailer.pl
+	o Improved: mailinglists feature
+	o Improved: delete domain and delete lists
+	o Improved: some code cleanup
+	o Improved: display username only if an user is logged in (#34)
+CpVES 0.07 2007-09-13 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Fixed: mail_system.sql
+CpVES 0.06 2007-09-11 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: autoresponder.pl: special X-Header vacation disable
+	o Added: special X-Header vacation to email user/admin frontend
+	o Added: pidfile for create_mailboxes.pl
+	o Added: pidfile for create_mailfilters.pl
+	o Added: script for calculate the mailbox size
+	o Added: new config value for "display mailbox size"
+	o Added: domain_view.tpl mailbox size
+	o Added: check if php-imap is enabled
+	o Added: lang selection per user/sadmin
+	o Added: md5sum of .mailfiter will be saved to database
+	o Added: cpves version string to structure.tpl
+	o Added: index_sadmin vacaction overview per domain and user
+	o Improved: removed reload to domain show on save emailaddress
+	o Improved: vacation magic quotes
+	o Fixed: autoresponder.pl. UTF-8 problems in body
+CpVES 0.05 2007-08-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Fixed: repaired listmailer.pl for access tinyint(1) column (T. Genannt)
+	o Fixed: domain_add: default postmaster forwarding (#26)
+	o Fixed: default paths in runScipts.sh and installService.sh
+	o Improved: server_ip: you can configure more than one
+	o Improved: Default config now in extra file (copy to config.inc.php / mail_config.conf) (T. Genannt)
+CpVES 0.04 2007-08-25 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Added: Webmail to config.inc.php and navigation for direct webmail link
+	o Added: initial language split
+	o Added: delete known spam option (frontend)
+	o Added: delete known spam option (backend)
+	o Added: domain perms for sa_wb_listing
+	o Added: optional Mailgraphlink for admin and superadmin
+	o Added: mailarchive frontend
+	o Added: permission for using spam_del option (more secure about stupid users)
+	o Added: sadmin: rebuild all mailfilters
+	o Added: user/admin option: delete duplicate mails
+	o Added: autoresponder send feature (#7)
+	 (specify how many responds will send to one address back)
+	o Added: extra site for users password change
+	o Added: fetchmail mailfrontend + backendscript
+	o Added: whitelist localdomains (#22)
+	o Added: spam/ham learning frontend and backend (#9)
+	o Added: option to deny/allow cpves webinterface login per domain/user
+	o Fixed: typo in delete duplicate mails create_mailfilters.pl
+	o Fixed: autoresponder_disable bug, overrides complete table (#3)
+	o Fixed: autoresponder encoding with utf8 (#2)
+	o Fixed: autorepsonder quoting problems
+	o Fixed: Password dialog forms (#5)
+	o Fixed: create_mailfilters.pl: if() in bogofilter
+	o Fixed: delete domains (no old data will stay in other tables)
+	o Fixed: max forwardings in domain
+	o Fixed: max email addresses in domain
+	o Fixed: fixed some variable errors/usages
+	o Fixed: default spam_del value (10 -> 10.0) (#14)
+	o Fixed: spelling error (#16)
+	o Fixed: incorrect pidfile (#20)
+	o Fixed: error in sa_wb_listing.pl (#21)
+	o Fixed: forwardadd_fillform() (#23)
+	o Improved: backendscripts (default: /usr/local/cpves) (#21)
+	o Improved: config dir now default in /etc/cpves
+	o Improved: move_spam (only called in autoresponder if spamassassin is active)
+	o Improved: possible inputfailture on forwarding add
+	o Improved: moved all cpves js code to separate file (js/cpves.js)
+	o Improved: Upgrade to newest smarty version
+	o Improved: format error of del_known_spam (#6)
+	o Improved: delete domain; no email to sysadmin any more (#8)
+	o Improved: list_imap_folders: non-spam /spam folder
+	o Improved: make Spam folder bold in "move known spam to"
+	o Improved: check for correct permissions for every user_ site
+	o Improved: CpVES webinterface is english (#24)
+CpVES 0.03 2007-05-01 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Improved: create forward;copy addresses to form
+	o Improved: autoresponder - now send only to valid to addresses an responder
+	o Improved: check_domain_faeture (database change needed)
+	o Improved: forward_view (sorting of addresses)
+	o Improved: email_view admin domain sorting
+	o Improved: sadmin_edit success message
+	o Improved: index_sadmin.tpl layout
+	o Improved: index_admin.tpl layout
+	o Improved: functions for email_options
+	o Improved: forward_view delete complete forward
+	o Added: Whitelisting Support to Interface
+	o Added: automatic autoresponder disable feature
+	o Added: Initial Bogofilter frontend support
+	o Added: An SQL-Upgrade file
+	o Added: X-Loop and X-No-Loop check for autoresponder
+	o Added: Sending autoresponder with X-Loop and X-No-Loop header
+	o Added: new autoresponder feature to users interface
+	o Added: new autoresponder feature to admins interface
+	o Added: support forwarding per user dis/enable
+	o Added: ml_postmaster/mailserver_smtp to configfile
+	o Added: listMailer.pl support for configfile
+	o Added: index_sadmin: display sadmin privileges
+	o Added: sadmin/admin see move_spam option (ready only)
+	o Fixed: create forwarding
+	o Fixed: create mailinglist
+	o Fixed: listMailer.pl config file path
+	o Fixed: sadmin_add redirection to sadmin_view
+CpVES 0.02 2007-03-16 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o Code Cleanup
+	o Complete new code structure
+	o Fixed: Wrong emailaddr count on index site
+	o Improved Layout (error/success messages)
+	o Improved Run ML-Code only if ML activated
+	o Improved sadmin and user password change
+	o Improved Char-Encoding in listMailer.pl error-mail (T. Genannt)
+	o Added filed:
+	 ALTER TABLE `domains` ADD `spamassassin` TINYINT(1) DEFAULT '1' NOT NULL;
+	o Added: en/disable spamassassin support per domain
+	o Added: sadmin/admin can modify users autoresponder
+	o Added: sadmin/admin can modify users forwarding
+	o Added: sadmin/admin can modify users virus delete
+	o Added: inputfocus to emailaddress on loginpage and other pages
+	o Added: Cycle for backgroundcolors
+	o Added: domain_add: Forward do domain_view after creating
+	o Added: forward_add: List mailaddresses
+CpVES 0.01 2006-12-31 - Jonas Genannt - <jonas.genannt@brachium-system.net>
+	o First Release
