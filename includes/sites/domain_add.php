@@ -94,7 +94,8 @@ if (isset($_POST['submit']))
 			
 			$res_array=array();
 			$points='n';
-			if (get_mx($dnsname))
+            $smarty->assign('if_dns_not_found' ,false);
+            if (get_mx($dnsname))
 			{
 				$mx_entry=array();
 				foreach($res_array as $value)
