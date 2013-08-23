@@ -122,8 +122,7 @@
 		<td>
 		</td>
 		<td>
-		<input type="submit" name="submit" value="
-		{t}create domain{/t}" />
+		<input type="submit" name="submit" value="{t}create domain{/t}" />
 		</td>
 	</tr>
 </table>
