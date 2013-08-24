@@ -221,6 +221,7 @@ $smarty->assign('template', $site . ".tpl");
 // wenn nicht superadmin check autoresponder status und zeige ihn in der infobox an!
 if ($_SESSION['superadmin'] != '1' ) 
 {
+    $_SESSION['uid'] = false;
 	$sql=sprintf("SELECT active FROM autoresponder WHERE email='%d'",
 		$db->escapeSimple($_SESSION['uid']));
 	$result=&$db->query($sql);
