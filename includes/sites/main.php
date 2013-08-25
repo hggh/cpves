@@ -120,5 +120,6 @@ if ($_SESSION['superadmin']==0 && $_SESSION['admin']=='0' | $_SESSION['ad_user']
 	}
 	
 }
-$smarty->assign('table_data', $table_data);
+if(isset($table_data)) $smarty->assign('table_data', $table_data);
+else $smarty->assign('table_data', false);
 ?>
