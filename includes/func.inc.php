@@ -236,9 +236,9 @@ function get_autores_disable($uid) {
 	$res=&$db->query($sql);
 	if ($res->numRows() == 1) {
 		$data=$res->fetchrow(DB_FETCHMODE_ASSOC);
-		return $data;
+        return $data;
 	}
-	return array('active '=> 0);
+    return array('active '=> 0);
 }
 
 function check_autores_date_disable($a_date,$a_time) {
