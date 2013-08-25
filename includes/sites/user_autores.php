@@ -147,7 +147,7 @@ if ($result->numRows()==1)
 	$id=$data['id'];
 	$times=$data['times'];
 }
-elseif($error)
+elseif(isset($error))
 {
 	$active=$_POST['autores_active'];
 	$msg=$_POST['autores_msg'];
@@ -197,11 +197,11 @@ if ($_SESSION['p_autores_xheader'] == 1) {
 
 $smarty->assign('autores_disable', $autores_disable);
 $smarty->assign('table_val_tos', $table_val_tos);
-$smarty->assign('autores_subject', $esubject);
+if(isset($esubject)) $smarty->assign('autores_subject', $esubject);
 $smarty->assign('autores_active', $active);
 
-$smarty->assign('autores_sendback_times_value', $times);
-$smarty->assign('id', $id);
-$smarty->assign('autores_msg', $msg);
+if(isset($times)) $smarty->assign('autores_sendback_times_value', $times);
+if(isset($id)) $smarty->assign('id', $id);
+if(isset($msg)) $smarty->assign('autores_msg', $msg);
 $smarty->assign('email', $_SESSION['email']);
 ?>
