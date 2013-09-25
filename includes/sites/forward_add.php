@@ -54,7 +54,7 @@ if (isset($_SESSION['superadmin']) &&
 		$table_email=false;
 	}
 	$smarty->assign('table_email', $table_email);
-
+    $smarty->assign('from',false);
 	
 	if (isset($_POST['submit']))
 	{

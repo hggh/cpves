@@ -54,11 +54,11 @@
 	</tr>
 	<tr>
 		<td>{t}date of deactivation{/t}:</td>
-		<td><input type="text" name="autores_datedisable_date" value="{$autores_disable.a_date}" id="autores_datedisable_date"/></td>
+		<td><input type="text" name="autores_datedisable_date" value="{if isset($autores_disable.a_date)}{$autores_disable.a_date}{/if}" id="autores_datedisable_date"/></td>
 	</tr>
 	<tr>
 		<td>{t}time of deactivation{/t}:</td>
-		<td><input type="text" name="autores_datedisable_time" value="{$autores_disable.a_time}" id="autores_datedisable_time"/></td>
+		<td><input type="text" name="autores_datedisable_time" value="{if isset($autores_disable.a_time)}{$autores_disable.a_time}{/if}" id="autores_datedisable_time"/></td>
 	</tr>
 	<tr>
 		<td></td>
@@ -153,7 +153,7 @@
 	<script type="text/javascript">cpves_autores_field('true');
 	</script>
 {/if}
-{if $autores_disable.active == 0 }
+{if isset($autores_disable.active) && $autores_disable.active == 0 }
 	<script type="text/javascript">
 	cpves_autores_datedisable('true');
 	</script>

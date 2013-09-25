@@ -1,3 +1,7 @@
 includes/config.inc.php
 rails/log/*
 tmp/pids/server.pid
+
+*~
+*.sublime-workspace
+.idea/
