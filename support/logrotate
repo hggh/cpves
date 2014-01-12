@@ -1,0 +1,13 @@
+/var/www/virtual/cpves/logs/*.log {
+  weekly
+  missingok
+  rotate 4
+  compress
+  delaycompress
+  notifempty
+  sharedscripts
+  postrotate
+    /etc/init.d/nginx reload > /dev/null
+    invoke-rc.d php5-fpm reopen-logs > /dev/null
+  endscript
+}
