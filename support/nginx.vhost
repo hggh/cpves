@@ -1,0 +1,27 @@
+server {
+    listen <YOURIP>:443 ssl;
+    server_name <YOURFQDN>;
+
+    ssl_certificate         /etc/nginx/ssl/server.pem;
+    ssl_certificate_key     /etc/nginx/ssl/server.pem;
+    ssl_protocols           SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers             HIGH:!aNULL:!MD5;
+
+    access_log /var/www/virtual/cpves/logs/nginx_access.log;
+    error_log /var/www/virtual/cpves/logs/nginx_error.log;
+
+    root /var/www/virtual/cpves/html/web;
+
+    index index.php;
+
+    location ~ ^(.*)\/\.(.*)$ {
+        return 404;
+    }
+
+    location ~ ^(.*)\.php$ {
+        try_files $uri =404;
+
+        include       /etc/nginx/fastcgi_params;
+        fastcgi_pass  unix:/var/www/virtual/cpves/sockets/phpfpm.socket;
+    }
+}
