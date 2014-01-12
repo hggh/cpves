@@ -5,3 +5,5 @@ tmp/pids/server.pid
 *~
 *.sublime-workspace
 .idea/
+vendor/
+composer.lock
