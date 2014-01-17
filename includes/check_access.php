@@ -89,6 +89,7 @@ else
 
 }
 
+$smarty->assign('if_login' , false);
 if ($no_login==1)
 {
 	//$smarty->display('login.tpl');

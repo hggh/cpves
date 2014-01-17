@@ -38,7 +38,9 @@ if (! isset($_POST['del_ok']))
 	if ($res->numRows()==0)
 	{
 		$smarty->assign('if_no_data','y');
-	}
+	} else {
+        $smarty->assign('if_no_data','n');
+    }
 	while($row=$res->fetchrow(DB_FETCHMODE_ASSOC))
 	{
 		array_push($table_data, array(

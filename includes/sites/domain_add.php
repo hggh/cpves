@@ -20,7 +20,8 @@ if (isset($_POST['submit']))
 {
 	if (!empty($_POST['dnsname']))
 	{
-		if (domain_exist($_POST['dnsname'],$db))
+        $smarty->assign('if_error_postmaster',false);
+        if (domain_exist($_POST['dnsname'],$db))
 		{
 			
 			$smarty->assign('error_msg','y');
@@ -94,7 +95,8 @@ if (isset($_POST['submit']))
 			
 			$res_array=array();
 			$points='n';
-			if (get_mx($dnsname))
+            $smarty->assign('if_dns_not_found' ,false);
+            if (get_mx($dnsname))
 			{
 				$mx_entry=array();
 				foreach($res_array as $value)

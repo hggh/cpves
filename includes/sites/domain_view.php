@@ -75,7 +75,7 @@ if (isset($_GET['eid']) && is_numeric($_GET['eid']) && isset($_GET['state']) && 
 			$table,
 			$db->escapeSimple($_GET['eid']));
 	}
-	if ( (strpos($email, 'postmaster')) === false)
+	if (isset($email) && strpos($email, 'postmaster') === false)
 	{
 		$result=&$db->query($sql);
 		if (!$result)
@@ -237,6 +237,8 @@ if ($result->numRows()>0) {
 			'fr_domain_name' => $data['dnsname']));
 	}
 	$smarty->assign('table_domain_points',$table_domain_points);
+} else {
+    $smarty->assign('domains_points_to_me',0);
 }
 
 

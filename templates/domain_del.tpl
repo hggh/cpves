@@ -2,7 +2,7 @@
 
 {if $if_del_ok == 'n' }
 
-{if $if_no_data != 'y' }
+{if $if_no_data && $if_no_data != 'y' }
 <table >
 <tr>
  <td style="width:110px;font-weight:bold;">{t}emailaddresses{/t}:</td>

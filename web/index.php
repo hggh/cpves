@@ -52,7 +52,7 @@ $lc_path= ROOT ."/includes/localization/";
 bindtextdomain("cpves", $lc_path);
 bind_textdomain_codeset("cpves", "UTF-8");
 textdomain("cpves");
-
+$smarty->assign('if_logout' ,'n');
 $site="";
 switch($module) {
 	case 'login':
@@ -221,6 +221,7 @@ $smarty->assign('template', $site . ".tpl");
 // wenn nicht superadmin check autoresponder status und zeige ihn in der infobox an!
 if ($_SESSION['superadmin'] != '1' ) 
 {
+    $_SESSION['uid'] = false;
 	$sql=sprintf("SELECT active FROM autoresponder WHERE email='%d'",
 		$db->escapeSimple($_SESSION['uid']));
 	$result=&$db->query($sql);
