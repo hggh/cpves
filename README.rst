@@ -6,7 +6,7 @@ CpVES Installation
 Preface
 =======
 This INSTALL covers the installation on a clean Debian 7.
-**Be careful if you install CpVES on a already running Debian.**
+**Be careful if you install CpVES on a already running Debian.with a with a mailserver setup**
 
 Replace settings with your proper ones (like pathes/IPs, <PASSWORD> etc.)
 
