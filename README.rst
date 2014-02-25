@@ -125,6 +125,13 @@ Install PEAR and PEAR packages globally::
   pear install Validate-0.8.5
   pear install DB
 
+perl
+----
+
+Needed Perl packages::
+
+  apt-get install libdbd-mysql-perl libdbi-perl libemail-simple-perl libemail-find-perl libconfig-general-perl libproc-pid-file-perl
+
 
 mysql
 -----
