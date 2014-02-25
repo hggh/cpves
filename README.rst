@@ -155,6 +155,7 @@ Import and update cpves database::
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.04_to_0.05.sql
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.05_to_0.06.sql
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.09_to_0.10.sql
+  mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.10_to_0.11.sql
 
 Some more cpves
 ---------------
