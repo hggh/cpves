@@ -6,7 +6,7 @@ CpVES Installation
 Preface
 =======
 This INSTALL covers the installation on a clean Debian 7.
-**Be careful if you install CpVES on a already running Debian.**
+**Be careful if you install CpVES on a already running Debian.with a with a mailserver setup**
 
 Replace settings with your proper ones (like pathes/IPs, <PASSWORD> etc.)
 
@@ -125,6 +125,13 @@ Install PEAR and PEAR packages globally::
   pear install Validate-0.8.5
   pear install DB
 
+perl
+----
+
+Needed Perl packages::
+
+  apt-get install libdbd-mysql-perl libdbi-perl libemail-simple-perl libemail-find-perl libconfig-general-perl libproc-pid-file-perl
+
 
 mysql
 -----
@@ -155,6 +162,7 @@ Import and update cpves database::
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.04_to_0.05.sql
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.05_to_0.06.sql
   mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.09_to_0.10.sql
+  mysql --defaults-file=/etc/mysql/debian.cnf cpves < /var/www/virtual/cpves/html/mail_system_0.10_to_0.11.sql
 
 Some more cpves
 ---------------
